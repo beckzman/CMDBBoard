@@ -20,6 +20,10 @@ const Login: React.FC = () => {
 
         try {
             const data = await authAPI.login(username, password);
+
+            // Store token first so it's available for the next request
+            localStorage.setItem('access_token', data.access_token);
+
             const user = await authAPI.getCurrentUser();
 
             login(data.access_token, user);
