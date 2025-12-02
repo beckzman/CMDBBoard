@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAuthStore } from './store/authStore';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import ConfigurationItems from './pages/ConfigurationItems';
 import Layout from './components/Layout';
 import './index.css';
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
                         }
                     >
                         <Route index element={<Dashboard />} />
+                        <Route path="cis" element={<ConfigurationItems />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -147,3 +147,11 @@ export const exportAPI = {
         return response.data;
     },
 };
+
+// Health API
+export const healthAPI = {
+    checkHost: async (id: number) => {
+        const response = await api.post(`/api/ci/${id}/check-health`);
+        return response.data;
+    },
+};

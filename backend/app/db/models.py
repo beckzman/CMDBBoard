@@ -68,6 +68,7 @@ class ConfigurationItem(Base):
     name = Column(String(255), nullable=False, index=True)
     ci_type = Column(Enum(CIType), nullable=False, index=True)
     status = Column(Enum(CIStatus), default=CIStatus.ACTIVE, nullable=False, index=True)
+    domain = Column(String(255), nullable=True)
     description = Column(Text)
     owner = Column(String(255))
     location = Column(String(255))

@@ -42,6 +42,7 @@ class CIBase(BaseModel):
     name: str
     ci_type: CIType
     status: CIStatus = CIStatus.ACTIVE
+    domain: Optional[str] = None
     description: Optional[str] = None
     owner: Optional[str] = None
     location: Optional[str] = None
@@ -57,6 +58,7 @@ class CICreate(CIBase):
 class CIUpdate(BaseModel):
     name: Optional[str] = None
     status: Optional[CIStatus] = None
+    domain: Optional[str] = None
     description: Optional[str] = None
     owner: Optional[str] = None
     location: Optional[str] = None
