@@ -119,6 +119,21 @@ export const importAPI = {
         const response = await api.get(`/api/import/${id}`);
         return response.data;
     },
+
+    listSources: async () => {
+        const response = await api.get('/api/import/sources');
+        return response.data;
+    },
+
+    createSource: async (data: any) => {
+        const response = await api.post('/api/import/sources', data);
+        return response.data;
+    },
+
+    runSource: async (id: number) => {
+        const response = await api.post(`/api/import/sources/${id}/run`);
+        return response.data;
+    },
 };
 
 // Export API

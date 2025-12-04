@@ -101,7 +101,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
             <div className="modal-container">
                 <div className="modal-header">
                     <h2>{initialData ? 'Edit Configuration Item' : 'Add New Configuration Item'}</h2>
-                    <button onClick={onClose} className="close-button">
+                    <button onClick={onClose} className="close-btn">
                         <X size={24} />
                     </button>
                 </div>

@@ -9,7 +9,7 @@ import tempfile
 from app.core.auth import get_current_user, require_role
 from app.db.database import get_db
 from app.db.models import User, UserRole, ImportLog
-from app.schemas import ImportLogResponse
+from app.schemas import ImportLogResponse, ImportSourceCreate, ImportSourceResponse
 from app.services.csv_importer import CSVImporter
 
 router = APIRouter(prefix="/api/import", tags=["Import"])
@@ -78,3 +78,80 @@ def get_import_status(
         )
     
     return import_log
+    return import_log
+
+
+@router.post("/sources", response_model=ImportSourceResponse, status_code=status.HTTP_201_CREATED)
+def create_import_source(
+    source_data: ImportSourceCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """Create a new import source."""
+    from app.db.models import ImportSource
+    from app.core.scheduler import schedule_job
+    
+    new_source = ImportSource(**source_data.model_dump())
+    db.add(new_source)
+    db.commit()
+    db.refresh(new_source)
+    
+    # Schedule if active and has cron
+    if new_source.is_active and new_source.schedule_cron:
+        schedule_job(new_source)
+    
+    return new_source
+
+
+@router.get("/sources", response_model=List[ImportSourceResponse])
+def list_import_sources(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """List all import sources."""
+    from app.db.models import ImportSource
+    return db.query(ImportSource).all()
+
+
+@router.post("/sources/{source_id}/run", status_code=status.HTTP_202_ACCEPTED)
+async def run_import_source(
+    source_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """Manually trigger an import job."""
+    from app.db.models import ImportSource
+    from app.core.scheduler import run_import_job
+    
+    source = db.query(ImportSource).filter(ImportSource.id == source_id).first()
+    if not source:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Import source not found"
+        )
+    
+    # Run in background (using scheduler's executor or just async)
+    # For simplicity, we'll run it directly in the background task
+    # But since run_import_job is synchronous (DB ops), we should be careful.
+    # Ideally, use BackgroundTasks from FastAPI.
+    from fastapi import BackgroundTasks
+    
+    # Re-implementing run_import_job call here to use BackgroundTasks properly
+    # or just call the function if it was async.
+    # Let's use the scheduler to add a one-time job "now"
+    from app.core.scheduler import scheduler, start_scheduler
+    from datetime import datetime, timedelta
+    
+    # Ensure scheduler is running
+    if not scheduler.running:
+        start_scheduler()
+    
+    scheduler.add_job(
+        run_import_job,
+        'date',
+        run_date=datetime.now() + timedelta(seconds=1),
+        args=[source_id],
+        id=f"manual_run_{source_id}_{int(datetime.now().timestamp())}"
+    )
+    
+    return {"message": "Import job scheduled"}

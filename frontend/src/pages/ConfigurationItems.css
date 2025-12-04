@@ -52,34 +52,39 @@
 .search-input {
     width: 100%;
     padding: 10px 12px 10px 40px;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background-color: #25262C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    color: var(--text-primary);
+    color: #FFFFFF;
     font-size: 14px;
     transition: all 0.2s;
 }
 
 .search-input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: #F47D30;
     box-shadow: 0 0 0 2px rgba(244, 125, 48, 0.1);
 }
 
 .filter-select {
     padding: 10px 16px;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background-color: #25262C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    color: var(--text-primary);
+    color: #FFFFFF;
     font-size: 14px;
     cursor: pointer;
     min-width: 150px;
 }
 
+.filter-select option {
+    background-color: #1A1B20;
+    color: #FFFFFF;
+}
+
 .filter-select:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: #F47D30;
 }
 
 .ci-table-container {
@@ -132,6 +137,19 @@
     gap: 8px;
 }
 
+.ci-type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background-color: rgba(244, 125, 48, 0.1);
+    color: #F47D30;
+    border: 1px solid rgba(244, 125, 48, 0.2);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
 .action-buttons {
     display: flex;
     gap: 8px;
@@ -140,21 +158,26 @@
 .icon-btn {
     padding: 6px;
     border-radius: 6px;
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #25262C;
+    color: #B0B2B8;
     cursor: pointer;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-btn:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .icon-btn.delete:hover {
-    background-color: rgba(239, 68, 68, 0.1);
+    background-color: rgba(239, 68, 68, 0.15);
     color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
 }
 
 .pagination {
@@ -211,8 +234,8 @@
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background-color: #1A1B20;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     min-width: 180px;
@@ -237,7 +260,7 @@
     padding: 12px 16px;
     border: none;
     background: transparent;
-    color: var(--text-primary);
+    color: #FFFFFF;
     text-align: left;
     cursor: pointer;
     font-size: 14px;
@@ -254,5 +277,5 @@
 
 .export-dropdown .dropdown-menu button:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    color: var(--primary-color);
+    color: #F47D30;
 }

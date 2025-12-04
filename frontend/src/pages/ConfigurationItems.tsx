@@ -199,6 +199,7 @@ const ConfigurationItems: React.FC = () => {
                                 <th>Status</th>
                                 <th>Owner</th>
                                 <th>Location</th>
+                                <th>Last Ping</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -221,6 +222,15 @@ const ConfigurationItems: React.FC = () => {
                                         </td>
                                         <td>{ci.owner || '-'}</td>
                                         <td>{ci.location || '-'}</td>
+                                        <td>
+                                            {ci.last_ping_success ? (
+                                                <span className="ping-timestamp" title={new Date(ci.last_ping_success).toLocaleString()}>
+                                                    {new Date(ci.last_ping_success).toLocaleDateString()}
+                                                </span>
+                                            ) : (
+                                                <span className="text-muted">Never</span>
+                                            )}
+                                        </td>
                                         <td>
                                             <div className="action-buttons">
                                                 <button

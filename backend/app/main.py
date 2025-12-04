@@ -10,13 +10,25 @@ from app.api.routes import auth_routes, ci_routes, dashboard_routes, import_rout
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan context manager for startup and shutdown events."""
+    print("DEBUG: Lifespan startup called")
+    from app.core.scheduler import start_scheduler
+    start_scheduler()
+    yield
+    # Shutdown logic if needed
+
 # Initialize FastAPI app
 app = FastAPI(
     title=settings.APP_NAME,
     description="ITIL Configuration Management Database (CMDB) Dashboard API",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
 # Configure CORS
@@ -35,6 +47,9 @@ app.include_router(dashboard_routes.router)
 app.include_router(import_routes.router)
 app.include_router(export_routes.router)
 app.include_router(health_routes.router, prefix="/api", tags=["health"])
+
+
+
 
 
 @app.get("/")

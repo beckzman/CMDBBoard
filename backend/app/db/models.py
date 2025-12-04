@@ -83,6 +83,15 @@ class ConfigurationItem(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     deleted_at = Column(DateTime(timezone=True), nullable=True)  # Soft delete
     
+    # Health monitoring
+    last_ping_success = Column(DateTime(timezone=True), nullable=True)  # Last successful ping
+    
+    # Import / Sync
+    external_id = Column(String(255), index=True)  # ID in the source system
+    last_sync = Column(DateTime(timezone=True))
+    import_source_id = Column(Integer, ForeignKey("import_sources.id"), nullable=True)
+
+    
     # Relationships
     source_relationships = relationship(
         "Relationship",
@@ -139,3 +148,24 @@ class ImportLog(Base):
     
     started_at = Column(DateTime(timezone=True), server_default=func.now())
     completed_at = Column(DateTime(timezone=True))
+    details = Column(Text)  # JSON string for detailed logs
+
+
+class ImportSource(Base):
+    """Configuration for external import sources."""
+    __tablename__ = "import_sources"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False, unique=True)
+    source_type = Column(String(50), nullable=False)  # sharepoint, idoit
+    config = Column(Text)  # JSON string for credentials and settings
+    is_active = Column(Boolean, default=True)
+    
+    # Schedule
+    schedule_cron = Column(String(100))  # e.g., "0 2 * * *"
+    last_run = Column(DateTime(timezone=True))
+    next_run = Column(DateTime(timezone=True))
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+

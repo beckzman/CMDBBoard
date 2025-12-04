@@ -71,6 +71,7 @@ class CIResponse(CIBase):
     id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
+    last_ping_success: Optional[datetime] = None
     
     class Config:
         from_attributes = True
@@ -112,6 +113,32 @@ class ImportLogResponse(BaseModel):
     class Config:
         from_attributes = True
 
+    class Config:
+        from_attributes = True
+
+
+# Import Source Schemas
+class ImportSourceBase(BaseModel):
+    name: str
+    source_type: str
+    config: Optional[str] = None
+    is_active: bool = True
+    schedule_cron: Optional[str] = None
+
+
+class ImportSourceCreate(ImportSourceBase):
+    pass
+
+
+class ImportSourceResponse(ImportSourceBase):
+    id: int
+    last_run: Optional[datetime] = None
+    next_run: Optional[datetime] = None
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
 
 # Dashboard Schemas
 class DashboardStats(BaseModel):

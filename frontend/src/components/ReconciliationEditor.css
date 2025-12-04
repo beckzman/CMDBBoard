@@ -1,0 +1,104 @@
+.reconciliation-editor {
+    margin: 1.5rem 0;
+}
+
+.recon-section {
+    margin-bottom: 2rem;
+}
+
+.recon-section h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #1f2937;
+}
+
+.recon-section .help-text {
+    margin: 0 0 1rem 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.875rem;
+}
+
+.recon-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+}
+
+.recon-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.field-help {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.conflict-rules {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.conflict-rule {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f3f4f6;
+    align-items: center;
+}
+
+.conflict-rule:last-child {
+    border-bottom: none;
+}
+
+.conflict-rule:hover {
+    background-color: #f9fafb;
+}
+
+.rule-field {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.875rem;
+}
+
+.rule-strategy {
+    padding-left: 1rem;
+}
+
+.strategy-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+}
+
+.strategy-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.empty-rules {
+    padding: 2rem;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
