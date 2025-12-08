@@ -140,6 +140,10 @@ class ImportSourceResponse(ImportSourceBase):
     class Config:
         from_attributes = True
 
+class ImportConfigCheck(BaseModel):
+    source_type: str
+    config: str  # JSON string
+
 # Dashboard Schemas
 class DashboardStats(BaseModel):
     total_cis: int

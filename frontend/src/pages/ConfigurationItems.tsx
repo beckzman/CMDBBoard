@@ -4,6 +4,8 @@ import { ciAPI, exportAPI, healthAPI } from '../api/client';
 import { Search, Filter, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity } from 'lucide-react';
 import AddCIModal from '../components/AddCIModal';
 import ViewCIModal from '../components/ViewCIModal';
+import DeleteCIModal from '../components/DeleteCIModal';
+import HealthCheckModal from '../components/HealthCheckModal';
 import './ConfigurationItems.css';
 
 const ConfigurationItems: React.FC = () => {
@@ -13,7 +15,20 @@ const ConfigurationItems: React.FC = () => {
     const [status, setStatus] = useState('');
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [editingCI, setEditingCI] = useState<any>(null);
+
     const [viewingCI, setViewingCI] = useState<any>(null);
+    const [deletingCI, setDeletingCI] = useState<any>(null);
+    const [healthCheckState, setHealthCheckState] = useState<{
+        isOpen: boolean;
+        isLoading: boolean;
+        ciName: string;
+        result: { status: 'alive' | 'unreachable' | null; details: string; ip_address?: string | null } | null;
+    }>({
+        isOpen: false,
+        isLoading: false,
+        ciName: '',
+        result: null
+    });
     const [showExportMenu, setShowExportMenu] = useState(false);
 
     const queryClient = useQueryClient();
@@ -33,12 +48,17 @@ const ConfigurationItems: React.FC = () => {
         mutationFn: ciAPI.delete,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['cis'] });
+            setDeletingCI(null);
         },
     });
 
-    const handleDelete = async (id: number) => {
-        if (window.confirm('Are you sure you want to delete this item?')) {
-            deleteMutation.mutate(id);
+    const handleDeleteClick = (ci: any) => {
+        setDeletingCI(ci);
+    };
+
+    const confirmDelete = () => {
+        if (deletingCI) {
+            deleteMutation.mutate(deletingCI.id);
         }
     };
 
@@ -80,17 +100,38 @@ const ConfigurationItems: React.FC = () => {
 
     const handleHealthCheck = async (ci: any) => {
         try {
+            setHealthCheckState({
+                isOpen: true,
+                isLoading: true,
+                ciName: ci.name,
+                result: null
+            });
+
             console.log(`Checking health for ${ci.name}...`);
             const result = await healthAPI.checkHost(ci.id);
 
-            if (result.status === 'alive') {
-                alert(`✅ ${ci.name} is ALIVE\nLatency: ${result.details}`);
-            } else {
-                alert(`❌ ${ci.name} is UNREACHABLE\nDetails: ${result.details}`);
-            }
-        } catch (error) {
+            setHealthCheckState(prev => ({
+                ...prev,
+                isLoading: false,
+                result: {
+                    status: result.status,
+                    details: result.status === 'alive'
+                        ? `Latency: ${result.details}`
+                        : `Error: ${result.details}`,
+                    ip_address: result.ip_address
+                }
+            }));
+        } catch (error: any) {
             console.error('Health check failed:', error);
-            alert(`⚠️ Health check failed for ${ci.name}`);
+            setHealthCheckState(prev => ({
+                ...prev,
+                isLoading: false,
+                result: {
+                    status: 'unreachable',
+                    details: error.response?.data?.detail || 'Connection failed',
+                    ip_address: null
+                }
+            }));
         }
     };
 
@@ -257,7 +298,7 @@ const ConfigurationItems: React.FC = () => {
                                                 <button
                                                     className="icon-btn delete"
                                                     title="Delete"
-                                                    onClick={() => handleDelete(ci.id)}
+                                                    onClick={() => handleDeleteClick(ci)}
                                                 >
                                                     <Trash2 size={18} />
                                                 </button>
@@ -316,6 +357,22 @@ const ConfigurationItems: React.FC = () => {
                 isOpen={!!viewingCI}
                 onClose={() => setViewingCI(null)}
                 ci={viewingCI}
+            />
+
+            <DeleteCIModal
+                isOpen={!!deletingCI}
+                onClose={() => setDeletingCI(null)}
+                onConfirm={confirmDelete}
+                ciName={deletingCI?.name || ''}
+                isPending={deleteMutation.isPending}
+            />
+
+            <HealthCheckModal
+                isOpen={healthCheckState.isOpen}
+                onClose={() => setHealthCheckState(prev => ({ ...prev, isOpen: false }))}
+                isLoading={healthCheckState.isLoading}
+                ciName={healthCheckState.ciName}
+                result={healthCheckState.result}
             />
         </div>
     );

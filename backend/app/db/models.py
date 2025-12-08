@@ -74,6 +74,7 @@ class ConfigurationItem(Base):
     location = Column(String(255))
     environment = Column(String(50))  # production, development, test, etc.
     cost_center = Column(String(100))
+    operating_system = Column(String(255))
     
     # Technical details (JSON-like text field for flexibility)
     technical_details = Column(Text)  # Store as JSON string

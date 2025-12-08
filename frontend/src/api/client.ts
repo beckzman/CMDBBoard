@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 export const api = axios.create({
     baseURL: API_BASE_URL,
@@ -132,6 +132,11 @@ export const importAPI = {
 
     runSource: async (id: number) => {
         const response = await api.post(`/api/import/sources/${id}/run`);
+        return response.data;
+    },
+
+    testConnection: async (data: { source_type: string; config: string }) => {
+        const response = await api.post('/api/import/test-connection', data);
         return response.data;
     },
 };

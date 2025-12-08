@@ -60,6 +60,10 @@ CMDB_Frontend/
 └── docker-compose.yml
 ```
 
+## Documentation
+- [User Guide](docs/USER_GUIDE.md) - Detailed usage instructions.
+- [Developer Guide](docs/DEVELOPER_GUIDE.md) - Architecture and contribution guide.
+
 ## Getting Started
 
 ### Prerequisites
@@ -138,24 +142,19 @@ npm run dev
 
 ## Default Credentials
 
-For initial setup, you'll need to create an admin user. Connect to the database and run:
+1. **Seed the database** (Optional but recommended)
+   Populate the database with test users and CIs:
+   ```bash
+   python backend/seed_data.py
+   ```
 
-```sql
-INSERT INTO users (email, username, hashed_password, full_name, role, is_active)
-VALUES (
-  'admin@arcelormittal.com',
-  'admin',
-  '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYIxIYzQubm',  -- password: admin123
-  'Administrator',
-  'admin',
-  true
-);
-```
+2. **Log in**
+   Use the seeded admin credentials:
 
-**Username**: `admin`  
-**Password**: `admin123`
+   **Username**: `admin`
+   **Password**: `adminpassword`
 
-⚠️ **Change this password immediately in production!**
+   ⚠️ **Change this password immediately in production!**
 
 ## API Documentation
 

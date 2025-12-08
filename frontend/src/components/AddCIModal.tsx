@@ -23,6 +23,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         location: '',
         environment: 'production',
         cost_center: '',
+        operating_system: '',
     });
 
     useEffect(() => {
@@ -37,6 +38,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 location: initialData.location || '',
                 environment: initialData.environment || 'production',
                 cost_center: initialData.cost_center || '',
+                operating_system: initialData.operating_system || '',
             });
         } else {
             setFormData({
@@ -49,6 +51,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 location: '',
                 environment: 'production',
                 cost_center: '',
+                operating_system: '',
             });
         }
     }, [initialData, isOpen]);
@@ -230,6 +233,19 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                 onChange={handleChange}
                                 className="form-input"
                                 placeholder="e.g. IT-OPS-001"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="operating_system">Operating System</label>
+                            <input
+                                type="text"
+                                id="operating_system"
+                                name="operating_system"
+                                value={formData.operating_system}
+                                onChange={handleChange}
+                                className="form-input"
+                                placeholder="e.g. Windows Server 2022"
                             />
                         </div>
 

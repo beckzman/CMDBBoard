@@ -1,87 +1,132 @@
-import React from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
-import { LayoutDashboard, Database, Upload, Download, LogOut, Menu } from 'lucide-react';
+import {
+    LayoutDashboard,
+    Database,
+    Upload,
+    Download,
+    LogOut,
+    ChevronRight,
+    Bell,
+    Search,
+    Settings,
+    ChevronLeft
+} from 'lucide-react';
 import './Layout.css';
 
 const Layout: React.FC = () => {
-    const [sidebarOpen, setSidebarOpen] = React.useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
     const { user, logout } = useAuthStore();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
         logout();
         navigate('/login');
     };
 
+    const getPageTitle = (pathname: string) => {
+        switch (pathname) {
+            case '/': return 'Dashboard';
+            case '/cis': return 'Configuration Items';
+            case '/import': return 'Import Data';
+            case '/export': return 'Export Data';
+            default: return 'CMDB';
+        }
+    };
+
+    const navItems = [
+        { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
+        { path: '/cis', icon: Database, label: 'Configuration Items' },
+        { path: '/import', icon: Upload, label: 'Import Data' },
+        { path: '/export', icon: Download, label: 'Export Data' },
+    ];
+
     return (
-        <div className="layout">
-            <aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
+        <div className="app-layout">
+            {/* Sidebar */}
+            <aside className={`app-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
                 <div className="sidebar-header">
-                    <div className="logo">
-                        <span className="logo-am">AM</span>
+                    <div className="logo-container">
+                        <div className="logo-icon">AM</div>
+                        {sidebarOpen && <span className="logo-text">CMDB</span>}
                     </div>
-                    {sidebarOpen && (
-                        <div className="sidebar-title">
-                            <h2>CMDB</h2>
-                            <p>Dashboard</p>
-                        </div>
-                    )}
+                    <button
+                        className="sidebar-toggle"
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                    >
+                        {sidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
+                    </button>
                 </div>
 
-                <nav className="sidebar-nav">
-                    <Link to="/" className="nav-item">
-                        <LayoutDashboard size={20} />
-                        {sidebarOpen && <span>Dashboard</span>}
-                    </Link>
-                    <Link to="/cis" className="nav-item">
-                        <Database size={20} />
-                        {sidebarOpen && <span>Configuration Items</span>}
-                    </Link>
-                    <Link to="/import" className="nav-item">
-                        <Upload size={20} />
-                        {sidebarOpen && <span>Import Data</span>}
-                    </Link>
-                    <Link to="/export" className="nav-item">
-                        <Download size={20} />
-                        {sidebarOpen && <span>Export Data</span>}
-                    </Link>
+                <nav className="sidebar-content">
+                    {navItems.map((item) => (
+                        <Link
+                            key={item.path}
+                            to={item.path}
+                            className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                        >
+                            <item.icon size={22} className="nav-icon" />
+                            {sidebarOpen && <span className="nav-label">{item.label}</span>}
+                            {location.pathname === item.path && <div className="active-indicator" />}
+                        </Link>
+                    ))}
                 </nav>
 
                 <div className="sidebar-footer">
-                    {sidebarOpen && user && (
-                        <div className="user-info">
-                            <div className="user-avatar">
-                                {user.username.charAt(0).toUpperCase()}
-                            </div>
-                            <div className="user-details">
-                                <p className="user-name">{user.full_name || user.username}</p>
-                                <p className="user-role">{user.role}</p>
-                            </div>
-                        </div>
-                    )}
-                    <button onClick={handleLogout} className="logout-button">
-                        <LogOut size={20} />
-                        {sidebarOpen && <span>Logout</span>}
+                    <button onClick={handleLogout} className="nav-link logout">
+                        <LogOut size={22} className="nav-icon" />
+                        {sidebarOpen && <span className="nav-label">Logout</span>}
                     </button>
                 </div>
             </aside>
 
-            <div className="main-content">
-                <header className="top-bar">
-                    <button
-                        className="menu-toggle"
-                        onClick={() => setSidebarOpen(!sidebarOpen)}
-                    >
-                        <Menu size={24} />
-                    </button>
-                    <div className="top-bar-title">
-                        <h1>ArcelorMittal ITIL CMDB</h1>
+            {/* Main Content Area */}
+            <div className="main-wrapper">
+                {/* Top Header */}
+                <header className="app-header">
+                    <div className="header-left">
+                        <div className="breadcrumbs">
+                            <span className="breadcrumb-item">ArcelorMittal</span>
+                            <ChevronRight size={14} className="breadcrumb-separator" />
+                            <span className="breadcrumb-item active">{getPageTitle(location.pathname)}</span>
+                        </div>
+                    </div>
+
+                    <div className="header-right">
+                        <div className="search-bar">
+                            <Search size={18} />
+                            <input type="text" placeholder="Global Search..." />
+                        </div>
+
+                        <div className="header-actions">
+                            <button className="icon-button">
+                                <Bell size={20} />
+                                <span className="notification-badge">3</span>
+                            </button>
+                            <button className="icon-button">
+                                <Settings size={20} />
+                            </button>
+                        </div>
+
+                        <div className="user-profile">
+                            <div className="avatar">
+                                {user?.username?.charAt(0).toUpperCase() || 'U'}
+                            </div>
+                            <div className="user-info">
+                                <span className="user-name">{user?.full_name || user?.username}</span>
+                                <span className="user-role">{user?.role || 'User'}</span>
+                            </div>
+                        </div>
                     </div>
                 </header>
 
-                <main className="content">
-                    <Outlet />
+                {/* Page Content */}
+                <main className="app-content">
+                    <div className="content-container">
+                        <Outlet />
+                    </div>
                 </main>
             </div>
         </div>

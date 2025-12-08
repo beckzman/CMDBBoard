@@ -63,6 +63,11 @@ const ViewCIModal: React.FC<ViewCIModalProps> = ({ isOpen, onClose, ci }) => {
                     </div>
 
                     <div className="view-row">
+                        <label>Operating System:</label>
+                        <span>{ci.operating_system || '-'}</span>
+                    </div>
+
+                    <div className="view-row">
                         <label>Description:</label>
                         <p className="view-description">{ci.description || '-'}</p>
                     </div>

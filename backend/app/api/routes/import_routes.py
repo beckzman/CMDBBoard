@@ -9,8 +9,12 @@ import tempfile
 from app.core.auth import get_current_user, require_role
 from app.db.database import get_db
 from app.db.models import User, UserRole, ImportLog
-from app.schemas import ImportLogResponse, ImportSourceCreate, ImportSourceResponse
 from app.services.csv_importer import CSVImporter
+from app.core.import_engine import get_connector_for_test, parse_import_config
+from app.schemas import ImportLogResponse, ImportSourceCreate, ImportSourceResponse, ImportConfigCheck
+import logging
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/import", tags=["Import"])
 
@@ -154,4 +158,47 @@ async def run_import_source(
         id=f"manual_run_{source_id}_{int(datetime.now().timestamp())}"
     )
     
+    
+    scheduler.add_job(
+        run_import_job,
+        'date',
+        run_date=datetime.now() + timedelta(seconds=1),
+        args=[source_id],
+        id=f"manual_run_{source_id}_{int(datetime.now().timestamp())}"
+    )
+    
     return {"message": "Import job scheduled"}
+
+
+@router.post("/test-connection", status_code=status.HTTP_200_OK)
+def test_connection_endpoint(
+    check_data: ImportConfigCheck,
+    current_user: User = Depends(get_current_user)
+):
+    """Test connection to an import source."""
+    try:
+        config = parse_import_config(check_data.config)
+        connector = get_connector_for_test(check_data.source_type, config)
+        
+        if not connector:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Unknown source type: {check_data.source_type}"
+            )
+            
+        is_connected = connector.test_connection()
+        
+        if not is_connected:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Connection failed"
+            )
+            
+        return {"message": "Connection successful"}
+        
+    except Exception as e:
+        logger.error(f"Test connection error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Connection check failed: {str(e)}"
+        )
