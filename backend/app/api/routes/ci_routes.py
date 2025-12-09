@@ -4,7 +4,7 @@ Configuration Item CRUD routes.
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
+from sqlalchemy import or_, func, cast, String
 from app.core.auth import get_current_user, require_role
 from app.db.database import get_db
 from app.db.models import ConfigurationItem, User, UserRole, CIType, CIStatus
@@ -20,6 +20,8 @@ def list_configuration_items(
     ci_type: Optional[CIType] = None,
     status: Optional[CIStatus] = None,
     search: Optional[str] = None,
+    sort_by: Optional[str] = None,
+    sort_desc: bool = False,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -41,6 +43,44 @@ def list_configuration_items(
                 ConfigurationItem.owner.ilike(f"%{search}%")
             )
         )
+    
+    # Apply sorting
+    if sort_by:
+        sort_field = None
+        is_string_field = False
+        
+        if sort_by == 'name':
+            sort_field = ConfigurationItem.name
+            is_string_field = True
+        elif sort_by == 'type':  # Using specific query param 'type' to map to model field 'ci_type'
+            sort_field = ConfigurationItem.ci_type
+            is_string_field = True # Enum, but effectively string sorting
+        elif sort_by == 'status':
+            sort_field = ConfigurationItem.status
+            is_string_field = True # Enum
+        elif sort_by == 'owner':
+            sort_field = ConfigurationItem.owner
+            is_string_field = True
+        elif sort_by == 'location':
+            sort_field = ConfigurationItem.location
+            is_string_field = True
+        elif sort_by == 'last_ping':
+            sort_field = ConfigurationItem.last_ping_success
+            
+        if sort_field:
+            order_expr = sort_field
+            if is_string_field:
+                # Check if field is Enum (simple check by column type if available, but for now we know specifics)
+                # Actually safest to always cast to String for text sorting if unsure of underlying type
+                order_expr = func.lower(cast(sort_field, String))
+                
+            if sort_desc:
+                query = query.order_by(order_expr.desc())
+            else:
+                query = query.order_by(order_expr.asc())
+    else:
+        # Default sort by created_at desc
+        query = query.order_by(ConfigurationItem.created_at.desc())
     
     # Get total count
     total = query.count()

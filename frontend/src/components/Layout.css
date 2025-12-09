@@ -144,6 +144,40 @@
     white-space: nowrap;
 }
 
+.nav-group-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    color: #7A7C7E;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+.nav-group-header.collapsed {
+    padding: 12px;
+    justify-content: center;
+}
+
+.nav-group-header.collapsed .nav-label {
+    display: none;
+}
+
+.sub-link {
+    font-size: 14px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #B0B2B8;
+}
+
+.sub-link:hover {
+    color: #FFFFFF;
+}
+
 .active-indicator {
     position: absolute;
     left: 0;

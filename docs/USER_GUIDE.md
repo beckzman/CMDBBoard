@@ -42,17 +42,35 @@ To remove an item:
 You can verify the connectivity of a CI (if it has a valid hostname/IP):
 1.  Click the **Heartbeat/Activity icon** on the item's row.
 2.  A modal will open showing the check progress ("Pinging...").
-3.  **Result**:
-    *   **ONLINE**: The host is reachable. The modal displays the latency and the resolved IP address (e.g., `192.168.1.5`).
+4.  **Result**:
+    *   **ONLINE**: The host is reachable.
+        *   For **Database** CIs: Connectivity is verified by checking the database port (default or configured).
+        *   For **Other** CIs: Connectivity is verified by standard Ping (ICMP).
+        *   The IP address (e.g., `192.168.1.5`) is also displayed.
     *   **UNREACHABLE**: The host could not be reached. Error details are provided.
 
 ## Data Import/Export
 
 ### Importing Data
-You can bulk import CIs from CSV files:
-1.  Go to the **Import/Export** section.
-2.  Upload a CSV file matching the required format (see `README.md` for the template).
-3.  Review the import status.
+You have two options for importing CIs:
+
+#### 1. Quick Import (CSV)
+For ad-hoc uploads of inventory data:
+1.  Go to the **Import/Export** page.
+2.  In the "Quick Import" area, select your CSV file.
+3.  Click **Upload**.
+
+#### 2. Scheduled Imports
+To set up recurring data synchronization:
+1.  Click **"New Import Source"** on the Import Dashboard.
+2.  Choose a **Source Type**:
+    *   **CSV File (Server Path)**: Reads a CSV file from a path on the server.
+    *   **Oracle DB**: Connects to an Oracle database view.
+    *   **SharePoint / i-doit**: (Coming Soon).
+3.  **Configuration**:
+    *   Enter the required details (e.g., File Path or Connection String).
+    *   **Test Connection**: Click this button to verify your settings before saving.
+4.  **Schedule**: Set a Cron expression (e.g., `0 0 * * *` for daily) to run the import automatically.
 
 ### Exporting Data
 To download your inventory:

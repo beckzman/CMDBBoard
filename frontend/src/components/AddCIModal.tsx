@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ciAPI } from '../api/client';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
+import { ciAPI, domainAPI } from '../api/client';
 import { X } from 'lucide-react';
 import './AddCIModal.css';
 
@@ -13,6 +13,13 @@ interface AddCIModalProps {
 const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData }) => {
     const queryClient = useQueryClient();
     const [error, setError] = useState('');
+
+    const { data: domains } = useQuery({
+        queryKey: ['domains'],
+        queryFn: () => domainAPI.list(true),
+        enabled: isOpen, // Only fetch when modal is open
+    });
+
     const [formData, setFormData] = useState({
         name: '',
         ci_type: 'server',
@@ -157,9 +164,19 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                 className="form-select"
                             >
                                 <option value="">Select Domain...</option>
-                                <option value="arcelormittal.com">arcelormittal.com</option>
-                                <option value="local">local</option>
-                                <option value="internal">internal</option>
+                                {domains?.map((domain: any) => (
+                                    <option key={domain.id} value={domain.name}>
+                                        {domain.name}
+                                    </option>
+                                ))}
+                                {!domains || domains.length === 0 && (
+                                    <>
+                                        {/* Fallback if no domains configured yet */}
+                                        <option value="arcelormittal.com">arcelormittal.com (Legacy)</option>
+                                        <option value="local">local (Legacy)</option>
+                                        <option value="internal">internal (Legacy)</option>
+                                    </>
+                                )}
                             </select>
                         </div>
 

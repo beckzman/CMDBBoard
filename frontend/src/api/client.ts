@@ -60,6 +60,8 @@ export const ciAPI = {
         ci_type?: string;
         status?: string;
         search?: string;
+        sort_by?: string;
+        sort_desc?: boolean;
     }) => {
         const response = await api.get('/api/ci', { params });
         return response.data;
@@ -174,4 +176,21 @@ export const healthAPI = {
         const response = await api.post(`/api/ci/${id}/check-health`);
         return response.data;
     },
+};
+
+// Domain API
+export const domainAPI = {
+    list: async (active_only: boolean = true) => {
+        const response = await api.get('/api/domains', { params: { active_only } });
+        return response.data;
+    },
+
+    create: async (name: string, description?: string) => {
+        const response = await api.post('/api/domains', { name, description });
+        return response.data;
+    },
+
+    delete: async (id: number) => {
+        await api.delete(`/api/domains/${id}`);
+    }
 };

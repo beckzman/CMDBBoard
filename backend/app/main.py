@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.db.database import Base, engine
-from app.api.routes import auth_routes, ci_routes, dashboard_routes, import_routes, export_routes, health_routes
+from app.api.routes import auth_routes, ci_routes, dashboard_routes, import_routes, export_routes, health_routes, domain_routes
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -46,6 +46,7 @@ app.include_router(ci_routes.router)
 app.include_router(dashboard_routes.router)
 app.include_router(import_routes.router)
 app.include_router(export_routes.router)
+app.include_router(domain_routes.router)
 app.include_router(health_routes.router, prefix="/api", tags=["health"])
 
 

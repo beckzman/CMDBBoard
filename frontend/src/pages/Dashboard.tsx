@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { dashboardAPI } from '../api/client';
-import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-import { Server, Database, Network, HardDrive, Activity, TrendingUp, Upload } from 'lucide-react';
+import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { Server, Activity, TrendingUp, Upload } from 'lucide-react';
 import './Dashboard.css';
 
 const Dashboard: React.FC = () => {
@@ -112,6 +112,7 @@ const Dashboard: React.FC = () => {
                                     border: '1px solid rgba(255, 255, 255, 0.1)',
                                     borderRadius: '8px',
                                 }}
+                                cursor={{ fill: 'transparent' }}
                             />
                             <Bar dataKey="value" fill="#F47D30" radius={[8, 8, 0, 0]} />
                         </BarChart>

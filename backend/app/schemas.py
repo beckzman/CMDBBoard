@@ -159,3 +159,24 @@ class CIListResponse(BaseModel):
     total: int
     page: int
     page_size: int
+
+
+# Domain Schemas
+class DomainBase(BaseModel):
+    name: str
+    description: Optional[str] = None
+    is_active: bool = True
+
+
+class DomainCreate(DomainBase):
+    pass
+
+
+class DomainResponse(DomainBase):
+    id: int
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+

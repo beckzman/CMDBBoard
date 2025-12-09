@@ -51,5 +51,15 @@ python backend/seed_data.py
 2.  **Frontend**: Update API client in `src/api`, create components/pages, and add routes.
 
 ## Key Services
--   **Health Service**: `app/core/health_service.py` - Handles ICMP pings and DNS resolution for CIs.
--   **Import Service**: `app/services/import_service.py` - Manages CSV and external data imports.
+-   **Health Service**: `app/core/health_service.py`
+    -   Handles ICMP pings for general CIs.
+    -   Performs TCP port availability checks for Database CIs (ports 1521, 5432, 3306, 1433).
+-   **Import Engine**: `app/core/import_engine.py`
+    -   Manages connectors (`CSVConnector`, `OracleConnector`) and data reconciliation.
+    -   Support "Quick Import" via `CSVImporter` (`app/services/csv_importer.py`).
+
+## API Endpoints
+-   **CI Management**: `/api/v1/cis`
+-   **Health Check**: `/api/health/check`
+-   **Import Sources**: `/api/import/sources` (CRUD, Run, Test Connection)
+-   **CSV Upload**: `/api/import/csv`

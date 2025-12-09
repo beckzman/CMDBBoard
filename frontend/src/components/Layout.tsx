@@ -11,7 +11,8 @@ import {
     Bell,
     Search,
     Settings,
-    ChevronLeft
+    ChevronLeft,
+    Globe
 } from 'lucide-react';
 import './Layout.css';
 
@@ -32,16 +33,34 @@ const Layout: React.FC = () => {
             case '/cis': return 'Configuration Items';
             case '/import': return 'Import Data';
             case '/export': return 'Export Data';
+            case '/domains': return 'Domain Management';
             default: return 'CMDB';
         }
     };
 
-    const navItems = [
+    interface NavItem {
+        path?: string;
+        icon: React.ElementType;
+        label: string;
+        children?: NavItem[];
+    }
+
+    const navItems: NavItem[] = [
         { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
         { path: '/cis', icon: Database, label: 'Configuration Items' },
         { path: '/import', icon: Upload, label: 'Import Data' },
         { path: '/export', icon: Download, label: 'Export Data' },
     ];
+
+    if (user?.role === 'admin') {
+        navItems.push({
+            icon: Settings,
+            label: 'Setup',
+            children: [
+                { path: '/domains', icon: Globe, label: 'Domains' }
+            ]
+        });
+    }
 
     return (
         <div className="app-layout">
@@ -61,16 +80,42 @@ const Layout: React.FC = () => {
                 </div>
 
                 <nav className="sidebar-content">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.path}
-                            to={item.path}
-                            className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
-                        >
-                            <item.icon size={22} className="nav-icon" />
-                            {sidebarOpen && <span className="nav-label">{item.label}</span>}
-                            {location.pathname === item.path && <div className="active-indicator" />}
-                        </Link>
+                    {navItems.map((item, index) => (
+                        <div key={index}>
+                            {item.path ? (
+                                <Link
+                                    to={item.path}
+                                    className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                                >
+                                    <item.icon size={22} className="nav-icon" />
+                                    {sidebarOpen && <span className="nav-label">{item.label}</span>}
+                                    {location.pathname === item.path && <div className="active-indicator" />}
+                                </Link>
+                            ) : (
+                                <>
+                                    <div className={`nav-group-header ${!sidebarOpen ? 'collapsed' : ''}`}>
+                                        <item.icon size={22} className="nav-icon" />
+                                        {sidebarOpen && <span className="nav-label">{item.label}</span>}
+                                    </div>
+                                    {sidebarOpen && item.children?.map((child) => (
+                                        <Link
+                                            key={child.path}
+                                            to={child.path!}
+                                            className={`nav-link sub-link ${location.pathname === child.path ? 'active' : ''}`}
+                                            style={{ paddingLeft: sidebarOpen ? '48px' : '20px' }}
+                                        >
+                                            {sidebarOpen && <child.icon size={18} className="nav-icon" />}
+                                            {sidebarOpen && <span className="nav-label">{child.label}</span>}
+                                            {/* Show icon only when collapsed? No, hide subitems or show as popover? 
+                                               Let's simplify: if sidebar is closed, maybe just don't show subitems or show them same level. 
+                                               For simplicity/robustness: if collapsed, we might hide grouping or just show icons.
+                                               Let's stick to simple indentation for open sidebar.
+                                            */}
+                                        </Link>
+                                    ))}
+                                </>
+                            )}
+                        </div>
                     ))}
                 </nav>
 

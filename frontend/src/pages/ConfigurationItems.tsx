@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ciAPI, exportAPI, healthAPI } from '../api/client';
-import { Search, Filter, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import AddCIModal from '../components/AddCIModal';
 import ViewCIModal from '../components/ViewCIModal';
 import DeleteCIModal from '../components/DeleteCIModal';
@@ -13,6 +13,8 @@ const ConfigurationItems: React.FC = () => {
     const [search, setSearch] = useState('');
     const [ciType, setCiType] = useState('');
     const [status, setStatus] = useState('');
+    const [sortBy, setSortBy] = useState<string>('created_at');
+    const [sortDesc, setSortDesc] = useState(true);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [editingCI, setEditingCI] = useState<any>(null);
 
@@ -34,13 +36,15 @@ const ConfigurationItems: React.FC = () => {
     const queryClient = useQueryClient();
 
     const { data, isLoading } = useQuery({
-        queryKey: ['cis', page, search, ciType, status],
+        queryKey: ['cis', page, search, ciType, status, sortBy, sortDesc],
         queryFn: () => ciAPI.list({
             page,
             page_size: 10,
             search: search || undefined,
             ci_type: ciType || undefined,
             status: status || undefined,
+            sort_by: sortBy,
+            sort_desc: sortDesc,
         }),
     });
 
@@ -146,6 +150,20 @@ const ConfigurationItems: React.FC = () => {
         return statusMap[status.toLowerCase()] || 'info';
     };
 
+    const handleSort = (field: string) => {
+        if (sortBy === field) {
+            setSortDesc(!sortDesc);
+        } else {
+            setSortBy(field);
+            setSortDesc(false);
+        }
+    };
+
+    const renderSortIcon = (field: string) => {
+        if (sortBy !== field) return <ArrowUpDown size={14} className="sort-icon inactive" />;
+        return sortDesc ? <ArrowDown size={14} className="sort-icon" /> : <ArrowUp size={14} className="sort-icon" />;
+    };
+
     return (
         <div className="ci-container">
             <div className="ci-header">
@@ -235,12 +253,36 @@ const ConfigurationItems: React.FC = () => {
                     <table className="ci-table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Status</th>
-                                <th>Owner</th>
-                                <th>Location</th>
-                                <th>Last Ping</th>
+                                <th onClick={() => handleSort('name')} className="sortable-header">
+                                    <div className="th-content">
+                                        Name {renderSortIcon('name')}
+                                    </div>
+                                </th>
+                                <th onClick={() => handleSort('type')} className="sortable-header">
+                                    <div className="th-content">
+                                        Type {renderSortIcon('type')}
+                                    </div>
+                                </th>
+                                <th onClick={() => handleSort('status')} className="sortable-header">
+                                    <div className="th-content">
+                                        Status {renderSortIcon('status')}
+                                    </div>
+                                </th>
+                                <th onClick={() => handleSort('owner')} className="sortable-header">
+                                    <div className="th-content">
+                                        Owner {renderSortIcon('owner')}
+                                    </div>
+                                </th>
+                                <th onClick={() => handleSort('location')} className="sortable-header">
+                                    <div className="th-content">
+                                        Location {renderSortIcon('location')}
+                                    </div>
+                                </th>
+                                <th onClick={() => handleSort('last_ping')} className="sortable-header">
+                                    <div className="th-content">
+                                        Last Ping {renderSortIcon('last_ping')}
+                                    </div>
+                                </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
