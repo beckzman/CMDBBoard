@@ -194,3 +194,34 @@ export const domainAPI = {
         await api.delete(`/api/domains/${id}`);
     }
 };
+
+// User API
+export const userAPI = {
+    list: async () => {
+        const response = await api.get('/api/users');
+        return response.data;
+    },
+
+    create: async (data: { username: string; email: string; full_name?: string; password: string }) => {
+        const response = await api.post('/api/auth/register', data);
+        return response.data;
+    },
+
+    update: async (id: number, data: { full_name?: string; role?: string; is_active?: boolean }) => {
+        const response = await api.put(`/api/users/${id}`, data);
+        return response.data;
+    },
+
+    delete: async (id: number) => {
+        await api.delete(`/api/users/${id}`);
+    },
+
+    resetPassword: async (id: number, newPassword: string) => {
+        const response = await api.post(`/api/users/${id}/reset-password`, null, {
+            params: { new_password: newPassword }
+        });
+        return response.data;
+    }
+};
+
+

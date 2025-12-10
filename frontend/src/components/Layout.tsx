@@ -12,7 +12,8 @@ import {
     Search,
     Settings,
     ChevronLeft,
-    Globe
+    Globe,
+    Users
 } from 'lucide-react';
 import './Layout.css';
 
@@ -34,6 +35,7 @@ const Layout: React.FC = () => {
             case '/import': return 'Import Data';
             case '/export': return 'Export Data';
             case '/domains': return 'Domain Management';
+            case '/users': return 'User Management';
             default: return 'CMDB';
         }
     };
@@ -57,7 +59,8 @@ const Layout: React.FC = () => {
             icon: Settings,
             label: 'Setup',
             children: [
-                { path: '/domains', icon: Globe, label: 'Domains' }
+                { path: '/domains', icon: Globe, label: 'Domains' },
+                { path: '/users', icon: Users, label: 'Users' }
             ]
         });
     }
