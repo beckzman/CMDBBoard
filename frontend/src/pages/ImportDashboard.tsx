@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { importAPI } from '../api/client';
-import { Play, Plus, RefreshCw, CheckCircle, XCircle, Clock, ChevronLeft, ChevronRight, Upload, FileText } from 'lucide-react';
+import { Upload, Play, Clock, RefreshCw, AlertCircle, CheckCircle, Database, ChevronRight, Share2, FileSpreadsheet, Globe, Edit2, Trash2, Plus, FileText, ChevronLeft, XCircle } from 'lucide-react';
 import FieldMappingEditor from '../components/FieldMappingEditor';
 import ReconciliationEditor from '../components/ReconciliationEditor';
 import './ImportDashboard.css';
@@ -13,6 +13,7 @@ interface ImportSource {
     is_active: boolean;
     last_run: string | null;
     schedule_cron: string | null;
+    config?: string; // Add config to interface for editing
 }
 
 interface ImportLog {
@@ -26,6 +27,7 @@ interface ImportLog {
     started_at: string;
     completed_at: string | null;
     error_message: string | null;
+    details?: string | null;
 }
 
 interface ImportConfig {
@@ -35,12 +37,19 @@ interface ImportConfig {
         match_strategy: string;
         conflict_resolution: Record<string, string>;
     };
+    // SharePoint Config
+    site_url?: string;
+    list_name?: string;
+    username?: string;
+    password?: string;
+    // i-doit Config
+    api_url?: string;
+    api_key?: string;
     // Oracle Config
     host?: string;
     port?: string;
     service_name?: string;
     user?: string;
-    password?: string;
     // CSV Config
     file_path?: string;
 }
@@ -48,6 +57,8 @@ interface ImportConfig {
 const ImportDashboard: React.FC = () => {
     const queryClient = useQueryClient();
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [viewingLog, setViewingLog] = useState<ImportLog | null>(null);
+    const [editingSourceId, setEditingSourceId] = useState<number | null>(null);
     const [modalStep, setModalStep] = useState(1);
     const [newSourceData, setNewSourceData] = useState({
         name: '',
@@ -71,6 +82,9 @@ const ImportDashboard: React.FC = () => {
     // CSV Upload State
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+    // Source Fields State
+    const [sourceFields, setSourceFields] = useState<string[]>([]);
 
     // Queries
     const { data: sources, isLoading: isLoadingSources } = useQuery({
@@ -105,14 +119,81 @@ const ImportDashboard: React.FC = () => {
                     conflict_resolution: {}
                 }
             });
+        },
+        onError: (error: any) => {
+            alert(`Failed to create source: ${error.response?.data?.detail || error.message}`);
+            console.error(error);
         }
     });
+
+    const deleteSourceMutation = useMutation({
+        mutationFn: importAPI.deleteSource,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['importSources'] });
+        },
+        onError: (error: any) => {
+            alert(`Failed to delete source: ${error.message || 'Unknown error'}`);
+        }
+    });
+
+    const updateSourceMutation = useMutation({
+        mutationFn: (data: any) => importAPI.updateSource(editingSourceId!, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['importSources'] });
+            setIsCreateModalOpen(false);
+            setEditingSourceId(null);
+            setModalStep(1);
+            setNewSourceData({
+                name: '',
+                source_type: 'sharepoint',
+                is_active: true,
+                schedule_cron: ''
+            });
+            setImportConfig({
+                field_mapping: { name: 'Title' },
+                reconciliation: {
+                    key_field: 'name',
+                    match_strategy: 'exact',
+                    conflict_resolution: {}
+                }
+            });
+        },
+        onError: (error: any) => {
+            alert(`Failed to update source: ${error.message || 'Unknown error'}`);
+        }
+    });
+
+    const handleDeleteSource = (id: number) => {
+        if (window.confirm('Are you sure you want to delete this import source?')) {
+            deleteSourceMutation.mutate(id);
+        }
+    };
+
+    const handleEditSource = (source: ImportSource) => {
+        setEditingSourceId(source.id);
+        setNewSourceData({
+            name: source.name,
+            source_type: source.source_type,
+            is_active: source.is_active,
+            schedule_cron: source.schedule_cron || ''
+        });
+        if (source.config) {
+            try {
+                const config = JSON.parse(source.config);
+                setImportConfig(config);
+            } catch (e) {
+                console.error("Failed to parse config", e);
+            }
+        }
+        setModalStep(1);
+        setIsCreateModalOpen(true);
+    };
 
     const runSourceMutation = useMutation({
         mutationFn: importAPI.runSource,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['importLogs'] });
-            alert('Import job started successfully!');
+            alert('Import job started! Please check "Recent Activity" below for the result.');
         },
         onError: (error: any) => {
             alert('Failed to start import job');
@@ -122,14 +203,23 @@ const ImportDashboard: React.FC = () => {
 
     const uploadCsvMutation = useMutation({
         mutationFn: importAPI.uploadCSV,
-        onSuccess: () => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: ['importLogs'] });
             setSelectedFile(null);
             if (fileInputRef.current) fileInputRef.current.value = '';
-            alert('CSV imported successfully!');
+
+            // Check if import was successful
+            if (data.status === 'failed') {
+                alert(`Import failed: ${data.error_message || 'Unknown error'}`);
+            } else if (data.status === 'partial') {
+                alert(`Import completed with errors. ${data.records_success} succeeded, ${data.records_failed} failed.`);
+            } else {
+                alert(`CSV imported successfully! ${data.records_success} records imported.`);
+            }
         },
         onError: (error: any) => {
-            alert('Failed to upload CSV');
+            const errorMsg = error.response?.data?.detail || error.message || 'Unknown error';
+            alert(`Failed to upload CSV: ${errorMsg}`);
             console.error(error);
         }
     });
@@ -144,6 +234,17 @@ const ImportDashboard: React.FC = () => {
         }
     });
 
+    const fetchSchemaMutation = useMutation({
+        mutationFn: importAPI.getSchema,
+        onSuccess: (data) => {
+            setSourceFields(data.fields || []);
+            alert(`Fetched ${data.fields?.length || 0} fields from source`);
+        },
+        onError: (error: any) => {
+            alert(`Failed to fetch fields: ${error.response?.data?.detail || error.message}`);
+        }
+    });
+
     const handleTestConnection = () => {
         const payload = {
             source_type: newSourceData.source_type,
@@ -152,12 +253,28 @@ const ImportDashboard: React.FC = () => {
         testConnectionMutation.mutate(payload);
     };
 
+    const handleFetchFields = () => {
+        const payload = {
+            source_type: newSourceData.source_type,
+            config: JSON.stringify(importConfig)
+        };
+        fetchSchemaMutation.mutate(payload);
+    };
+
     const handleCreateSource = () => {
+        if (!newSourceData.name.trim()) {
+            alert('Source name is required.');
+            return;
+        }
         const payload = {
             ...newSourceData,
             config: JSON.stringify(importConfig)
         };
-        createSourceMutation.mutate(payload);
+        if (editingSourceId) {
+            updateSourceMutation.mutate(payload);
+        } else {
+            createSourceMutation.mutate(payload);
+        }
     };
 
     const handleRunSource = (id: number) => {
@@ -179,6 +296,16 @@ const ImportDashboard: React.FC = () => {
     };
 
     const handleNext = () => {
+        if (modalStep === 1) {
+            if (!newSourceData.name.trim()) {
+                alert('Please enter a source name.');
+                return;
+            }
+            if (newSourceData.source_type === 'csv' && !(importConfig as any).file_path) {
+                alert('Please enter a CSV file path.');
+                return;
+            }
+        }
         if (modalStep < 3) setModalStep(modalStep + 1);
     };
 
@@ -194,7 +321,25 @@ const ImportDashboard: React.FC = () => {
                 <h1>Import Data</h1>
                 <button
                     className="create-btn"
-                    onClick={() => setIsCreateModalOpen(true)}
+                    onClick={() => {
+                        setEditingSourceId(null);
+                        setNewSourceData({
+                            name: '',
+                            source_type: 'sharepoint',
+                            is_active: true,
+                            schedule_cron: ''
+                        });
+                        setImportConfig({
+                            field_mapping: { name: 'Title' },
+                            reconciliation: {
+                                key_field: 'name',
+                                match_strategy: 'exact',
+                                conflict_resolution: {}
+                            }
+                        });
+                        setModalStep(1);
+                        setIsCreateModalOpen(true);
+                    }}
                 >
                     <Plus size={18} />
                     New Source
@@ -268,6 +413,22 @@ const ImportDashboard: React.FC = () => {
                                     </div>
                                     <div className="source-actions">
                                         <button
+                                            className="action-btn icon-btn"
+                                            title="Edit Source"
+                                            onClick={() => handleEditSource(source)}
+                                            style={{ marginRight: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}
+                                        >
+                                            <Edit2 size={18} />
+                                        </button>
+                                        <button
+                                            className="action-btn icon-btn delete-btn"
+                                            title="Delete Source"
+                                            onClick={() => handleDeleteSource(source.id)}
+                                            style={{ marginRight: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
+                                        <button
                                             className="run-btn"
                                             onClick={() => handleRunSource(source.id)}
                                             disabled={runSourceMutation.isPending}
@@ -301,6 +462,7 @@ const ImportDashboard: React.FC = () => {
                                 <div key={log.id} className={`log - item ${log.status} `}>
                                     <div className="log-icon">
                                         {log.status === 'success' && <CheckCircle size={20} className="text-green" />}
+                                        {log.status === 'partial_success' && <AlertCircle size={20} className="text-orange" />}
                                         {log.status === 'failed' && <XCircle size={20} className="text-red" />}
                                         {log.status === 'running' && <RefreshCw size={20} className="spin text-blue" />}
                                     </div>
@@ -319,6 +481,15 @@ const ImportDashboard: React.FC = () => {
                                         </div>
                                         {log.error_message && (
                                             <div className="log-error">{log.error_message}</div>
+                                        )}
+                                        {log.records_failed > 0 && log.details && (
+                                            <button
+                                                className="view-details-btn"
+                                                onClick={() => setViewingLog(log)}
+                                                style={{ marginTop: '5px', fontSize: '12px', color: '#2563eb', background: 'none', border: 'none', padding: 0, textDecoration: 'underline', cursor: 'pointer', textAlign: 'left' }}
+                                            >
+                                                View {log.records_failed} Failed Items
+                                            </button>
                                         )}
                                     </div>
                                 </div>
@@ -380,8 +551,78 @@ const ImportDashboard: React.FC = () => {
                                                     onChange={e => setImportConfig({ ...importConfig, file_path: e.target.value })}
                                                 />
                                                 <p className="help-text" style={{ marginTop: '4px', fontSize: '12px', color: '#888' }}>
-                                                    Must be an absolute path accessible by the backend container.
+                                                    Must be an absolute path accessible by the backend container (e.g., /app/test_import.csv).
                                                 </p>
+                                            </div>
+                                        )}
+
+                                        {newSourceData.source_type === 'sharepoint' && (
+                                            <div className="oracle-config-section">
+                                                <h3>SharePoint Connection Details</h3>
+                                                <div className="form-group">
+                                                    <label>SharePoint Site URL</label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="https://yourtenant.sharepoint.com/sites/yoursite"
+                                                        value={(importConfig as any).site_url || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, site_url: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>List Name</label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="e.g. CMDB Assets"
+                                                        value={(importConfig as any).list_name || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, list_name: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="form-group-row">
+                                                    <div className="form-group">
+                                                        <label>Username / Client ID</label>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="user@domain.com or client_id"
+                                                            value={(importConfig as any).username || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, username: e.target.value })}
+                                                        />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label>Password / Client Secret</label>
+                                                        <input
+                                                            type="password"
+                                                            value={(importConfig as any).password || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, password: e.target.value })}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {newSourceData.source_type === 'idoit' && (
+                                            <div className="oracle-config-section">
+                                                <h3>i-doit API Configuration</h3>
+                                                <div className="form-group">
+                                                    <label>API URL</label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="https://your-idoit-server/src/jsonrpc.php"
+                                                        value={(importConfig as any).api_url || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, api_url: e.target.value })}
+                                                    />
+                                                    <p className="help-text" style={{ marginTop: '4px', fontSize: '12px', color: '#888' }}>
+                                                        Full URL to i-doit JSON-RPC API endpoint
+                                                    </p>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>API Key</label>
+                                                    <input
+                                                        type="password"
+                                                        placeholder="Your i-doit API key"
+                                                        value={(importConfig as any).api_key || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, api_key: e.target.value })}
+                                                    />
+                                                </div>
                                             </div>
                                         )}
 
@@ -452,9 +693,26 @@ const ImportDashboard: React.FC = () => {
 
                                 {modalStep === 2 && (
                                     <div className="step-content">
+                                        <div style={{ marginBottom: '1rem' }}>
+                                            <button
+                                                type="button"
+                                                onClick={handleFetchFields}
+                                                className="secondary-btn"
+                                                disabled={fetchSchemaMutation.isPending}
+                                                style={{ marginBottom: '1rem' }}
+                                            >
+                                                {fetchSchemaMutation.isPending ? 'Fetching...' : 'Fetch Fields from Source'}
+                                            </button>
+                                            {sourceFields.length > 0 && (
+                                                <p style={{ fontSize: '12px', color: '#888', marginTop: '0.5rem' }}>
+                                                    {sourceFields.length} fields available. Start typing in Source Field to see suggestions.
+                                                </p>
+                                            )}
+                                        </div>
                                         <FieldMappingEditor
                                             mapping={importConfig.field_mapping}
                                             onChange={(mapping) => setImportConfig({ ...importConfig, field_mapping: mapping })}
+                                            sourceFields={sourceFields}
                                         />
                                     </div>
                                 )}
@@ -495,8 +753,13 @@ const ImportDashboard: React.FC = () => {
                                         <ChevronRight size={16} />
                                     </button>
                                 ) : (
-                                    <button type="button" onClick={handleCreateSource} className="primary-btn">
-                                        Create Source
+                                    <button
+                                        type="button"
+                                        onClick={handleCreateSource}
+                                        className="primary-btn"
+                                        disabled={createSourceMutation.isPending || updateSourceMutation.isPending}
+                                    >
+                                        {createSourceMutation.isPending || updateSourceMutation.isPending ? 'Saving...' : (editingSourceId ? 'Save Changes' : 'Create Source')}
                                     </button>
                                 )}
                             </div>
@@ -504,7 +767,41 @@ const ImportDashboard: React.FC = () => {
                     </div>
                 )
             }
-        </div >
+            {/* Log Details Modal */}
+            {viewingLog && (
+                <div className="modal-overlay">
+                    <div className="modal-content" style={{ maxWidth: '800px', maxHeight: '80vh', display: 'flex', flexDirection: 'column', background: '#1A1B20', color: '#FFFFFF' }}>
+                        <div className="modal-header">
+                            <h2>Import Failures</h2>
+                            <button className="close-btn" onClick={() => setViewingLog(null)} style={{ background: 'none', border: 'none', color: '#B0B2B8', cursor: 'pointer' }}>
+                                <XCircle size={24} />
+                            </button>
+                        </div>
+                        <div className="modal-body" style={{ overflowY: 'auto', padding: '1rem' }}>
+                            {(() => {
+                                try {
+                                    const details = JSON.parse(viewingLog.details || '[]');
+                                    if (!details.length) return <p>No detailed errors found.</p>;
+                                    return details.map((err: any, i: number) => (
+                                        <div key={i} className="error-item" style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+                                            <div style={{ color: '#FCA5A5', fontWeight: 500, marginBottom: '0.25rem' }}>{err.error}</div>
+                                            <pre style={{ background: '#0F1012', color: '#D1D5DB', padding: '0.75rem', borderRadius: '4px', fontSize: '12px', overflowX: 'auto', border: '1px solid rgba(255,255,255,0.1)' }}>
+                                                {err.record}
+                                            </pre>
+                                        </div>
+                                    ));
+                                } catch (e) {
+                                    return <p>Invalid details format.</p>;
+                                }
+                            })()}
+                        </div>
+                        <div className="modal-footer" style={{ padding: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'flex-end' }}>
+                            <button className="secondary-btn" onClick={() => setViewingLog(null)}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 };
 

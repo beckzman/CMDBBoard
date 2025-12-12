@@ -38,7 +38,7 @@ class CSVImporter:
             missing_columns = [col for col in required_columns if col not in df.columns]
             
             if missing_columns:
-                raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
+                raise ValueError(f"Missing required columns: {', '.join(missing_columns)}. For files with different headers, please use 'New Source' -> 'CSV File' which supports field mapping.")
             
             # Process each row
             records_processed = 0

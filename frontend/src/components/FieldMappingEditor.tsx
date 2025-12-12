@@ -10,6 +10,7 @@ interface FieldMapping {
 interface FieldMappingEditorProps {
     mapping: Record<string, string>;
     onChange: (mapping: Record<string, string>) => void;
+    sourceFields?: string[];  // Optional list of available source fields
 }
 
 const CMDB_FIELDS = [
@@ -24,7 +25,7 @@ const CMDB_FIELDS = [
     { value: 'domain', label: 'Domain', required: false }
 ];
 
-const FieldMappingEditor: React.FC<FieldMappingEditorProps> = ({ mapping, onChange }) => {
+const FieldMappingEditor: React.FC<FieldMappingEditorProps> = ({ mapping, onChange, sourceFields }) => {
     const [mappings, setMappings] = useState<FieldMapping[]>(() => {
         return Object.entries(mapping).map(([cmdbField, sourceField]) => ({
             cmdbField,
@@ -93,11 +94,19 @@ const FieldMappingEditor: React.FC<FieldMappingEditorProps> = ({ mapping, onChan
                         <div className="mapping-cell">
                             <input
                                 type="text"
+                                list={`source-fields-${index}`}
                                 value={mapping.sourceField}
                                 onChange={(e) => handleMappingChange(index, 'sourceField', e.target.value)}
-                                placeholder="e.g., Title or Owner.Email"
+                                placeholder={sourceFields && sourceFields.length > 0 ? "Select or type field name" : "e.g., Title or Owner.Email"}
                                 className="mapping-input"
                             />
+                            {sourceFields && sourceFields.length > 0 && (
+                                <datalist id={`source-fields-${index}`}>
+                                    {sourceFields.map(field => (
+                                        <option key={field} value={field} />
+                                    ))}
+                                </datalist>
+                            )}
                         </div>
                         <div className="mapping-cell-actions">
                             <button

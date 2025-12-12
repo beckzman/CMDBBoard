@@ -32,42 +32,243 @@ class Connector(ABC):
         """Test if the connection to the source is working."""
         pass
 
+    @abstractmethod
+    def get_schema(self) -> List[str]:
+        """Get list of available field names from the source."""
+        pass
+
 
 class SharePointConnector(Connector):
     """Connector for SharePoint Lists."""
     
     def fetch_data(self) -> List[Dict[str, Any]]:
-        # TODO: Implement actual SharePoint API call using Office365-REST-Python-Client
-        logger.info("Fetching data from SharePoint...")
+        """Fetch data from SharePoint list."""
+        from office365.sharepoint.client_context import ClientContext
+        from office365.runtime.auth.user_credential import UserCredential
         
-        # Return sample data for testing
-        return [
-            {
-                "Title": "web-server-01",
-                "AssetType": "server",
-                "Owner": {"Email": "admin@arcelormittal.com"},
-                "Location": "Data Center A",
-                "Environment": "Production",
-                "Specifications": "16GB RAM, 4 CPU"
-            }
-        ]
+        try:
+            site_url = self.config.get('site_url')
+            list_name = self.config.get('list_name')
+            username = self.config.get('username')
+            password = self.config.get('password')
+            
+            if not all([site_url, list_name, username, password]):
+                raise ValueError("Missing required SharePoint configuration: site_url, list_name, username, password")
+            
+            logger.info(f"Connecting to SharePoint: {site_url}")
+            
+            # Create credentials and context
+            credentials = UserCredential(username, password)
+            ctx = ClientContext(site_url).with_credentials(credentials)
+            
+            # Get the list
+            sp_list = ctx.web.lists.get_by_title(list_name)
+            
+            # Fetch all items
+            items = sp_list.items.get().execute_query()
+            
+            # Convert SharePoint items to dictionaries
+            result = []
+            for item in items:
+                # Get all properties from the item
+                item_dict = {}
+                for key, value in item.properties.items():
+                    # Skip internal SharePoint fields
+                    if not key.startswith('_') and key not in ['__metadata', 'odata.type', 'odata.id', 'odata.editLink']:
+                        item_dict[key] = value
+                result.append(item_dict)
+            
+            logger.info(f"Successfully fetched {len(result)} items from SharePoint list '{list_name}'")
+            return result
+            
+        except Exception as e:
+            logger.error(f"SharePoint fetch error: {e}")
+            raise ValueError(f"Failed to fetch data from SharePoint: {str(e)}")
 
     def test_connection(self) -> bool:
-        # TODO: Implement connection test
-        return True
+        """Test connection to SharePoint."""
+        from office365.sharepoint.client_context import ClientContext
+        from office365.runtime.auth.user_credential import UserCredential
+        
+        try:
+            site_url = self.config.get('site_url')
+            username = self.config.get('username')
+            password = self.config.get('password')
+            
+            if not all([site_url, username, password]):
+                logger.error("Missing SharePoint credentials")
+                return False
+            
+            # Create credentials and context
+            credentials = UserCredential(username, password)
+            ctx = ClientContext(site_url).with_credentials(credentials)
+            
+            # Try to access the web to verify connection
+            web = ctx.web.get().execute_query()
+            
+            logger.info(f"SharePoint connection successful: {web.properties.get('Title', 'Unknown')}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"SharePoint connection test failed: {e}")
+            return False
+
+    def get_schema(self) -> List[str]:
+        """Get list of field names from SharePoint list."""
+        from office365.sharepoint.client_context import ClientContext
+        from office365.runtime.auth.user_credential import UserCredential
+        
+        try:
+            site_url = self.config.get('site_url')
+            list_name = self.config.get('list_name')
+            username = self.config.get('username')
+            password = self.config.get('password')
+            
+            if not all([site_url, list_name, username, password]):
+                raise ValueError("Missing required SharePoint configuration")
+            
+            # Create credentials and context
+            credentials = UserCredential(username, password)
+            ctx = ClientContext(site_url).with_credentials(credentials)
+            
+            # Get the list and its fields
+            sp_list = ctx.web.lists.get_by_title(list_name)
+            fields = sp_list.fields.get().execute_query()
+            
+            # Extract field names, excluding internal fields
+            field_names = []
+            for field in fields:
+                field_name = field.properties.get('InternalName', '')
+                if not field_name.startswith('_') and field_name not in ['ContentType', 'Attachments']:
+                    field_names.append(field_name)
+            
+            logger.info(f"Fetched {len(field_names)} fields from SharePoint list")
+            return sorted(field_names)
+            
+        except Exception as e:
+            logger.error(f"Failed to fetch SharePoint schema: {e}")
+            return []
+
 
 
 class IDoitConnector(Connector):
     """Connector for i-doit JSON-RPC API."""
     
     def fetch_data(self) -> List[Dict[str, Any]]:
-        # TODO: Implement i-doit API call
-        logger.info("Fetching data from i-doit...")
-        return []
+        """Fetch data from i-doit via JSON-RPC API."""
+        import requests
+        
+        try:
+            api_url = self.config.get('api_url')
+            api_key = self.config.get('api_key')
+            
+            if not all([api_url, api_key]):
+                raise ValueError("Missing required i-doit configuration: api_url, api_key")
+            
+            logger.info(f"Connecting to i-doit: {api_url}")
+            
+            # Prepare JSON-RPC request
+            payload = {
+                "jsonrpc": "2.0",
+                "method": "cmdb.objects.read",
+                "params": {
+                    "apikey": api_key
+                },
+                "id": 1
+            }
+            
+            # Make request
+            response = requests.post(
+                api_url,
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=30
+            )
+            response.raise_for_status()
+            
+            # Parse response
+            result = response.json()
+            
+            if 'error' in result:
+                error_msg = result['error'].get('message', 'Unknown error')
+                raise ValueError(f"i-doit API error: {error_msg}")
+            
+            objects = result.get('result', [])
+            logger.info(f"Successfully fetched {len(objects)} objects from i-doit")
+            
+            return objects
+            
+        except requests.exceptions.RequestException as e:
+            logger.error(f"i-doit connection error: {e}")
+            raise ValueError(f"Failed to connect to i-doit: {str(e)}")
+        except Exception as e:
+            logger.error(f"i-doit fetch error: {e}")
+            raise ValueError(f"Failed to fetch data from i-doit: {str(e)}")
 
     def test_connection(self) -> bool:
-        # TODO: Implement connection test
-        return True
+        """Test connection to i-doit API."""
+        import requests
+        
+        try:
+            api_url = self.config.get('api_url')
+            api_key = self.config.get('api_key')
+            
+            if not all([api_url, api_key]):
+                logger.error("Missing i-doit credentials")
+                return False
+            
+            # Test with idoit.version method
+            payload = {
+                "jsonrpc": "2.0",
+                "method": "idoit.version",
+                "params": {
+                    "apikey": api_key
+                },
+                "id": 1
+            }
+            
+            response = requests.post(
+                api_url,
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            
+            if 'error' in result:
+                logger.error(f"i-doit API error: {result['error']}")
+                return False
+            
+            version = result.get('result', {})
+            logger.info(f"i-doit connection successful. Version: {version}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"i-doit connection test failed: {e}")
+            return False
+
+    def get_schema(self) -> List[str]:
+        """Get list of common i-doit field names."""
+        # Return common i-doit object fields
+        # These are standard fields returned by cmdb.objects.read
+        return sorted([
+            'id',
+            'title',
+            'sysid',
+            'type',
+            'type_title',
+            'type_group_title',
+            'status',
+            'cmdb_status',
+            'cmdb_status_title',
+            'created',
+            'updated',
+            'objecttype',
+            'location_path'
+        ])
+
 
 
 class OracleConnector(Connector):
@@ -115,6 +316,31 @@ class OracleConnector(Connector):
             logger.error(f"Oracle Connection Test Failed: {e}")
             return False
 
+    def get_schema(self) -> List[str]:
+        """Get list of column names from Oracle table/view."""
+        try:
+            user = self.config.get('user')
+            password = self.config.get('password')
+            dsn = f"{self.config.get('host')}:{self.config.get('port')}/{self.config.get('service_name')}"
+            
+            with oracledb.connect(user=user, password=password, dsn=dsn) as connection:
+                with connection.cursor() as cursor:
+                    # Query to get columns from CMDB_EXPORT view/table
+                    # This assumes the table exists; adjust as needed
+                    cursor.execute("""
+                        SELECT column_name 
+                        FROM user_tab_columns 
+                        WHERE table_name = 'CMDB_EXPORT'
+                        ORDER BY column_name
+                    """)
+                    columns = [row[0] for row in cursor.fetchall()]
+                    return columns
+                    
+        except Exception as e:
+            logger.error(f"Failed to fetch Oracle schema: {e}")
+            # Return empty list if table doesn't exist or error occurs
+            return []
+
 
 class CSVConnector(Connector):
     """Connector for Local CSV Files."""
@@ -145,6 +371,21 @@ class CSVConnector(Connector):
         except Exception as e:
             logger.error(f"CSV Connection Test Failed: {e}")
             return False
+
+    def get_schema(self) -> List[str]:
+        """Get list of column names from CSV file."""
+        file_path = self.config.get('file_path')
+        
+        try:
+            if not file_path or not os.path.exists(file_path):
+                return []
+            
+            df = pd.read_csv(file_path, nrows=0)  # Read only headers
+            return sorted(df.columns.tolist())
+            
+        except Exception as e:
+            logger.error(f"Failed to read CSV schema: {e}")
+            return []
 
 
 class ReconciliationService:
@@ -178,6 +419,7 @@ class ReconciliationService:
             raw_data = connector.fetch_data()
             self.log.records_processed = len(raw_data)
             
+            errors = []
             for raw_record in raw_data:
                 try:
                     # Map external data to CMDB format
@@ -185,14 +427,24 @@ class ReconciliationService:
                     self._process_record(mapped_record, raw_record)
                 except Exception as e:
                     logger.error(f"Failed to process record: {e}")
+                    self.db.rollback()  # Reset session state after failure
                     self.log.records_failed += 1
+                    errors.append({
+                        "record": str(raw_record),
+                        "error": str(e)
+                    })
             
-            self.log.status = "success"
+            if errors:
+                import json
+                self.log.details = json.dumps(errors)
+            
+            self.log.status = "success" if self.log.records_failed == 0 else "partial_success"
             self.log.completed_at = datetime.utcnow()
             self.source.last_run = datetime.utcnow()
             self.db.commit()
             
         except Exception as e:
+            self.db.rollback()  # Ensure rollback on outer exception
             logger.error(f"Import failed: {e}")
             self.log.status = "failed"
             self.log.error_message = str(e)
@@ -268,11 +520,16 @@ class ReconciliationService:
             # Check if we should update this field
             if self.recon_config.should_update_field(field_name):
                 if hasattr(ci, field_name) and value is not None:
+                    # Special handling for Enums
+                    if field_name == 'ci_type':
+                        value = self._parse_ci_type(value)
+                    
                     setattr(ci, field_name, value)
                     updated_fields.append(field_name)
         
         # Always update sync metadata
         ci.last_sync = datetime.utcnow()
+        ci.deleted_at = None  # Resurrect if deleted
         if raw_record.get('id') or raw_record.get('ID'):
             ci.external_id = raw_record.get('id') or raw_record.get('ID')
         

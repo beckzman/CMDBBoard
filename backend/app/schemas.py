@@ -113,6 +113,7 @@ class ImportLogResponse(BaseModel):
     records_success: int
     records_failed: int
     error_message: Optional[str] = None
+    details: Optional[str] = None
     started_at: datetime
     completed_at: Optional[datetime] = None
     

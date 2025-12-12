@@ -141,6 +141,20 @@ export const importAPI = {
         const response = await api.post('/api/import/test-connection', data);
         return response.data;
     },
+
+    getSchema: async (data: { source_type: string; config: string }) => {
+        const response = await api.post('/api/import/schema', data);
+        return response.data;
+    },
+
+    deleteSource: async (id: number) => {
+        await api.delete(`/api/import/sources/${id}`);
+    },
+
+    updateSource: async (id: number, data: any) => {
+        const response = await api.put(`/api/import/sources/${id}`, data);
+        return response.data;
+    }
 };
 
 // Export API

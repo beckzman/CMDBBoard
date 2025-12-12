@@ -66,25 +66,6 @@ def get_import_history(
     return import_logs
 
 
-@router.get("/{import_id}", response_model=ImportLogResponse)
-def get_import_status(
-    import_id: int,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
-):
-    """Get specific import status."""
-    import_log = db.query(ImportLog).filter(ImportLog.id == import_id).first()
-    
-    if not import_log:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Import log not found"
-        )
-    
-    return import_log
-    return import_log
-
-
 @router.post("/sources", response_model=ImportSourceResponse, status_code=status.HTTP_201_CREATED)
 def create_import_source(
     source_data: ImportSourceCreate,
@@ -108,13 +89,29 @@ def create_import_source(
 
 
 @router.get("/sources", response_model=List[ImportSourceResponse])
-def list_import_sources(
+def list_sources(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
     """List all import sources."""
     from app.db.models import ImportSource
-    return db.query(ImportSource).all()
+    sources = db.query(ImportSource).all()
+    
+    # Convert to response format, ensuring config is a string
+    result = []
+    for source in sources:
+        result.append({
+            "id": source.id,
+            "name": source.name,
+            "source_type": source.source_type,
+            "config": source.config if isinstance(source.config, str) else str(source.config),
+            "is_active": source.is_active,
+            "schedule_cron": source.schedule_cron,
+            "last_run": source.last_run.isoformat() if source.last_run else None,
+            "created_at": source.created_at.isoformat() if source.created_at else None
+        })
+    
+    return result
 
 
 @router.post("/sources/{source_id}/run", status_code=status.HTTP_202_ACCEPTED)
@@ -134,37 +131,24 @@ async def run_import_source(
             detail="Import source not found"
         )
     
-    # Run in background (using scheduler's executor or just async)
-    # For simplicity, we'll run it directly in the background task
-    # But since run_import_job is synchronous (DB ops), we should be careful.
-    # Ideally, use BackgroundTasks from FastAPI.
-    from fastapi import BackgroundTasks
-    
-    # Re-implementing run_import_job call here to use BackgroundTasks properly
-    # or just call the function if it was async.
-    # Let's use the scheduler to add a one-time job "now"
+    # Run in background (using scheduler)
     from app.core.scheduler import scheduler, start_scheduler
     from datetime import datetime, timedelta
+    import uuid
     
     # Ensure scheduler is running
     if not scheduler.running:
         start_scheduler()
     
-    scheduler.add_job(
-        run_import_job,
-        'date',
-        run_date=datetime.now() + timedelta(seconds=1),
-        args=[source_id],
-        id=f"manual_run_{source_id}_{int(datetime.now().timestamp())}"
-    )
-    
+    # Use UUID to prevent ID collisions
+    job_id = f"manual_run_{source_id}_{uuid.uuid4().hex}"
     
     scheduler.add_job(
         run_import_job,
         'date',
         run_date=datetime.now() + timedelta(seconds=1),
         args=[source_id],
-        id=f"manual_run_{source_id}_{int(datetime.now().timestamp())}"
+        id=job_id
     )
     
     return {"message": "Import job scheduled"}
@@ -202,3 +186,96 @@ def test_connection_endpoint(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Connection check failed: {str(e)}"
         )
+
+
+@router.post("/schema", status_code=status.HTTP_200_OK)
+def get_source_schema(
+    check_data: ImportConfigCheck,
+    current_user: User = Depends(get_current_user)
+):
+    """Get list of available fields from import source."""
+    try:
+        config = parse_import_config(check_data.config)
+        connector = get_connector_for_test(check_data.source_type, config)
+        
+        if not connector:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Unknown source type: {check_data.source_type}"
+            )
+        
+        fields = connector.get_schema()
+        
+        return {"fields": fields}
+        
+    except Exception as e:
+        logger.error(f"Get schema error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to fetch schema: {str(e)}"
+        )
+
+
+@router.delete("/sources/{source_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_import_source(
+    source_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """Delete an import source."""
+    from app.db.models import ImportSource
+    source = db.query(ImportSource).filter(ImportSource.id == source_id).first()
+    if not source:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Import source not found"
+        )
+    
+    db.delete(source)
+    db.commit()
+    return None
+
+
+@router.put("/sources/{source_id}", response_model=ImportSourceResponse)
+def update_import_source(
+    source_id: int,
+    source_update: ImportSourceCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """Update an import source."""
+    from app.db.models import ImportSource
+    source = db.query(ImportSource).filter(ImportSource.id == source_id).first()
+    if not source:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Import source not found"
+        )
+    
+    source.name = source_update.name
+    source.source_type = source_update.source_type
+    source.config = source_update.config
+    source.is_active = source_update.is_active
+    source.schedule_cron = source_update.schedule_cron
+    
+    db.commit()
+    db.refresh(source)
+    return source
+
+
+@router.get("/{import_id}", response_model=ImportLogResponse)
+def get_import_status(
+    import_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get specific import status."""
+    import_log = db.query(ImportLog).filter(ImportLog.id == import_id).first()
+    
+    if not import_log:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Import log not found"
+        )
+    
+    return import_log
