@@ -61,6 +61,16 @@ def get_dashboard_stats(
     recent_imports = db.query(ImportLog).filter(
         ImportLog.started_at >= seven_days_ago
     ).count()
+
+    # CIs by Department
+    cis_by_dept_query = db.query(
+        ConfigurationItem.department,
+        func.count(ConfigurationItem.id)
+    ).filter(
+        ConfigurationItem.deleted_at.is_(None)
+    ).group_by(ConfigurationItem.department).all()
+
+    cis_by_department = {dept or "Unknown": count for dept, count in cis_by_dept_query}
     
     return {
         "total_cis": total_cis,
@@ -68,6 +78,7 @@ def get_dashboard_stats(
         "inactive_cis": inactive_cis,
         "cis_by_type": cis_by_type,
         "cis_by_status": cis_by_status,
+        "cis_by_department": cis_by_department,
         "recent_imports": recent_imports
     }
 

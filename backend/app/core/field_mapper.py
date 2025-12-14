@@ -14,7 +14,7 @@ class FieldMapper:
         
         Args:
             field_mapping: Dict mapping CMDB field names to source field paths
-                          e.g., {"name": "Title", "owner": "Owner.Email"}
+                          e.g., {"name": "Title", "department": "Owner.Email"}
         """
         self.field_mapping = field_mapping
     
@@ -31,9 +31,12 @@ class FieldMapper:
         mapped_data = {}
         
         for cmdb_field, source_path in self.field_mapping.items():
-            value = self._get_nested_value(source_data, source_path)
-            if value is not None:
-                mapped_data[cmdb_field] = self._transform_value(value)
+            if source_path and source_path.startswith('STATIC:'):
+                mapped_data[cmdb_field] = source_path[7:]
+            else:
+                value = self._get_nested_value(source_data, source_path)
+                if value is not None:
+                    mapped_data[cmdb_field] = self._transform_value(value)
         
         return mapped_data
     

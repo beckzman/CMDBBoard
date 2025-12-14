@@ -50,7 +50,7 @@ class CIBase(BaseModel):
     status: CIStatus = CIStatus.ACTIVE
     domain: Optional[str] = None
     description: Optional[str] = None
-    owner: Optional[str] = None
+    department: Optional[str] = None
     location: Optional[str] = None
     environment: Optional[str] = None
     cost_center: Optional[str] = None
@@ -66,7 +66,7 @@ class CIUpdate(BaseModel):
     status: Optional[CIStatus] = None
     domain: Optional[str] = None
     description: Optional[str] = None
-    owner: Optional[str] = None
+    department: Optional[str] = None
     location: Optional[str] = None
     environment: Optional[str] = None
     cost_center: Optional[str] = None
@@ -158,6 +158,7 @@ class DashboardStats(BaseModel):
     inactive_cis: int
     cis_by_type: dict
     cis_by_status: dict
+    cis_by_department: dict
     recent_imports: int
 
 

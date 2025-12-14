@@ -35,6 +35,13 @@ const Dashboard: React.FC = () => {
         value,
     })) : [];
 
+    const ciDepartmentData = stats?.cis_by_department ? Object.entries(stats.cis_by_department)
+        .map(([name, value]) => ({
+            name: name,
+            value,
+        }))
+        .sort((a, b) => b.value - a.value) : [];
+
     const COLORS = ['#F47D30', '#FF9D5C', '#D96B1F', '#10B981', '#3B82F6', '#F59E0B'];
 
     const getStatusColor = (status: string) => {
@@ -145,6 +152,25 @@ const Dashboard: React.FC = () => {
                                 }}
                             />
                         </PieChart>
+                    </ResponsiveContainer>
+                </div>
+
+                <div className="card chart-card">
+                    <h3>CIs by Department</h3>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={ciDepartmentData}>
+                            <XAxis dataKey="name" stroke="#B0B2B8" />
+                            <YAxis stroke="#B0B2B8" />
+                            <Tooltip
+                                contentStyle={{
+                                    background: '#25262C',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    borderRadius: '8px',
+                                }}
+                                cursor={{ fill: 'transparent' }}
+                            />
+                            <Bar dataKey="value" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+                        </BarChart>
                     </ResponsiveContainer>
                 </div>
             </div>

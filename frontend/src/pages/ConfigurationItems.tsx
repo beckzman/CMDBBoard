@@ -10,11 +10,12 @@ import './ConfigurationItems.css';
 
 const ConfigurationItems: React.FC = () => {
     const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
     const [search, setSearch] = useState('');
     const [ciType, setCiType] = useState('');
     const [status, setStatus] = useState('');
-    const [sortBy, setSortBy] = useState<string>('created_at');
-    const [sortDesc, setSortDesc] = useState(true);
+    const [sortBy, setSortBy] = useState<string>('name');
+    const [sortDesc, setSortDesc] = useState(false);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [editingCI, setEditingCI] = useState<any>(null);
 
@@ -36,10 +37,10 @@ const ConfigurationItems: React.FC = () => {
     const queryClient = useQueryClient();
 
     const { data, isLoading } = useQuery({
-        queryKey: ['cis', page, search, ciType, status, sortBy, sortDesc],
+        queryKey: ['cis', page, pageSize, search, ciType, status, sortBy, sortDesc],
         queryFn: () => ciAPI.list({
             page,
-            page_size: 10,
+            page_size: pageSize,
             search: search || undefined,
             ci_type: ciType || undefined,
             status: status || undefined,
@@ -164,6 +165,11 @@ const ConfigurationItems: React.FC = () => {
         return sortDesc ? <ArrowDown size={14} className="sort-icon" /> : <ArrowUp size={14} className="sort-icon" />;
     };
 
+    const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setPageSize(Number(e.target.value));
+        setPage(1); // Reset to first page when changing page size
+    };
+
     return (
         <div className="ci-container">
             <div className="ci-header">
@@ -207,7 +213,7 @@ const ConfigurationItems: React.FC = () => {
                     <Search size={18} className="search-icon" />
                     <input
                         type="text"
-                        placeholder="Search by name, description, or owner..."
+                        placeholder="Search by name, description, or department..."
                         className="search-input"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
@@ -241,6 +247,18 @@ const ConfigurationItems: React.FC = () => {
                     <option value="planned">Planned</option>
                     <option value="maintenance">Maintenance</option>
                 </select>
+
+                <select
+                    className="filter-select"
+                    value={pageSize}
+                    onChange={handlePageSizeChange}
+                    style={{ width: 'auto' }}
+                >
+                    <option value="10">10 per page</option>
+                    <option value="20">20 per page</option>
+                    <option value="50">50 per page</option>
+                    <option value="100">100 per page</option>
+                </select>
             </div>
 
             {isLoading ? (
@@ -251,6 +269,7 @@ const ConfigurationItems: React.FC = () => {
             ) : (
                 <div className="ci-table-container">
                     <table className="ci-table">
+                        {/* ... Table Header ... (unchanged part handled by diffing context usually, but here I replace the whole return block roughly? No, better to be specific) */}
                         <thead>
                             <tr>
                                 <th onClick={() => handleSort('name')} className="sortable-header">
@@ -268,9 +287,9 @@ const ConfigurationItems: React.FC = () => {
                                         Status {renderSortIcon('status')}
                                     </div>
                                 </th>
-                                <th onClick={() => handleSort('owner')} className="sortable-header">
+                                <th onClick={() => handleSort('department')} className="sortable-header">
                                     <div className="th-content">
-                                        Owner {renderSortIcon('owner')}
+                                        Abteilung {renderSortIcon('department')}
                                     </div>
                                 </th>
                                 <th onClick={() => handleSort('location')} className="sortable-header">
@@ -303,7 +322,7 @@ const ConfigurationItems: React.FC = () => {
                                                 {ci.status}
                                             </span>
                                         </td>
-                                        <td>{ci.owner || '-'}</td>
+                                        <td>{ci.department || '-'}</td>
                                         <td>{ci.location || '-'}</td>
                                         <td>
                                             {ci.last_ping_success ? (
@@ -363,7 +382,7 @@ const ConfigurationItems: React.FC = () => {
                     {data?.total > 0 && (
                         <div className="pagination">
                             <div className="pagination-info">
-                                Showing {((page - 1) * 10) + 1} to {Math.min(page * 10, data.total)} of {data.total} items
+                                Showing {((page - 1) * pageSize) + 1} to {Math.min(page * pageSize, data.total)} of {data.total} items
                             </div>
                             <div className="pagination-controls">
                                 <button
@@ -375,7 +394,7 @@ const ConfigurationItems: React.FC = () => {
                                 </button>
                                 <button
                                     className="page-btn"
-                                    disabled={page * 10 >= data.total}
+                                    disabled={page * pageSize >= data.total}
                                     onClick={() => setPage(p => p + 1)}
                                 >
                                     Next

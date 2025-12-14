@@ -72,7 +72,7 @@ def seed_data():
                 "status": CIStatus.ACTIVE,
                 "description": "E-commerce Web Frontend",
                 "environment": "Production",
-                "owner": "Web Team"
+                "department": "Web Team"
             },
             {
                 "name": "net-switch-core",

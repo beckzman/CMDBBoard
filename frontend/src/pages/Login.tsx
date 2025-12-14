@@ -96,6 +96,18 @@ const Login: React.FC = () => {
                             'Sign In'
                         )}
                     </button>
+
+                    <div className="divider">
+                        <span>OR</span>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="btn btn-secondary keycloak-button"
+                        onClick={() => window.location.href = 'http://localhost:8000/api/auth/keycloak/login'}
+                    >
+                        Sign in with Keycloak
+                    </button>
                 </form>
 
                 <div className="login-footer">

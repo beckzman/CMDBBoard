@@ -25,6 +25,7 @@ class CIType(str, enum.Enum):
     DATABASE = "database"
     WORKSTATION = "workstation"
     STORAGE = "storage"
+    SERVICE = "service"
     OTHER = "other"
 
 
@@ -70,7 +71,7 @@ class ConfigurationItem(Base):
     status = Column(Enum(CIStatus), default=CIStatus.ACTIVE, nullable=False, index=True)
     domain = Column(String(255), nullable=True)
     description = Column(Text)
-    owner = Column(String(255))
+    department = Column(String(255))
     location = Column(String(255))
     environment = Column(String(50))  # production, development, test, etc.
     cost_center = Column(String(100))

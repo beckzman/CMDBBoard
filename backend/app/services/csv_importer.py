@@ -125,7 +125,7 @@ class CSVImporter:
             'ci_type': ci_type_map.get(ci_type_str, CIType.OTHER),
             'status': status_map.get(status_str, CIStatus.ACTIVE),
             'description': str(row['description']) if pd.notna(row.get('description')) else None,
-            'owner': str(row['owner']) if pd.notna(row.get('owner')) else None,
+            'department': str(row['department']) if 'department' in row and pd.notna(row['department']) else (str(row['owner']) if 'owner' in row and pd.notna(row['owner']) else None),
             'location': str(row['location']) if pd.notna(row.get('location')) else None,
             'environment': str(row['environment']) if pd.notna(row.get('environment')) else None,
             'cost_center': str(row['cost_center']) if pd.notna(row.get('cost_center')) else None,

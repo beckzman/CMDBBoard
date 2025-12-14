@@ -24,6 +24,12 @@ class Settings(BaseSettings):
     SHAREPOINT_CLIENT_SECRET: str = ""
     SHAREPOINT_TENANT_ID: str = ""
     SHAREPOINT_SITE_URL: str = ""
+
+    # Keycloak
+    KEYCLOAK_URL: str = ""
+    KEYCLOAK_REALM: str = ""
+    KEYCLOAK_CLIENT_ID: str = ""
+    KEYCLOAK_CLIENT_SECRET: str = ""
     
     # Application
     APP_NAME: str = "ITIL CMDB Dashboard"

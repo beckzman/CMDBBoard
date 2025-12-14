@@ -40,7 +40,7 @@ def list_configuration_items(
             or_(
                 ConfigurationItem.name.ilike(f"%{search}%"),
                 ConfigurationItem.description.ilike(f"%{search}%"),
-                ConfigurationItem.owner.ilike(f"%{search}%")
+                ConfigurationItem.department.ilike(f"%{search}%")
             )
         )
     
@@ -58,8 +58,8 @@ def list_configuration_items(
         elif sort_by == 'status':
             sort_field = ConfigurationItem.status
             is_string_field = True # Enum
-        elif sort_by == 'owner':
-            sort_field = ConfigurationItem.owner
+        elif sort_by == 'department':
+            sort_field = ConfigurationItem.department
             is_string_field = True
         elif sort_by == 'location':
             sort_field = ConfigurationItem.location

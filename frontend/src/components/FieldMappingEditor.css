@@ -27,7 +27,7 @@
 
 .mapping-table-header {
     display: grid;
-    grid-template-columns: 1fr 1fr 60px;
+    grid-template-columns: 1fr 60px 1fr 60px;
     background-color: #f9fafb;
     border-bottom: 1px solid #e5e7eb;
     padding: 0.75rem;
@@ -46,10 +46,42 @@
 
 .mapping-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 60px;
+    grid-template-columns: 1fr 60px 1fr 60px;
     padding: 0.75rem;
     border-bottom: 1px solid #f3f4f6;
     align-items: center;
+}
+
+.mode-toggle-btn {
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.mode-toggle-btn.dynamic {
+    color: #4b5563;
+    /* Gray */
+}
+
+.mode-toggle-btn.static {
+    color: #7c3aed;
+    /* Violet */
+    background-color: #f3f0ff;
+}
+
+.mode-toggle-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.static-input {
+    border-color: #a78bfa !important;
+    background-color: #f5f3ff;
 }
 
 .mapping-row:last-child {

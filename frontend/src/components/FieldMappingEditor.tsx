@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { X, Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Type, Database } from 'lucide-react';
 import './FieldMappingEditor.css';
 
 interface FieldMapping {
     cmdbField: string;
     sourceField: string;
+    isStatic: boolean;
 }
 
 interface FieldMappingEditorProps {
@@ -17,7 +18,7 @@ const CMDB_FIELDS = [
     { value: 'name', label: 'Name *', required: true },
     { value: 'ci_type', label: 'CI Type', required: false },
     { value: 'description', label: 'Description', required: false },
-    { value: 'owner', label: 'Owner', required: false },
+    { value: 'department', label: 'Abteilung', required: false },
     { value: 'location', label: 'Location', required: false },
     { value: 'environment', label: 'Environment', required: false },
     { value: 'cost_center', label: 'Cost Center', required: false },
@@ -26,16 +27,33 @@ const CMDB_FIELDS = [
 ];
 
 const FieldMappingEditor: React.FC<FieldMappingEditorProps> = ({ mapping, onChange, sourceFields }) => {
+    // Initialize state from props
     const [mappings, setMappings] = useState<FieldMapping[]>(() => {
-        return Object.entries(mapping).map(([cmdbField, sourceField]) => ({
-            cmdbField,
-            sourceField
-        }));
+        return Object.entries(mapping).map(([cmdbField, sourceField]) => {
+            const isStatic = sourceField.startsWith('STATIC:');
+            return {
+                cmdbField,
+                sourceField: isStatic ? sourceField.substring(7) : sourceField,
+                isStatic
+            };
+        });
     });
 
+    // Update parent when mappings change
+    const updateParent = (newMappings: FieldMapping[]) => {
+        const mappingObj: Record<string, string> = {};
+        newMappings.forEach(m => {
+            if (m.cmdbField && m.sourceField) {
+                mappingObj[m.cmdbField] = m.isStatic ? `STATIC:${m.sourceField}` : m.sourceField;
+            }
+        });
+        onChange(mappingObj);
+    };
+
     const handleAddMapping = () => {
-        const newMappings = [...mappings, { cmdbField: '', sourceField: '' }];
+        const newMappings = [...mappings, { cmdbField: '', sourceField: '', isStatic: false }];
         setMappings(newMappings);
+        // Don't update parent yet, wait for valid input
     };
 
     const handleRemoveMapping = (index: number) => {
@@ -44,34 +62,34 @@ const FieldMappingEditor: React.FC<FieldMappingEditorProps> = ({ mapping, onChan
         updateParent(newMappings);
     };
 
-    const handleMappingChange = (index: number, field: 'cmdbField' | 'sourceField', value: string) => {
+    const handleMappingChange = (index: number, field: keyof FieldMapping, value: any) => {
         const newMappings = [...mappings];
-        newMappings[index][field] = value;
+        newMappings[index] = { ...newMappings[index], [field]: value };
         setMappings(newMappings);
         updateParent(newMappings);
     };
 
-    const updateParent = (newMappings: FieldMapping[]) => {
-        const mappingObj: Record<string, string> = {};
-        newMappings.forEach(m => {
-            if (m.cmdbField && m.sourceField) {
-                mappingObj[m.cmdbField] = m.sourceField;
-            }
-        });
-        onChange(mappingObj);
+    const toggleStatic = (index: number) => {
+        const newMappings = [...mappings];
+        newMappings[index].isStatic = !newMappings[index].isStatic;
+        // Clear value when switching modes to avoid confusion
+        newMappings[index].sourceField = '';
+        setMappings(newMappings);
+        updateParent(newMappings);
     };
 
     return (
         <div className="field-mapping-editor">
             <div className="mapping-header">
                 <h3>Field Mapping</h3>
-                <p className="help-text">Map external source fields to CMDB fields. Use dot notation for nested fields (e.g., "Owner.Email").</p>
+                <p className="help-text">Map source fields to CMDB properties. Toggle "Static" to set a fixed value (e.g., "Server").</p>
             </div>
 
             <div className="mapping-table">
                 <div className="mapping-table-header">
                     <div className="header-cell">CMDB Field</div>
-                    <div className="header-cell">Source Field</div>
+                    <div className="header-cell" style={{ flex: 0.2 }}>Type</div>
+                    <div className="header-cell">Source Field / Value</div>
                     <div className="header-cell-actions">Actions</div>
                 </div>
 
@@ -91,21 +109,43 @@ const FieldMappingEditor: React.FC<FieldMappingEditorProps> = ({ mapping, onChan
                                 ))}
                             </select>
                         </div>
+                        <div className="mapping-cell" style={{ flex: 0.2, justifyContent: 'center' }}>
+                            <button
+                                type="button"
+                                className={`mode-toggle-btn ${mapping.isStatic ? 'static' : 'dynamic'}`}
+                                onClick={() => toggleStatic(index)}
+                                title={mapping.isStatic ? "Switch to Source Field" : "Switch to Static Value"}
+                            >
+                                {mapping.isStatic ? <Type size={16} /> : <Database size={16} />}
+                            </button>
+                        </div>
                         <div className="mapping-cell">
-                            <input
-                                type="text"
-                                list={`source-fields-${index}`}
-                                value={mapping.sourceField}
-                                onChange={(e) => handleMappingChange(index, 'sourceField', e.target.value)}
-                                placeholder={sourceFields && sourceFields.length > 0 ? "Select or type field name" : "e.g., Title or Owner.Email"}
-                                className="mapping-input"
-                            />
-                            {sourceFields && sourceFields.length > 0 && (
-                                <datalist id={`source-fields-${index}`}>
-                                    {sourceFields.map(field => (
-                                        <option key={field} value={field} />
-                                    ))}
-                                </datalist>
+                            {mapping.isStatic ? (
+                                <input
+                                    type="text"
+                                    value={mapping.sourceField}
+                                    onChange={(e) => handleMappingChange(index, 'sourceField', e.target.value)}
+                                    placeholder="Enter static value..."
+                                    className="mapping-input static-input"
+                                />
+                            ) : (
+                                <>
+                                    <input
+                                        type="text"
+                                        list={`source-fields-${index}`}
+                                        value={mapping.sourceField}
+                                        onChange={(e) => handleMappingChange(index, 'sourceField', e.target.value)}
+                                        placeholder={sourceFields && sourceFields.length > 0 ? "Select or type field name" : "e.g., Title or Owner.Email"}
+                                        className="mapping-input"
+                                    />
+                                    {sourceFields && sourceFields.length > 0 && (
+                                        <datalist id={`source-fields-${index}`}>
+                                            {sourceFields.map(field => (
+                                                <option key={field} value={field} />
+                                            ))}
+                                        </datalist>
+                                    )}
+                                </>
                             )}
                         </div>
                         <div className="mapping-cell-actions">

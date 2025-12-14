@@ -146,7 +146,7 @@ class SharePointConnector(Connector):
             return sorted(field_names)
             
         except Exception as e:
-            logger.error(f"Failed to fetch SharePoint schema: {e}")
+            logger.error(f"Failed to fetch SharePoint schema: {e}", exc_info=True)
             return []
 
 
@@ -493,7 +493,7 @@ class ReconciliationService:
             'ci_type': self._parse_ci_type(mapped_record.get('ci_type')),
             'status': CIStatus.ACTIVE,
             'description': mapped_record.get('description'),
-            'owner': mapped_record.get('owner'),
+            'department': mapped_record.get('department') or mapped_record.get('owner'),
             'location': mapped_record.get('location'),
             'environment': mapped_record.get('environment'),
             'cost_center': mapped_record.get('cost_center'),
@@ -514,6 +514,10 @@ class ReconciliationService:
         updated_fields = []
         
         for field_name, value in mapped_record.items():
+            # Remap legacy 'owner' field to 'department'
+            if field_name == 'owner':
+                field_name = 'department'
+
             if field_name == self.recon_config.key_field:
                 continue  # Don't update the reconciliation key
             

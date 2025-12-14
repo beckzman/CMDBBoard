@@ -238,4 +238,21 @@ export const userAPI = {
     }
 };
 
+// Relationship API
+export const relationshipAPI = {
+    getByCI: async (ciId: number) => {
+        const response = await api.get(`/api/relationships/ci/${ciId}`);
+        return response.data;
+    },
+
+    create: async (data: { source_ci_id: number; target_ci_id: number; relationship_type: string; description?: string }) => {
+        const response = await api.post('/api/relationships', data);
+        return response.data;
+    },
+
+    delete: async (id: number) => {
+        await api.delete(`/api/relationships/${id}`);
+    }
+};
+
 

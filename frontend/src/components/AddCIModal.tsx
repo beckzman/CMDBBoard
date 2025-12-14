@@ -26,7 +26,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         status: 'active',
         domain: '',
         description: '',
-        owner: '',
+        department: '',
         location: '',
         environment: 'production',
         cost_center: '',
@@ -41,7 +41,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 status: initialData.status || 'active',
                 domain: initialData.domain || '',
                 description: initialData.description || '',
-                owner: initialData.owner || '',
+                department: initialData.department || '',
                 location: initialData.location || '',
                 environment: initialData.environment || 'production',
                 cost_center: initialData.cost_center || '',
@@ -54,7 +54,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 status: 'active',
                 domain: '',
                 description: '',
-                owner: '',
+                department: '',
                 location: '',
                 environment: 'production',
                 cost_center: '',
@@ -215,15 +215,15 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="owner">Owner</label>
+                            <label htmlFor="department">Abteilung</label>
                             <input
                                 type="text"
-                                id="owner"
-                                name="owner"
-                                value={formData.owner}
+                                id="department"
+                                name="department"
+                                value={formData.department}
                                 onChange={handleChange}
                                 className="form-input"
-                                placeholder="e.g. John Doe"
+                                placeholder="e.g. IT Operations"
                             />
                         </div>
 
