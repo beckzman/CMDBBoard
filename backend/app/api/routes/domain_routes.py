@@ -8,6 +8,8 @@ from app.core.auth import get_current_user, require_role
 from app.db.database import get_db
 from app.db.models import Domain, User, UserRole
 from app.schemas import DomainCreate, DomainResponse
+from app.services.domain_service import resolve_domains_for_cis
+from typing import Dict, Any
 
 router = APIRouter(prefix="/api/domains", tags=["Domains"])
 
@@ -75,3 +77,16 @@ def delete_domain(
     db.delete(domain)
     db.commit()
     return None
+
+
+@router.post("/resolve", status_code=status.HTTP_200_OK)
+def resolve_domains(
+    limit: int = 0, # Default to 0 (all)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """
+    Trigger DNS resolution for CIs.
+    Admin only.
+    """
+    return resolve_domains_for_cis(db, limit)

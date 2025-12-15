@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { domainAPI } from '../api/client';
-import { Plus, Trash2, Globe } from 'lucide-react';
+import { Plus, Trash2, Globe, Play } from 'lucide-react';
 import './ConfigurationItems.css'; // Reusing existing styles for consistency
 
 const DomainManagement: React.FC = () => {
     const [newDomain, setNewDomain] = useState('');
     const [description, setDescription] = useState('');
     const [error, setError] = useState('');
+    const [resolveStats, setResolveStats] = useState<any>(null);
 
     const queryClient = useQueryClient();
 
@@ -40,6 +41,17 @@ const DomainManagement: React.FC = () => {
         }
     });
 
+    const resolveMutation = useMutation({
+        mutationFn: () => domainAPI.resolve(0), // 0 means all CIs
+        onSuccess: (data) => {
+            setResolveStats(data);
+            setTimeout(() => setResolveStats(null), 5000); // Clear after 5 seconds
+        },
+        onError: () => {
+            setError('Failed to run DNS resolution');
+        }
+    });
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!newDomain.trim()) return;
@@ -56,6 +68,29 @@ const DomainManagement: React.FC = () => {
             </div>
 
             <div className="ci-table-container" style={{ padding: '24px', maxWidth: '800px' }}>
+
+                <div style={{ marginBottom: '24px', padding: '16px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>DNS Resolution</h3>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => resolveMutation.mutate()}
+                            disabled={resolveMutation.isPending}
+                        >
+                            <Play size={16} />
+                            <span>{resolveMutation.isPending ? 'Running...' : 'Run DNS Check'}</span>
+                        </button>
+                    </div>
+                    <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: 0 }}>
+                        Check DNS for ALL CIs against active domains and update matched domains.
+                    </p>
+                    {resolveStats && (
+                        <div style={{ marginTop: '12px', padding: '12px', backgroundColor: 'rgba(0,128,0,0.2)', borderRadius: '4px', border: '1px solid rgba(0,128,0,0.3)', color: '#4ade80' }}>
+                            ✓ Processed: {resolveStats.processed} | Updated: {resolveStats.updated} | Errors: {resolveStats.errors}
+                        </div>
+                    )}
+                </div>
+
                 <form onSubmit={handleSubmit} className="mb-8" style={{ marginBottom: '32px' }}>
                     <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '16px', color: 'var(--text-primary)' }}>Add New Domain</h3>
                     {error && <div className="error-alert" style={{ marginBottom: '16px' }}>{error}</div>}

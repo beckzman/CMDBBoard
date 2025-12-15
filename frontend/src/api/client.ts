@@ -206,6 +206,11 @@ export const domainAPI = {
 
     delete: async (id: number) => {
         await api.delete(`/api/domains/${id}`);
+    },
+
+    resolve: async (limit: number = 50) => {
+        const response = await api.post('/api/domains/resolve', null, { params: { limit } });
+        return response.data;
     }
 };
 
