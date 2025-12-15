@@ -89,7 +89,7 @@
     background-color: var(--bg-card);
     border-radius: 12px;
     border: 1px solid var(--border-color);
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 .ci-table {
@@ -306,4 +306,39 @@
 .export-dropdown .dropdown-menu button:hover {
     background-color: rgba(255, 255, 255, 0.05);
     color: #F47D30;
+}
+
+.columns-menu {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+.checkbox-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #F47D30;
+}
+
+.checkbox-item input[type="checkbox"] {
+    accent-color: #F47D30;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

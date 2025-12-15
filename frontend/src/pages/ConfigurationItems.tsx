@@ -33,6 +33,53 @@ const ConfigurationItems: React.FC = () => {
         result: null
     });
     const [showExportMenu, setShowExportMenu] = useState(false);
+    const [showColumnMenu, setShowColumnMenu] = useState(false);
+
+    // Default visible columns
+    const DEFAULT_COLUMNS = ['name', 'type', 'status', 'department', 'location', 'last_ping'];
+
+    // Available columns configuration
+    const AVAILABLE_COLUMNS = [
+        { key: 'name', label: 'Name', sortable: true },
+        { key: 'description', label: 'Description', sortable: true },
+        { key: 'type', label: 'Type', sortable: true },
+        { key: 'status', label: 'Status', sortable: true },
+        { key: 'department', label: 'Abteilung', sortable: true },
+        { key: 'location', label: 'Location', sortable: true },
+        { key: 'environment', label: 'Environment', sortable: true },
+        { key: 'operating_system', label: 'OS', sortable: true },
+        { key: 'domain', label: 'Domain', sortable: true },
+        { key: 'cost_center', label: 'Cost Center', sortable: true },
+        { key: 'last_ping', label: 'Last Ping', sortable: true },
+        { key: 'created_at', label: 'Created At', sortable: true },
+        { key: 'updated_at', label: 'Updated At', sortable: true },
+    ];
+
+    // Initialize visible columns from localStorage or default
+    const [visibleColumns, setVisibleColumns] = useState<string[]>(() => {
+        const saved = localStorage.getItem('ci_visible_columns');
+        return saved ? JSON.parse(saved) : DEFAULT_COLUMNS;
+    });
+
+    // Save visible columns to localStorage whenever they change
+    React.useEffect(() => {
+        localStorage.setItem('ci_visible_columns', JSON.stringify(visibleColumns));
+    }, [visibleColumns]);
+
+    const toggleColumn = (columnKey: string) => {
+        setVisibleColumns(prev => {
+            if (prev.includes(columnKey)) {
+                // Don't allow hiding the Name column as it's essential
+                if (columnKey === 'name') return prev;
+                return prev.filter(k => k !== columnKey);
+            }
+            // Add column in the order defined in AVAILABLE_COLUMNS to keep table consistent
+            const newColumns = [...prev, columnKey];
+            return AVAILABLE_COLUMNS
+                .filter(col => newColumns.includes(col.key))
+                .map(col => col.key);
+        });
+    };
 
     const queryClient = useQueryClient();
 
@@ -170,6 +217,34 @@ const ConfigurationItems: React.FC = () => {
         setPage(1); // Reset to first page when changing page size
     };
 
+    const renderCellContent = (ci: any, key: string) => {
+        switch (key) {
+            case 'name':
+                return <span className="ci-name">{ci.name}</span>;
+            case 'type':
+                return <span className="ci-type-badge">{ci.ci_type.replace('_', ' ')}</span>;
+            case 'status':
+                return (
+                    <span className={`badge badge-${getStatusColor(ci.status)}`}>
+                        {ci.status}
+                    </span>
+                );
+            case 'last_ping':
+                return ci.last_ping_success ? (
+                    <span className="ping-timestamp" title={new Date(ci.last_ping_success).toLocaleString()}>
+                        {new Date(ci.last_ping_success).toLocaleDateString()}
+                    </span>
+                ) : (
+                    <span className="text-muted">Never</span>
+                );
+            case 'created_at':
+            case 'updated_at':
+                return ci[key] ? new Date(ci[key]).toLocaleDateString() : '-';
+            default:
+                return ci[key] || '-';
+        }
+    };
+
     return (
         <div className="ci-container">
             <div className="ci-header">
@@ -178,6 +253,31 @@ const ConfigurationItems: React.FC = () => {
                     <p>Manage your IT assets and configuration items</p>
                 </div>
                 <div className="ci-actions">
+                    <div className="export-dropdown">
+                        <button
+                            className="btn btn-secondary"
+                            onClick={() => setShowColumnMenu(!showColumnMenu)}
+                        >
+                            <Eye size={18} />
+                            <span>Columns</span>
+                            <ChevronDown size={16} />
+                        </button>
+                        {showColumnMenu && (
+                            <div className="dropdown-menu columns-menu" style={{ width: '200px' }}>
+                                {AVAILABLE_COLUMNS.map(col => (
+                                    <label key={col.key} className="dropdown-item checkbox-item">
+                                        <input
+                                            type="checkbox"
+                                            checked={visibleColumns.includes(col.key)}
+                                            onChange={() => toggleColumn(col.key)}
+                                            disabled={col.key === 'name'}
+                                        />
+                                        <span>{col.label}</span>
+                                    </label>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                     <div className="export-dropdown">
                         <button
                             className="btn btn-secondary"
@@ -269,39 +369,22 @@ const ConfigurationItems: React.FC = () => {
             ) : (
                 <div className="ci-table-container">
                     <table className="ci-table">
-                        {/* ... Table Header ... (unchanged part handled by diffing context usually, but here I replace the whole return block roughly? No, better to be specific) */}
                         <thead>
                             <tr>
-                                <th onClick={() => handleSort('name')} className="sortable-header">
-                                    <div className="th-content">
-                                        Name {renderSortIcon('name')}
-                                    </div>
-                                </th>
-                                <th onClick={() => handleSort('type')} className="sortable-header">
-                                    <div className="th-content">
-                                        Type {renderSortIcon('type')}
-                                    </div>
-                                </th>
-                                <th onClick={() => handleSort('status')} className="sortable-header">
-                                    <div className="th-content">
-                                        Status {renderSortIcon('status')}
-                                    </div>
-                                </th>
-                                <th onClick={() => handleSort('department')} className="sortable-header">
-                                    <div className="th-content">
-                                        Abteilung {renderSortIcon('department')}
-                                    </div>
-                                </th>
-                                <th onClick={() => handleSort('location')} className="sortable-header">
-                                    <div className="th-content">
-                                        Location {renderSortIcon('location')}
-                                    </div>
-                                </th>
-                                <th onClick={() => handleSort('last_ping')} className="sortable-header">
-                                    <div className="th-content">
-                                        Last Ping {renderSortIcon('last_ping')}
-                                    </div>
-                                </th>
+                                {AVAILABLE_COLUMNS
+                                    .filter(col => visibleColumns.includes(col.key))
+                                    .map(col => (
+                                        <th
+                                            key={col.key}
+                                            onClick={() => col.sortable && handleSort(col.key)}
+                                            className={col.sortable ? 'sortable-header' : ''}
+                                        >
+                                            <div className="th-content">
+                                                {col.label} {col.sortable && renderSortIcon(col.key)}
+                                            </div>
+                                        </th>
+                                    ))
+                                }
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -309,30 +392,14 @@ const ConfigurationItems: React.FC = () => {
                             {data?.items && data.items.length > 0 ? (
                                 data.items.map((ci: any) => (
                                     <tr key={ci.id}>
-                                        <td>
-                                            <span className="ci-name">{ci.name}</span>
-                                        </td>
-                                        <td>
-                                            <span className="ci-type-badge">
-                                                {ci.ci_type.replace('_', ' ')}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className={`badge badge-${getStatusColor(ci.status)}`}>
-                                                {ci.status}
-                                            </span>
-                                        </td>
-                                        <td>{ci.department || '-'}</td>
-                                        <td>{ci.location || '-'}</td>
-                                        <td>
-                                            {ci.last_ping_success ? (
-                                                <span className="ping-timestamp" title={new Date(ci.last_ping_success).toLocaleString()}>
-                                                    {new Date(ci.last_ping_success).toLocaleDateString()}
-                                                </span>
-                                            ) : (
-                                                <span className="text-muted">Never</span>
-                                            )}
-                                        </td>
+                                        {AVAILABLE_COLUMNS
+                                            .filter(col => visibleColumns.includes(col.key))
+                                            .map(col => (
+                                                <td key={col.key}>
+                                                    {renderCellContent(ci, col.key)}
+                                                </td>
+                                            ))
+                                        }
                                         <td>
                                             <div className="action-buttons">
                                                 <button
@@ -369,7 +436,7 @@ const ConfigurationItems: React.FC = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={6}>
+                                    <td colSpan={visibleColumns.length + 1}>
                                         <div className="empty-state">
                                             <p>No configuration items found</p>
                                         </div>
