@@ -91,6 +91,7 @@ class ReconciliationConfig:
         """
         self.key_field = config.get('key_field', 'name')
         self.match_strategy = config.get('match_strategy', 'exact')
+        self.update_mode = config.get('update_mode', 'upsert')  # 'upsert' or 'update_only'
         self.conflict_resolution = config.get('conflict_resolution', {})
     
     def should_update_field(self, field_name: str) -> bool:

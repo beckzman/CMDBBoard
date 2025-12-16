@@ -10,8 +10,14 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 from app.db.models import ConfigurationItem, ImportSource, ImportLog, CIType, CIStatus
 from app.core.field_mapper import FieldMapper, ReconciliationConfig, parse_import_config
-import oracledb
-import pandas as pd
+try:
+    import oracledb
+except ImportError:
+    oracledb = None
+try:
+    import pandas as pd
+except ImportError:
+    pd = None
 import os
 
 logger = logging.getLogger(__name__)
@@ -153,6 +159,10 @@ class SharePointConnector(Connector):
         except Exception as e:
             logger.error(f"Failed to fetch SharePoint schema: {e}", exc_info=True)
             return []
+
+    def get_categories(self) -> List[Dict[str, Any]]:
+        """Get list of available object categories/types from the source. Not applicable for SharePoint lists."""
+        return []
 
 
 
@@ -441,6 +451,9 @@ class OracleConnector(Connector):
             dsn = f"{self.config.get('host')}:{self.config.get('port')}/{self.config.get('service_name')}"
 
             # Connect to Oracle
+            if not oracledb:
+                raise ImportError("oracledb module is not installed.")
+                
             with oracledb.connect(user=user, password=password, dsn=dsn) as connection:
                 with connection.cursor() as cursor:
                     # Execute query (this should be configurable, but hardcoded for now as per simple requirement)
@@ -499,6 +512,10 @@ class OracleConnector(Connector):
             # Return empty list if table doesn't exist or error occurs
             return []
 
+    def get_categories(self) -> List[Dict[str, Any]]:
+        """Get list of available object categories/types from the source. Not applicable for Oracle tables."""
+        return []
+
 
 class CSVConnector(Connector):
     """Connector for Local CSV Files."""
@@ -508,6 +525,9 @@ class CSVConnector(Connector):
         logger.info(f"Reading data from CSV file: {file_path}")
         
         try:
+            if not pd:
+                raise ImportError("pandas module is not installed.")
+
             if not os.path.exists(file_path):
                 raise FileNotFoundError(f"CSV file not found: {file_path}")
                 
@@ -538,12 +558,19 @@ class CSVConnector(Connector):
             if not file_path or not os.path.exists(file_path):
                 return []
             
+            if not pd:
+                 return [] # Or raise error, but get_schema usually returns empty list on failure
+
             df = pd.read_csv(file_path, nrows=0)  # Read only headers
             return sorted(df.columns.tolist())
             
         except Exception as e:
             logger.error(f"Failed to read CSV schema: {e}")
             return []
+
+    def get_categories(self) -> List[Dict[str, Any]]:
+        """Get list of available object categories/types from the source. Not applicable for CSV files."""
+        return []
 
 
 class ReconciliationService:
@@ -638,11 +665,17 @@ class ReconciliationService:
         if ci:
             # Update existing CI
             self._update_ci(ci, mapped_record, raw_record)
-        else:
-            # Create new CI
+            self.log.records_success += 1
+        elif self.recon_config.update_mode == 'upsert':
+            # Create new CI only if in upsert mode
             self._create_ci(mapped_record, raw_record)
-        
-        self.log.records_success += 1
+            self.log.records_success += 1
+        else:
+            # Skip creation in 'update_only' mode
+            logger.info(f"Skipping new CI creation (Update Only mode): {match_value}")
+            # We count this as processed but effectively skipped/success because it's desired behavior
+            # Alternatively we could track 'skipped' if we added that column to ImportLog
+            self.log.records_success += 1
 
     def _create_ci(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]):
         """Create a new CI from mapped data."""

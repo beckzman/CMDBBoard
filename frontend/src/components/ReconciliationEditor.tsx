@@ -4,6 +4,7 @@ import './ReconciliationEditor.css';
 interface ReconciliationConfig {
     key_field: string;
     match_strategy: string;
+    update_mode: 'upsert' | 'update_only';
     conflict_resolution: Record<string, string>;
 }
 
@@ -19,6 +20,11 @@ const MATCH_STRATEGIES = [
     { value: 'fuzzy', label: 'Fuzzy Match' }
 ];
 
+const UPDATE_MODES = [
+    { value: 'upsert', label: 'Add and Update (Default)' },
+    { value: 'update_only', label: 'Update Only (Do not create new items)' }
+];
+
 const RESOLUTION_STRATEGIES = [
     { value: 'source', label: 'Use Source Data (Overwrite)' },
     { value: 'existing', label: 'Keep Existing Data' },
@@ -32,6 +38,10 @@ const ReconciliationEditor: React.FC<ReconciliationEditorProps> = ({ config, onC
 
     const handleStrategyChange = (value: string) => {
         onChange({ ...config, match_strategy: value });
+    };
+
+    const handleUpdateModeChange = (value: 'upsert' | 'update_only') => {
+        onChange({ ...config, update_mode: value });
     };
 
     const handleResolutionChange = (field: string, strategy: string) => {
@@ -78,6 +88,22 @@ const ReconciliationEditor: React.FC<ReconciliationEditorProps> = ({ config, onC
                         ))}
                     </select>
                     <p className="field-help">How to compare values when matching</p>
+                </div>
+
+                <div className="form-group">
+                    <label>Update Mode</label>
+                    <select
+                        value={config.update_mode || 'upsert'}
+                        onChange={(e) => handleUpdateModeChange(e.target.value as 'upsert' | 'update_only')}
+                        className="recon-select"
+                    >
+                        {UPDATE_MODES.map(mode => (
+                            <option key={mode.value} value={mode.value}>
+                                {mode.label}
+                            </option>
+                        ))}
+                    </select>
+                    <p className="field-help">Choose whether to create new items or only update existing ones</p>
                 </div>
             </div>
 

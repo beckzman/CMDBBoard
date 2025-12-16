@@ -35,6 +35,7 @@ interface ImportConfig {
     reconciliation: {
         key_field: string;
         match_strategy: string;
+        update_mode: 'upsert' | 'update_only';
         conflict_resolution: Record<string, string>;
     };
     // SharePoint Config
@@ -77,6 +78,7 @@ const ImportDashboard: React.FC = () => {
         reconciliation: {
             key_field: 'name',
             match_strategy: 'exact',
+            update_mode: 'upsert',
             conflict_resolution: {}
         }
 
@@ -120,6 +122,7 @@ const ImportDashboard: React.FC = () => {
                 reconciliation: {
                     key_field: 'name',
                     match_strategy: 'exact',
+                    update_mode: 'upsert',
                     conflict_resolution: {}
                 }
             });
@@ -158,6 +161,7 @@ const ImportDashboard: React.FC = () => {
                 reconciliation: {
                     key_field: 'name',
                     match_strategy: 'exact',
+                    update_mode: 'upsert',
                     conflict_resolution: {}
                 }
             });
@@ -376,6 +380,7 @@ const ImportDashboard: React.FC = () => {
                             reconciliation: {
                                 key_field: 'name',
                                 match_strategy: 'exact',
+                                update_mode: 'upsert',
                                 conflict_resolution: {}
                             }
                         });
