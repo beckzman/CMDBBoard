@@ -147,6 +147,16 @@ export const importAPI = {
         return response.data;
     },
 
+    getCategories: async (data: { source_type: string; config: string }) => {
+        const response = await api.post('/api/import/categories', data);
+        return response.data;
+    },
+
+    previewData: async (data: { source_type: string; config: string }) => {
+        const response = await api.post('/api/import/preview', data);
+        return response.data;
+    },
+
     deleteSource: async (id: number) => {
         await api.delete(`/api/import/sources/${id}`);
     },

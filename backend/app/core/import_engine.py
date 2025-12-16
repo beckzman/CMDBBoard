@@ -37,6 +37,11 @@ class Connector(ABC):
         """Get list of available field names from the source."""
         pass
 
+    @abstractmethod
+    def get_categories(self) -> List[Dict[str, Any]]:
+        """Get list of available object categories/types from the source."""
+        return []
+
 
 class SharePointConnector(Connector):
     """Connector for SharePoint Lists."""
@@ -172,7 +177,10 @@ class IDoitConnector(Connector):
                 "jsonrpc": "2.0",
                 "method": "cmdb.objects.read",
                 "params": {
-                    "apikey": api_key
+                    "apikey": api_key,
+                    "filter": {
+                        "type": self.config.get('category')  # Filter by object type if configured
+                    }
                 },
                 "id": 1
             }
@@ -250,24 +258,174 @@ class IDoitConnector(Connector):
             return False
 
     def get_schema(self) -> List[str]:
-        """Get list of common i-doit field names."""
-        # Return common i-doit object fields
-        # These are standard fields returned by cmdb.objects.read
+        """Get list of available field names from i-doit by fetching a sample object."""
+        try:
+            # Try to fetch one object to see actual structure
+            # Use fetch_data but we can optimize if we had a limit param, 
+            # here we just call fetch_data and take the first one.
+            # Ideally fetch_data should support pagination/limit, but for now:
+            
+            # Optimization: Override payload to limit result to 1 if possible
+            # But standard cmdb.objects.read with default fetch might be okay for now 
+            # or we create a specific short fetch.
+            
+            # Let's perform a lightweight fetch for schema
+            import requests
+            api_url = self.config.get('api_url')
+            api_key = self.config.get('api_key')
+            
+            if not all([api_url, api_key]):
+                 # Fallback to defaults
+                 return self._get_default_schema()
+
+            payload = {
+                "jsonrpc": "2.0",
+                "method": "cmdb.objects.read",
+                "params": {
+                    "apikey": api_key,
+                    "filter": {
+                         "type": self.config.get('category')
+                    },
+                    "limit": 1
+                },
+                "id": 1
+            }
+            
+            response = requests.post(
+                api_url,
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            result = response.json()
+            
+            if 'result' in result and len(result['result']) > 0:
+                # Extract keys from the first object
+                first_obj = result['result'][0]
+                return sorted(list(first_obj.keys()))
+            
+            # If no objects found, return default schema
+            return self._get_default_schema()
+            
+        except Exception as e:
+            logger.warning(f"Failed to fetch dynamic i-doit schema: {e}")
+            return self._get_default_schema()
+
+    def _get_default_schema(self) -> List[str]:
         return sorted([
-            'id',
-            'title',
-            'sysid',
-            'type',
-            'type_title',
-            'type_group_title',
-            'status',
-            'cmdb_status',
-            'cmdb_status_title',
-            'created',
-            'updated',
-            'objecttype',
-            'location_path'
+            'id', 'title', 'sysid', 'type', 'type_title', 
+            'type_group_title', 'status', 'cmdb_status', 
+            'cmdb_status_title', 'created', 'updated', 
+            'objecttype', 'location_path'
         ])
+
+    def preview_data(self, limit: int = 5) -> List[Dict[str, Any]]:
+        """Fetch a small sample of data for preview."""
+        import requests
+        
+        try:
+            api_url = self.config.get('api_url')
+            api_key = self.config.get('api_key')
+            
+            if not all([api_url, api_key]):
+                 raise ValueError("Missing configuration")
+
+            payload = {
+                "jsonrpc": "2.0",
+                "method": "cmdb.objects.read",
+                "params": {
+                    "apikey": api_key,
+                    "filter": {
+                         "type": self.config.get('category')
+                    },
+                    "limit": limit
+                },
+                "id": 1
+            }
+            
+            response = requests.post(
+                api_url,
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            response.raise_for_status()
+            result = response.json()
+            
+            if 'error' in result:
+                raise ValueError(result['error'].get('message'))
+                
+            return result.get('result', [])
+            
+        except Exception as e:
+            logger.error(f"Preview fetch failed: {e}")
+            raise e
+
+    def get_categories(self) -> List[Dict[str, Any]]:
+        """Get list of available object categories (types) from i-doit."""
+        import requests
+        
+        try:
+            api_url = self.config.get('api_url')
+            api_key = self.config.get('api_key')
+            
+            if not all([api_url, api_key]):
+                raise ValueError("Missing required i-doit configuration")
+            
+            # Fetch object types
+            payload = {
+                "jsonrpc": "2.0",
+                "method": "cmdb.object_type.read",
+                "params": {
+                    "apikey": api_key
+                },
+                "id": 1
+            }
+            
+            response = requests.post(
+                api_url,
+                json=payload,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            response.raise_for_status()
+            result = response.json()
+            
+            if 'error' in result:
+                logger.error(f"i-doit API error: {result['error']}")
+                return []
+            
+            # Extract types: id and title
+            types = []
+            
+            raw_result = result.get('result')
+            if not raw_result:
+                return []
+                
+            # Handle both list and dict formats
+            # API might return [ {id:..}, .. ] or { "id": {..}, .. }
+            
+            iterator = []
+            if isinstance(raw_result, list):
+                iterator = raw_result
+            elif isinstance(raw_result, dict):
+                iterator = raw_result.values()
+            
+            for item in iterator:
+                if not isinstance(item, dict):
+                    continue
+                    
+                types.append({
+                    "id": item.get('const', item.get('id')), # prefer constant key if available
+                    "name": item.get('title', 'Unknown')
+                })
+            
+            # Sort by name
+            return sorted(types, key=lambda x: x['name'])
+            
+        except Exception as e:
+            logger.error(f"Failed to fetch i-doit categories: {e}")
+            return []
 
 
 

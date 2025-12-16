@@ -216,6 +216,62 @@ def get_source_schema(
         )
 
 
+@router.post("/categories", status_code=status.HTTP_200_OK)
+def get_source_categories(
+    check_data: ImportConfigCheck,
+    current_user: User = Depends(get_current_user)
+):
+    """Get list of available object categories (types) from import source."""
+    try:
+        config = parse_import_config(check_data.config)
+        connector = get_connector_for_test(check_data.source_type, config)
+        
+        if not connector:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Unknown source type: {check_data.source_type}"
+            )
+        
+        categories = connector.get_categories()
+        
+        return {"categories": categories}
+        
+    except Exception as e:
+        logger.error(f"Get categories error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to fetch categories: {str(e)}"
+        )
+
+
+@router.post("/preview", status_code=status.HTTP_200_OK)
+def get_source_preview(
+    check_data: ImportConfigCheck,
+    current_user: User = Depends(get_current_user)
+):
+    """Preview data from import source."""
+    try:
+        config = parse_import_config(check_data.config)
+        connector = get_connector_for_test(check_data.source_type, config)
+        
+        if not connector:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Unknown source type: {check_data.source_type}"
+            )
+        
+        data = connector.preview_data(limit=5)
+        
+        return {"data": data}
+        
+    except Exception as e:
+        logger.error(f"Preview error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to fetch preview: {str(e)}"
+        )
+
+
 @router.delete("/sources/{source_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_import_source(
     source_id: int,

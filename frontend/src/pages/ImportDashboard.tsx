@@ -45,6 +45,7 @@ interface ImportConfig {
     // i-doit Config
     api_url?: string;
     api_key?: string;
+    category?: string;
     // Oracle Config
     host?: string;
     port?: string;
@@ -60,6 +61,8 @@ const ImportDashboard: React.FC = () => {
     const [viewingLog, setViewingLog] = useState<ImportLog | null>(null);
     const [editingSourceId, setEditingSourceId] = useState<number | null>(null);
     const [modalStep, setModalStep] = useState(1);
+    const [previewData, setPreviewData] = useState<any[] | null>(null);
+    const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
     const [newSourceData, setNewSourceData] = useState({
         name: '',
         source_type: 'sharepoint',
@@ -85,6 +88,7 @@ const ImportDashboard: React.FC = () => {
 
     // Source Fields State
     const [sourceFields, setSourceFields] = useState<string[]>([]);
+    const [categories, setCategories] = useState<{ id: string | number; name: string }[]>([]);
 
     // Queries
     const { data: sources, isLoading: isLoadingSources } = useQuery({
@@ -245,6 +249,28 @@ const ImportDashboard: React.FC = () => {
         }
     });
 
+    const fetchCategoriesMutation = useMutation({
+        mutationFn: importAPI.getCategories,
+        onSuccess: (data) => {
+            setCategories(data.categories || []);
+            alert(`Fetched ${data.categories?.length || 0} object types`);
+        },
+        onError: (error: any) => {
+            alert(`Failed to fetch categories: ${error.response?.data?.detail || error.message}`);
+        }
+    });
+
+    const previewDataMutation = useMutation({
+        mutationFn: importAPI.previewData,
+        onSuccess: (data) => {
+            setPreviewData(data.data || []);
+            setIsPreviewModalOpen(true);
+        },
+        onError: (error: any) => {
+            alert(`Failed to fetch preview: ${error.response?.data?.detail || error.message}`);
+        }
+    });
+
     const handleTestConnection = () => {
         const payload = {
             source_type: newSourceData.source_type,
@@ -259,6 +285,22 @@ const ImportDashboard: React.FC = () => {
             config: JSON.stringify(importConfig)
         };
         fetchSchemaMutation.mutate(payload);
+    };
+
+    const handleFetchCategories = () => {
+        const payload = {
+            source_type: newSourceData.source_type,
+            config: JSON.stringify(importConfig)
+        };
+        fetchCategoriesMutation.mutate(payload);
+    };
+
+    const handlePreviewData = () => {
+        const payload = {
+            source_type: newSourceData.source_type,
+            config: JSON.stringify(importConfig)
+        };
+        previewDataMutation.mutate(payload);
     };
 
     const handleCreateSource = () => {
@@ -623,6 +665,52 @@ const ImportDashboard: React.FC = () => {
                                                         onChange={e => setImportConfig({ ...importConfig, api_key: e.target.value })}
                                                     />
                                                 </div>
+                                                <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-end', gap: '10px' }}>
+                                                    <div style={{ flex: 1 }}>
+                                                        <label>Object Type (Category)</label>
+                                                        <select
+                                                            value={(importConfig as any).category || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, category: e.target.value })}
+                                                        >
+                                                            <option value="">-- All Types --</option>
+                                                            {categories.length > 0 ? (
+                                                                categories.map(cat => (
+                                                                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                                                ))
+                                                            ) : (
+                                                                (importConfig as any).category && <option value={(importConfig as any).category}>{(importConfig as any).category}</option>
+                                                            )}
+                                                        </select>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handleFetchCategories}
+                                                        disabled={fetchCategoriesMutation.isPending}
+                                                        style={{ marginBottom: '2px' }}
+                                                    >
+                                                        {fetchCategoriesMutation.isPending ? 'Fetching...' : 'Fetch Types'}
+                                                    </button>
+                                                </div>
+
+                                                <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handlePreviewData}
+                                                        disabled={previewDataMutation.isPending}
+                                                    >
+                                                        {previewDataMutation.isPending ? 'Loading...' : 'Preview Data'}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handleTestConnection}
+                                                        disabled={testConnectionMutation.isPending}
+                                                    >
+                                                        {testConnectionMutation.isPending ? 'Testing...' : 'Test Connection'}
+                                                    </button>
+                                                </div>
                                             </div>
                                         )}
 
@@ -675,6 +763,24 @@ const ImportDashboard: React.FC = () => {
                                                             onChange={e => setImportConfig({ ...importConfig, password: e.target.value })}
                                                         />
                                                     </div>
+                                                </div>
+                                                <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handlePreviewData}
+                                                        disabled={previewDataMutation.isPending}
+                                                    >
+                                                        {previewDataMutation.isPending ? 'Loading...' : 'Preview Data'}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handleTestConnection}
+                                                        disabled={testConnectionMutation.isPending}
+                                                    >
+                                                        {testConnectionMutation.isPending ? 'Testing...' : 'Test Connection'}
+                                                    </button>
                                                 </div>
                                             </div>
                                         )}
@@ -801,6 +907,35 @@ const ImportDashboard: React.FC = () => {
                     </div>
                 </div>
             )}
+
+            {/* Preview Modal */}
+            {isPreviewModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content modal-large" style={{ maxWidth: '900px', width: '90%' }}>
+                        <div className="modal-header">
+                            <h2>Data Preview (First 5 Items)</h2>
+                            <button className="close-btn" onClick={() => setIsPreviewModalOpen(false)}>
+                                <XCircle size={24} />
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            {previewData && previewData.length > 0 ? (
+                                <div className="preview-container" style={{ maxHeight: '500px', overflow: 'auto', background: '#0f172a', padding: '15px', borderRadius: '8px' }}>
+                                    <pre style={{ color: '#e2e8f0', fontSize: '13px', margin: 0 }}>
+                                        {JSON.stringify(previewData, null, 2)}
+                                    </pre>
+                                </div>
+                            ) : (
+                                <p className="empty-state">No data returned from source.</p>
+                            )}
+                        </div>
+                        <div className="modal-footer">
+                            <button className="secondary-btn" onClick={() => setIsPreviewModalOpen(false)}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
