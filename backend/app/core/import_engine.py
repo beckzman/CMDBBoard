@@ -382,10 +382,10 @@ class IDoitConnector(Connector):
             if not all([api_url, api_key]):
                 raise ValueError("Missing required i-doit configuration")
             
-            # Fetch object types
+            # Method: cmdb.object_types.read (requested by user)
             payload = {
                 "jsonrpc": "2.0",
-                "method": "cmdb.object_type.read",
+                "method": "cmdb.object_types.read",
                 "params": {
                     "apikey": api_key
                 },
@@ -402,10 +402,10 @@ class IDoitConnector(Connector):
             result = response.json()
             
             if 'error' in result:
-                logger.error(f"i-doit API error: {result['error']}")
+                logger.error(f"i-doit API error (object_types): {result['error']}")
                 return []
             
-            # Extract types: id and title
+            # Extract types
             types = []
             
             raw_result = result.get('result')
@@ -413,8 +413,6 @@ class IDoitConnector(Connector):
                 return []
                 
             # Handle both list and dict formats
-            # API might return [ {id:..}, .. ] or { "id": {..}, .. }
-            
             iterator = []
             if isinstance(raw_result, list):
                 iterator = raw_result
@@ -424,11 +422,16 @@ class IDoitConnector(Connector):
             for item in iterator:
                 if not isinstance(item, dict):
                     continue
-                    
-                types.append({
-                    "id": item.get('const', item.get('id')), # prefer constant key if available
-                    "name": item.get('title', 'Unknown')
-                })
+                
+                # Try to find ID and Title
+                type_id = item.get('const', item.get('id'))
+                type_name = item.get('title', 'Unknown')
+                
+                if type_id:
+                    types.append({
+                        "id": str(type_id),
+                        "name": type_name
+                    })
             
             # Sort by name
             return sorted(types, key=lambda x: x['name'])

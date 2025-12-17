@@ -257,9 +257,10 @@ const ImportDashboard: React.FC = () => {
         mutationFn: importAPI.getCategories,
         onSuccess: (data) => {
             setCategories(data.categories || []);
-            alert(`Fetched ${data.categories?.length || 0} object types`);
+            // alert(`Fetched ${data.categories?.length || 0} object types`); // Optional: keep or remove success alert
         },
         onError: (error: any) => {
+            console.error('Fetch categories error:', error);
             alert(`Failed to fetch categories: ${error.response?.data?.detail || error.message}`);
         }
     });
@@ -672,7 +673,7 @@ const ImportDashboard: React.FC = () => {
                                                 </div>
                                                 <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-end', gap: '10px' }}>
                                                     <div style={{ flex: 1 }}>
-                                                        <label>Object Type (Category)</label>
+                                                        <label>Object Type (Constant)</label>
                                                         <select
                                                             value={(importConfig as any).category || ''}
                                                             onChange={e => setImportConfig({ ...importConfig, category: e.target.value })}
@@ -680,7 +681,7 @@ const ImportDashboard: React.FC = () => {
                                                             <option value="">-- All Types --</option>
                                                             {categories.length > 0 ? (
                                                                 categories.map(cat => (
-                                                                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                                                    <option key={cat.id} value={cat.id}>{cat.name} ({cat.id})</option>
                                                                 ))
                                                             ) : (
                                                                 (importConfig as any).category && <option value={(importConfig as any).category}>{(importConfig as any).category}</option>
