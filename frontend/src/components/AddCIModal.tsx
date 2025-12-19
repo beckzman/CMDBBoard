@@ -22,7 +22,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
     const [targetSearch, setTargetSearch] = useState('');
     const [targetProjectCandidates, setTargetProjectCandidates] = useState<any[]>([]);
     const [selectedTarget, setSelectedTarget] = useState<any>(null);
-    const [isSearching, setIsSearching] = useState(false);
+
 
     const { data: domains } = useQuery({
         queryKey: ['domains'],
@@ -89,7 +89,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 return;
             }
 
-            setIsSearching(true);
+
             try {
                 const response = await ciAPI.list({
                     search: targetSearch,
@@ -102,7 +102,6 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
             } catch (error) {
                 console.error("Failed to search CIs", error);
             } finally {
-                setIsSearching(false);
             }
         };
 

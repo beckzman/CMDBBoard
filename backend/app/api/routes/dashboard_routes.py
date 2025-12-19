@@ -71,6 +71,16 @@ def get_dashboard_stats(
     ).group_by(ConfigurationItem.department).all()
 
     cis_by_department = {dept or "Unknown": count for dept, count in cis_by_dept_query}
+
+    # CIs by Location
+    cis_by_loc_query = db.query(
+        ConfigurationItem.location,
+        func.count(ConfigurationItem.id)
+    ).filter(
+        ConfigurationItem.deleted_at.is_(None)
+    ).group_by(ConfigurationItem.location).all()
+
+    cis_by_location = {loc or "Unknown": count for loc, count in cis_by_loc_query}
     
     return {
         "total_cis": total_cis,
@@ -79,6 +89,7 @@ def get_dashboard_stats(
         "cis_by_type": cis_by_type,
         "cis_by_status": cis_by_status,
         "cis_by_department": cis_by_department,
+        "cis_by_location": cis_by_location,
         "recent_imports": recent_imports
     }
 

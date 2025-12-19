@@ -17,7 +17,7 @@ const UserManagement: React.FC = () => {
         password: '',
         role: 'viewer'
     });
-    const [createError, setCreateError] = useState('');
+
     const [showInactive, setShowInactive] = useState(false);
 
     const queryClient = useQueryClient();
@@ -57,7 +57,7 @@ const UserManagement: React.FC = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['users'] });
             setCreateUserModal(false);
-            setCreateError('');
+
             setCreateForm({
                 username: '',
                 email: '',
@@ -67,7 +67,7 @@ const UserManagement: React.FC = () => {
             });
         },
         onError: (err: any) => {
-            setCreateError(err.response?.data?.detail || 'Failed to create user');
+            console.error(err);
         },
     });
 

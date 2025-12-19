@@ -38,7 +38,14 @@ const Dashboard: React.FC = () => {
     const ciDepartmentData = stats?.cis_by_department ? Object.entries(stats.cis_by_department)
         .map(([name, value]) => ({
             name: name,
-            value,
+            value: value as number,
+        }))
+        .sort((a, b) => b.value - a.value) : [];
+
+    const ciLocationData = stats?.cis_by_location ? Object.entries(stats.cis_by_location)
+        .map(([name, value]) => ({
+            name: name,
+            value: value as number,
         }))
         .sort((a, b) => b.value - a.value) : [];
 
@@ -140,7 +147,7 @@ const Dashboard: React.FC = () => {
                                 fill="#8884d8"
                                 dataKey="value"
                             >
-                                {ciStatusData.map((entry, index) => (
+                                {ciStatusData.map((_entry, index) => (
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>
@@ -173,6 +180,25 @@ const Dashboard: React.FC = () => {
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
+
+                <div className="card chart-card">
+                    <h3>CIs by Location</h3>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={ciLocationData}>
+                            <XAxis dataKey="name" stroke="#B0B2B8" />
+                            <YAxis stroke="#B0B2B8" />
+                            <Tooltip
+                                contentStyle={{
+                                    background: '#25262C',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    borderRadius: '8px',
+                                }}
+                                cursor={{ fill: 'transparent' }}
+                            />
+                            <Bar dataKey="value" fill="#10B981" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
             </div>
 
             <div className="card recent-cis-card">
@@ -195,7 +221,7 @@ const Dashboard: React.FC = () => {
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

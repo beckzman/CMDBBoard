@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, Link as LinkIcon } from 'lucide-react';
+import React from 'react';
+import { X } from 'lucide-react';
 import './AddCIModal.css'; // Reusing the same styles for consistency
 
 interface ViewCIModalProps {

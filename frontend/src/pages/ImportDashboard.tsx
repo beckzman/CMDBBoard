@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { importAPI } from '../api/client';
-import { Upload, Play, Clock, RefreshCw, AlertCircle, CheckCircle, Database, ChevronRight, Share2, FileSpreadsheet, Globe, Edit2, Trash2, Plus, FileText, ChevronLeft, XCircle } from 'lucide-react';
+import { Upload, Play, Clock, RefreshCw, AlertCircle, CheckCircle, ChevronRight, Edit2, Trash2, Plus, FileText, ChevronLeft, XCircle } from 'lucide-react';
 import FieldMappingEditor from '../components/FieldMappingEditor';
 import ReconciliationEditor from '../components/ReconciliationEditor';
 import './ImportDashboard.css';
