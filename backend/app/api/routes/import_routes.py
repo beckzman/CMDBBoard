@@ -52,6 +52,48 @@ async def import_csv(
             os.remove(temp_file_path)
 
 
+@router.post("/upload-source-file", status_code=status.HTTP_201_CREATED)
+async def upload_source_file(
+    file: UploadFile = File(...),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """Upload a file to be used as an import source configuration."""
+    # Validate file type (allow .csv, .json, .xlsx)
+    allowed_exts = ['.csv', '.json', '.xlsx']
+    ext = os.path.splitext(file.filename)[1].lower()
+    
+    if ext not in allowed_exts:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Unsupported file type. Allowed: {', '.join(allowed_exts)}"
+        )
+    
+    # Ensure uploads directory exists
+    # We use a persistent path 'uploads' at the app root 
+    # (assuming app runs from /app in docker or backend/ in local)
+    upload_dir = os.path.abspath(os.path.join(os.getcwd(), "uploads"))
+    os.makedirs(upload_dir, exist_ok=True)
+    
+    # Create unique filename to avoid collisions
+    import uuid
+    safe_filename = f"{uuid.uuid4().hex}_{file.filename}"
+    file_path = os.path.join(upload_dir, safe_filename)
+    
+    try:
+        with open(file_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
+            
+        return {"file_path": file_path, "filename": file.filename}
+        
+    except Exception as e:
+        logger.error(f"File upload failed: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to save file: {str(e)}"
+        )
+
+
 @router.get("/history", response_model=List[ImportLogResponse])
 def get_import_history(
     limit: int = 50,

@@ -129,6 +129,7 @@ class CSVImporter:
             'location': str(row['location']) if pd.notna(row.get('location')) else None,
             'environment': str(row['environment']) if pd.notna(row.get('environment')) else None,
             'cost_center': str(row['cost_center']) if pd.notna(row.get('cost_center')) else None,
+            'sla': str(row['sla']) if pd.notna(row.get('sla')) else None,
         }
         
         # Handle technical details (could be JSON string or individual columns)

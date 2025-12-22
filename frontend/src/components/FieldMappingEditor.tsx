@@ -22,7 +22,8 @@ const CMDB_FIELDS = [
     { value: 'location', label: 'Location', required: false },
     { value: 'environment', label: 'Environment', required: false },
     { value: 'cost_center', label: 'Cost Center', required: false },
-    { value: 'technical_details', label: 'Technical Details', required: false },
+    { value: 'sla', label: 'SLA', required: false },
+    { value: 'technical_details', label: 'Technical Details (JSON)', required: false },
     { value: 'domain', label: 'Domain', required: false }
 ];
 

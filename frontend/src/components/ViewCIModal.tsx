@@ -49,6 +49,10 @@ const ViewCIModal: React.FC<ViewCIModalProps> = ({ isOpen, onClose, ci }) => {
                                 <span className={`badge badge-${getStatusColor(ci.status)}`}>{ci.status}</span>
                             </div>
                             <div className="view-row">
+                                <label>SLA:</label>
+                                <span>{ci.sla || '-'}</span>
+                            </div>
+                            <div className="view-row">
                                 <label>Abteilung:</label>
                                 <span>{ci.department || '-'}</span>
                             </div>

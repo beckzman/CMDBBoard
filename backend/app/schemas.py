@@ -54,6 +54,7 @@ class CIBase(BaseModel):
     location: Optional[str] = None
     environment: Optional[str] = None
     cost_center: Optional[str] = None
+    sla: Optional[str] = None
     technical_details: Optional[str] = None
 
 
@@ -70,6 +71,7 @@ class CIUpdate(BaseModel):
     location: Optional[str] = None
     environment: Optional[str] = None
     cost_center: Optional[str] = None
+    sla: Optional[str] = None
     technical_details: Optional[str] = None
 
 

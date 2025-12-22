@@ -40,6 +40,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         location: '',
         environment: 'production',
         cost_center: '',
+        sla: '',
         operating_system: '',
     });
 
@@ -55,6 +56,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 location: initialData.location || '',
                 environment: initialData.environment || 'production',
                 cost_center: initialData.cost_center || '',
+                sla: initialData.sla || '',
                 operating_system: initialData.operating_system || '',
             });
             fetchRelationships();
@@ -69,6 +71,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 location: '',
                 environment: 'production',
                 cost_center: '',
+                sla: '',
                 operating_system: '',
             });
             setRelationships([]);
@@ -303,6 +306,19 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                     <option value="planned">Planned</option>
                                     <option value="maintenance">Maintenance</option>
                                 </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="sla">SLA</label>
+                                <input
+                                    type="text"
+                                    id="sla"
+                                    name="sla"
+                                    value={formData.sla}
+                                    onChange={handleChange}
+                                    className="form-input"
+                                    placeholder="e.g. Gold"
+                                />
                             </div>
 
                             <div className="form-group">

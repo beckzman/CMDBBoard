@@ -112,6 +112,16 @@ export const importAPI = {
         return response.data;
     },
 
+    uploadSourceFile: async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await api.post('/api/import/upload-source-file', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        return response.data;
+    },
+
     getHistory: async (limit = 50) => {
         const response = await api.get('/api/import/history', { params: { limit } });
         return response.data;

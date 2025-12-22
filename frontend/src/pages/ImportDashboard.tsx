@@ -232,6 +232,18 @@ const ImportDashboard: React.FC = () => {
         }
     });
 
+    const uploadSourceFileMutation = useMutation({
+        mutationFn: importAPI.uploadSourceFile,
+        onSuccess: (data) => {
+            setImportConfig({ ...importConfig, file_path: data.file_path });
+            // alert(`File uploaded: ${data.filename}`); // Optional feedback
+        },
+        onError: (error: any) => {
+            const errorMsg = error.response?.data?.detail || error.message || 'Unknown error';
+            alert(`Failed to upload file: ${errorMsg}`);
+        }
+    });
+
     const testConnectionMutation = useMutation({
         mutationFn: importAPI.testConnection,
         onSuccess: () => {
@@ -592,14 +604,35 @@ const ImportDashboard: React.FC = () => {
                                         {newSourceData.source_type === 'csv' && (
                                             <div className="form-group">
                                                 <label>CSV File Path (on server)</label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="/path/to/file.csv"
-                                                    value={(importConfig as any).file_path || ''}
-                                                    onChange={e => setImportConfig({ ...importConfig, file_path: e.target.value })}
-                                                />
+                                                <div style={{ display: 'flex', gap: '8px' }}>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="/path/to/file.csv"
+                                                        value={(importConfig as any).file_path || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, file_path: e.target.value })}
+                                                        style={{ flex: 1 }}
+                                                    />
+                                                    <label className="secondary-btn" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 0 }}>
+                                                        {uploadSourceFileMutation.isPending ? (
+                                                            <RefreshCw size={16} className="spin" />
+                                                        ) : (
+                                                            <Upload size={16} />
+                                                        )}
+                                                        <span style={{ marginLeft: '4px' }}>Upload</span>
+                                                        <input
+                                                            type="file"
+                                                            accept=".csv,.json,.xlsx"
+                                                            style={{ display: 'none' }}
+                                                            onChange={(e) => {
+                                                                if (e.target.files && e.target.files[0]) {
+                                                                    uploadSourceFileMutation.mutate(e.target.files[0]);
+                                                                }
+                                                            }}
+                                                        />
+                                                    </label>
+                                                </div>
                                                 <p className="help-text" style={{ marginTop: '4px', fontSize: '12px', color: '#888' }}>
-                                                    Must be an absolute path accessible by the backend container (e.g., /app/test_import.csv).
+                                                    Upload a file to the server or enter an absolute path manually.
                                                 </p>
                                             </div>
                                         )}

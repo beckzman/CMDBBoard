@@ -596,6 +596,9 @@ class ReconciliationService:
         )
         self.db.add(self.log)
         self.db.commit()
+        
+        # Initialize audit log to track detailed changes
+        self.audit_log = []
 
     def run_import(self):
         """Execute the import process."""
@@ -622,10 +625,34 @@ class ReconciliationService:
                         "error": str(e)
                     })
             
-            if errors:
-                import json
-                self.log.details = json.dumps(errors)
-            
+            # Write audit log to file
+            try:
+                # Create logs directory if it doesn't exist
+                # Ensure we are relative to the application root (assuming cwd is app root)
+                log_dir = os.path.join(os.getcwd(), "logs")
+                os.makedirs(log_dir, exist_ok=True)
+                
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                filename = f"import_{self.source.id}_{timestamp}.json"
+                filepath = os.path.join(log_dir, filename)
+                
+                with open(filepath, 'w') as f:
+                    json.dump(self.audit_log, f, indent=2, default=str)
+                
+                # Update log details with summary and file path
+                summary_data = {
+                    "log_file": filepath,
+                    "summary": f"Processed {len(self.audit_log)} changes ({self.log.records_success} success, {self.log.records_failed} failed).",
+                    "errors": errors
+                }
+                self.log.details = json.dumps(summary_data)
+                
+            except Exception as e:
+                logger.error(f"Failed to write audit log: {e}")
+                # Fallback: at least save errors in details
+                if errors:
+                    self.log.details = json.dumps(errors)
+
             self.log.status = "success" if self.log.records_failed == 0 else "partial_success"
             self.log.completed_at = datetime.utcnow()
             self.source.last_run = datetime.utcnow()
@@ -702,9 +729,19 @@ class ReconciliationService:
         self.db.add(new_ci)
         self.db.commit()
         logger.info(f"Created new CI: {new_ci.name}")
+        
+        self.audit_log.append({
+            "action": "created",
+            "ci_id": new_ci.id,
+            "ci_name": new_ci.name,
+            "data": ci_data,
+            "timestamp": datetime.utcnow().isoformat()
+        })
 
     def _update_ci(self, ci: ConfigurationItem, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]):
         """Update existing CI based on conflict resolution rules."""
+        # Track changes for audit log
+        changes = {}
         updated_fields = []
         
         for field_name, value in mapped_record.items():
@@ -722,8 +759,17 @@ class ReconciliationService:
                     if field_name == 'ci_type':
                         value = self._parse_ci_type(value)
                     
-                    setattr(ci, field_name, value)
-                    updated_fields.append(field_name)
+                    # Capture old value before update
+                    old_value = getattr(ci, field_name)
+                    
+                    # Only update if value actually changed
+                    if old_value != value:
+                        setattr(ci, field_name, value)
+                        updated_fields.append(field_name)
+                        changes[field_name] = {
+                            "old": str(old_value),
+                            "new": str(value)
+                        }
         
         # Always update sync metadata
         ci.last_sync = datetime.utcnow()
@@ -733,6 +779,15 @@ class ReconciliationService:
         
         self.db.commit()
         logger.info(f"Updated CI: {ci.name} (fields: {', '.join(updated_fields)})")
+        
+        if changes:
+            self.audit_log.append({
+                "action": "updated",
+                "ci_id": ci.id,
+                "ci_name": ci.name,
+                "changes": changes,
+                "timestamp": datetime.utcnow().isoformat()
+            })
 
     def _parse_ci_type(self, type_str: Optional[str]) -> CIType:
         """Parse CI type from string."""

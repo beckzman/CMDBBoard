@@ -1,0 +1,23 @@
+[
+  {
+    "action": "created",
+    "ci_id": 728,
+    "ci_name": "TestCI_Log_1766439245.47357",
+    "data": {
+      "name": "TestCI_Log_1766439245.47357",
+      "ci_type": "other",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "technical_details": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 3,
+      "last_sync": "2025-12-22 21:34:05.482083"
+    },
+    "timestamp": "2025-12-22T21:34:05.485367"
+  }
+]

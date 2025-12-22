@@ -50,6 +50,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'operating_system', label: 'OS', sortable: true },
         { key: 'domain', label: 'Domain', sortable: true },
         { key: 'cost_center', label: 'Cost Center', sortable: true },
+        { key: 'sla', label: 'SLA', sortable: true },
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
         { key: 'updated_at', label: 'Updated At', sortable: true },
@@ -229,6 +230,8 @@ const ConfigurationItems: React.FC = () => {
                         {ci.status}
                     </span>
                 );
+            case 'sla':
+                return ci.sla || '-';
             case 'last_ping':
                 return ci.last_ping_success ? (
                     <span className="ping-timestamp" title={new Date(ci.last_ping_success).toLocaleString()}>
