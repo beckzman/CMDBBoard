@@ -37,7 +37,7 @@ The project is divided into two main parts:
 
 ### Seeding Test Data
 The `backend/seed_data.py` script populates the database with:
--   **Users**: `admin` (Admin) and `user` (Viewer).
+-   **Users**: `admin` (Admin, password: `adminpassword`) and `user` (Viewer).
 -   **CIs**: Sample servers, applications, and databases.
 -   **Relationships**: Dependencies between the sample CIs.
 

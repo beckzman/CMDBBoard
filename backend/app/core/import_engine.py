@@ -212,6 +212,17 @@ class IDoitConnector(Connector):
                 raise ValueError(f"i-doit API error: {error_msg}")
             
             objects = result.get('result', [])
+            
+            # Clean FQDN if configured
+            if self.config.get('clean_fqdn'):
+                logger.info("Cleaning FQDNs from i-doit objects...")
+                for obj in objects:
+                    if 'title' in obj and isinstance(obj['title'], str) and '.' in obj['title']:
+                        original = obj['title']
+                        cleaned = original.split('.')[0]
+                        obj['title'] = cleaned
+                        # logger.debug(f"Cleaned FQDN: {original} -> {cleaned}")
+
             logger.info(f"Successfully fetched {len(objects)} objects from i-doit")
             
             return objects
@@ -592,6 +603,8 @@ class ReconciliationService:
             import_type=source.source_type,
             source=source.name,
             status="running",
+            records_created=0,
+            records_updated=0,
             user_id=1  # System user or admin
         )
         self.db.add(self.log)
@@ -642,7 +655,7 @@ class ReconciliationService:
                 # Update log details with summary and file path
                 summary_data = {
                     "log_file": filepath,
-                    "summary": f"Processed {len(self.audit_log)} changes ({self.log.records_success} success, {self.log.records_failed} failed).",
+                    "summary": f"Processed {len(self.audit_log)} changes ({self.log.records_success} success (Created: {self.log.records_created}, Updated: {self.log.records_updated}), {self.log.records_failed} failed).",
                     "errors": errors
                 }
                 self.log.details = json.dumps(summary_data)
@@ -688,18 +701,26 @@ class ReconciliationService:
 
         # Find existing CI using reconciliation key
         key_field = self.recon_config.key_field
-        ci = self.db.query(ConfigurationItem).filter(
-            getattr(ConfigurationItem, key_field) == match_value
-        ).first()
+        
+        if self.recon_config.match_strategy == 'case_insensitive':
+            ci = self.db.query(ConfigurationItem).filter(
+                getattr(ConfigurationItem, key_field).ilike(match_value)
+            ).first()
+        else:
+            ci = self.db.query(ConfigurationItem).filter(
+                getattr(ConfigurationItem, key_field) == match_value
+            ).first()
 
         if ci:
             # Update existing CI
             self._update_ci(ci, mapped_record, raw_record)
             self.log.records_success += 1
+            self.log.records_updated += 1
         elif self.recon_config.update_mode == 'upsert':
             # Create new CI only if in upsert mode
             self._create_ci(mapped_record, raw_record)
             self.log.records_success += 1
+            self.log.records_created += 1
         else:
             # Skip creation in 'update_only' mode
             logger.info(f"Skipping new CI creation (Update Only mode): {match_value}")
