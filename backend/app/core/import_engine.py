@@ -190,7 +190,18 @@ class IDoitConnector(Connector):
                     "apikey": api_key,
                     "filter": {
                         "type": self.config.get('category')  # Filter by object type if configured
-                    }
+                    },
+                    "categories": [
+                        "C__CATG__GLOBAL", 
+                        "C__CATG__IP", 
+                        "C__CATG__MODEL", 
+                        "C__CATG__CPU", 
+                        "C__CATG__MEMORY",
+                        "C__CATG__OPERATING_SYSTEM",
+                        "C__CATG__LOCATION",
+                        "C__CATG__CONTACT",
+                        "C__CATG__ACCOUNTING"
+                    ]
                 },
                 "id": 1
             }
@@ -279,24 +290,13 @@ class IDoitConnector(Connector):
             return False
 
     def get_schema(self) -> List[str]:
-        """Get list of available field names from i-doit by fetching a sample object."""
+        """Get list of available field names from i-doit by fetching a sample object and flattening it."""
         try:
-            # Try to fetch one object to see actual structure
-            # Use fetch_data but we can optimize if we had a limit param, 
-            # here we just call fetch_data and take the first one.
-            # Ideally fetch_data should support pagination/limit, but for now:
-            
-            # Optimization: Override payload to limit result to 1 if possible
-            # But standard cmdb.objects.read with default fetch might be okay for now 
-            # or we create a specific short fetch.
-            
-            # Let's perform a lightweight fetch for schema
             import requests
             api_url = self.config.get('api_url')
             api_key = self.config.get('api_key')
             
             if not all([api_url, api_key]):
-                 # Fallback to defaults
                  return self._get_default_schema()
 
             payload = {
@@ -307,6 +307,17 @@ class IDoitConnector(Connector):
                     "filter": {
                          "type": self.config.get('category')
                     },
+                    "categories": [
+                        "C__CATG__GLOBAL", 
+                        "C__CATG__IP", 
+                        "C__CATG__MODEL", 
+                        "C__CATG__CPU", 
+                        "C__CATG__MEMORY",
+                        "C__CATG__OPERATING_SYSTEM",
+                        "C__CATG__LOCATION",
+                        "C__CATG__CONTACT",
+                        "C__CATG__ACCOUNTING"
+                    ],
                     "limit": 1
                 },
                 "id": 1
@@ -321,16 +332,35 @@ class IDoitConnector(Connector):
             result = response.json()
             
             if 'result' in result and len(result['result']) > 0:
-                # Extract keys from the first object
                 first_obj = result['result'][0]
-                return sorted(list(first_obj.keys()))
+                return self._flatten_schema(first_obj)
             
-            # If no objects found, return default schema
             return self._get_default_schema()
             
         except Exception as e:
             logger.warning(f"Failed to fetch dynamic i-doit schema: {e}")
             return self._get_default_schema()
+            
+    def _flatten_schema(self, data: Dict[str, Any], prefix: str = "") -> List[str]:
+        """Recursively flatten dictionary keys to dot notation."""
+        keys = []
+        for k, v in data.items():
+            full_key = f"{prefix}{k}" if prefix else k
+            
+            if isinstance(v, dict):
+                keys.extend(self._flatten_schema(v, f"{full_key}."))
+            elif isinstance(v, list):
+                # For lists, we assume a list of objects or values.
+                # We expose the '0' index to allow mapping the first item.
+                # If the list is empty, we can't guess schema, so we just add the key itself
+                if len(v) > 0 and isinstance(v[0], dict):
+                    keys.extend(self._flatten_schema(v[0], f"{full_key}.0."))
+                else:
+                    keys.append(full_key)
+            else:
+                keys.append(full_key)
+        
+        return sorted(list(set(keys)))
 
     def _get_default_schema(self) -> List[str]:
         return sorted([

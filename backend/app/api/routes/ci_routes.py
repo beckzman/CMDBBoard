@@ -22,6 +22,14 @@ def list_configuration_items(
     search: Optional[str] = None,
     sort_by: Optional[str] = None,
     sort_desc: bool = False,
+    # New Filters (List support)
+    department: Optional[List[str]] = Query(None),
+    location: Optional[List[str]] = Query(None),
+    operating_system: Optional[List[str]] = Query(None),
+    cost_center: Optional[List[str]] = Query(None),
+    sla: Optional[List[str]] = Query(None),
+    environment: Optional[List[str]] = Query(None),
+    domain: Optional[List[str]] = Query(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -35,7 +43,6 @@ def list_configuration_items(
     if status:
         query = query.filter(ConfigurationItem.status == status)
     
-    if search:
         query = query.filter(
             or_(
                 ConfigurationItem.name.ilike(f"%{search}%"),
@@ -43,6 +50,28 @@ def list_configuration_items(
                 ConfigurationItem.department.ilike(f"%{search}%")
             )
         )
+    
+    # Apply attribute filters (Multi-select support)
+    if department:
+        query = query.filter(ConfigurationItem.department.in_(department))
+        
+    if location:
+        query = query.filter(ConfigurationItem.location.in_(location))
+        
+    if operating_system:
+        query = query.filter(ConfigurationItem.operating_system.in_(operating_system))
+        
+    if cost_center:
+        query = query.filter(ConfigurationItem.cost_center.in_(cost_center))
+        
+    if sla:
+        query = query.filter(ConfigurationItem.sla.in_(sla))
+        
+    if environment:
+        query = query.filter(ConfigurationItem.environment.in_(environment))
+        
+    if domain:
+        query = query.filter(ConfigurationItem.domain.in_(domain))
     
     # Apply sorting
     if sort_by:
@@ -64,6 +93,28 @@ def list_configuration_items(
         elif sort_by == 'location':
             sort_field = ConfigurationItem.location
             is_string_field = True
+        elif sort_by == 'sla':
+            sort_field = ConfigurationItem.sla
+            is_string_field = True
+        elif sort_by == 'cost_center':
+            sort_field = ConfigurationItem.cost_center
+            is_string_field = True
+        elif sort_by == 'operating_system':
+            sort_field = ConfigurationItem.operating_system
+            is_string_field = True
+        elif sort_by == 'domain':
+            sort_field = ConfigurationItem.domain
+            is_string_field = True
+        elif sort_by == 'environment':
+            sort_field = ConfigurationItem.environment
+            is_string_field = True
+        elif sort_by == 'description':
+            sort_field = ConfigurationItem.description
+            is_string_field = True
+        elif sort_by == 'created_at':
+            sort_field = ConfigurationItem.created_at
+        elif sort_by == 'updated_at':
+            sort_field = ConfigurationItem.updated_at
         elif sort_by == 'last_ping':
             sort_field = ConfigurationItem.last_ping_success
             
@@ -187,3 +238,43 @@ def delete_configuration_item(
     db.commit()
     
     return None
+
+
+@router.get("/attributes/{field_name}/distinct", response_model=List[str])
+def get_distinct_attribute_values(
+    field_name: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get distinct values for a specific attribute."""
+    # Whitelist allowed fields to prevent arbitrary query injection
+    allowed_fields = {
+        'department': ConfigurationItem.department,
+        'location': ConfigurationItem.location,
+        'operating_system': ConfigurationItem.operating_system,
+        'cost_center': ConfigurationItem.cost_center,
+        'sla': ConfigurationItem.sla,
+        'environment': ConfigurationItem.environment,
+        'domain': ConfigurationItem.domain,
+        'ci_type': ConfigurationItem.ci_type,
+        'status': ConfigurationItem.status
+    }
+
+    if field_name not in allowed_fields:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, 
+            detail=f"Invalid field name: {field_name}"
+        )
+
+    column = allowed_fields[field_name]
+    
+    # Query distinct values, filtering out nulls
+    results = db.query(column).distinct().filter(
+        column.isnot(None), 
+        ConfigurationItem.deleted_at.is_(None)
+    ).order_by(column).all()
+
+    # Flatten result (results will be list of tuples like [('IT',), ('Sales',)])
+    values = [str(r[0]) for r in results if r[0] is not None]
+    
+    return values

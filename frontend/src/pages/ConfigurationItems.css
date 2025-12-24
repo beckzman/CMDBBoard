@@ -342,3 +342,29 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* Sticky Actions Column */
+.ci-table th:last-child,
+.ci-table td:last-child {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    border-left: 1px solid var(--border-color);
+}
+
+.ci-table th:last-child {
+    /* Use a solid background color to cover scrolling content */
+    background-color: #1A1B20;
+    /* Blend with the header transparency if needed, but solid is safest for sticky */
+    box-shadow: -5px 0 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.ci-table td:last-child {
+    background-color: var(--bg-card);
+    box-shadow: -5px 0 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.ci-table tr:hover td:last-child {
+    /* Match the row hover effect manually for the sticky cell */
+    background-color: #1e1f24;
+}

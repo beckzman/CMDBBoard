@@ -13,7 +13,8 @@ import {
     Settings,
     ChevronLeft,
     Globe,
-    Users
+    Users,
+    DollarSign
 } from 'lucide-react';
 import './Layout.css';
 
@@ -60,7 +61,8 @@ const Layout: React.FC = () => {
             label: 'Setup',
             children: [
                 { path: '/domains', icon: Globe, label: 'Domains' },
-                { path: '/users', icon: Users, label: 'Users' }
+                { path: '/users', icon: Users, label: 'Users' },
+                { path: '/cost-rules', icon: DollarSign, label: 'Cost Rules' }
             ]
         });
     }

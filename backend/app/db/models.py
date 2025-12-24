@@ -1,7 +1,7 @@
 """
 Database models for ITIL CMDB.
 """
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Text, Enum
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Text, Enum, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.database import Base
@@ -96,6 +96,7 @@ class ConfigurationItem(Base):
 
     
     # Relationships
+    # Relationships
     source_relationships = relationship(
         "Relationship",
         foreign_keys="Relationship.source_ci_id",
@@ -111,28 +112,17 @@ class ConfigurationItem(Base):
 
 
 class Relationship(Base):
-    """CI-to-CI relationship model."""
+    """Relationship between CIs."""
     __tablename__ = "relationships"
     
     id = Column(Integer, primary_key=True, index=True)
     source_ci_id = Column(Integer, ForeignKey("configuration_items.id"), nullable=False)
     target_ci_id = Column(Integer, ForeignKey("configuration_items.id"), nullable=False)
-    relationship_type = Column(Enum(RelationType), nullable=False)
-    description = Column(Text)
-    
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    relation_type = Column(Enum(RelationType), nullable=False)
     
     # Relationships
-    source_ci = relationship(
-        "ConfigurationItem",
-        foreign_keys=[source_ci_id],
-        back_populates="source_relationships"
-    )
-    target_ci = relationship(
-        "ConfigurationItem",
-        foreign_keys=[target_ci_id],
-        back_populates="target_relationships"
-    )
+    source_ci = relationship("ConfigurationItem", foreign_keys=[source_ci_id], back_populates="source_relationships")
+    target_ci = relationship("ConfigurationItem", foreign_keys=[target_ci_id], back_populates="target_relationships")
 
 
 class ImportLog(Base):
@@ -146,6 +136,8 @@ class ImportLog(Base):
     records_processed = Column(Integer, default=0)
     records_success = Column(Integer, default=0)
     records_failed = Column(Integer, default=0)
+    records_created = Column(Integer, default=0)
+    records_updated = Column(Integer, default=0)
     error_message = Column(Text)
     user_id = Column(Integer, ForeignKey("users.id"))
     
@@ -181,6 +173,21 @@ class Domain(Base):
     name = Column(String(255), unique=True, nullable=False, index=True)
     description = Column(String(500), nullable=True)
     is_active = Column(Boolean, default=True)
+    
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+
+class CostRule(Base):
+    """Cost calculation rules based on CI attributes."""
+    __tablename__ = "cost_rules"
+
+    id = Column(Integer, primary_key=True, index=True)
+    ci_type = Column(Enum(CIType), nullable=False, index=True)
+    sla = Column(String(255), nullable=True)
+    operating_system = Column(String(255), nullable=True)
+    base_cost = Column(Float, nullable=False)
+    currency = Column(String(3), default="EUR", nullable=False)
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())

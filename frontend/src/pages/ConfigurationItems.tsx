@@ -1,12 +1,139 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ciAPI, exportAPI, healthAPI } from '../api/client';
-import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown, Filter } from 'lucide-react';
 import AddCIModal from '../components/AddCIModal';
 import ViewCIModal from '../components/ViewCIModal';
 import DeleteCIModal from '../components/DeleteCIModal';
 import HealthCheckModal from '../components/HealthCheckModal';
 import './ConfigurationItems.css';
+
+const ColumnFilter: React.FC<{
+    columnKey: string;
+    onSelect: (values: string[]) => void;
+    currentValues?: string[];
+}> = ({ columnKey, onSelect, currentValues = [] }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+    const { data: options, isLoading } = useQuery({
+        queryKey: ['distinct', columnKey],
+        queryFn: () => ciAPI.getDistinctValues(columnKey),
+        enabled: isOpen,
+        staleTime: 5 * 60 * 1000
+    });
+
+    React.useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const filterableColumns = ['department', 'location', 'operating_system', 'cost_center', 'sla', 'environment', 'domain'];
+    if (!filterableColumns.includes(columnKey)) return null;
+
+    const handleCheckboxChange = (option: string) => {
+        const newValues = currentValues.includes(option)
+            ? currentValues.filter(v => v !== option)
+            : [...currentValues, option];
+        onSelect(newValues);
+    };
+
+    return (
+        <div className="filter-wrapper" ref={dropdownRef} style={{ position: 'relative', display: 'inline-block', marginLeft: '4px' }}>
+            <button
+                className={`icon-btn small ${currentValues.length > 0 ? 'active' : ''}`}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setIsOpen(!isOpen);
+                }}
+                style={{
+                    padding: '2px',
+                    opacity: currentValues.length > 0 ? 1 : 0.5,
+                    color: currentValues.length > 0 ? '#F47D30' : 'inherit'
+                }}
+            >
+                <Filter size={14} />
+            </button>
+            {isOpen && (
+                <div className="filter-dropdown" style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    backgroundColor: '#1A1B20',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '6px',
+                    padding: '8px',
+                    zIndex: 100,
+                    minWidth: '200px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                    maxHeight: '300px',
+                    overflowY: 'auto'
+                }}>
+                    <div style={{ marginBottom: '8px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '12px', color: '#9CA3AF' }}>Filter by value</span>
+                        {currentValues.length > 0 && (
+                            <button
+                                onClick={() => {
+                                    onSelect([]);
+                                    setIsOpen(false);
+                                }}
+                                style={{ background: 'none', border: 'none', color: '#EF4444', fontSize: '11px', cursor: 'pointer' }}
+                            >
+                                Clear All
+                            </button>
+                        )}
+                    </div>
+                    {isLoading ? (
+                        <div style={{ padding: '8px', textAlign: 'center', fontSize: '12px', color: '#9CA3AF' }}>Loading...</div>
+                    ) : (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            {options?.map((option: string) => (
+                                <label
+                                    key={option}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px',
+                                        padding: '6px 8px',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer',
+                                        fontSize: '13px',
+                                        color: '#E5E7EB',
+                                        backgroundColor: 'transparent',
+                                        userSelect: 'none'
+                                    }}
+                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
+                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                >
+                                    <input
+                                        type="checkbox"
+                                        checked={currentValues.includes(option)}
+                                        onChange={() => handleCheckboxChange(option)}
+                                        style={{
+                                            accentColor: '#F47D30',
+                                            width: '14px',
+                                            height: '14px',
+                                            cursor: 'pointer'
+                                        }}
+                                    />
+                                    <span style={{ flex: 1 }}>{option}</span>
+                                </label>
+                            ))}
+                            {(!options || options.length === 0) && (
+                                <div style={{ padding: '8px', fontSize: '12px', color: '#6B7280', fontStyle: 'italic' }}>No values found</div>
+                            )}
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
 
 const ConfigurationItems: React.FC = () => {
     const [page, setPage] = useState(1);
@@ -16,6 +143,7 @@ const ConfigurationItems: React.FC = () => {
     const [status, setStatus] = useState('');
     const [sortBy, setSortBy] = useState<string>('name');
     const [sortDesc, setSortDesc] = useState(false);
+    const [filters, setFilters] = useState<Record<string, string[]>>({});
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [editingCI, setEditingCI] = useState<any>(null);
 
@@ -85,7 +213,7 @@ const ConfigurationItems: React.FC = () => {
     const queryClient = useQueryClient();
 
     const { data, isLoading } = useQuery({
-        queryKey: ['cis', page, pageSize, search, ciType, status, sortBy, sortDesc],
+        queryKey: ['cis', page, pageSize, search, ciType, status, sortBy, sortDesc, filters],
         queryFn: () => ciAPI.list({
             page,
             page_size: pageSize,
@@ -94,6 +222,7 @@ const ConfigurationItems: React.FC = () => {
             status: status || undefined,
             sort_by: sortBy,
             sort_desc: sortDesc,
+            ...filters,
         }),
     });
 
@@ -379,11 +508,30 @@ const ConfigurationItems: React.FC = () => {
                                     .map(col => (
                                         <th
                                             key={col.key}
-                                            onClick={() => col.sortable && handleSort(col.key)}
                                             className={col.sortable ? 'sortable-header' : ''}
                                         >
-                                            <div className="th-content">
-                                                {col.label} {col.sortable && renderSortIcon(col.key)}
+                                            <div className="th-content" style={{ justifyContent: 'space-between' }}>
+                                                <div
+                                                    style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: col.sortable ? 'pointer' : 'default' }}
+                                                    onClick={() => col.sortable && handleSort(col.key)}
+                                                >
+                                                    {col.label}
+                                                    {col.sortable && renderSortIcon(col.key)}
+                                                </div>
+                                                <ColumnFilter
+                                                    columnKey={col.key}
+                                                    currentValues={filters[col.key]}
+                                                    onSelect={(vals) => {
+                                                        const newFilters = { ...filters };
+                                                        if (vals && vals.length > 0) {
+                                                            newFilters[col.key] = vals;
+                                                        } else {
+                                                            delete newFilters[col.key];
+                                                        }
+                                                        setFilters(newFilters);
+                                                        setPage(1); // Reset to page 1 on filter change
+                                                    }}
+                                                />
                                             </div>
                                         </th>
                                     ))

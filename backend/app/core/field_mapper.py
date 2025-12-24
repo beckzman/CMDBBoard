@@ -43,6 +43,7 @@ class FieldMapper:
     def _get_nested_value(self, data: Dict[str, Any], path: str) -> Optional[Any]:
         """
         Get value from nested dictionary using dot notation.
+        Supports list indices (e.g., "items.0.name").
         
         Args:
             data: Source data dictionary
@@ -55,7 +56,18 @@ class FieldMapper:
         current = data
         
         for key in keys:
-            if isinstance(current, dict) and key in current:
+            # Handle list access if current is list and key is integer
+            if isinstance(current, list):
+                try:
+                    index = int(key)
+                    if 0 <= index < len(current):
+                        current = current[index]
+                    else:
+                        return None
+                except ValueError:
+                    # Key is not an integer but we have a list -> can't traverse
+                    return None
+            elif isinstance(current, dict) and key in current:
                 current = current[key]
             else:
                 return None

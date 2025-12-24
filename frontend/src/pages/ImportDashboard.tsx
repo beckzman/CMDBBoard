@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { importAPI } from '../api/client';
-import { Upload, Play, Clock, RefreshCw, AlertCircle, CheckCircle, ChevronRight, Edit2, Trash2, Plus, FileText, ChevronLeft, XCircle } from 'lucide-react';
+import { Upload, Play, Clock, RefreshCw, AlertCircle, CheckCircle, ChevronRight, Edit2, Trash2, Plus, ChevronLeft, XCircle } from 'lucide-react';
 import FieldMappingEditor from '../components/FieldMappingEditor';
 import ReconciliationEditor from '../components/ReconciliationEditor';
 import './ImportDashboard.css';
@@ -24,6 +24,8 @@ interface ImportLog {
     records_processed: number;
     records_success: number;
     records_failed: number;
+    records_created?: number;
+    records_updated?: number;
     started_at: string;
     completed_at: string | null;
     error_message: string | null;
@@ -47,6 +49,7 @@ interface ImportConfig {
     api_url?: string;
     api_key?: string;
     category?: string;
+    clean_fqdn?: boolean;
     // Oracle Config
     host?: string;
     port?: string;
@@ -83,10 +86,6 @@ const ImportDashboard: React.FC = () => {
         }
 
     });
-
-    // CSV Upload State
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     // Source Fields State
     const [sourceFields, setSourceFields] = useState<string[]>([]);
@@ -209,28 +208,7 @@ const ImportDashboard: React.FC = () => {
         }
     });
 
-    const uploadCsvMutation = useMutation({
-        mutationFn: importAPI.uploadCSV,
-        onSuccess: (data) => {
-            queryClient.invalidateQueries({ queryKey: ['importLogs'] });
-            setSelectedFile(null);
-            if (fileInputRef.current) fileInputRef.current.value = '';
 
-            // Check if import was successful
-            if (data.status === 'failed') {
-                alert(`Import failed: ${data.error_message || 'Unknown error'}`);
-            } else if (data.status === 'partial') {
-                alert(`Import completed with errors. ${data.records_success} succeeded, ${data.records_failed} failed.`);
-            } else {
-                alert(`CSV imported successfully! ${data.records_success} records imported.`);
-            }
-        },
-        onError: (error: any) => {
-            const errorMsg = error.response?.data?.detail || error.message || 'Unknown error';
-            alert(`Failed to upload CSV: ${errorMsg}`);
-            console.error(error);
-        }
-    });
 
     const uploadSourceFileMutation = useMutation({
         mutationFn: importAPI.uploadSourceFile,
@@ -342,17 +320,7 @@ const ImportDashboard: React.FC = () => {
         }
     };
 
-    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setSelectedFile(e.target.files[0]);
-        }
-    };
 
-    const handleUpload = () => {
-        if (selectedFile) {
-            uploadCsvMutation.mutate(selectedFile);
-        }
-    };
 
     const handleNext = () => {
         if (modalStep === 1) {
@@ -407,160 +375,128 @@ const ImportDashboard: React.FC = () => {
             </div>
 
             <div className="dashboard-grid">
-                {/* Quick Import Section */}
-                <section className="quick-import-section">
-                    <h2>Quick Import</h2>
-                    <div className="upload-cont">
-                        <input
-                            type="file"
-                            accept=".csv"
-                            ref={fileInputRef}
-                            onChange={handleFileSelect}
-                            style={{ display: 'none' }}
-                            id="csv-upload"
-                        />
-                        <div className="upload-area">
-                            <label htmlFor="csv-upload" className="upload-label">
-                                <div className="icon-wrapper">
-                                    <FileText size={32} />
-                                </div>
-                                <div className="text-content">
-                                    {selectedFile ? (
-                                        <span className="filename">{selectedFile.name}</span>
-                                    ) : (
-                                        <span>Click to select CSV file</span>
-                                    )}
-                                </div>
-                            </label>
-                            <button
-                                className="upload-btn"
-                                onClick={handleUpload}
-                                disabled={!selectedFile || uploadCsvMutation.isPending}
-                            >
-                                {uploadCsvMutation.isPending ? (
-                                    <RefreshCw size={18} className="spin" />
-                                ) : (
-                                    <Upload size={18} />
-                                )}
-                                Upload
-                            </button>
-                        </div>
-                        <p className="help-text">
-                            Supports .csv files with columns: name, ci_type, status, etc.
-                        </p>
-                    </div>
-                </section>
+
+
+
 
                 {/* Sources Section */}
-                <section className="sources-section">
+                < section className="sources-section" >
                     <h2>Import Sources</h2>
-                    {isLoadingSources ? (
-                        <div className="loading">Loading sources...</div>
-                    ) : (
-                        <div className="sources-list">
-                            {sources?.map((source: ImportSource) => (
-                                <div key={source.id} className="source-card">
-                                    <div className="source-header">
-                                        <h3>{source.name}</h3>
-                                        <span className={`status - badge ${source.is_active ? 'active' : 'inactive'} `}>
-                                            {source.is_active ? 'Active' : 'Inactive'}
-                                        </span>
+                    {
+                        isLoadingSources ? (
+                            <div className="loading">Loading sources...</div>
+                        ) : (
+                            <div className="sources-list">
+                                {sources?.map((source: ImportSource) => (
+                                    <div key={source.id} className="source-card">
+                                        <div className="source-header">
+                                            <h3>{source.name}</h3>
+                                            <span className={`status - badge ${source.is_active ? 'active' : 'inactive'} `}>
+                                                {source.is_active ? 'Active' : 'Inactive'}
+                                            </span>
+                                        </div>
+                                        <div className="source-details">
+                                            <p><strong>Type:</strong> {source.source_type}</p>
+                                            <p><strong>Schedule:</strong> {source.schedule_cron || 'Manual'}</p>
+                                            <p><strong>Last Run:</strong> {source.last_run ? new Date(source.last_run).toLocaleString() : 'Never'}</p>
+                                        </div>
+                                        <div className="source-actions">
+                                            <button
+                                                className="action-btn icon-btn"
+                                                title="Edit Source"
+                                                onClick={() => handleEditSource(source)}
+                                                style={{ marginRight: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}
+                                            >
+                                                <Edit2 size={18} />
+                                            </button>
+                                            <button
+                                                className="action-btn icon-btn delete-btn"
+                                                title="Delete Source"
+                                                onClick={() => handleDeleteSource(source.id)}
+                                                style={{ marginRight: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
+                                            <button
+                                                className="run-btn"
+                                                onClick={() => handleRunSource(source.id)}
+                                                disabled={runSourceMutation.isPending}
+                                            >
+                                                <Play size={16} />
+                                                Run Now
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div className="source-details">
-                                        <p><strong>Type:</strong> {source.source_type}</p>
-                                        <p><strong>Schedule:</strong> {source.schedule_cron || 'Manual'}</p>
-                                        <p><strong>Last Run:</strong> {source.last_run ? new Date(source.last_run).toLocaleString() : 'Never'}</p>
-                                    </div>
-                                    <div className="source-actions">
-                                        <button
-                                            className="action-btn icon-btn"
-                                            title="Edit Source"
-                                            onClick={() => handleEditSource(source)}
-                                            style={{ marginRight: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}
-                                        >
-                                            <Edit2 size={18} />
-                                        </button>
-                                        <button
-                                            className="action-btn icon-btn delete-btn"
-                                            title="Delete Source"
-                                            onClick={() => handleDeleteSource(source.id)}
-                                            style={{ marginRight: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}
-                                        >
-                                            <Trash2 size={18} />
-                                        </button>
-                                        <button
-                                            className="run-btn"
-                                            onClick={() => handleRunSource(source.id)}
-                                            disabled={runSourceMutation.isPending}
-                                        >
-                                            <Play size={16} />
-                                            Run Now
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                            {sources?.length === 0 && (
-                                <p className="empty-state">No import sources configured.</p>
-                            )}
-                        </div>
-                    )}
-                </section>
+                                ))}
+                                {sources?.length === 0 && (
+                                    <p className="empty-state">No import sources configured.</p>
+                                )}
+                            </div>
+                        )
+                    }
+                </section >
 
                 {/* Logs Section */}
-                <section className="logs-section">
+                < section className="logs-section" >
                     <div className="section-header">
                         <h2>Recent Activity</h2>
                         <button className="refresh-btn" onClick={() => queryClient.invalidateQueries({ queryKey: ['importLogs'] })}>
                             <RefreshCw size={16} />
                         </button>
                     </div>
-                    {isLoadingLogs ? (
-                        <div className="loading">Loading logs...</div>
-                    ) : (
-                        <div className="logs-list">
-                            {logs?.map((log: ImportLog) => (
-                                <div key={log.id} className={`log - item ${log.status} `}>
-                                    <div className="log-icon">
-                                        {log.status === 'success' && <CheckCircle size={20} className="text-green" />}
-                                        {log.status === 'partial_success' && <AlertCircle size={20} className="text-orange" />}
-                                        {log.status === 'failed' && <XCircle size={20} className="text-red" />}
-                                        {log.status === 'running' && <RefreshCw size={20} className="spin text-blue" />}
-                                    </div>
-                                    <div className="log-content">
-                                        <div className="log-header">
-                                            <span className="log-source">{log.source}</span>
-                                            <span className="log-time">
-                                                <Clock size={14} />
-                                                {new Date(log.started_at).toLocaleString()}
-                                            </span>
+                    {
+                        isLoadingLogs ? (
+                            <div className="loading">Loading logs...</div>
+                        ) : (
+                            <div className="logs-list">
+                                {logs?.map((log: ImportLog) => (
+                                    <div key={log.id} className={`log - item ${log.status} `}>
+                                        <div className="log-icon">
+                                            {log.status === 'success' && <CheckCircle size={20} className="text-green" />}
+                                            {log.status === 'partial_success' && <AlertCircle size={20} className="text-orange" />}
+                                            {log.status === 'failed' && <XCircle size={20} className="text-red" />}
+                                            {log.status === 'running' && <RefreshCw size={20} className="spin text-blue" />}
                                         </div>
-                                        <div className="log-stats">
-                                            <span>Processed: {log.records_processed}</span>
-                                            <span>Success: {log.records_success}</span>
-                                            <span>Failed: {log.records_failed}</span>
+                                        <div className="log-content">
+                                            <div className="log-header">
+                                                <span className="log-source">{log.source}</span>
+                                                <span className="log-time">
+                                                    <Clock size={14} />
+                                                    {new Date(log.started_at).toLocaleString()}
+                                                </span>
+                                            </div>
+                                            <div className="log-stats">
+                                                <span>Processed: {log.records_processed}</span>
+                                                <span>Success: {log.records_success}
+                                                    <span className="stat-detail" style={{ fontSize: '11px', color: '#666', marginLeft: '5px' }}>
+                                                        (Created: {log.records_created || 0}, Updated: {log.records_updated || 0})
+                                                    </span>
+                                                </span>
+                                                <span>Failed: {log.records_failed}</span>
+                                            </div>
+                                            {log.error_message && (
+                                                <div className="log-error">{log.error_message}</div>
+                                            )}
+                                            {log.records_failed > 0 && log.details && (
+                                                <button
+                                                    className="view-details-btn"
+                                                    onClick={() => setViewingLog(log)}
+                                                    style={{ marginTop: '5px', fontSize: '12px', color: '#2563eb', background: 'none', border: 'none', padding: 0, textDecoration: 'underline', cursor: 'pointer', textAlign: 'left' }}
+                                                >
+                                                    View {log.records_failed} Failed Items
+                                                </button>
+                                            )}
                                         </div>
-                                        {log.error_message && (
-                                            <div className="log-error">{log.error_message}</div>
-                                        )}
-                                        {log.records_failed > 0 && log.details && (
-                                            <button
-                                                className="view-details-btn"
-                                                onClick={() => setViewingLog(log)}
-                                                style={{ marginTop: '5px', fontSize: '12px', color: '#2563eb', background: 'none', border: 'none', padding: 0, textDecoration: 'underline', cursor: 'pointer', textAlign: 'left' }}
-                                            >
-                                                View {log.records_failed} Failed Items
-                                            </button>
-                                        )}
                                     </div>
-                                </div>
-                            ))}
-                            {logs?.length === 0 && (
-                                <p className="empty-state">No import history found.</p>
-                            )}
-                        </div>
-                    )}
-                </section>
-            </div>
+                                ))}
+                                {logs?.length === 0 && (
+                                    <p className="empty-state">No import history found.</p>
+                                )}
+                            </div>
+                        )
+                    }
+                </section >
+            </div >
 
             {/* Enhanced Create Modal */}
             {
@@ -703,6 +639,17 @@ const ImportDashboard: React.FC = () => {
                                                         value={(importConfig as any).api_key || ''}
                                                         onChange={e => setImportConfig({ ...importConfig, api_key: e.target.value })}
                                                     />
+                                                </div>
+                                                <div className="form-group checkbox-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '8px', marginBottom: '15px' }}>
+                                                    <input
+                                                        type="checkbox"
+                                                        id="clean-fqdn"
+                                                        checked={(importConfig as any).clean_fqdn || false}
+                                                        onChange={e => setImportConfig({ ...importConfig, clean_fqdn: e.target.checked })}
+                                                    />
+                                                    <label htmlFor="clean-fqdn" style={{ marginBottom: 0, cursor: 'pointer' }}>
+                                                        Clean FQDN to Hostname (e.g. server.domain.com → server)
+                                                    </label>
                                                 </div>
                                                 <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-end', gap: '10px' }}>
                                                     <div style={{ flex: 1 }}>
@@ -913,69 +860,73 @@ const ImportDashboard: React.FC = () => {
                 )
             }
             {/* Log Details Modal */}
-            {viewingLog && (
-                <div className="modal-overlay">
-                    <div className="modal-content" style={{ maxWidth: '800px', maxHeight: '80vh', display: 'flex', flexDirection: 'column', background: '#1A1B20', color: '#FFFFFF' }}>
-                        <div className="modal-header">
-                            <h2>Import Failures</h2>
-                            <button className="close-btn" onClick={() => setViewingLog(null)} style={{ background: 'none', border: 'none', color: '#B0B2B8', cursor: 'pointer' }}>
-                                <XCircle size={24} />
-                            </button>
-                        </div>
-                        <div className="modal-body" style={{ overflowY: 'auto', padding: '1rem' }}>
-                            {(() => {
-                                try {
-                                    const details = JSON.parse(viewingLog.details || '[]');
-                                    if (!details.length) return <p>No detailed errors found.</p>;
-                                    return details.map((err: any, i: number) => (
-                                        <div key={i} className="error-item" style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
-                                            <div style={{ color: '#FCA5A5', fontWeight: 500, marginBottom: '0.25rem' }}>{err.error}</div>
-                                            <pre style={{ background: '#0F1012', color: '#D1D5DB', padding: '0.75rem', borderRadius: '4px', fontSize: '12px', overflowX: 'auto', border: '1px solid rgba(255,255,255,0.1)' }}>
-                                                {err.record}
-                                            </pre>
-                                        </div>
-                                    ));
-                                } catch (e) {
-                                    return <p>Invalid details format.</p>;
-                                }
-                            })()}
-                        </div>
-                        <div className="modal-footer" style={{ padding: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'flex-end' }}>
-                            <button className="secondary-btn" onClick={() => setViewingLog(null)}>Close</button>
+            {
+                viewingLog && (
+                    <div className="modal-overlay">
+                        <div className="modal-content" style={{ maxWidth: '800px', maxHeight: '80vh', display: 'flex', flexDirection: 'column', background: '#1A1B20', color: '#FFFFFF' }}>
+                            <div className="modal-header">
+                                <h2>Import Failures</h2>
+                                <button className="close-btn" onClick={() => setViewingLog(null)} style={{ background: 'none', border: 'none', color: '#B0B2B8', cursor: 'pointer' }}>
+                                    <XCircle size={24} />
+                                </button>
+                            </div>
+                            <div className="modal-body" style={{ overflowY: 'auto', padding: '1rem' }}>
+                                {(() => {
+                                    try {
+                                        const details = JSON.parse(viewingLog.details || '[]');
+                                        if (!details.length) return <p>No detailed errors found.</p>;
+                                        return details.map((err: any, i: number) => (
+                                            <div key={i} className="error-item" style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+                                                <div style={{ color: '#FCA5A5', fontWeight: 500, marginBottom: '0.25rem' }}>{err.error}</div>
+                                                <pre style={{ background: '#0F1012', color: '#D1D5DB', padding: '0.75rem', borderRadius: '4px', fontSize: '12px', overflowX: 'auto', border: '1px solid rgba(255,255,255,0.1)' }}>
+                                                    {err.record}
+                                                </pre>
+                                            </div>
+                                        ));
+                                    } catch (e) {
+                                        return <p>Invalid details format.</p>;
+                                    }
+                                })()}
+                            </div>
+                            <div className="modal-footer" style={{ padding: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'flex-end' }}>
+                                <button className="secondary-btn" onClick={() => setViewingLog(null)}>Close</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             {/* Preview Modal */}
-            {isPreviewModalOpen && (
-                <div className="modal-overlay">
-                    <div className="modal-content modal-large" style={{ maxWidth: '900px', width: '90%' }}>
-                        <div className="modal-header">
-                            <h2>Data Preview (First 5 Items)</h2>
-                            <button className="close-btn" onClick={() => setIsPreviewModalOpen(false)}>
-                                <XCircle size={24} />
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            {previewData && previewData.length > 0 ? (
-                                <div className="preview-container" style={{ maxHeight: '500px', overflow: 'auto', background: '#0f172a', padding: '15px', borderRadius: '8px' }}>
-                                    <pre style={{ color: '#e2e8f0', fontSize: '13px', margin: 0 }}>
-                                        {JSON.stringify(previewData, null, 2)}
-                                    </pre>
-                                </div>
-                            ) : (
-                                <p className="empty-state">No data returned from source.</p>
-                            )}
-                        </div>
-                        <div className="modal-footer">
-                            <button className="secondary-btn" onClick={() => setIsPreviewModalOpen(false)}>Close</button>
+            {
+                isPreviewModalOpen && (
+                    <div className="modal-overlay">
+                        <div className="modal-content modal-large" style={{ maxWidth: '900px', width: '90%' }}>
+                            <div className="modal-header">
+                                <h2>Data Preview (First 5 Items)</h2>
+                                <button className="close-btn" onClick={() => setIsPreviewModalOpen(false)}>
+                                    <XCircle size={24} />
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                {previewData && previewData.length > 0 ? (
+                                    <div className="preview-container" style={{ maxHeight: '500px', overflow: 'auto', background: '#0f172a', padding: '15px', borderRadius: '8px' }}>
+                                        <pre style={{ color: '#e2e8f0', fontSize: '13px', margin: 0 }}>
+                                            {JSON.stringify(previewData, null, 2)}
+                                        </pre>
+                                    </div>
+                                ) : (
+                                    <p className="empty-state">No data returned from source.</p>
+                                )}
+                            </div>
+                            <div className="modal-footer">
+                                <button className="secondary-btn" onClick={() => setIsPreviewModalOpen(false)}>Close</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
 
-        </div>
+        </div >
     );
 };
 

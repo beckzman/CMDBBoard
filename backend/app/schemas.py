@@ -55,6 +55,7 @@ class CIBase(BaseModel):
     environment: Optional[str] = None
     cost_center: Optional[str] = None
     sla: Optional[str] = None
+    operating_system: Optional[str] = None
     technical_details: Optional[str] = None
 
 
@@ -72,6 +73,7 @@ class CIUpdate(BaseModel):
     environment: Optional[str] = None
     cost_center: Optional[str] = None
     sla: Optional[str] = None
+    operating_system: Optional[str] = None
     technical_details: Optional[str] = None
 
 
@@ -114,6 +116,8 @@ class ImportLogResponse(BaseModel):
     records_processed: int
     records_success: int
     records_failed: int
+    records_created: int
+    records_updated: int
     error_message: Optional[str] = None
     details: Optional[str] = None
     started_at: datetime
@@ -162,6 +166,7 @@ class DashboardStats(BaseModel):
     cis_by_status: dict
     cis_by_department: dict
     cis_by_location: dict
+    costs_by_cost_center: dict
     recent_imports: int
 
 
@@ -191,3 +196,32 @@ class DomainResponse(DomainBase):
     class Config:
         from_attributes = True
 
+
+# Cost Rule Schemas
+class CostRuleBase(BaseModel):
+    ci_type: CIType
+    sla: Optional[str] = None
+    operating_system: Optional[str] = None
+    base_cost: float
+    currency: str = "EUR"
+
+
+class CostRuleCreate(CostRuleBase):
+    pass
+
+
+class CostRuleUpdate(BaseModel):
+    ci_type: Optional[CIType] = None
+    sla: Optional[str] = None
+    operating_system: Optional[str] = None
+    base_cost: Optional[float] = None
+    currency: Optional[str] = None
+
+
+class CostRuleResponse(CostRuleBase):
+    id: int
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True

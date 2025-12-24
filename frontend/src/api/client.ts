@@ -62,8 +62,26 @@ export const ciAPI = {
         search?: string;
         sort_by?: string;
         sort_desc?: boolean;
+        department?: string[];
+        location?: string[];
+        operating_system?: string[];
+        cost_center?: string[];
+        sla?: string[];
+        environment?: string[];
+        domain?: string[];
     }) => {
-        const response = await api.get('/api/ci', { params });
+        const response = await api.get('/api/ci', {
+            params: params,
+            paramsSerializer: {
+                indexes: null // Use 'key=val&key=val' format for arrays instead of 'key[]=val' depending on backend requirement, FastAPI typically handles repeated keys well. defaults are usually fine but explicit is safer if needed. default axios is brackets 'key[]'. FastAPI default needs 'key' repeated without brackets to map to List unless using specific aliases. 
+                // Let's test standard axios behavior first. FastAPI `Query` usually expects `key=val&key=val2`
+            }
+        });
+        return response.data;
+    },
+
+    getDistinctValues: async (field: string) => {
+        const response = await api.get(`/api/ci/attributes/${field}/distinct`);
         return response.data;
     },
 
@@ -277,6 +295,28 @@ export const relationshipAPI = {
 
     delete: async (id: number) => {
         await api.delete(`/api/relationships/${id}`);
+    }
+};
+
+// Cost Rules API
+export const costRuleAPI = {
+    list: async () => {
+        const response = await api.get('/api/cost-rules');
+        return response.data;
+    },
+
+    create: async (data: any) => {
+        const response = await api.post('/api/cost-rules', data);
+        return response.data;
+    },
+
+    update: async (id: number, data: any) => {
+        const response = await api.put(`/api/cost-rules/${id}`, data);
+        return response.data;
+    },
+
+    delete: async (id: number) => {
+        await api.delete(`/api/cost-rules/${id}`);
     }
 };
 

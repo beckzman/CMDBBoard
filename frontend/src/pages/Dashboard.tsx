@@ -49,6 +49,13 @@ const Dashboard: React.FC = () => {
         }))
         .sort((a, b) => b.value - a.value) : [];
 
+    const costsData = stats?.costs_by_cost_center ? Object.entries(stats.costs_by_cost_center)
+        .map(([name, value]) => ({
+            name: name,
+            value: value as number,
+        }))
+        .sort((a, b) => b.value - a.value) : [];
+
     const COLORS = ['#F47D30', '#FF9D5C', '#D96B1F', '#10B981', '#3B82F6', '#F59E0B'];
 
     const getStatusColor = (status: string) => {
@@ -196,6 +203,26 @@ const Dashboard: React.FC = () => {
                                 cursor={{ fill: 'transparent' }}
                             />
                             <Bar dataKey="value" fill="#10B981" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+
+                <div className="card chart-card" style={{ gridColumn: 'span 2' }}>
+                    <h3>Monthly Costs by Cost Center</h3>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={costsData}>
+                            <XAxis dataKey="name" stroke="#B0B2B8" />
+                            <YAxis stroke="#B0B2B8" unit="€" />
+                            <Tooltip
+                                contentStyle={{
+                                    background: '#25262C',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    borderRadius: '8px',
+                                }}
+                                formatter={(value: number) => [`€${value.toFixed(2)}`, 'Monthly Cost']}
+                                cursor={{ fill: 'transparent' }}
+                            />
+                            <Bar dataKey="value" fill="#8B5CF6" radius={[8, 8, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

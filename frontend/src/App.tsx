@@ -10,6 +10,7 @@ import ConfigurationItems from './pages/ConfigurationItems';
 import ImportDashboard from './pages/ImportDashboard';
 import DomainManagement from './pages/DomainManagement';
 import UserManagement from './pages/UserManagement';
+import CostRules from './pages/CostRules';
 import Layout from './components/Layout';
 import './index.css';
 
@@ -70,6 +71,7 @@ const App: React.FC = () => {
                         <Route path="import" element={<ImportDashboard />} />
                         <Route path="domains" element={<DomainManagement />} />
                         <Route path="users" element={<UserManagement />} />
+                        <Route path="cost-rules" element={<CostRules />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
