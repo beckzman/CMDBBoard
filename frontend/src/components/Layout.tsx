@@ -5,7 +5,6 @@ import {
     LayoutDashboard,
     Database,
     Upload,
-    Download,
     LogOut,
     ChevronRight,
     Bell,
@@ -14,7 +13,8 @@ import {
     ChevronLeft,
     Globe,
     Users,
-    DollarSign
+    DollarSign,
+    PieChart
 } from 'lucide-react';
 import './Layout.css';
 
@@ -34,7 +34,6 @@ const Layout: React.FC = () => {
             case '/': return 'Dashboard';
             case '/cis': return 'Configuration Items';
             case '/import': return 'Import Data';
-            case '/export': return 'Export Data';
             case '/domains': return 'Domain Management';
             case '/users': return 'User Management';
             default: return 'CMDB';
@@ -51,8 +50,8 @@ const Layout: React.FC = () => {
     const navItems: NavItem[] = [
         { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
         { path: '/cis', icon: Database, label: 'Configuration Items' },
+        { path: '/analysis', icon: PieChart, label: 'Analysis' },
         { path: '/import', icon: Upload, label: 'Import Data' },
-        { path: '/export', icon: Download, label: 'Export Data' },
     ];
 
     if (user?.role === 'admin') {

@@ -167,6 +167,9 @@ class DashboardStats(BaseModel):
     cis_by_department: dict
     cis_by_location: dict
     costs_by_cost_center: dict
+    cis_by_os: dict
+    cis_by_sla: dict
+    ci_growth: dict
     recent_imports: int
 
 

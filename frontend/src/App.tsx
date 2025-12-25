@@ -11,6 +11,11 @@ import ImportDashboard from './pages/ImportDashboard';
 import DomainManagement from './pages/DomainManagement';
 import UserManagement from './pages/UserManagement';
 import CostRules from './pages/CostRules';
+import Analysis from './pages/Analysis';
+import AnalysisCost from './pages/reports/AnalysisCost';
+import AnalysisGrowth from './pages/reports/AnalysisGrowth';
+import AnalysisOS from './pages/reports/AnalysisOS';
+import AnalysisSLA from './pages/reports/AnalysisSLA';
 import Layout from './components/Layout';
 import './index.css';
 
@@ -68,6 +73,11 @@ const App: React.FC = () => {
                     >
                         <Route index element={<Dashboard />} />
                         <Route path="cis" element={<ConfigurationItems />} />
+                        <Route path="analysis" element={<Analysis />} />
+                        <Route path="analysis/cost" element={<AnalysisCost />} />
+                        <Route path="analysis/growth" element={<AnalysisGrowth />} />
+                        <Route path="analysis/os" element={<AnalysisOS />} />
+                        <Route path="analysis/sla" element={<AnalysisSLA />} />
                         <Route path="import" element={<ImportDashboard />} />
                         <Route path="domains" element={<DomainManagement />} />
                         <Route path="users" element={<UserManagement />} />

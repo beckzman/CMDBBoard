@@ -5,6 +5,21 @@ import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
+export interface DashboardStats {
+    total_cis: number;
+    active_cis: number;
+    inactive_cis: number;
+    cis_by_type: Record<string, number>;
+    cis_by_status: Record<string, number>;
+    cis_by_department: Record<string, number>;
+    cis_by_location: Record<string, number>;
+    costs_by_cost_center: Record<string, number>;
+    cis_by_os: Record<string, number>;
+    cis_by_sla: Record<string, number>;
+    ci_growth: Record<string, number>;
+    recent_imports: number;
+}
+
 export const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {

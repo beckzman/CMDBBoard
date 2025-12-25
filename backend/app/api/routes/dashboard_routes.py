@@ -70,7 +70,11 @@ def get_dashboard_stats(
         ConfigurationItem.deleted_at.is_(None)
     ).group_by(ConfigurationItem.ci_type).all()
     
-    cis_by_type = {ci_type.value: count for ci_type, count in cis_by_type_query}
+    # Handle Enum to string conversion if needed
+    cis_by_type = {}
+    for ci_type, count in cis_by_type_query:
+        key = ci_type.value if hasattr(ci_type, 'value') else str(ci_type)
+        cis_by_type[key] = count
     
     # CIs by status
     cis_by_status_query = db.query(
@@ -80,7 +84,10 @@ def get_dashboard_stats(
         ConfigurationItem.deleted_at.is_(None)
     ).group_by(ConfigurationItem.status).all()
     
-    cis_by_status = {status.value: count for status, count in cis_by_status_query}
+    cis_by_status = {}
+    for status, count in cis_by_status_query:
+        key = status.value if hasattr(status, 'value') else str(status)
+        cis_by_status[key] = count
     
     # Recent imports (last 7 days)
     seven_days_ago = datetime.utcnow() - timedelta(days=7)
@@ -155,7 +162,6 @@ def get_dashboard_stats(
                 is_direct_match = rule_os == ci_os or (ci_os and rule_os in ci_os)
                 
                 # Check 2: Normalized Match (New Intelligence)
-                # e.g. Rule="Linux", CI="Ubuntu" -> Norm(CI)="Linux" -> Match
                 is_normalized_match = rule_os == normalized_ci_os
                 
                 if is_direct_match:
@@ -170,14 +176,55 @@ def get_dashboard_stats(
                 best_score = score
                 best_match_cost = rule.base_cost
             
-            if score > best_score:
-                best_score = score
-                best_match_cost = rule.base_cost
                 
         # If no rule matches, cost is 0.0
         
         cc = ci.cost_center or "Unassigned"
         costs_by_cost_center[cc] = costs_by_cost_center.get(cc, 0.0) + best_match_cost
+
+    # Aggregate CIs by OS (normalized)
+    cis_by_os = {}
+    active_cis_os = db.query(ConfigurationItem.operating_system).filter(
+        ConfigurationItem.deleted_at.is_(None),
+        ConfigurationItem.status == CIStatus.ACTIVE
+    ).all()
+    for ci in active_cis_os:
+        norm_os = normalize_os(ci.operating_system) or "Unknown"
+        cis_by_os[norm_os] = cis_by_os.get(norm_os, 0) + 1
+
+    # Aggregate CIs by SLA
+    cis_by_sla_query = db.query(
+        ConfigurationItem.sla,
+        func.count(ConfigurationItem.id)
+    ).filter(
+        ConfigurationItem.deleted_at.is_(None)
+    ).group_by(ConfigurationItem.sla).all()
+    
+    cis_by_sla = {sla or "None": count for sla, count in cis_by_sla_query}
+
+    # Calculate CI Growth (New CIs per month, last 12 months)
+    today = datetime.now()
+    twelve_months_ago = today - timedelta(days=365)
+    
+    ci_growth = {}
+    all_created_dates = db.query(ConfigurationItem.created_at).filter(
+        ConfigurationItem.deleted_at.is_(None),
+        ConfigurationItem.created_at >= twelve_months_ago
+    ).all()
+    
+    for ci in all_created_dates:
+        if ci.created_at:
+            month_key = ci.created_at.strftime("%Y-%m")
+            ci_growth[month_key] = ci_growth.get(month_key, 0) + 1
+        
+    # Ensure all last 12 months are present even if 0
+    for i in range(12):
+        d = today - timedelta(days=30 * i)
+        m_key = d.strftime("%Y-%m")
+        if m_key not in ci_growth:
+            ci_growth[m_key] = 0
+            
+    ci_growth = dict(sorted(ci_growth.items()))
 
     return {
         "total_cis": total_cis,
@@ -188,6 +235,9 @@ def get_dashboard_stats(
         "cis_by_department": cis_by_department,
         "cis_by_location": cis_by_location,
         "costs_by_cost_center": costs_by_cost_center,
+        "cis_by_os": cis_by_os,
+        "cis_by_sla": cis_by_sla,
+        "ci_growth": ci_growth,
         "recent_imports": recent_imports
     }
 
