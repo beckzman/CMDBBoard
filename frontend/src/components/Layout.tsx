@@ -14,7 +14,8 @@ import {
     Globe,
     Users,
     DollarSign,
-    PieChart
+    PieChart,
+    Share2
 } from 'lucide-react';
 import './Layout.css';
 
@@ -33,6 +34,7 @@ const Layout: React.FC = () => {
         switch (pathname) {
             case '/': return 'Dashboard';
             case '/cis': return 'Configuration Items';
+            case '/dependencies': return 'Dependency Graph';
             case '/import': return 'Import Data';
             case '/domains': return 'Domain Management';
             case '/users': return 'User Management';
@@ -50,6 +52,7 @@ const Layout: React.FC = () => {
     const navItems: NavItem[] = [
         { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
         { path: '/cis', icon: Database, label: 'Configuration Items' },
+        { path: '/dependencies', icon: Share2, label: 'Dependency Graph' },
         { path: '/analysis', icon: PieChart, label: 'Analysis' },
         { path: '/import', icon: Upload, label: 'Import Data' },
     ];

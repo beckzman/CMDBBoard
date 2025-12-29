@@ -1,0 +1,164 @@
+.dependency-graph-container {
+    width: 100%;
+    height: calc(100vh - 80px);
+    /* Adjust based on header/layout */
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.graph-controls {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    background: var(--bg-primary);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.graph-controls button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.graph-controls button:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* React Flow Customization */
+.react-flow__node {
+    font-family: inherit;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 10px;
+    min-width: 150px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.react-flow__node.selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.5);
+}
+
+.react-flow__edge-path {
+    stroke: var(--text-secondary);
+    stroke-width: 2;
+}
+
+.react-flow__edge-text {
+    fill: var(--text-secondary);
+    font-size: 10px;
+}
+
+.react-flow__controls {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.react-flow__controls-button {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    fill: var(--text-primary);
+}
+
+.react-flow__controls-button:hover {
+    background: var(--bg-secondary);
+}
+
+.react-flow__attribution {
+    display: none;
+}
+
+/* Filter Panel */
+.filter-panel {
+    background: var(--bg-primary);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 200px;
+    pointer-events: all;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.filter-group select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.filter-group select:focus {
+    border-color: var(--primary-color);
+}
+
+.clear-filters {
+    margin-top: 5px;
+    padding: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.clear-filters:hover {
+    background: #ef4444;
+    /* Red-500 */
+    border-color: #ef4444;
+    color: white;
+}
+
+.search-input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+}

@@ -16,7 +16,7 @@ router = APIRouter(prefix="/api/ci", tags=["Configuration Items"])
 @router.get("", response_model=CIListResponse)
 def list_configuration_items(
     page: int = Query(1, ge=1),
-    page_size: int = Query(50, ge=1, le=100),
+    page_size: int = Query(50, ge=1, le=1000),
     ci_type: Optional[CIType] = None,
     status: Optional[CIStatus] = None,
     search: Optional[str] = None,
@@ -42,7 +42,8 @@ def list_configuration_items(
     
     if status:
         query = query.filter(ConfigurationItem.status == status)
-    
+
+    if search:
         query = query.filter(
             or_(
                 ConfigurationItem.name.ilike(f"%{search}%"),

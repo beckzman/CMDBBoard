@@ -118,7 +118,9 @@ class Relationship(Base):
     id = Column(Integer, primary_key=True, index=True)
     source_ci_id = Column(Integer, ForeignKey("configuration_items.id"), nullable=False)
     target_ci_id = Column(Integer, ForeignKey("configuration_items.id"), nullable=False)
-    relation_type = Column(Enum(RelationType), nullable=False)
+    relationship_type = Column(Enum(RelationType), nullable=False)
+    description = Column(Text)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
     
     # Relationships
     source_ci = relationship("ConfigurationItem", foreign_keys=[source_ci_id], back_populates="source_relationships")

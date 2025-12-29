@@ -9,7 +9,8 @@ This guide provides instructions on how to use the CMDB Dashboard to manage your
     *   [Adding & Editing](#adding--editing)
     *   [Deleting](#deleting)
     *   [Health Checks](#health-checks)
-3.  [Data Import/Export](#data-importexport)
+3.  [Dependency Visualization](#dependency-visualization)
+4.  [Data Import/Export](#data-importexport)
 
 ---
 
@@ -48,6 +49,24 @@ You can verify the connectivity of a CI (if it has a valid hostname/IP):
         *   For **Other** CIs: Connectivity is verified by standard Ping (ICMP).
         *   The IP address (e.g., `192.168.1.5`) is also displayed.
     *   **UNREACHABLE**: The host could not be reached. Error details are provided.
+
+## Dependency Visualization
+
+The **Dependency Graph** allows you to visualize relationships between Configuration Items, helping you understand the impact of changes and dependencies within your infrastructure.
+
+### Accessing the Graph
+Navigate to the **Dependency Graph** page via the sidebar menu.
+
+### Features
+-   **Interactive Nodes**: Each CI is represented as a node, color-coded by its type (e.g., Application, Server, Database).
+-   **Relationships**: Arrows connect nodes to show dependencies (e.g., "Application A" -> *Run On* -> "Server B").
+-   **Auto-Layout**:
+    -   **Vertical**: Arranges the graph from top to bottom (hierarchical).
+    -   **Horizontal**: Arranges the graph from left to right.
+-   **Navigation**:
+    -   **Zoom**: Use your mouse wheel to zoom in and out.
+    -   **Pan**: Click and drag on the canvas to move around.
+    -   **Drag Nodes**: You can manually reposition nodes by dragging them.
 
 ## Data Import/Export
 

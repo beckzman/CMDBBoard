@@ -10,6 +10,7 @@ A comprehensive Configuration Management Database (CMDB) Dashboard built with Py
 - **Data Export**: Export CIs to CSV, Excel, and JSON formats
 - **Dashboard Analytics**: Real-time statistics and visualizations of CI inventory
 - **Relationship Tracking**: Manage dependencies and relationships between CIs
+- **Dependency Graph**: Interactive visualization of CI relationships with auto-layout
 - **ArcelorMittal Branding**: Corporate design with brand colors and professional UI
 
 ## Tech Stack

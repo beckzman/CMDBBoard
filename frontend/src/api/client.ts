@@ -303,6 +303,11 @@ export const relationshipAPI = {
         return response.data;
     },
 
+    listAll: async () => {
+        const response = await api.get('/api/relationships');
+        return response.data;
+    },
+
     create: async (data: { source_ci_id: number; target_ci_id: number; relationship_type: string; description?: string }) => {
         const response = await api.post('/api/relationships', data);
         return response.data;

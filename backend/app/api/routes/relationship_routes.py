@@ -13,7 +13,13 @@ from app.schemas import RelationshipCreate, RelationshipResponse
 
 router = APIRouter(prefix="/api/relationships", tags=["Relationships"])
 
-
+@router.get("", response_model=List[RelationshipResponse])
+def get_all_relationships(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get all relationships."""
+    return db.query(Relationship).all()
 @router.get("/ci/{ci_id}", response_model=List[RelationshipResponse])
 def get_ci_relationships(
     ci_id: int,

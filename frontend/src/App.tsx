@@ -15,9 +15,11 @@ import Analysis from './pages/Analysis';
 import AnalysisCost from './pages/reports/AnalysisCost';
 import AnalysisGrowth from './pages/reports/AnalysisGrowth';
 import AnalysisOS from './pages/reports/AnalysisOS';
+
 import AnalysisSLA from './pages/reports/AnalysisSLA';
+import DependencyGraph from './pages/DependencyGraph';
 import Layout from './components/Layout';
-import './index.css';
+
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -82,6 +84,7 @@ const App: React.FC = () => {
                         <Route path="domains" element={<DomainManagement />} />
                         <Route path="users" element={<UserManagement />} />
                         <Route path="cost-rules" element={<CostRules />} />
+                        <Route path="dependencies" element={<DependencyGraph />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

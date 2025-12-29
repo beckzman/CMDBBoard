@@ -164,7 +164,7 @@ const ConfigurationItems: React.FC = () => {
     const [showColumnMenu, setShowColumnMenu] = useState(false);
 
     // Default visible columns
-    const DEFAULT_COLUMNS = ['name', 'type', 'status', 'department', 'location', 'last_ping'];
+    const DEFAULT_COLUMNS = ['name', 'type', 'status', 'department', 'location', 'last_ping', 'actions'];
 
     // Available columns configuration
     const AVAILABLE_COLUMNS = [
@@ -182,6 +182,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
         { key: 'updated_at', label: 'Updated At', sortable: true },
+        { key: 'actions', label: 'Actions', sortable: false },
     ];
 
     // Initialize visible columns from localStorage or default
@@ -372,6 +373,39 @@ const ConfigurationItems: React.FC = () => {
             case 'created_at':
             case 'updated_at':
                 return ci[key] ? new Date(ci[key]).toLocaleDateString() : '-';
+            case 'actions':
+                return (
+                    <div className="action-buttons">
+                        <button
+                            className="icon-btn"
+                            title="Check Health"
+                            onClick={() => handleHealthCheck(ci)}
+                        >
+                            <Activity size={18} />
+                        </button>
+                        <button
+                            className="icon-btn"
+                            title="View Details"
+                            onClick={() => handleView(ci)}
+                        >
+                            <Eye size={18} />
+                        </button>
+                        <button
+                            className="icon-btn"
+                            title="Edit"
+                            onClick={() => handleEdit(ci)}
+                        >
+                            <Edit2 size={18} />
+                        </button>
+                        <button
+                            className="icon-btn delete"
+                            title="Delete"
+                            onClick={() => handleDeleteClick(ci)}
+                        >
+                            <Trash2 size={18} />
+                        </button>
+                    </div>
+                );
             default:
                 return ci[key] || '-';
         }
@@ -508,7 +542,7 @@ const ConfigurationItems: React.FC = () => {
                                     .map(col => (
                                         <th
                                             key={col.key}
-                                            className={col.sortable ? 'sortable-header' : ''}
+                                            className={`${col.sortable ? 'sortable-header' : ''} ${col.key === 'actions' ? 'sticky-actions' : ''}`}
                                         >
                                             <div className="th-content" style={{ justifyContent: 'space-between' }}>
                                                 <div
@@ -536,7 +570,6 @@ const ConfigurationItems: React.FC = () => {
                                         </th>
                                     ))
                                 }
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -546,48 +579,16 @@ const ConfigurationItems: React.FC = () => {
                                         {AVAILABLE_COLUMNS
                                             .filter(col => visibleColumns.includes(col.key))
                                             .map(col => (
-                                                <td key={col.key}>
+                                                <td key={col.key} className={col.key === 'actions' ? 'sticky-actions' : ''}>
                                                     {renderCellContent(ci, col.key)}
                                                 </td>
                                             ))
                                         }
-                                        <td>
-                                            <div className="action-buttons">
-                                                <button
-                                                    className="icon-btn"
-                                                    title="Check Health"
-                                                    onClick={() => handleHealthCheck(ci)}
-                                                >
-                                                    <Activity size={18} />
-                                                </button>
-                                                <button
-                                                    className="icon-btn"
-                                                    title="View Details"
-                                                    onClick={() => handleView(ci)}
-                                                >
-                                                    <Eye size={18} />
-                                                </button>
-                                                <button
-                                                    className="icon-btn"
-                                                    title="Edit"
-                                                    onClick={() => handleEdit(ci)}
-                                                >
-                                                    <Edit2 size={18} />
-                                                </button>
-                                                <button
-                                                    className="icon-btn delete"
-                                                    title="Delete"
-                                                    onClick={() => handleDeleteClick(ci)}
-                                                >
-                                                    <Trash2 size={18} />
-                                                </button>
-                                            </div>
-                                        </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={visibleColumns.length + 1}>
+                                    <td colSpan={visibleColumns.length}>
                                         <div className="empty-state">
                                             <p>No configuration items found</p>
                                         </div>
