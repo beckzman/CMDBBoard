@@ -12,10 +12,13 @@ The project is divided into two main parts:
 -   **`app/services`**: Business logic.
 
 ### Frontend Architecture
--   **`src/api`**: Axios client and API wrappers (`ciAPI`, `healthAPI`).
+-   **`src/api`**: Axios client and API wrappers (`ciAPI`, `healthAPI`, `relationshipAPI`).
 -   **`src/components`**: Reusable UI components (Modals, etc.).
--   **`src/pages`**: Main page views (`ConfigurationItems.tsx`).
+-   **`src/pages`**: Main page views (`ConfigurationItems.tsx`, `DependencyGraph.tsx`).
 -   **`src/store`**: Global state management (Zustand).
+-   **Key Libraries**:
+    -   `reactflow`: Graph visualization.
+    -   `dagre`: Directed graph layout engine.
 
 ## Development Workflow
 
@@ -36,14 +39,10 @@ The project is divided into two main parts:
     ```
 
 ### Seeding Test Data
-The `backend/seed_data.py` script populates the database with:
--   **Users**: `admin` (Admin, password: `adminpassword`) and `user` (Viewer).
--   **CIs**: Sample servers, applications, and databases.
--   **Relationships**: Dependencies between the sample CIs.
-
-Run it via:
+The `backend/seed_data.py` script populates the database with basic data.
+For relationship testing, use:
 ```bash
-python backend/seed_data.py
+python backend/scripts/seed_relationships.py
 ```
 
 ### Adding New Features
@@ -60,6 +59,7 @@ python backend/seed_data.py
 
 ## API Endpoints
 -   **CI Management**: `/api/v1/cis`
+-   **Relationships**: `/api/relationships` (GET, POST)
 -   **Health Check**: `/api/health/check`
 -   **Import Sources**: `/api/import/sources` (CRUD, Run, Test Connection)
 -   **CSV Upload**: `/api/import/csv`

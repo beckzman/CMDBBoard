@@ -68,6 +68,13 @@ Navigate to the **Dependency Graph** page via the sidebar menu.
     -   **Pan**: Click and drag on the canvas to move around.
     -   **Drag Nodes**: You can manually reposition nodes by dragging them.
 
+### Filters & Search
+You can refine the graph to focus on specific items:
+-   **Search CI**: Type a name in the "Search CI" input. The graph will update to show only the matching CI(s) and their immediate neighbors.
+-   **Filter by CI Type**: Select a type (e.g., "Server") to show only items of that category.
+-   **Filter by Relation**: Select a relationship type (e.g., "runs_on") to show only specific connections.
+-   **Clear Filters**: Click the "Clear Filters" button to reset the view.
+
 ## Data Import/Export
 
 ### Importing Data
