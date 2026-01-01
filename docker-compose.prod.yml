@@ -1,15 +1,12 @@
 version: '3.8'
 
 services:
-  # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
     container_name: cmdb_postgres_prod
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+    restart: always
+    env_file:
+      - .env
     volumes:
       - postgres_data_prod:/var/lib/postgresql/data
     healthcheck:
@@ -18,28 +15,26 @@ services:
       timeout: 5s
       retries: 5
 
-  # Backend API
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: cmdb_backend_prod
-    restart: unless-stopped
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      SECRET_KEY: ${SECRET_KEY}
-      CORS_ORIGINS: ${CORS_ORIGINS}
+    restart: always
+    env_file:
+      - .env
     depends_on:
       postgres:
         condition: service_healthy
+    # No ports exposed directly, traffic comes via Nginx frontend proxy
+    # command: The Dockerfile already has the correct production CMD (gunicorn)
 
-  # Frontend (Production Nginx)
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: cmdb_frontend_prod
-    restart: unless-stopped
+    restart: always
     ports:
       - "80:80"
     depends_on:
