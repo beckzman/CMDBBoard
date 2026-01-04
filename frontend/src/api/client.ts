@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export interface DashboardStats {
     total_cis: number;
@@ -337,6 +337,34 @@ export const costRuleAPI = {
 
     delete: async (id: number) => {
         await api.delete(`/api/cost-rules/${id}`);
+    }
+};
+
+// Software Catalog API
+export const softwareAPI = {
+    list: async (params?: { search?: string, category?: string, status?: string }) => {
+        const response = await api.get('/api/software', { params });
+        return response.data;
+    },
+
+    create: async (data: any) => {
+        const response = await api.post('/api/software', data);
+        return response.data;
+    },
+
+    update: async (id: number, data: any) => {
+        const response = await api.put(`/api/software/${id}`, data);
+        return response.data;
+    },
+
+    getUnmatched: async () => {
+        const response = await api.get('/api/software/unmatched');
+        return response.data;
+    },
+
+    match: async (data: { software_id: number, string_to_match: string }) => {
+        const response = await api.post('/api/software/match', data);
+        return response.data;
     }
 };
 

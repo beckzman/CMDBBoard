@@ -43,6 +43,52 @@ class TokenData(BaseModel):
     username: Optional[str] = None
 
 
+    class Config:
+        from_attributes = True
+
+
+# Software Catalog Schemas
+class SoftwareCatalogBase(BaseModel):
+    name: str
+    version: Optional[str] = None
+    publisher: Optional[str] = None
+    category: Optional[str] = "other"  # Using str to avoid enum complexity in circular deps if any, or simpler validation
+    status: Optional[str] = "unapproved"
+    end_of_life_date: Optional[datetime] = None
+    aliases: Optional[List[str]] = []
+
+class SoftwareCatalogCreate(SoftwareCatalogBase):
+    pass
+
+class SoftwareCatalogUpdate(SoftwareCatalogBase):
+    pass
+
+class SoftwareCatalogResponse(SoftwareCatalogBase):
+    id: int
+    created_at: datetime
+    updated_at: Optional[datetime]
+    ci_count: int = 0
+
+    class Config:
+        from_attributes = True
+
+
+class SoftwareCatalogNested(BaseModel):
+    id: int
+    name: str
+    version: Optional[str] = None
+    publisher: Optional[str] = None
+    # Exclude aliases to avoid JSON serialization issues
+
+    class Config:
+        from_attributes = True
+
+
+class MatchRequest(BaseModel):
+    software_id: int
+    string_to_match: str
+
+
 # Configuration Item Schemas
 class CIBase(BaseModel):
     name: str
@@ -57,6 +103,7 @@ class CIBase(BaseModel):
     sla: Optional[str] = None
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
+    software_id: Optional[int] = None
 
 
 class CICreate(CIBase):
@@ -75,6 +122,7 @@ class CIUpdate(BaseModel):
     sla: Optional[str] = None
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
+    software_id: Optional[int] = None
 
 
 class CIResponse(CIBase):
@@ -82,9 +130,11 @@ class CIResponse(CIBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
     last_ping_success: Optional[datetime] = None
+    software: Optional[SoftwareCatalogNested] = None
     
     class Config:
         from_attributes = True
+
 
 
 # Relationship Schemas

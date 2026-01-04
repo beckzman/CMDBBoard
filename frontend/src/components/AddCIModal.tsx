@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
-import { ciAPI, domainAPI, relationshipAPI } from '../api/client';
+import { ciAPI, domainAPI, relationshipAPI, softwareAPI } from '../api/client';
 import { X, Plus, Trash2, Link as LinkIcon, ArrowRight } from 'lucide-react';
 import './AddCIModal.css';
 
@@ -30,6 +30,12 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         enabled: isOpen,
     });
 
+    const { data: softwareList } = useQuery({
+        queryKey: ['softwareCatalogAll'],
+        queryFn: () => softwareAPI.list(),
+        enabled: isOpen,
+    });
+
     const [formData, setFormData] = useState({
         name: '',
         ci_type: 'server',
@@ -42,6 +48,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         cost_center: '',
         sla: '',
         os_db_system: '',
+        software_id: '' as string | number, // Allow empty string for "none"
     });
 
     useEffect(() => {
@@ -58,6 +65,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 cost_center: initialData.cost_center || '',
                 sla: initialData.sla || '',
                 os_db_system: initialData.os_db_system || initialData.operating_system || '',
+                software_id: initialData.software_id || '',
             });
             fetchRelationships();
         } else {
@@ -73,6 +81,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 cost_center: '',
                 sla: '',
                 os_db_system: '',
+                software_id: '',
             });
             setRelationships([]);
         }
@@ -191,10 +200,17 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+
+        // Sanitize payload
+        const payload = {
+            ...formData,
+            software_id: formData.software_id === '' ? null : Number(formData.software_id)
+        };
+
         if (initialData) {
-            updateMutation.mutate(formData);
+            updateMutation.mutate(payload);
         } else {
-            createMutation.mutate(formData);
+            createMutation.mutate(payload);
         }
     };
 
@@ -377,7 +393,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="os_db_system">OS/DB System</label>
+                                <label htmlFor="os_db_system">OS/DB System (Discovery)</label>
                                 <input
                                     type="text"
                                     id="os_db_system"
@@ -385,8 +401,36 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                     value={formData.os_db_system || ''}
                                     onChange={handleChange}
                                     className="form-input"
-                                    placeholder="e.g. Ubuntu 20.04 or PostgreSQL 13"
+                                    placeholder="Discovered string (e.g. Win10)"
                                 />
+                                <small style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', marginTop: '4px', display: 'block' }}>
+                                    The raw string found by discovery tools.
+                                </small>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="software_id">Software Model (DML)</label>
+                                <select
+                                    id="software_id"
+                                    name="software_id"
+                                    value={formData.software_id}
+                                    onChange={handleChange}
+                                    className="form-select"
+                                >
+                                    <option value="">-- No Direct Link --</option>
+                                    {softwareList && softwareList.length > 0 ? (
+                                        softwareList.map((sw: any) => (
+                                            <option key={sw.id} value={sw.id}>
+                                                {sw.name} ({sw.version || 'v?'})
+                                            </option>
+                                        ))
+                                    ) : (
+                                        <option disabled>Loading software...</option>
+                                    )}
+                                </select>
+                                <small style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', marginTop: '4px', display: 'block' }}>
+                                    Link to an approved Software Catalog item.
+                                </small>
                             </div>
 
                             <div className="form-group full-width">

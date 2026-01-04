@@ -18,7 +18,8 @@ import {
     PieChart,
     Share2,
     Sun,
-    Moon
+    Moon,
+    Folder
 } from 'lucide-react';
 import './Layout.css';
 
@@ -70,6 +71,7 @@ const LayoutContent: React.FC = () => {
         { path: '/cis', icon: Database, label: 'Configuration Items' },
         { path: '/dependencies', icon: Share2, label: 'Dependency Graph' },
         { path: '/analysis', icon: PieChart, label: 'Analysis' },
+        { path: '/software', icon: Folder, label: 'Software (DML)' },
         { path: '/import', icon: Upload, label: 'Import Data' },
     ];
 

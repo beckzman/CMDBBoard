@@ -94,8 +94,10 @@ class ConfigurationItem(Base):
     last_sync = Column(DateTime(timezone=True))
     import_source_id = Column(Integer, ForeignKey("import_sources.id"), nullable=True)
 
+    # Link to Software Catalog (DML)
+    software_id = Column(Integer, ForeignKey("software_catalog.id"), nullable=True)
+    software = relationship("SoftwareCatalog", back_populates="cis")
     
-    # Relationships
     # Relationships
     source_relationships = relationship(
         "Relationship",
@@ -193,4 +195,43 @@ class CostRule(Base):
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+
+class SoftwareCategory(str, enum.Enum):
+    """Category of software in the catalog."""
+    OS = "os"
+    DATABASE = "database"
+    APPLICATION = "application"
+    OTHER = "other"
+
+
+class SoftwareStatus(str, enum.Enum):
+    """Lifecycle status of the software."""
+    APPROVED = "approved"
+    UNAPPROVED = "unapproved"
+    RESTRICTED = "restricted"
+    END_OF_LIFE = "end_of_life"
+
+
+class SoftwareCatalog(Base):
+    """Definitive Media Library (DML) - Software Catalog."""
+    __tablename__ = "software_catalog"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False, index=True)  # e.g., "Windows Server 2022"
+    version = Column(String(100))  # e.g., "2022"
+    publisher = Column(String(255))  # e.g., "Microsoft"
+    category = Column(Enum(SoftwareCategory), default=SoftwareCategory.OTHER, nullable=False)
+    status = Column(Enum(SoftwareStatus), default=SoftwareStatus.UNAPPROVED, nullable=False)
+    end_of_life_date = Column(DateTime(timezone=True), nullable=True)
+    
+    # Aliases: stored as JSON list of strings [ "Win2022", "Windows 2022" ]
+    aliases = Column(Text) 
+
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    # Relationships
+    cis = relationship("ConfigurationItem", back_populates="software")
+
 

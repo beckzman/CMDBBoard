@@ -171,6 +171,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'name', label: 'Name', sortable: true },
         { key: 'description', label: 'Description', sortable: true },
         { key: 'status', label: 'Status', sortable: true },
+        { key: 'software', label: 'Software Model', sortable: false },
         { key: 'department', label: 'Abteilung', sortable: true },
         { key: 'location', label: 'Location', sortable: true },
         { key: 'environment', label: 'Environment', sortable: true },
@@ -359,6 +360,14 @@ const ConfigurationItems: React.FC = () => {
                     <span className={`badge badge-${getStatusColor(ci.status)}`}>
                         {ci.status}
                     </span>
+                );
+            case 'software':
+                return ci.software ? (
+                    <span className="software-badge">
+                        {ci.software.name}
+                    </span>
+                ) : (
+                    <span className="text-muted text-xs">-</span>
                 );
             case 'sla':
                 return ci.sla || '-';

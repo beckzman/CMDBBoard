@@ -18,6 +18,7 @@ import AnalysisOS from './pages/reports/AnalysisOS';
 
 import AnalysisSLA from './pages/reports/AnalysisSLA';
 import DependencyGraph from './pages/DependencyGraph';
+import SoftwareCatalog from './pages/SoftwareCatalog';
 import Layout from './components/Layout';
 
 
@@ -85,6 +86,7 @@ const App: React.FC = () => {
                         <Route path="users" element={<UserManagement />} />
                         <Route path="cost-rules" element={<CostRules />} />
                         <Route path="dependencies" element={<DependencyGraph />} />
+                        <Route path="software" element={<SoftwareCatalog />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

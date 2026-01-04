@@ -34,7 +34,8 @@ def list_configuration_items(
     current_user: User = Depends(get_current_user)
 ):
     """List configuration items with pagination and filters."""
-    query = db.query(ConfigurationItem).filter(ConfigurationItem.deleted_at.is_(None))
+    from sqlalchemy.orm import joinedload
+    query = db.query(ConfigurationItem).options(joinedload(ConfigurationItem.software)).filter(ConfigurationItem.deleted_at.is_(None))
     
     # Apply filters
     if ci_type:
@@ -156,7 +157,8 @@ def get_configuration_item(
     current_user: User = Depends(get_current_user)
 ):
     """Get a specific configuration item by ID."""
-    ci = db.query(ConfigurationItem).filter(
+    from sqlalchemy.orm import joinedload
+    ci = db.query(ConfigurationItem).options(joinedload(ConfigurationItem.software)).filter(
         ConfigurationItem.id == ci_id,
         ConfigurationItem.deleted_at.is_(None)
     ).first()
