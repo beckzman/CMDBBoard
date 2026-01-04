@@ -14,7 +14,7 @@ export interface DashboardStats {
     cis_by_department: Record<string, number>;
     cis_by_location: Record<string, number>;
     costs_by_cost_center: Record<string, number>;
-    cis_by_os: Record<string, number>;
+    cis_by_os_db_system: Record<string, number>;
     cis_by_sla: Record<string, number>;
     ci_growth: Record<string, number>;
     recent_imports: number;
@@ -79,7 +79,7 @@ export const ciAPI = {
         sort_desc?: boolean;
         department?: string[];
         location?: string[];
-        operating_system?: string[];
+        os_db_system?: string[];
         cost_center?: string[];
         sla?: string[];
         environment?: string[];

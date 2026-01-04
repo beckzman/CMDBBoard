@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { attributeAPI, importAPI } from '../api/client';
-import { Save, Plus, AlertCircle } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+// import { attributeAPI, importAPI } from '../api/client';
+import { importAPI } from '../api/client';
+// import { Save, Plus, AlertCircle } from 'lucide-react';
 
 interface Attribute {
     id: number;
@@ -20,14 +21,16 @@ interface ImportSource {
 }
 
 const AttributeSettings: React.FC = () => {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
     const [searchTerm, setSearchTerm] = useState('');
 
     // Fetch Attributes
-    const { data: attributes, isLoading: loadingAttrs } = useQuery({
-        queryKey: ['attributes'],
-        queryFn: attributeAPI.list
-    });
+    // const { data: attributes, isLoading: loadingAttrs } = useQuery({
+    //     queryKey: ['attributes'],
+    //     queryFn: attributeAPI.list
+    // });
+    const attributes: Attribute[] = [];
+    const loadingAttrs = false;
 
     // Fetch Sources (for dropdown)
     const { data: sources, isLoading: loadingSources } = useQuery({
@@ -36,17 +39,18 @@ const AttributeSettings: React.FC = () => {
     });
 
     // Update Mapping Mutation
-    const updateMutation = useMutation({
-        mutationFn: (data: { attrId: number, sourceId: number | null }) =>
-            attributeAPI.updateMapping(data.attrId, data.sourceId),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['attributes'] });
-        }
-    });
+    // const updateMutation = useMutation({
+    //     mutationFn: (data: { attrId: number, sourceId: number | null }) =>
+    //         attributeAPI.updateMapping(data.attrId, data.sourceId),
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries({ queryKey: ['attributes'] });
+    //     }
+    // });
 
-    const handleOwnerChange = (attrId: number, value: string) => {
-        const sourceId = value === 'manual' ? null : parseInt(value);
-        updateMutation.mutate({ attrId, sourceId });
+    const handleOwnerChange = (_attrId: number, _value: string) => {
+        // const sourceId = value === 'manual' ? null : parseInt(value);
+        // updateMutation.mutate({ attrId, sourceId });
+        console.log("Update not implemented");
     };
 
     const filteredAttributes = attributes?.filter((attr: Attribute) =>

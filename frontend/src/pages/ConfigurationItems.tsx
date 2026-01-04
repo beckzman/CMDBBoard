@@ -33,7 +33,7 @@ const ColumnFilter: React.FC<{
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const filterableColumns = ['department', 'location', 'operating_system', 'cost_center', 'sla', 'environment', 'domain'];
+    const filterableColumns = ['department', 'location', 'os_db_system', 'cost_center', 'sla', 'environment', 'domain'];
     if (!filterableColumns.includes(columnKey)) return null;
 
     const handleCheckboxChange = (option: string) => {
@@ -121,7 +121,7 @@ const ColumnFilter: React.FC<{
                                             cursor: 'pointer'
                                         }}
                                     />
-                                    <span style={{ flex: 1 }}>{option}</span>
+                                    <span style={{ flex: 1 }}>OS/DB System</span>
                                 </label>
                             ))}
                             {(!options || options.length === 0) && (
@@ -170,12 +170,11 @@ const ConfigurationItems: React.FC = () => {
     const AVAILABLE_COLUMNS = [
         { key: 'name', label: 'Name', sortable: true },
         { key: 'description', label: 'Description', sortable: true },
-        { key: 'type', label: 'Type', sortable: true },
         { key: 'status', label: 'Status', sortable: true },
         { key: 'department', label: 'Abteilung', sortable: true },
         { key: 'location', label: 'Location', sortable: true },
         { key: 'environment', label: 'Environment', sortable: true },
-        { key: 'operating_system', label: 'OS', sortable: true },
+        { key: 'os_db_system', label: 'OS/DB System', visible: true },
         { key: 'domain', label: 'Domain', sortable: true },
         { key: 'cost_center', label: 'Cost Center', sortable: true },
         { key: 'sla', label: 'SLA', sortable: true },
@@ -260,6 +259,7 @@ const ConfigurationItems: React.FC = () => {
             const params = {
                 ci_type: ciType || undefined,
                 status: status || undefined,
+                os_db_system: filters.os_db_system && filters.os_db_system.length > 0 ? filters.os_db_system : undefined,
             };
 
             const blob = format === 'csv'
@@ -492,6 +492,7 @@ const ConfigurationItems: React.FC = () => {
                     onChange={(e) => setCiType(e.target.value)}
                 >
                     <option value="">All Types</option>
+                    <option value="os_db_system">OS/DB System</option>
                     <option value="server">Server</option>
                     <option value="application">Application</option>
                     <option value="network_device">Network Device</option>

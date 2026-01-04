@@ -9,7 +9,7 @@ const CostRules: React.FC = () => {
     const [editForm, setEditForm] = useState<any>({
         ci_type: 'server',
         sla: '',
-        operating_system: '',
+        os_db_system: '', // Renamed from operating_system
         base_cost: 0,
         currency: 'EUR'
     });
@@ -53,7 +53,7 @@ const CostRules: React.FC = () => {
         setEditForm({
             ci_type: 'server',
             sla: '',
-            operating_system: '',
+            os_db_system: '', // Renamed from operating_system
             base_cost: 0,
             currency: 'EUR'
         });
@@ -62,7 +62,10 @@ const CostRules: React.FC = () => {
 
     const handleEdit = (rule: any) => {
         setIsEditing(rule.id);
-        setEditForm({ ...rule });
+        setEditForm({
+            ...rule,
+            os_db_system: rule.os_db_system || '', // Ensure os_db_system is set
+        });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -73,7 +76,7 @@ const CostRules: React.FC = () => {
             ...editForm,
             base_cost: parseFloat(editForm.base_cost),
             sla: editForm.sla || null,
-            operating_system: editForm.operating_system || null
+            os_db_system: editForm.os_db_system || null // Renamed from operating_system
         };
 
         if (isEditing) {
@@ -175,14 +178,14 @@ const CostRules: React.FC = () => {
                                 onChange={e => setEditForm({ ...editForm, sla: e.target.value })}
                             />
                         </div>
-                        <div>
-                            <label className="form-label">Operating System</label>
+                        <div className="form-group">
+                            <label>OS/DB System</label>
                             <input
                                 type="text"
                                 className="form-input"
-                                placeholder="e.g. Windows Server 2022 (Optional)"
-                                value={editForm.operating_system || ''}
-                                onChange={e => setEditForm({ ...editForm, operating_system: e.target.value })}
+                                value={editForm.os_db_system || ''}
+                                onChange={(e) => setEditForm({ ...editForm, os_db_system: e.target.value })}
+                                placeholder="e.g. Windows Server 2022"
                             />
                         </div>
                         <div>
@@ -244,7 +247,7 @@ const CostRules: React.FC = () => {
                                 <tr>
                                     <th>CI Type</th>
                                     <th>SLA</th>
-                                    <th>OS</th>
+                                    <th>OS/DB</th>
                                     <th>Cost</th>
                                     <th style={{ width: '100px' }}>Actions</th>
                                 </tr>
@@ -255,7 +258,7 @@ const CostRules: React.FC = () => {
                                         <tr key={rule.id}>
                                             <td style={{ textTransform: 'capitalize' }}>{rule.ci_type.replace('_', ' ')}</td>
                                             <td>{rule.sla || <span style={{ opacity: 0.5 }}>Any</span>}</td>
-                                            <td>{rule.operating_system || <span style={{ opacity: 0.5 }}>Any</span>}</td>
+                                            <td>{rule.os_db_system || <span style={{ opacity: 0.5 }}>Any</span>}</td>
                                             <td style={{ fontWeight: 600, color: '#4ade80' }}>
                                                 {rule.base_cost.toFixed(2)} {rule.currency}
                                             </td>

@@ -41,7 +41,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         environment: 'production',
         cost_center: '',
         sla: '',
-        operating_system: '',
+        os_db_system: '',
     });
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 environment: initialData.environment || 'production',
                 cost_center: initialData.cost_center || '',
                 sla: initialData.sla || '',
-                operating_system: initialData.operating_system || '',
+                os_db_system: initialData.os_db_system || initialData.operating_system || '',
             });
             fetchRelationships();
         } else {
@@ -72,7 +72,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 environment: 'production',
                 cost_center: '',
                 sla: '',
-                operating_system: '',
+                os_db_system: '',
             });
             setRelationships([]);
         }
@@ -377,15 +377,15 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="operating_system">Operating System</label>
+                                <label htmlFor="os_db_system">OS/DB System</label>
                                 <input
                                     type="text"
-                                    id="operating_system"
-                                    name="operating_system"
-                                    value={formData.operating_system}
+                                    id="os_db_system"
+                                    name="os_db_system"
+                                    value={formData.os_db_system || ''}
                                     onChange={handleChange}
                                     className="form-input"
-                                    placeholder="e.g. Windows Server 2022"
+                                    placeholder="e.g. Ubuntu 20.04 or PostgreSQL 13"
                                 />
                             </div>
 

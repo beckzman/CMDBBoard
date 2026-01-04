@@ -1,0 +1,58 @@
+[
+  {
+    "action": "updated",
+    "ci_id": 47,
+    "ci_name": "AMBOPUSKL",
+    "changes": {
+      "description": {
+        "old": "DEC: Mailrelay und FAX, IBN: -, ASP: Bachert, Carsten",
+        "new": "Mailrelay und FAX"
+      }
+    },
+    "timestamp": "2025-12-30T22:05:43.179579"
+  },
+  {
+    "action": "updated",
+    "ci_id": 47,
+    "ci_name": "AMBOPUSKL",
+    "changes": {
+      "description": {
+        "old": "Mailrelay und FAX",
+        "new": "DEC: Mailrelay und FAX, IBN: -, ASP: Bachert, Carsten"
+      }
+    },
+    "timestamp": "2025-12-30T22:05:43.181262"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2282,
+    "ci_name": "SWBAS069",
+    "changes": {
+      "description": {
+        "old": "Statistica, Select, Wauplus, B.O.N.D., Metals InfoDisk",
+        "new": "SR-461801; Statistica, Select, Wauplus, B.O.N.D., Metals InfoDisk; AP: klaashenning.zweck@arcelormittal.com\nFeb2025 - move under BTC management"
+      },
+      "operating_system": {
+        "old": "Microsoft Windows Server 2016",
+        "new": "Microsoft Windows Server 2019"
+      }
+    },
+    "timestamp": "2025-12-30T22:05:44.329990"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2282,
+    "ci_name": "SWBAS069",
+    "changes": {
+      "description": {
+        "old": "SR-461801; Statistica, Select, Wauplus, B.O.N.D., Metals InfoDisk; AP: klaashenning.zweck@arcelormittal.com\nFeb2025 - move under BTC management",
+        "new": "Statistica, Select, Wauplus, B.O.N.D., Metals InfoDisk"
+      },
+      "operating_system": {
+        "old": "Microsoft Windows Server 2019",
+        "new": "Microsoft Windows Server 2016"
+      }
+    },
+    "timestamp": "2025-12-30T22:05:44.331177"
+  }
+]

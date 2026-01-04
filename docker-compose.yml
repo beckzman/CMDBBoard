@@ -44,6 +44,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     container_name: cmdb_frontend
+    environment:
+      - VITE_API_TARGET=http://backend:8000
     ports:
       - "5173:5173"
     volumes:

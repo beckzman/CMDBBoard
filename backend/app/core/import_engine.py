@@ -770,6 +770,7 @@ class ReconciliationService:
             'environment': mapped_record.get('environment'),
             'cost_center': mapped_record.get('cost_center'),
             'technical_details': mapped_record.get('technical_details'),
+            'os_db_system': mapped_record.get('os_db_system') or mapped_record.get('operating_system'),
             'domain': mapped_record.get('domain'),
             'external_id': raw_record.get('id') or raw_record.get('ID'),
             'import_source_id': self.source.id,
@@ -799,6 +800,8 @@ class ReconciliationService:
             # Remap legacy 'owner' field to 'department'
             if field_name == 'owner':
                 field_name = 'department'
+            elif field_name == 'operating_system':
+                field_name = 'os_db_system'
 
             if field_name == self.recon_config.key_field:
                 continue  # Don't update the reconciliation key

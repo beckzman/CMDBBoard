@@ -66,9 +66,9 @@ const ViewCIModal: React.FC<ViewCIModalProps> = ({ isOpen, onClose, ci }) => {
                                 <label>Cost Center:</label>
                                 <span>{ci.cost_center || '-'}</span>
                             </div>
-                            <div className="view-row">
-                                <label>OS:</label>
-                                <span>{ci.operating_system || '-'}</span>
+                            <div className="detail-item">
+                                <label>OS/DB System</label>
+                                <span>{ci.os_db_system || '-'}</span>
                             </div>
                             <div className="view-row">
                                 <label>Environment:</label>

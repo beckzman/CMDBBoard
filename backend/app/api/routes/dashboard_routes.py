@@ -123,7 +123,7 @@ def get_dashboard_stats(
     active_cis_data = db.query(
         ConfigurationItem.ci_type,
         ConfigurationItem.sla,
-        ConfigurationItem.operating_system,
+        ConfigurationItem.os_db_system,
         ConfigurationItem.cost_center
     ).filter(
         ConfigurationItem.deleted_at.is_(None),
@@ -140,7 +140,7 @@ def get_dashboard_stats(
         best_match_cost = 0.0
         best_score = -1
         
-        normalized_ci_os = normalize_os(ci.operating_system)
+        normalized_ci_os = normalize_os(ci.os_db_system)
         
         for rule in relevant_rules:
             score = 0
@@ -154,9 +154,9 @@ def get_dashboard_stats(
                     continue
             
             # Check OS
-            if rule.operating_system:
-                rule_os = rule.operating_system.lower()
-                ci_os = (ci.operating_system or "").lower()
+            if rule.os_db_system:
+                rule_os = rule.os_db_system.lower()
+                ci_os = (ci.os_db_system or "").lower()
                 
                 # Check 1: Direct Match or Substring (Existing logic)
                 is_direct_match = rule_os == ci_os or (ci_os and rule_os in ci_os)
@@ -184,12 +184,12 @@ def get_dashboard_stats(
 
     # Aggregate CIs by OS (normalized)
     cis_by_os = {}
-    active_cis_os = db.query(ConfigurationItem.operating_system).filter(
+    active_cis_os = db.query(ConfigurationItem.os_db_system).filter(
         ConfigurationItem.deleted_at.is_(None),
         ConfigurationItem.status == CIStatus.ACTIVE
     ).all()
     for ci in active_cis_os:
-        norm_os = normalize_os(ci.operating_system) or "Unknown"
+        norm_os = normalize_os(ci.os_db_system) or "Unknown"
         cis_by_os[norm_os] = cis_by_os.get(norm_os, 0) + 1
 
     # Aggregate CIs by SLA
@@ -235,7 +235,7 @@ def get_dashboard_stats(
         "cis_by_department": cis_by_department,
         "cis_by_location": cis_by_location,
         "costs_by_cost_center": costs_by_cost_center,
-        "cis_by_os": cis_by_os,
+        "cis_by_os_db_system": cis_by_os,
         "cis_by_sla": cis_by_sla,
         "ci_growth": ci_growth,
         "recent_imports": recent_imports

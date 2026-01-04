@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import { ThemeProvider, useTheme } from '../context/ThemeContext';
 import {
     LayoutDashboard,
     Database,
@@ -15,11 +16,26 @@ import {
     Users,
     DollarSign,
     PieChart,
-    Share2
+    Share2,
+    Sun,
+    Moon
 } from 'lucide-react';
 import './Layout.css';
 
-const Layout: React.FC = () => {
+const ThemeToggle: React.FC = () => {
+    const { theme, toggleTheme } = useTheme();
+    return (
+        <button
+            className="icon-button"
+            onClick={toggleTheme}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+    );
+};
+
+const LayoutContent: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const { user, logout } = useAuthStore();
     const navigate = useNavigate();
@@ -153,6 +169,7 @@ const Layout: React.FC = () => {
                         </div>
 
                         <div className="header-actions">
+                            <ThemeToggle />
                             <button className="icon-button">
                                 <Bell size={20} />
                                 <span className="notification-badge">3</span>
@@ -182,6 +199,14 @@ const Layout: React.FC = () => {
                 </main>
             </div>
         </div>
+    );
+};
+
+const Layout: React.FC = () => {
+    return (
+        <ThemeProvider>
+            <LayoutContent />
+        </ThemeProvider>
     );
 };
 

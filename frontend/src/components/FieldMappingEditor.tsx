@@ -22,7 +22,7 @@ const CMDB_FIELDS = [
     { value: 'department', label: 'Abteilung', required: false },
     { value: 'location', label: 'Location', required: false },
     { value: 'environment', label: 'Environment', required: false },
-    { value: 'operating_system', label: 'Operating System', required: false },
+    { value: 'os_db_system', label: 'OS/DB System', required: false },
     { value: 'cost_center', label: 'Cost Center', required: false },
     { value: 'sla', label: 'SLA', required: false },
     { value: 'technical_details', label: 'Technical Details (JSON)', required: false },

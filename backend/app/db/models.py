@@ -75,7 +75,7 @@ class ConfigurationItem(Base):
     location = Column(String(255))
     environment = Column(String(50))  # production, development, test, etc.
     cost_center = Column(String(100))
-    operating_system = Column(String(255))
+    os_db_system = Column(String(255))
     sla = Column(String(255))  # Service Level Agreement
     
     # Technical details (JSON-like text field for flexibility)
@@ -187,7 +187,7 @@ class CostRule(Base):
     id = Column(Integer, primary_key=True, index=True)
     ci_type = Column(Enum(CIType), nullable=False, index=True)
     sla = Column(String(255), nullable=True)
-    operating_system = Column(String(255), nullable=True)
+    os_db_system = Column(String(255), nullable=True)
     base_cost = Column(Float, nullable=False)
     currency = Column(String(3), default="EUR", nullable=False)
     

@@ -19,7 +19,7 @@ const AnalysisOS: React.FC = () => {
         fetchStats();
     }, []);
 
-    const data = stats ? Object.entries(stats.cis_by_os)
+    const data = stats ? Object.entries(stats.cis_by_os_db_system)
         .map(([name, value]) => ({ name, value }))
         .sort((a, b) => b.value - a.value) : [];
 
@@ -33,7 +33,7 @@ const AnalysisOS: React.FC = () => {
                 <button onClick={() => navigate('/analysis')} className="back-button">
                     <ChevronLeft /> Back
                 </button>
-                <h1>OS Distribution</h1>
+                <h1>OS/DB System Distribution</h1>
             </div>
 
             <div className="chart-container">
@@ -49,7 +49,7 @@ const AnalysisOS: React.FC = () => {
                             dataKey="value"
                             label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                         >
-                            {data.map((entry, index) => (
+                            {data.map((_entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
@@ -60,7 +60,7 @@ const AnalysisOS: React.FC = () => {
             </div>
 
             <div className="analysis-summary">
-                <p>Tracking <strong>{totalItems}</strong> Active CIs across {data.length} OS categories.</p>
+                <p>Tracking <strong>{totalItems}</strong> Active CIs across {data.length} OS/DB categories.</p>
             </div>
         </div>
     );

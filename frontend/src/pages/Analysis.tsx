@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-    LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, YAxis
+    LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer
 } from 'recharts';
 import { dashboardAPI, DashboardStats } from '../api/client';
 import {
@@ -41,8 +41,8 @@ const Analysis: React.FC = () => {
     };
 
     const getOSData = () => {
-        if (!stats?.cis_by_os) return [];
-        return Object.entries(stats.cis_by_os)
+        if (!stats?.cis_by_os_db_system) return [];
+        return Object.entries(stats.cis_by_os_db_system)
             .map(([name, value]) => ({ name, value }))
             .sort((a, b) => b.value - a.value)
             .slice(0, 5); // Start with top 5
@@ -96,8 +96,8 @@ const Analysis: React.FC = () => {
         },
         {
             id: 'os',
-            title: 'OS Usage',
-            description: 'Distribution of operating systems across your fleet.',
+            title: 'OS/DB System Usage',
+            description: 'Distribution of operating systems and databases across your fleet.',
             icon: Monitor,
             path: '/analysis/os',
             color: '#F59E0B',
@@ -107,18 +107,19 @@ const Analysis: React.FC = () => {
                         <Pie
                             data={getOSData()}
                             cx="50%"
-                            cy="50%"
                             innerRadius={15}
                             outerRadius={25}
                             paddingAngle={2}
                             dataKey="value"
                         >
-                            {getOSData().map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                            ))}
-                        </Pie>
-                    </PieChart>
-                </ResponsiveContainer>
+                            {
+                                getOSData().map((_entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))
+                            }
+                        </Pie >
+                    </PieChart >
+                </ResponsiveContainer >
             )
         },
         {

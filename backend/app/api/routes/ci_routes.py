@@ -25,7 +25,7 @@ def list_configuration_items(
     # New Filters (List support)
     department: Optional[List[str]] = Query(None),
     location: Optional[List[str]] = Query(None),
-    operating_system: Optional[List[str]] = Query(None),
+    os_db_system: Optional[List[str]] = Query(None),
     cost_center: Optional[List[str]] = Query(None),
     sla: Optional[List[str]] = Query(None),
     environment: Optional[List[str]] = Query(None),
@@ -59,8 +59,8 @@ def list_configuration_items(
     if location:
         query = query.filter(ConfigurationItem.location.in_(location))
         
-    if operating_system:
-        query = query.filter(ConfigurationItem.operating_system.in_(operating_system))
+    if os_db_system:
+        query = query.filter(ConfigurationItem.os_db_system.in_(os_db_system))
         
     if cost_center:
         query = query.filter(ConfigurationItem.cost_center.in_(cost_center))
@@ -100,8 +100,8 @@ def list_configuration_items(
         elif sort_by == 'cost_center':
             sort_field = ConfigurationItem.cost_center
             is_string_field = True
-        elif sort_by == 'operating_system':
-            sort_field = ConfigurationItem.operating_system
+        elif sort_by == 'os_db_system':
+            sort_field = ConfigurationItem.os_db_system
             is_string_field = True
         elif sort_by == 'domain':
             sort_field = ConfigurationItem.domain
@@ -252,7 +252,7 @@ def get_distinct_attribute_values(
     allowed_fields = {
         'department': ConfigurationItem.department,
         'location': ConfigurationItem.location,
-        'operating_system': ConfigurationItem.operating_system,
+        'os_db_system': ConfigurationItem.os_db_system,
         'cost_center': ConfigurationItem.cost_center,
         'sla': ConfigurationItem.sla,
         'environment': ConfigurationItem.environment,
