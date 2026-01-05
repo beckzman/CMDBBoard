@@ -1,0 +1,374 @@
+[
+  {
+    "action": "unchanged",
+    "ci_id": 1921,
+    "ci_name": "BRM-DEV-DCP",
+    "timestamp": "2026-01-05T14:23:52.990048"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2072,
+    "ci_name": "BRM-TST-MOD02",
+    "timestamp": "2026-01-05T14:23:52.996650"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1698,
+    "ci_name": "AMDBPT06",
+    "timestamp": "2026-01-05T14:23:53.002259"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1689,
+    "ci_name": "AMDBPP01",
+    "timestamp": "2026-01-05T14:23:53.005901"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1677,
+    "ci_name": "AMBPP02",
+    "timestamp": "2026-01-05T14:23:53.009518"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1678,
+    "ci_name": "AMBPP03",
+    "timestamp": "2026-01-05T14:23:53.013604"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1688,
+    "ci_name": "AMDBAT01",
+    "timestamp": "2026-01-05T14:23:53.018549"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1697,
+    "ci_name": "AMDBPT04",
+    "timestamp": "2026-01-05T14:23:53.022184"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1648,
+    "ci_name": "AMBAP1",
+    "timestamp": "2026-01-05T14:23:53.025648"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1690,
+    "ci_name": "AMDBPP02",
+    "timestamp": "2026-01-05T14:23:53.029490"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1670,
+    "ci_name": "AMBNIM01",
+    "timestamp": "2026-01-05T14:23:53.032993"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1699,
+    "ci_name": "AMDBPT07",
+    "timestamp": "2026-01-05T14:23:53.036366"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1676,
+    "ci_name": "AMBPP01",
+    "timestamp": "2026-01-05T14:23:53.040241"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1679,
+    "ci_name": "AMBPP04",
+    "timestamp": "2026-01-05T14:23:53.044317"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1695,
+    "ci_name": "AMDBPT02",
+    "timestamp": "2026-01-05T14:23:53.047937"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1696,
+    "ci_name": "AMDBPT03",
+    "timestamp": "2026-01-05T14:23:53.051959"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1671,
+    "ci_name": "AMBNIM02",
+    "timestamp": "2026-01-05T14:23:53.056898"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2126,
+    "ci_name": "CADBPP01",
+    "timestamp": "2026-01-05T14:23:53.063577"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2127,
+    "ci_name": "CADBPP02",
+    "timestamp": "2026-01-05T14:23:53.067428"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2125,
+    "ci_name": "CADBAT01",
+    "timestamp": "2026-01-05T14:23:53.071177"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2128,
+    "ci_name": "D3DBAP01",
+    "timestamp": "2026-01-05T14:23:53.075105"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2129,
+    "ci_name": "D3DBAT01",
+    "timestamp": "2026-01-05T14:23:53.078707"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2137,
+    "ci_name": "DWDBAT01",
+    "timestamp": "2026-01-05T14:23:53.082901"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2134,
+    "ci_name": "DIDBPP03",
+    "timestamp": "2026-01-05T14:23:53.087424"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2135,
+    "ci_name": "DIDBPP04",
+    "timestamp": "2026-01-05T14:23:53.093152"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2132,
+    "ci_name": "DIDBPP01",
+    "timestamp": "2026-01-05T14:23:53.097267"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2131,
+    "ci_name": "DIDBAT01",
+    "timestamp": "2026-01-05T14:23:53.101182"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2141,
+    "ci_name": "EMPP02",
+    "timestamp": "2026-01-05T14:23:53.104943"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2140,
+    "ci_name": "EMPP01",
+    "timestamp": "2026-01-05T14:23:53.108828"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2165,
+    "ci_name": "HODBPP03",
+    "timestamp": "2026-01-05T14:23:53.112848"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2166,
+    "ci_name": "HODBPP04",
+    "timestamp": "2026-01-05T14:23:53.116313"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1921,
+    "ci_name": "BRM-DEV-DCP",
+    "timestamp": "2026-01-05T14:23:53.916043"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2072,
+    "ci_name": "BRM-TST-MOD02",
+    "timestamp": "2026-01-05T14:23:53.921411"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1698,
+    "ci_name": "AMDBPT06",
+    "timestamp": "2026-01-05T14:23:53.927767"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1689,
+    "ci_name": "AMDBPP01",
+    "timestamp": "2026-01-05T14:23:53.931526"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1677,
+    "ci_name": "AMBPP02",
+    "timestamp": "2026-01-05T14:23:53.935026"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1678,
+    "ci_name": "AMBPP03",
+    "timestamp": "2026-01-05T14:23:53.938752"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1688,
+    "ci_name": "AMDBAT01",
+    "timestamp": "2026-01-05T14:23:53.943539"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1697,
+    "ci_name": "AMDBPT04",
+    "timestamp": "2026-01-05T14:23:53.947437"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1648,
+    "ci_name": "AMBAP1",
+    "timestamp": "2026-01-05T14:23:53.950608"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1690,
+    "ci_name": "AMDBPP02",
+    "timestamp": "2026-01-05T14:23:53.954297"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1670,
+    "ci_name": "AMBNIM01",
+    "timestamp": "2026-01-05T14:23:53.958055"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1699,
+    "ci_name": "AMDBPT07",
+    "timestamp": "2026-01-05T14:23:53.961987"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1676,
+    "ci_name": "AMBPP01",
+    "timestamp": "2026-01-05T14:23:53.965630"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1679,
+    "ci_name": "AMBPP04",
+    "timestamp": "2026-01-05T14:23:53.969778"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1695,
+    "ci_name": "AMDBPT02",
+    "timestamp": "2026-01-05T14:23:53.974065"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1696,
+    "ci_name": "AMDBPT03",
+    "timestamp": "2026-01-05T14:23:53.978504"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1671,
+    "ci_name": "AMBNIM02",
+    "timestamp": "2026-01-05T14:23:53.982592"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2126,
+    "ci_name": "CADBPP01",
+    "timestamp": "2026-01-05T14:23:53.990221"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2127,
+    "ci_name": "CADBPP02",
+    "timestamp": "2026-01-05T14:23:53.994473"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2125,
+    "ci_name": "CADBAT01",
+    "timestamp": "2026-01-05T14:23:53.998315"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2128,
+    "ci_name": "D3DBAP01",
+    "timestamp": "2026-01-05T14:23:54.002197"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2129,
+    "ci_name": "D3DBAT01",
+    "timestamp": "2026-01-05T14:23:54.005997"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2137,
+    "ci_name": "DWDBAT01",
+    "timestamp": "2026-01-05T14:23:54.009971"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2134,
+    "ci_name": "DIDBPP03",
+    "timestamp": "2026-01-05T14:23:54.013828"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2135,
+    "ci_name": "DIDBPP04",
+    "timestamp": "2026-01-05T14:23:54.018448"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2132,
+    "ci_name": "DIDBPP01",
+    "timestamp": "2026-01-05T14:23:54.022479"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2131,
+    "ci_name": "DIDBAT01",
+    "timestamp": "2026-01-05T14:23:54.026774"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2141,
+    "ci_name": "EMPP02",
+    "timestamp": "2026-01-05T14:23:54.030882"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2140,
+    "ci_name": "EMPP01",
+    "timestamp": "2026-01-05T14:23:54.034739"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2165,
+    "ci_name": "HODBPP03",
+    "timestamp": "2026-01-05T14:23:54.038476"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2166,
+    "ci_name": "HODBPP04",
+    "timestamp": "2026-01-05T14:23:54.042053"
+  }
+]

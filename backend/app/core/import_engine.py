@@ -3,7 +3,7 @@ Import Engine for CMDB.
 Handles data fetching from external sources and reconciliation with internal CIs.
 """
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Iterator
 import logging
 import json
 from datetime import datetime
@@ -29,8 +29,8 @@ class Connector(ABC):
         self.config = config
 
     @abstractmethod
-    def fetch_data(self) -> List[Dict[str, Any]]:
-        """Fetch data from the external source."""
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
+        """Fetch data from the external source, yielding batches."""
         pass
 
     @abstractmethod
@@ -52,7 +52,7 @@ class Connector(ABC):
 class SharePointConnector(Connector):
     """Connector for SharePoint Lists."""
     
-    def fetch_data(self) -> List[Dict[str, Any]]:
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
         """Fetch data from SharePoint list."""
         from office365.sharepoint.client_context import ClientContext
         from office365.runtime.auth.user_credential import UserCredential
@@ -90,7 +90,7 @@ class SharePointConnector(Connector):
                 result.append(item_dict)
             
             logger.info(f"Successfully fetched {len(result)} items from SharePoint list '{list_name}'")
-            return result
+            yield result
             
         except Exception as e:
             logger.error(f"SharePoint fetch error: {e}")
@@ -169,9 +169,10 @@ class SharePointConnector(Connector):
 class IDoitConnector(Connector):
     """Connector for i-doit JSON-RPC API."""
     
-    def fetch_data(self) -> List[Dict[str, Any]]:
-        """Fetch data from i-doit via JSON-RPC API."""
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
+        """Fetch data from i-doit via JSON-RPC API with pagination."""
         import requests
+        import time
         
         try:
             api_url = self.config.get('api_url')
@@ -182,68 +183,149 @@ class IDoitConnector(Connector):
             
             logger.info(f"Connecting to i-doit: {api_url}")
             
-            # Prepare JSON-RPC request
-            payload = {
+            # Prepare Base Filter
+            obj_filter = {
+                "type": self.config.get('category')  # Filter by object type if configured
+            }
+
+            # Incremental Import: Filter by update time if last_run is present
+            last_run = self.config.get('last_run')
+            if last_run:
+                # i-doit expects specific date format or comparison operator
+                logger.info(f"Incremental Import: Fetching objects updated since {last_run}")
+                # Removing 'T' from isoformat if present for SQL-like compatibility often used by PHP apps
+                clean_date = last_run.replace('T', ' ').split('.')[0]
+                obj_filter["updated"] = { "from": clean_date }
+            
+            # Dynamic Category Optimization: Only fetch categories that are used in the mapping
+            # Always fetch GLOBAL as it contains core info
+            active_categories = {"C__CATG__GLOBAL"}
+            
+            # List of all supported/relevant i-doit categories to check against
+            known_categories = [
+                "C__CATG__IP", 
+                "C__CATG__MODEL", 
+                "C__CATG__CPU", 
+                "C__CATG__MEMORY", 
+                "C__CATG__OPERATING_SYSTEM",
+                "C__CATG__LOCATION",
+                "C__CATG__CONTACT",
+                "C__CATG__ACCOUNTING",
+                "C__CATG__NETWORK",
+                "C__CATG__INTERFACE",
+                "C__CATG__DRIVE"
+            ]
+
+            # Check field mappings to see which categories are required
+            mappings = self.config.get('field_mapping', {}).values()
+            flat_mappings = str(list(mappings)) # simple string check is sufficient and faster
+
+            for cat in known_categories:
+                if cat in flat_mappings:
+                    active_categories.add(cat)
+            
+            logger.info(f"Fetching categories: {active_categories}")
+
+            # STEP 1: Fetch ALL IDs (lightweight)
+            logger.info("Step 1: Fetching all relevant object IDs from i-doit...")
+            
+            id_filter = obj_filter.copy()
+            id_payload = {
                 "jsonrpc": "2.0",
                 "method": "cmdb.objects.read",
                 "params": {
                     "apikey": api_key,
-                    "filter": {
-                        "type": self.config.get('category')  # Filter by object type if configured
-                    },
-                    "categories": [
-                        "C__CATG__GLOBAL", 
-                        "C__CATG__IP", 
-                        "C__CATG__MODEL", 
-                        "C__CATG__CPU", 
-                        "C__CATG__MEMORY",
-                        "C__CATG__OPERATING_SYSTEM",
-                        "C__CATG__LOCATION",
-                        "C__CATG__CONTACT",
-                        "C__CATG__ACCOUNTING"
-                    ]
+                    "filter": id_filter,
+                    "categories": ["C__CATG__GLOBAL"],
+                    "limit": 10000, 
+                    "order_by": "id",
+                    "sort": "ASC"
                 },
                 "id": 1
             }
             
-            # Make request
             response = requests.post(
                 api_url,
-                json=payload,
+                json=id_payload,
                 headers={'Content-Type': 'application/json'},
-                timeout=30
+                timeout=120
             )
             response.raise_for_status()
-            
-            # Parse response
             result = response.json()
             
             if 'error' in result:
-                error_msg = result['error'].get('message', 'Unknown error')
-                raise ValueError(f"i-doit API error: {error_msg}")
+                raise ValueError(f"i-doit API error (fetching IDs): {result['error']}")
             
-            objects = result.get('result', [])
+            all_items = result.get('result', [])
+            all_ids = []
+            for item in all_items:
+                if 'id' in item:
+                    all_ids.append(int(item['id']))
             
-            # Clean FQDN if configured
-            if self.config.get('clean_fqdn'):
-                logger.info("Cleaning FQDNs from i-doit objects...")
-                for obj in objects:
-                    if 'title' in obj and isinstance(obj['title'], str) and '.' in obj['title']:
-                        original = obj['title']
-                        cleaned = original.split('.')[0]
-                        obj['title'] = cleaned
-                        # logger.debug(f"Cleaned FQDN: {original} -> {cleaned}")
+            logger.info(f"Found {len(all_ids)} objects to import. Starting batch fetch...")
+            
+            if not all_ids:
+                return
 
-            logger.info(f"Successfully fetched {len(objects)} objects from i-doit")
+            # STEP 2: Fetch details in chunks
+            chunk_size = 50
             
-            return objects
-            
+            for i in range(0, len(all_ids), chunk_size):
+                chunk_ids = all_ids[i:i + chunk_size]
+                
+                logger.info(f"Fetching batch {i//chunk_size + 1}: {len(chunk_ids)} items")
+                
+                batch_filter = {
+                    "ids": chunk_ids
+                }
+                
+                batch_payload = {
+                    "jsonrpc": "2.0",
+                    "method": "cmdb.objects.read",
+                    "params": {
+                        "apikey": api_key,
+                        "filter": batch_filter,
+                        "categories": list(active_categories),
+                    },
+                    "id": i
+                }
+                
+                try:
+                    batch_response = requests.post(
+                        api_url,
+                        json=batch_payload,
+                        headers={'Content-Type': 'application/json'},
+                        timeout=120
+                    )
+                    batch_response.raise_for_status()
+                    batch_result = batch_response.json()
+                    
+                    if 'error' in batch_result:
+                        logger.error(f"Error fetching batch {chunk_ids}: {batch_result['error']}")
+                        continue
+                        
+                    batch = batch_result.get('result', [])
+                    
+                    # Clean FQDN if configured
+                    if self.config.get('clean_fqdn'):
+                        for obj in batch:
+                            if 'title' in obj and isinstance(obj['title'], str) and '.' in obj['title']:
+                                obj['title'] = obj['title'].split('.')[0]
+                                
+                    yield batch
+                    
+                    # Be gentle on the server
+                    time.sleep(0.2)
+                    
+                except Exception as e:
+                    logger.error(f"Failed to fetch batch starting at index {i}: {e}")
+                    continue
+
         except requests.exceptions.RequestException as e:
             logger.error(f"i-doit connection error: {e}")
             raise ValueError(f"Failed to connect to i-doit: {str(e)}")
-        except Exception as e:
-            logger.error(f"i-doit fetch error: {e}")
-            raise ValueError(f"Failed to fetch data from i-doit: {str(e)}")
+        
+        logger.info(f"Finished fetching data from i-doit")
 
     def test_connection(self) -> bool:
         """Test connection to i-doit API."""
@@ -486,7 +568,7 @@ class IDoitConnector(Connector):
 class OracleConnector(Connector):
     """Connector for Oracle Database."""
 
-    def fetch_data(self) -> List[Dict[str, Any]]:
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
         logger.info("Fetching data from Oracle DB...")
         try:
             # Extract config
@@ -510,7 +592,7 @@ class OracleConnector(Connector):
                     cursor.rowfactory = lambda *args: dict(zip(columns, args))
                     
                     rows = cursor.fetchall()
-                    return rows
+                    yield rows
                     
         except oracledb.Error as e:
             logger.error(f"Oracle DB Error: {e}")
@@ -564,7 +646,7 @@ class OracleConnector(Connector):
 class CSVConnector(Connector):
     """Connector for Local CSV Files."""
 
-    def fetch_data(self) -> List[Dict[str, Any]]:
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
         file_path = self.config.get('file_path')
         logger.info(f"Reading data from CSV file: {file_path}")
         
@@ -578,7 +660,7 @@ class CSVConnector(Connector):
             df = pd.read_csv(file_path)
             # Replace NaN with None for JSON compatibility
             df = df.where(pd.notnull(df), None)
-            return df.to_dict('records')
+            yield df.to_dict('records')
             
         except Exception as e:
             logger.error(f"Error reading CSV file: {e}")
@@ -650,35 +732,64 @@ class ReconciliationService:
             if not connector:
                 raise ValueError(f"Unknown source type: {self.source.source_type}")
 
-            raw_data = connector.fetch_data()
-            self.log.records_processed = len(raw_data)
+            # Stream data in batches
+            self.log.records_processed = 0
             
+            # Prepare log file path early to enable incremental writing
+            log_dir = os.path.join(os.getcwd(), "logs")
+            os.makedirs(log_dir, exist_ok=True)
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"import_{self.source.id}_{timestamp}.json"
+            filepath = os.path.join(log_dir, filename)
+            
+            raw_data_generator = connector.fetch_data()
             errors = []
-            for raw_record in raw_data:
-                try:
-                    # Map external data to CMDB format
-                    mapped_record = self.field_mapper.map_data(raw_record)
-                    self._process_record(mapped_record, raw_record)
-                except Exception as e:
-                    logger.error(f"Failed to process record: {e}")
-                    self.db.rollback()  # Reset session state after failure
-                    self.log.records_failed += 1
-                    errors.append({
-                        "record": str(raw_record),
-                        "error": str(e)
-                    })
             
-            # Write audit log to file
+            for batch in raw_data_generator:
+                batch_count = 0
+                for raw_record in batch:
+                    try:
+                        self.log.records_processed += 1
+                        batch_count += 1
+                        
+                        # Map external data to CMDB format
+                        mapped_record = self.field_mapper.map_data(raw_record)
+                        self._process_record(mapped_record, raw_record)
+                    except Exception as e:
+                        logger.error(f"Failed to process record: {e}")
+                        self.db.rollback()  # Reset session state after failure
+                        self.log.records_failed += 1
+                        errors.append({
+                            "record": str(raw_record),
+                            "error": str(e)
+                        })
+                
+                # Commit progress and write log after every batch
+                try:
+                    self.db.commit()
+                    # Refresh log object to prevent stale data
+                    self.db.refresh(self.log)
+                    
+                    # Incremental Log Write: Overwrite file with current state
+                    # This ensures we have logs even if the process dies
+                    with open(filepath, 'w') as f:
+                        json.dump(self.audit_log, f, indent=2, default=str)
+                        
+                    # Update details in DB with file path
+                    summary_data = {
+                        "log_file": filepath,
+                        "summary": f"In Progress: Processed {self.log.records_processed}...",
+                        "errors": errors
+                    }
+                    self.log.details = json.dumps(summary_data)
+                    self.db.commit() # Commit the detail update
+                    
+                except Exception as e:
+                    logger.error(f"Failed to commit batch progress or write logs: {e}")
+                    self.db.rollback()
+            
+            # Final Write audit log to file (to ensure completion)
             try:
-                # Create logs directory if it doesn't exist
-                # Ensure we are relative to the application root (assuming cwd is app root)
-                log_dir = os.path.join(os.getcwd(), "logs")
-                os.makedirs(log_dir, exist_ok=True)
-                
-                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-                filename = f"import_{self.source.id}_{timestamp}.json"
-                filepath = os.path.join(log_dir, filename)
-                
                 with open(filepath, 'w') as f:
                     json.dump(self.audit_log, f, indent=2, default=str)
                 
@@ -710,6 +821,10 @@ class ReconciliationService:
             self.db.commit()
 
     def _get_connector(self) -> Optional[Connector]:
+        # Inject last_run into config for incremental imports
+        if self.source.last_run:
+            self.config['last_run'] = self.source.last_run.isoformat()
+
         if self.source.source_type == "sharepoint":
             return SharePointConnector(self.config)
         elif self.source.source_type == "idoit":
@@ -743,9 +858,10 @@ class ReconciliationService:
 
         if ci:
             # Update existing CI
-            self._update_ci(ci, mapped_record, raw_record)
+            was_updated = self._update_ci(ci, mapped_record, raw_record)
             self.log.records_success += 1
-            self.log.records_updated += 1
+            if was_updated:
+                self.log.records_updated += 1
         elif self.recon_config.update_mode == 'upsert':
             # Create new CI only if in upsert mode
             self._create_ci(mapped_record, raw_record)
@@ -790,8 +906,8 @@ class ReconciliationService:
             "timestamp": datetime.utcnow().isoformat()
         })
 
-    def _update_ci(self, ci: ConfigurationItem, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]):
-        """Update existing CI based on conflict resolution rules."""
+    def _update_ci(self, ci: ConfigurationItem, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> bool:
+        """Update existing CI based on conflict resolution rules. Returns True if changes were made."""
         # Track changes for audit log
         changes = {}
         updated_fields = []
@@ -816,13 +932,17 @@ class ReconciliationService:
                     # Capture old value before update
                     old_value = getattr(ci, field_name)
                     
+                    # Normalization for comparison (convert to string to be safe)
+                    str_old = str(old_value) if old_value is not None else ""
+                    str_new = str(value) if value is not None else ""
+                    
                     # Only update if value actually changed
-                    if old_value != value:
+                    if str_old != str_new:
                         setattr(ci, field_name, value)
                         updated_fields.append(field_name)
                         changes[field_name] = {
-                            "old": str(old_value),
-                            "new": str(value)
+                            "old": str_old,
+                            "new": str_new
                         }
         
         # Always update sync metadata
@@ -832,9 +952,9 @@ class ReconciliationService:
             ci.external_id = raw_record.get('id') or raw_record.get('ID')
         
         self.db.commit()
-        logger.info(f"Updated CI: {ci.name} (fields: {', '.join(updated_fields)})")
         
         if changes:
+            logger.info(f"Updated CI: {ci.name} (fields: {', '.join(updated_fields)})")
             self.audit_log.append({
                 "action": "updated",
                 "ci_id": ci.id,
@@ -842,6 +962,18 @@ class ReconciliationService:
                 "changes": changes,
                 "timestamp": datetime.utcnow().isoformat()
             })
+            return True
+        else:
+            # Debug: Log that we saw it but changed nothing
+            # This helps users understand why "Records Processed" is high but "Updated" is low (now that we fixed the counter)
+            # OR if they use 'Updated' to mean 'Reconciled', we clarify here.
+            self.audit_log.append({
+                "action": "unchanged",
+                "ci_id": ci.id,
+                "ci_name": ci.name,
+                "timestamp": datetime.utcnow().isoformat()
+            })
+            return False
 
     def _parse_ci_type(self, type_str: Optional[str]) -> CIType:
         """Parse CI type from string."""

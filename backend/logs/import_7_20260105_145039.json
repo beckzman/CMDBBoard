@@ -1,0 +1,6956 @@
+[
+  {
+    "action": "unchanged",
+    "ci_id": 1921,
+    "ci_name": "BRM-DEV-DCP",
+    "timestamp": "2026-01-05T14:50:44.070424"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2072,
+    "ci_name": "BRM-TST-MOD02",
+    "timestamp": "2026-01-05T14:50:44.077728"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1698,
+    "ci_name": "AMDBPT06",
+    "timestamp": "2026-01-05T14:50:44.084262"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1689,
+    "ci_name": "AMDBPP01",
+    "timestamp": "2026-01-05T14:50:44.088988"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1677,
+    "ci_name": "AMBPP02",
+    "timestamp": "2026-01-05T14:50:44.093568"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1678,
+    "ci_name": "AMBPP03",
+    "timestamp": "2026-01-05T14:50:44.097939"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1688,
+    "ci_name": "AMDBAT01",
+    "timestamp": "2026-01-05T14:50:44.103122"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1697,
+    "ci_name": "AMDBPT04",
+    "timestamp": "2026-01-05T14:50:44.107150"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1648,
+    "ci_name": "AMBAP1",
+    "timestamp": "2026-01-05T14:50:44.111366"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1690,
+    "ci_name": "AMDBPP02",
+    "timestamp": "2026-01-05T14:50:44.115813"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1670,
+    "ci_name": "AMBNIM01",
+    "timestamp": "2026-01-05T14:50:44.120197"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1699,
+    "ci_name": "AMDBPT07",
+    "timestamp": "2026-01-05T14:50:44.124226"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1676,
+    "ci_name": "AMBPP01",
+    "timestamp": "2026-01-05T14:50:44.128390"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1679,
+    "ci_name": "AMBPP04",
+    "timestamp": "2026-01-05T14:50:44.132491"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1695,
+    "ci_name": "AMDBPT02",
+    "timestamp": "2026-01-05T14:50:44.136641"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1696,
+    "ci_name": "AMDBPT03",
+    "timestamp": "2026-01-05T14:50:44.140841"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1671,
+    "ci_name": "AMBNIM02",
+    "timestamp": "2026-01-05T14:50:44.144865"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2126,
+    "ci_name": "CADBPP01",
+    "timestamp": "2026-01-05T14:50:44.151791"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2127,
+    "ci_name": "CADBPP02",
+    "timestamp": "2026-01-05T14:50:44.157030"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2125,
+    "ci_name": "CADBAT01",
+    "timestamp": "2026-01-05T14:50:44.161936"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2128,
+    "ci_name": "D3DBAP01",
+    "timestamp": "2026-01-05T14:50:44.166356"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2129,
+    "ci_name": "D3DBAT01",
+    "timestamp": "2026-01-05T14:50:44.171028"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2137,
+    "ci_name": "DWDBAT01",
+    "timestamp": "2026-01-05T14:50:44.175847"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2134,
+    "ci_name": "DIDBPP03",
+    "timestamp": "2026-01-05T14:50:44.180683"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2135,
+    "ci_name": "DIDBPP04",
+    "timestamp": "2026-01-05T14:50:44.186976"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2132,
+    "ci_name": "DIDBPP01",
+    "timestamp": "2026-01-05T14:50:44.192272"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2131,
+    "ci_name": "DIDBAT01",
+    "timestamp": "2026-01-05T14:50:44.196910"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2141,
+    "ci_name": "EMPP02",
+    "timestamp": "2026-01-05T14:50:44.201639"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2140,
+    "ci_name": "EMPP01",
+    "timestamp": "2026-01-05T14:50:44.206189"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2165,
+    "ci_name": "HODBPP03",
+    "timestamp": "2026-01-05T14:50:44.210653"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2166,
+    "ci_name": "HODBPP04",
+    "timestamp": "2026-01-05T14:50:44.215120"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2189,
+    "ci_name": "KWPP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.028231"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2190,
+    "ci_name": "KWPP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.040523"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2192,
+    "ci_name": "KWPP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.048366"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2194,
+    "ci_name": "KWPP06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.060098"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2193,
+    "ci_name": "KWPP05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.065948"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2241,
+    "ci_name": "QSDBPP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.073379"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2240,
+    "ci_name": "QSDBPP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.078309"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2239,
+    "ci_name": "QSDBAT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.082171"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2270,
+    "ci_name": "SAPPP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.086154"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2259,
+    "ci_name": "SAPAP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.091211"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2265,
+    "ci_name": "SAPAT07",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.095325"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1902,
+    "ci_name": "BRM-DCA-14",
+    "timestamp": "2026-01-05T14:50:45.099480"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2261,
+    "ci_name": "SAPAT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.104106"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2263,
+    "ci_name": "SAPAT03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.109538"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2258,
+    "ci_name": "SAPAE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.112751"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2264,
+    "ci_name": "SAPAT06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.116575"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2269,
+    "ci_name": "SAPPP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.120350"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2268,
+    "ci_name": "SAPPP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.124342"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2260,
+    "ci_name": "SAPAP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.127791"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2266,
+    "ci_name": "SAPAT08",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.131520"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2289,
+    "ci_name": "TESTAT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.135097"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2290,
+    "ci_name": "TESTAT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.138976"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2304,
+    "ci_name": "WLS12P1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.142866"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2303,
+    "ci_name": "WLS12E1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.148445"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2328,
+    "ci_name": "WWPP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.153723"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2327,
+    "ci_name": "WWPP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.158020"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2326,
+    "ci_name": "WWPP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.161792"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2325,
+    "ci_name": "WWPP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.165866"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2256,
+    "ci_name": "RZWEBVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.169562"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1702,
+    "ci_name": "AMONVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.175993"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1687,
+    "ci_name": "AMBWEBVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.181303"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2286,
+    "ci_name": "SWBLX009",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.185950"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1701,
+    "ci_name": "AMONVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.191528"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2285,
+    "ci_name": "SWBLX008",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.906710"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1711,
+    "ci_name": "AUTOVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.917427"
+  },
+  {
+    "action": "updated",
+    "ci_id": 93,
+    "ci_name": "apachebr1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.930388"
+  },
+  {
+    "action": "updated",
+    "ci_id": 94,
+    "ci_name": "apachebr2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.937284"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2182,
+    "ci_name": "KWBZVT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.943233"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2179,
+    "ci_name": "KWBZVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.950071"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2022,
+    "ci_name": "BRM-SMS-VCSP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.956268"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1716,
+    "ci_name": "B1VZVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.960263"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1712,
+    "ci_name": "B1ILVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.964249"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1718,
+    "ci_name": "B2VZVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.970059"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1717,
+    "ci_name": "B2VZVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.974283"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1661,
+    "ci_name": "AMBGASNETVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.979307"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1660,
+    "ci_name": "AMBGASNETVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.983585"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1659,
+    "ci_name": "AMBGASNETVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.987573"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2158,
+    "ci_name": "HOAPVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.991217"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2159,
+    "ci_name": "HOAPVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.995469"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2160,
+    "ci_name": "HOAPVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:45.999387"
+  },
+  {
+    "action": "updated",
+    "ci_id": 932,
+    "ci_name": "wwclvp02",
+    "changes": {
+      "location": {
+        "old": "",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.004114"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1733,
+    "ci_name": "BRM-APP-19",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.013062"
+  },
+  {
+    "action": "updated",
+    "ci_id": 788,
+    "ci_name": "maxve01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.020382"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2201,
+    "ci_name": "LDSGVE01",
+    "changes": {
+      "location": {
+        "old": "",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.025375"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2293,
+    "ci_name": "TESTVT03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.029236"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2148,
+    "ci_name": "ENTWVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.033054"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2149,
+    "ci_name": "ENTWVE03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.037293"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2291,
+    "ci_name": "TESTVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.041192"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2147,
+    "ci_name": "ENTWVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.045411"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2321,
+    "ci_name": "WWMAVSVE",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.049523"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2320,
+    "ci_name": "WWKFVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.053816"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2316,
+    "ci_name": "WWKFVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.057876"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2313,
+    "ci_name": "WWFSVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.062935"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2309,
+    "ci_name": "WWARVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.066897"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2318,
+    "ci_name": "WWKFVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.737473"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2070,
+    "ci_name": "BRM-TST-KWHG",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.743910"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2322,
+    "ci_name": "WWMAVSVP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.751765"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1951,
+    "ci_name": "BRM-DOM-10",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.760193"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1993,
+    "ci_name": "BRM-SMS-10",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.765027"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1734,
+    "ci_name": "BRM-APP-21",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.770097"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1753,
+    "ci_name": "BRM-APP-53",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.788510"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1752,
+    "ci_name": "BRM-APP-50",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.793500"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1852,
+    "ci_name": "BRM-APP-TK02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.797886"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1856,
+    "ci_name": "BRM-APP-VAULT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.801574"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1783,
+    "ci_name": "BRM-APP-EMS03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.805670"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1830,
+    "ci_name": "BRM-APP-QDRBG2VZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.811599"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1738,
+    "ci_name": "BRM-APP-28",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.816146"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1732,
+    "ci_name": "BRM-APP-17",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.821233"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1742,
+    "ci_name": "BRM-APP-34",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.824862"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1743,
+    "ci_name": "BRM-APP-37",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.828633"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1739,
+    "ci_name": "BRM-APP-29",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.832339"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1741,
+    "ci_name": "BRM-APP-32",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:46.835825"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1746,
+    "ci_name": "BRM-APP-42",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.578455"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1749,
+    "ci_name": "BRM-APP-47",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.584447"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1751,
+    "ci_name": "BRM-APP-49",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.586180"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1736,
+    "ci_name": "BRM-APP-24",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.588638"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1747,
+    "ci_name": "BRM-APP-43",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.590396"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1853,
+    "ci_name": "BRM-APP-TPLAND",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.592591"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1823,
+    "ci_name": "BRM-APP-PMS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.596039"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1810,
+    "ci_name": "BRM-APP-NEWTON",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.598779"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1731,
+    "ci_name": "BRM-APP-16",
+    "timestamp": "2026-01-05T14:50:47.601493"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1848,
+    "ci_name": "BRM-APP-TFS02B2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.605419"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1833,
+    "ci_name": "BRM-APP-QDRKWBZ-old",
+    "timestamp": "2026-01-05T14:50:47.610919"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1837,
+    "ci_name": "BRM-APP-QDRKWIL-old",
+    "timestamp": "2026-01-05T14:50:47.618149"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1808,
+    "ci_name": "BRM-APP-MQ01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.621121"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1829,
+    "ci_name": "BRM-APP-QDRBG1VZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.625331"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1959,
+    "ci_name": "BRM-FLS-1004",
+    "timestamp": "2026-01-05T14:50:47.628752"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1834,
+    "ci_name": "BRM-APP-QDRKWDG",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.632982"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1797,
+    "ci_name": "BRM-APP-KBKW01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.637145"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1799,
+    "ci_name": "BRM-APP-KBWW02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.641168"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1806,
+    "ci_name": "BRM-APP-MOSIB",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.645235"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1868,
+    "ci_name": "BRM-APP-XMD",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.648840"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1735,
+    "ci_name": "BRM-APP-23",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.653216"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1817,
+    "ci_name": "BRM-APP-OSPC-LD",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.657465"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1847,
+    "ci_name": "BRM-APP-TFS02B1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.662774"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1771,
+    "ci_name": "BRM-APP-BO02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.668154"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1764,
+    "ci_name": "BRM-APP-ATK1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.671737"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1776,
+    "ci_name": "BRM-APP-COW01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.675362"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1822,
+    "ci_name": "BRM-APP-PCFC01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.679580"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1952,
+    "ci_name": "BRM-DOM-91",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.683113"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1876,
+    "ci_name": "BRM-ARC-02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:47.688457"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1992,
+    "ci_name": "BRM-SMS-04",
+    "timestamp": "2026-01-05T14:50:48.325851"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2057,
+    "ci_name": "BRM-TST-ARC01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.337090"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2052,
+    "ci_name": "BRM-TST-13",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.345643"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2122,
+    "ci_name": "BRM-WWW-HOP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.358818"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1953,
+    "ci_name": "BRM-DOM-99",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.366272"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1939,
+    "ci_name": "BRM-DEV-OPS02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.370584"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2050,
+    "ci_name": "BRM-TST-09",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.374971"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2121,
+    "ci_name": "BRM-WWW-FTP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.382053"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2120,
+    "ci_name": "BRM-WWW-03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.386493"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1879,
+    "ci_name": "BRM-BKP-VM02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.397645"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1973,
+    "ci_name": "BRM-PKI-02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.402521"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2002,
+    "ci_name": "BRM-SMS-CMFP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.406174"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1828,
+    "ci_name": "BRM-APP-QDRB2VZ",
+    "timestamp": "2026-01-05T14:50:48.410135"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1940,
+    "ci_name": "BRM-DEV-PCFC01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.414662"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2071,
+    "ci_name": "BRM-TST-MOD01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.421912"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2073,
+    "ci_name": "BRM-TST-MQ01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.426272"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1994,
+    "ci_name": "BRM-SMS-14",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.430601"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 854,
+    "ci_name": "rzdpgrevp03",
+    "timestamp": "2026-01-05T14:50:48.434538"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2074,
+    "ci_name": "BRM-TST-NEWTON",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.438287"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1991,
+    "ci_name": "BRM-SMS-03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.441879"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2046,
+    "ci_name": "BRM-TRM-DSC01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.446222"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1937,
+    "ci_name": "BRM-DEV-NEWTON",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:48.450088"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1877,
+    "ci_name": "BRM-BKP-FW02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.132819"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2078,
+    "ci_name": "BRM-TST-QDR02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.144603"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2040,
+    "ci_name": "BRM-TRM-05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.153046"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2049,
+    "ci_name": "BRM-TST-04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.167232"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1924,
+    "ci_name": "BRM-DEV-DOT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.172247"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1955,
+    "ci_name": "BRM-FLS-05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.176408"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2020,
+    "ci_name": "BRM-SMS-TIA01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.180175"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2075,
+    "ci_name": "BRM-TST-PCFC01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.185637"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1908,
+    "ci_name": "BRM-DEV-12",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.189943"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2055,
+    "ci_name": "BRM-TST-48",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.195858"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2041,
+    "ci_name": "BRM-TRM-07",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.200863"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2279,
+    "ci_name": "SWBAS005",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.204366"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1944,
+    "ci_name": "BRM-DEV-QDR02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.212234"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2297,
+    "ci_name": "TPDBGLUEH01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "KW,Arcelor Bremen, RZ-KW"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.215901"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1657,
+    "ci_name": "AMBDSCTECS02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.220109"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1656,
+    "ci_name": "AMBDSCTECS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.223721"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1653,
+    "ci_name": "AMBDSC2PROS02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.227160"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1655,
+    "ci_name": "AMBDSCOPCS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.230592"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2214,
+    "ci_name": "Puppet",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.234753"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2208,
+    "ci_name": "MAXVP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.240346"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2177,
+    "ci_name": "KFZBVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.243700"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2161,
+    "ci_name": "HOAPVP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.247899"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1663,
+    "ci_name": "AMBIPA2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.967665"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1662,
+    "ci_name": "AMBIPA1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.976140"
+  },
+  {
+    "action": "updated",
+    "ci_id": 420,
+    "ci_name": "brm-mos-vdi01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.983450"
+  },
+  {
+    "action": "updated",
+    "ci_id": 792,
+    "ci_name": "maxvp02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:49.989129"
+  },
+  {
+    "action": "updated",
+    "ci_id": 791,
+    "ci_name": "maxvp01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.002770"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1901,
+    "ci_name": "BRM-DCA-01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.007592"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2280,
+    "ci_name": "SWBAS043",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.020574"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1938,
+    "ci_name": "BRM-DEV-OPS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.024060"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1765,
+    "ci_name": "BRM-APP-BLD01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.028649"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2082,
+    "ci_name": "BRM-TST-WAAGE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.032260"
+  },
+  {
+    "action": "updated",
+    "ci_id": 494,
+    "ci_name": "brm-sms-wdm01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.036019"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1792,
+    "ci_name": "BRM-APP-HBBIB01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.040714"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1794,
+    "ci_name": "BRM-APP-IZYTRON",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.045115"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2207,
+    "ci_name": "MAXVE03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.796654"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2008,
+    "ci_name": "BRM-SMS-ESRS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.815591"
+  },
+  {
+    "action": "updated",
+    "ci_id": 481,
+    "ci_name": "brm-sms-kwl1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.820404"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2031,
+    "ci_name": "BRM-SQL-CORMAS1",
+    "timestamp": "2026-01-05T14:50:50.828657"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2020,
+    "ci_name": "BRM-SMS-TIA01",
+    "timestamp": "2026-01-05T14:50:50.832754"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2064,
+    "ci_name": "BRM-TST-GPQS19",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:50.844742"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2212,
+    "ci_name": "NVR-VIDEO-UMW2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:51.790677"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1770,
+    "ci_name": "BRM-APP-BO01-N",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:51.809208"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2035,
+    "ci_name": "BRM-SQL-HBBPRD",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:51.817434"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2034,
+    "ci_name": "BRM-SQL-DCPKWBZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:51.837821"
+  },
+  {
+    "action": "updated",
+    "ci_id": 570,
+    "ci_name": "brm-tst-gns14",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:51.849842"
+  },
+  {
+    "action": "updated",
+    "ci_id": 473,
+    "ci_name": "brm-sms-gn01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.554640"
+  },
+  {
+    "action": "updated",
+    "ci_id": 507,
+    "ci_name": "brm-sql-gnsrs01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.561286"
+  },
+  {
+    "action": "updated",
+    "ci_id": 559,
+    "ci_name": "brm-tst-gns02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.567295"
+  },
+  {
+    "action": "updated",
+    "ci_id": 560,
+    "ci_name": "brm-tst-gns03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.574127"
+  },
+  {
+    "action": "updated",
+    "ci_id": 563,
+    "ci_name": "brm-tst-gns07",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.577730"
+  },
+  {
+    "action": "updated",
+    "ci_id": 561,
+    "ci_name": "brm-tst-gns04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.581693"
+  },
+  {
+    "action": "updated",
+    "ci_id": 562,
+    "ci_name": "brm-tst-gns05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.584890"
+  },
+  {
+    "action": "updated",
+    "ci_id": 564,
+    "ci_name": "brm-tst-gns08",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.588779"
+  },
+  {
+    "action": "updated",
+    "ci_id": 565,
+    "ci_name": "brm-tst-gns09",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.592306"
+  },
+  {
+    "action": "updated",
+    "ci_id": 566,
+    "ci_name": "brm-tst-gns10",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.595979"
+  },
+  {
+    "action": "updated",
+    "ci_id": 558,
+    "ci_name": "brm-tst-gns01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.599464"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2086,
+    "ci_name": "BRM-TST-XMD",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.605596"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1748,
+    "ci_name": "BRM-APP-44",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.609118"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1658,
+    "ci_name": "AMBEVSVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.612493"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1917,
+    "ci_name": "BRM-DEV-BUILD03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:52.619172"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1945,
+    "ci_name": "BRM-DEV-SG01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:53.294758"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1840,
+    "ci_name": "BRM-APP-SG01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:53.304176"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1916,
+    "ci_name": "BRM-DEV-BUILD02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:53.311504"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2317,
+    "ci_name": "WWKFVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:53.331886"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2197,
+    "ci_name": "LDDBPP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.096649"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2196,
+    "ci_name": "LDDBPP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.100966"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1673,
+    "ci_name": "AMBORAVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.107189"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2273,
+    "ci_name": "SASVP06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.111536"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2305,
+    "ci_name": "WLS12P2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.119524"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2306,
+    "ci_name": "WLS12P3",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.125242"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2307,
+    "ci_name": "WLS12P4",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.130449"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2308,
+    "ci_name": "WLS12P5",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.134132"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2310,
+    "ci_name": "WWARVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.138099"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2250,
+    "ci_name": "RZDPVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.143699"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2330,
+    "ci_name": "WWPRVSVP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.149490"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2331,
+    "ci_name": "WWPRVSVT",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.153577"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2329,
+    "ci_name": "WWPRVSVE",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.157704"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2296,
+    "ci_name": "TotemBR1",
+    "timestamp": "2026-01-05T14:50:54.164633"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1819,
+    "ci_name": "BRM-APP-OSPC-TH",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.168150"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2248,
+    "ci_name": "RZDPGREVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.171802"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1680,
+    "ci_name": "AMBSCOOP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.176558"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1777,
+    "ci_name": "BRM-APP-CUSTO",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.905861"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1754,
+    "ci_name": "BRM-APP-54",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.923651"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2062,
+    "ci_name": "BRM-TST-GASNET1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.930413"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2209,
+    "ci_name": "MAXVP05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.954446"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1865,
+    "ci_name": "BRM-APP-WAAGE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.958901"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2138,
+    "ci_name": "DWH3",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.967477"
+  },
+  {
+    "action": "updated",
+    "ci_id": 192,
+    "ci_name": "brm-app-kafka01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.973167"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2139,
+    "ci_name": "DWH5",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.976986"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2232,
+    "ci_name": "PVMP12V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.981463"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2231,
+    "ci_name": "PVMP12V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.984958"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2217,
+    "ci_name": "PVMP07V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.988551"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2216,
+    "ci_name": "PVMP07V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.991941"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2226,
+    "ci_name": "PVMP10V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.995355"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2225,
+    "ci_name": "PVMP10V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:54.998913"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2229,
+    "ci_name": "PVMP11V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.002274"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2228,
+    "ci_name": "PVMP11V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.005676"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2223,
+    "ci_name": "PVMP09V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.009079"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2222,
+    "ci_name": "PVMP09V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.012392"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2220,
+    "ci_name": "PVMP08V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.675573"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2219,
+    "ci_name": "PVMP08V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.684992"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2195,
+    "ci_name": "KWPRVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.701284"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1730,
+    "ci_name": "BRM-APP-15",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.706297"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2058,
+    "ci_name": "BRM-TST-DCPBG1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.721558"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1725,
+    "ci_name": "BOV-TST-01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Bottrop"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.733900"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1652,
+    "ci_name": "AMBDSC1PROS1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.738858"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1654,
+    "ci_name": "AMBDSCOFFS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:55.742129"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1667,
+    "ci_name": "AMBLORAP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.446887"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2262,
+    "ci_name": "SAPAT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.459599"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2173,
+    "ci_name": "IBIXVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.474904"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2157,
+    "ci_name": "HO3VP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.479967"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1929,
+    "ci_name": "BRM-DEV-HECTMP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.483902"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1899,
+    "ci_name": "BRM-COM-NPS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.488388"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1900,
+    "ci_name": "BRM-COM-NPS02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.492105"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1809,
+    "ci_name": "BRM-APP-MQIP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.497676"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2272,
+    "ci_name": "SASVP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.501086"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1778,
+    "ci_name": "BRM-APP-DCPBG1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.505549"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1793,
+    "ci_name": "BRM-APP-INTREX1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.510972"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1978,
+    "ci_name": "BRM-PRS-MS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.515262"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2069,
+    "ci_name": "BRM-TST-INTREX1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.520189"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1930,
+    "ci_name": "BRM-DEV-INTREX1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.524191"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1980,
+    "ci_name": "BRM-PRS-QP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.528266"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1981,
+    "ci_name": "BRM-PRS-QP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.531962"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1979,
+    "ci_name": "BRM-PRS-PS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.535912"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1982,
+    "ci_name": "BRM-PRS-SA01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.539953"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2063,
+    "ci_name": "BRM-TST-GPQS18",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.544020"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2257,
+    "ci_name": "RZWEBVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:56.548785"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2172,
+    "ci_name": "IBIXVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.184036"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1915,
+    "ci_name": "BRM-DEV-60",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.198885"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1859,
+    "ci_name": "BRM-APP-VD01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.206358"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2295,
+    "ci_name": "TESTVT06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.213738"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2292,
+    "ci_name": "TESTVT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.217800"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1918,
+    "ci_name": "BRM-DEV-BUILD04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.221704"
+  },
+  {
+    "action": "updated",
+    "ci_id": 107,
+    "ci_name": "birepvp1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.226549"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1996,
+    "ci_name": "BRM-SMS-16",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.235771"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1995,
+    "ci_name": "BRM-SMS-15",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.239747"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1785,
+    "ci_name": "BRM-APP-GEO",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.243260"
+  },
+  {
+    "action": "updated",
+    "ci_id": 571,
+    "ci_name": "brm-tst-gns15",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.246916"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2288,
+    "ci_name": "SWBLX015",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.250610"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2156,
+    "ci_name": "HO2VP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.254006"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2162,
+    "ci_name": "HOAPVP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.257492"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1954,
+    "ci_name": "BRM-FLS-03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.262697"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2294,
+    "ci_name": "TESTVT04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.266205"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2282,
+    "ci_name": "SWBAS069",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.269643"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2017,
+    "ci_name": "BRM-SMS-NES02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.273003"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1789,
+    "ci_name": "BRM-APP-GPQS20",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.277115"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1788,
+    "ci_name": "BRM-APP-GPQS19",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.280675"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1820,
+    "ci_name": "BRM-APP-OSPC-TK",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.286157"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2152,
+    "ci_name": "ENTWVE06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.290833"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2050,
+    "ci_name": "BRM-TST-09",
+    "timestamp": "2026-01-05T14:50:57.294778"
+  },
+  {
+    "action": "updated",
+    "ci_id": 572,
+    "ci_name": "brm-tst-gns16",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.298901"
+  },
+  {
+    "action": "updated",
+    "ci_id": 574,
+    "ci_name": "brm-tst-gns18",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.304253"
+  },
+  {
+    "action": "updated",
+    "ci_id": 575,
+    "ci_name": "brm-tst-gns20",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.308200"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2042,
+    "ci_name": "BRM-TRM-16",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.956161"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1821,
+    "ci_name": "BRM-APP-OSPC-TW",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.962961"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1791,
+    "ci_name": "BRM-APP-GPQS22",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.967572"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1855,
+    "ci_name": "BRM-APP-TS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.971104"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1790,
+    "ci_name": "BRM-APP-GPQS21",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.974827"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1932,
+    "ci_name": "BRM-DEV-KBWW02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.978989"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2150,
+    "ci_name": "ENTWVE04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.982324"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2151,
+    "ci_name": "ENTWVE05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.986113"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2066,
+    "ci_name": "BRM-TST-GPQS21",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.989845"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2067,
+    "ci_name": "BRM-TST-GPQS22",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.994113"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1755,
+    "ci_name": "BRM-APP-56",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:57.997950"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1801,
+    "ci_name": "BRM-APP-KOOR02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.001552"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1913,
+    "ci_name": "BRM-DEV-56",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.004924"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1815,
+    "ci_name": "BRM-APP-OSPC2TS",
+    "changes": {
+      "location": {
+        "old": "",
+        "new": "Hochofen"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.009206"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2311,
+    "ci_name": "WWCLVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.013774"
+  },
+  {
+    "action": "updated",
+    "ci_id": 177,
+    "ci_name": "brm-app-fwrec",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "\"unknown\""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.017128"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1723,
+    "ci_name": "BOV-FLS-01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.021405"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1719,
+    "ci_name": "BOV-APP-GX2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.027220"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1724,
+    "ci_name": "BOV-SMS-CMDPN1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.030746"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2079,
+    "ci_name": "BRM-TST-SCOOP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.034586"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2153,
+    "ci_name": "GMSVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.038174"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1909,
+    "ci_name": "BRM-DEV-13",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.041878"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2051,
+    "ci_name": "BRM-TST-11",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.045181"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2144,
+    "ci_name": "EMSVT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.048420"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1860,
+    "ci_name": "BRM-APP-VERSD85",
+    "timestamp": "2026-01-05T14:50:58.052137"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1744,
+    "ci_name": "BRM-APP-38",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.056238"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1922,
+    "ci_name": "BRM-DEV-DCPBG2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.060634"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1664,
+    "ci_name": "AMBKRANVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.064379"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1686,
+    "ci_name": "AMBVT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.068553"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2213,
+    "ci_name": "PLALVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.071882"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2001,
+    "ci_name": "BRM-SMS-CMDPN2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.076159"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1867,
+    "ci_name": "BRM-APP-XERIWEB",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.079505"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2004,
+    "ci_name": "BRM-SMS-CMFPN1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.082915"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2176,
+    "ci_name": "IVARVT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.722076"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2061,
+    "ci_name": "BRM-TST-EMS02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.727331"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1910,
+    "ci_name": "BRM-DEV-14",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.737846"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1997,
+    "ci_name": "BRM-SMS-17",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.743812"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1757,
+    "ci_name": "BRM-APP-61",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.747682"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1843,
+    "ci_name": "BRM-APP-TAHWIKI",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.751773"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2052,
+    "ci_name": "BRM-TST-13",
+    "timestamp": "2026-01-05T14:50:58.758105"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1998,
+    "ci_name": "BRM-SMS-BMS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.761810"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1779,
+    "ci_name": "BRM-APP-DCPBG2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.768225"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1740,
+    "ci_name": "BRM-APP-31",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.772153"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2065,
+    "ci_name": "BRM-TST-GPQS20",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.775956"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2183,
+    "ci_name": "KWDRVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.779561"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2174,
+    "ci_name": "IVARVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.784178"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1692,
+    "ci_name": "AMDBPP06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.788183"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2171,
+    "ci_name": "HOTDEV01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.792172"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2203,
+    "ci_name": "LOGDEV01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.795974"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2206,
+    "ci_name": "LOGTST01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.801787"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1691,
+    "ci_name": "AMDBPP05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.805780"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2015,
+    "ci_name": "BRM-SMS-HMCV01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.810042"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1681,
+    "ci_name": "AMBTAAVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.813798"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1914,
+    "ci_name": "BRM-DEV-57",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "AMB RZ"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.817564"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1720,
+    "ci_name": "BOV-COM-01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Bottrop"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.821525"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2234,
+    "ci_name": "PVMP13V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.827057"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2235,
+    "ci_name": "PVMP13V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.830155"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1649,
+    "ci_name": "AMBCCP",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.833589"
+  },
+  {
+    "action": "updated",
+    "ci_id": 680,
+    "ci_name": "d3dbap02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.837318"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1700,
+    "ci_name": "AMDBTP05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.840944"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2238,
+    "ci_name": "PVMP14V2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.843910"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2237,
+    "ci_name": "PVMP14V1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.847054"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1846,
+    "ci_name": "BRM-APP-TEL01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:58.850414"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1784,
+    "ci_name": "BRM-APP-FABIOLA",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.544781"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1759,
+    "ci_name": "BRM-APP-68",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.555086"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2155,
+    "ci_name": "GMSVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.567029"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2087,
+    "ci_name": "BRM-TST-XMD01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.570926"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2056,
+    "ci_name": "BRM-TST-68",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.576902"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2319,
+    "ci_name": "WWKFVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.583649"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2178,
+    "ci_name": "KFZBVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.588465"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1685,
+    "ci_name": "AMBVQ02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.592748"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1684,
+    "ci_name": "AMBVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.597084"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1854,
+    "ci_name": "BRM-APP-TRACK",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.603448"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1936,
+    "ci_name": "BRM-DEV-KWHG",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.608606"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2175,
+    "ci_name": "IVARVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.616729"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1850,
+    "ci_name": "BRM-APP-THPLONE",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.621024"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1674,
+    "ci_name": "AMBORDSVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.629805"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2143,
+    "ci_name": "EMSVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.635291"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1675,
+    "ci_name": "AMBORDSVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:50:59.638858"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1729,
+    "ci_name": "BRM-APP-12",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.314553"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1857,
+    "ci_name": "BRM-APP-VAULT03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.324350"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1911,
+    "ci_name": "BRM-DEV-15",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.334676"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2080,
+    "ci_name": "BRM-TST-SCOOP-N",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.349536"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1849,
+    "ci_name": "BRM-APP-TFS04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.357229"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2210,
+    "ci_name": "MAXVP06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.363798"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1683,
+    "ci_name": "AMBVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.368647"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1948,
+    "ci_name": "BRM-DEV-WWCTC",
+    "timestamp": "2026-01-05T14:51:00.372679"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1775,
+    "ci_name": "BRM-APP-CO2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.376478"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1758,
+    "ci_name": "BRM-APP-67",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.380662"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1798,
+    "ci_name": "BRM-APP-KBKWBZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.385547"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1682,
+    "ci_name": "AMBTCBSDVP1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.391696"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2033,
+    "ci_name": "BRM-SQL-DCPBG2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.395936"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1767,
+    "ci_name": "BRM-APP-BLD05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.400698"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1825,
+    "ci_name": "BRM-APP-POFENN1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.406773"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2249,
+    "ci_name": "RZDPGREVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:00.412885"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1983,
+    "ci_name": "BRM-PRS-SCN01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.084388"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1773,
+    "ci_name": "BRM-APP-CMPCTC",
+    "timestamp": "2026-01-05T14:51:01.099160"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2211,
+    "ci_name": "MAXVT01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.105090"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1672,
+    "ci_name": "AMBORALXE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.110065"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1800,
+    "ci_name": "BRM-APP-KBWW03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.116584"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2038,
+    "ci_name": "BRM-SQL-MIG03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.125793"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2037,
+    "ci_name": "BRM-SQL-MIG02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.129587"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2036,
+    "ci_name": "BRM-SQL-MIG01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.133371"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1728,
+    "ci_name": "BRM-APP-10",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.140073"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1795,
+    "ci_name": "BRM-APP-KBBG02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.143926"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2142,
+    "ci_name": "EMSVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.148733"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1919,
+    "ci_name": "BRM-DEV-BUILD05",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.154449"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1705,
+    "ci_name": "AMTBBREOPC",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.157827"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2154,
+    "ci_name": "GMSVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.161854"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1805,
+    "ci_name": "BRM-APP-LTMIG",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.165508"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1796,
+    "ci_name": "BRM-APP-KBBG1IL",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.169473"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2133,
+    "ci_name": "DIDBPP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.172872"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2199,
+    "ci_name": "LDPRD01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.913570"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2200,
+    "ci_name": "LDPRD02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.922968"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2313,
+    "ci_name": "WWFSVE02",
+    "changes": {
+      "location": {
+        "old": "Unknown",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.929521"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2315,
+    "ci_name": "WWFSVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.937978"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2188,
+    "ci_name": "KWHGVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.943224"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2170,
+    "ci_name": "HOSAVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.947489"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2169,
+    "ci_name": "HOSAVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.951354"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2167,
+    "ci_name": "HOREVE01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.955642"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2168,
+    "ci_name": "HOREVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.959443"
+  },
+  {
+    "action": "updated",
+    "ci_id": 47,
+    "ci_name": "AMBOPUSKL",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.963582"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2187,
+    "ci_name": "KWHG02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.967237"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2186,
+    "ci_name": "KWHG01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.971389"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2180,
+    "ci_name": "KWBZVP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.979704"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2181,
+    "ci_name": "KWBZVP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.984469"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1780,
+    "ci_name": "BRM-APP-DCPKWBZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.988044"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2039,
+    "ci_name": "BRM-SQL-PROFI02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.992892"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2300,
+    "ci_name": "TRTOP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:01.996554"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1923,
+    "ci_name": "BRM-DEV-DCPKWBZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.000496"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1786,
+    "ci_name": "BRM-APP-GOME01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.005069"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2299,
+    "ci_name": "TRTEST01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.008743"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2298,
+    "ci_name": "TRENTW01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.012362"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2301,
+    "ci_name": "TRVEP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.016000"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1912,
+    "ci_name": "BRM-DEV-16",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.020802"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2005,
+    "ci_name": "BRM-SMS-CMPS01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.027640"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2060,
+    "ci_name": "BRM-TST-DCPKWBZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.036077"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1761,
+    "ci_name": "BRM-APP-70",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.039887"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1883,
+    "ci_name": "BRM-BKP-VM10",
+    "timestamp": "2026-01-05T14:51:02.748208"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1882,
+    "ci_name": "BRM-BKP-VM09",
+    "timestamp": "2026-01-05T14:51:02.762648"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1804,
+    "ci_name": "BRM-APP-KWHG",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.770610"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 495,
+    "ci_name": "brm-sms-wms01",
+    "timestamp": "2026-01-05T14:51:02.777752"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1694,
+    "ci_name": "AMDBPP08",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.785872"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1693,
+    "ci_name": "AMDBPP07",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.789927"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1714,
+    "ci_name": "B1PP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.793929"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 766,
+    "ci_name": "kwvt01",
+    "timestamp": "2026-01-05T14:51:02.797523"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1835,
+    "ci_name": "BRM-APP-QDRKWDR",
+    "timestamp": "2026-01-05T14:51:02.801329"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2163,
+    "ci_name": "HODBPP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.805153"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2242,
+    "ci_name": "QSDBPP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.808932"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2191,
+    "ci_name": "KWPP03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.813479"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2243,
+    "ci_name": "QSDBPP04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.816930"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2164,
+    "ci_name": "HODBPP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.820627"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1715,
+    "ci_name": "B1PP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.825601"
+  },
+  {
+    "action": "updated",
+    "ci_id": 880,
+    "ci_name": "sapsol",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.830175"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2185,
+    "ci_name": "KWEG02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.834102"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2184,
+    "ci_name": "KWEG01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.840637"
+  },
+  {
+    "action": "updated",
+    "ci_id": 45,
+    "ci_name": "ambnim03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.845007"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1811,
+    "ci_name": "BRM-APP-OCTOPL",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.853756"
+  },
+  {
+    "action": "updated",
+    "ci_id": 924,
+    "ci_name": "wwafve01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.860495"
+  },
+  {
+    "action": "updated",
+    "ci_id": 674,
+    "ci_name": "btcmon02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.868188"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1956,
+    "ci_name": "BRM-FLS-1001",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.872646"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2000,
+    "ci_name": "BRM-SMS-CMDPN1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:02.876645"
+  },
+  {
+    "action": "updated",
+    "ci_id": 673,
+    "ci_name": "btcmon01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.553316"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1709,
+    "ci_name": "AMTBBREWFDEV",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.565339"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1782,
+    "ci_name": "BRM-APP-EAKEY",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.569739"
+  },
+  {
+    "action": "updated",
+    "ci_id": 777,
+    "ci_name": "ldtbvp01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.576498"
+  },
+  {
+    "action": "updated",
+    "ci_id": 193,
+    "ci_name": "brm-app-kafka02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.581134"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1969,
+    "ci_name": "BRM-FTP-02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.589762"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1704,
+    "ci_name": "AMTBBREMSSQL",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.597233"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2267,
+    "ci_name": "SAPAT09",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.601693"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1961,
+    "ci_name": "BRM-FLS-1006",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.606401"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1710,
+    "ci_name": "AMTBBREWFDEV2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.610651"
+  },
+  {
+    "action": "updated",
+    "ci_id": 608,
+    "ci_name": "brm-vdi-10",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.618127"
+  },
+  {
+    "action": "updated",
+    "ci_id": 524,
+    "ci_name": "brm-trm-btc01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.623010"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1972,
+    "ci_name": "BRM-PKI-01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.629791"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1968,
+    "ci_name": "BRM-FLS-YM02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.633388"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2076,
+    "ci_name": "BRM-TST-POWER01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.637398"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1965,
+    "ci_name": "BRM-FLS-1010",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:03.644211"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1703,
+    "ci_name": "AMTBBREMES",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.390730"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2324,
+    "ci_name": "WWOFVP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.403796"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1967,
+    "ci_name": "BRM-FLS-YM01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.416093"
+  },
+  {
+    "action": "updated",
+    "ci_id": 675,
+    "ci_name": "btctssa01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.422715"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1957,
+    "ci_name": "BRM-FLS-1002",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.440238"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1708,
+    "ci_name": "AMTBBREWF2",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.444084"
+  },
+  {
+    "action": "updated",
+    "ci_id": 364,
+    "ci_name": "brm-dev-build06",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.449068"
+  },
+  {
+    "action": "updated",
+    "ci_id": 60,
+    "ci_name": "ambsquidvp01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.452543"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1927,
+    "ci_name": "BRM-DEV-EVS1",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.456228"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1871,
+    "ci_name": "BRM-APP-XPACT",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.459959"
+  },
+  {
+    "action": "updated",
+    "ci_id": 535,
+    "ci_name": "brm-trm-eplan5",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.467704"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1964,
+    "ci_name": "BRM-FLS-1009",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:04.479858"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1933,
+    "ci_name": "BRM-DEV-KOOR03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.212314"
+  },
+  {
+    "action": "updated",
+    "ci_id": 787,
+    "ci_name": "lpar2rrd",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.220254"
+  },
+  {
+    "action": "updated",
+    "ci_id": 769,
+    "ci_name": "ldflvp01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.226026"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1762,
+    "ci_name": "BRM-APP-71",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.234305"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2054,
+    "ci_name": "BRM-TST-21",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.244129"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2016,
+    "ci_name": "BRM-SMS-NES01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.251195"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2198,
+    "ci_name": "LDKVVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.256547"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1999,
+    "ci_name": "BRM-SMS-BTCDB01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.261206"
+  },
+  {
+    "action": "updated",
+    "ci_id": 394,
+    "ci_name": "brm-dev-xmd01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.276029"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2323,
+    "ci_name": "WWOFVE02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.283993"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2053,
+    "ci_name": "BRM-TST-20",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.290081"
+  },
+  {
+    "action": "updated",
+    "ci_id": 899,
+    "ci_name": "tah-wiki",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.295105"
+  },
+  {
+    "action": "updated",
+    "ci_id": 198,
+    "ci_name": "brm-app-kbld01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.298998"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1958,
+    "ci_name": "BRM-FLS-1003",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.305385"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1942,
+    "ci_name": "BRM-DEV-POWER01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.310007"
+  },
+  {
+    "action": "updated",
+    "ci_id": 525,
+    "ci_name": "brm-trm-btc02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.974609"
+  },
+  {
+    "action": "updated",
+    "ci_id": 688,
+    "ci_name": "doreca",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.988885"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1962,
+    "ci_name": "BRM-FLS-1007",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:05.996235"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2312,
+    "ci_name": "WWCTCVE01",
+    "changes": {
+      "location": {
+        "old": "",
+        "new": "Unknown (edit /etc/snmp/snmpd.conf)"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.001370"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2202,
+    "ci_name": "LDSGVP01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.008103"
+  },
+  {
+    "action": "updated",
+    "ci_id": 482,
+    "ci_name": "brm-sms-nblic",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.017550"
+  },
+  {
+    "action": "updated",
+    "ci_id": 774,
+    "ci_name": "ldprddb04",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.023114"
+  },
+  {
+    "action": "updated",
+    "ci_id": 922,
+    "ci_name": "wwafdb01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.026990"
+  },
+  {
+    "action": "updated",
+    "ci_id": 783,
+    "ci_name": "logtrvedb02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.030795"
+  },
+  {
+    "action": "updated",
+    "ci_id": 934,
+    "ci_name": "wwctcdb02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.034589"
+  },
+  {
+    "action": "updated",
+    "ci_id": 729,
+    "ci_name": "hoprzdb02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.038322"
+  },
+  {
+    "action": "updated",
+    "ci_id": 773,
+    "ci_name": "ldprddb03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.042150"
+  },
+  {
+    "action": "updated",
+    "ci_id": 782,
+    "ci_name": "logtrvedb01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.045899"
+  },
+  {
+    "action": "updated",
+    "ci_id": 735,
+    "ci_name": "ibixdb01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.050741"
+  },
+  {
+    "action": "updated",
+    "ci_id": 736,
+    "ci_name": "ibixdb02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.055190"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2130,
+    "ci_name": "D3DBAT02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.059488"
+  },
+  {
+    "action": "updated",
+    "ci_id": 923,
+    "ci_name": "wwafdb02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.063659"
+  },
+  {
+    "action": "updated",
+    "ci_id": 937,
+    "ci_name": "wwctcvt01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.068467"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1814,
+    "ci_name": "BRM-APP-OSPC2TK",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.073706"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1763,
+    "ci_name": "BRM-APP-72",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.747342"
+  },
+  {
+    "action": "updated",
+    "ci_id": 857,
+    "ci_name": "rzdpvp02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.759150"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1729,
+    "ci_name": "BRM-APP-12",
+    "timestamp": "2026-01-05T14:51:06.765116"
+  },
+  {
+    "action": "updated",
+    "ci_id": 936,
+    "ci_name": "wwctcvp01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.772315"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2302,
+    "ci_name": "TSTRHEL9",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.777689"
+  },
+  {
+    "action": "updated",
+    "ci_id": 594,
+    "ci_name": "brm-tst-rpa01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.782210"
+  },
+  {
+    "action": "updated",
+    "ci_id": 925,
+    "ci_name": "wwafvp01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.786882"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2048,
+    "ci_name": "BRM-TRM-SAPBS",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.792681"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1862,
+    "ci_name": "BRM-APP-VIFLOW",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.798888"
+  },
+  {
+    "action": "updated",
+    "ci_id": 20,
+    "ci_name": "ambbisvp02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.805436"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1831,
+    "ci_name": "BRM-APP-QDRBGIL",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.809901"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1737,
+    "ci_name": "BRM-APP-26",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.816585"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1827,
+    "ci_name": "BRM-APP-QDRB1VZ",
+    "timestamp": "2026-01-05T14:51:06.820822"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1836,
+    "ci_name": "BRM-APP-QDRKWIL",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.824948"
+  },
+  {
+    "action": "updated",
+    "ci_id": 926,
+    "ci_name": "wwafvt01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.830559"
+  },
+  {
+    "action": "updated",
+    "ci_id": 19,
+    "ci_name": "ambbisve02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.834602"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1866,
+    "ci_name": "BRM-APP-WWCTC",
+    "timestamp": "2026-01-05T14:51:06.838183"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1841,
+    "ci_name": "BRM-APP-SG02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.845583"
+  },
+  {
+    "action": "updated",
+    "ci_id": 2085,
+    "ci_name": "BRM-TST-WWCTC",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.848860"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1826,
+    "ci_name": "BRM-APP-QDRB1IL",
+    "timestamp": "2026-01-05T14:51:06.852376"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1832,
+    "ci_name": "BRM-APP-QDRKWBZ",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.855880"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1970,
+    "ci_name": "BRM-FTP-03",
+    "timestamp": "2026-01-05T14:51:06.859406"
+  },
+  {
+    "action": "updated",
+    "ci_id": 69,
+    "ci_name": "ambwebvp03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.865223"
+  },
+  {
+    "action": "updated",
+    "ci_id": 21,
+    "ci_name": "ambbisvp03",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:06.868218"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1844,
+    "ci_name": "BRM-APP-TAS01",
+    "timestamp": "2026-01-05T14:51:07.677185"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 180,
+    "ci_name": "brm-app-gcmww01",
+    "timestamp": "2026-01-05T14:51:07.687518"
+  },
+  {
+    "action": "updated",
+    "ci_id": 1976,
+    "ci_name": "BRM-PROTECT-VCSP02",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": ""
+      }
+    },
+    "timestamp": "2026-01-05T14:51:07.696184"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1987,
+    "ci_name": "BRM-RDG-INFRA03",
+    "timestamp": "2026-01-05T14:51:07.717858"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1988,
+    "ci_name": "BRM-RDG-INFRA04",
+    "timestamp": "2026-01-05T14:51:07.723196"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1880,
+    "ci_name": "BRM-BKP-VM07",
+    "timestamp": "2026-01-05T14:51:07.734588"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 59,
+    "ci_name": "ambshift001",
+    "timestamp": "2026-01-05T14:51:07.738920"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1812,
+    "ci_name": "BRM-APP-OPL-RS",
+    "timestamp": "2026-01-05T14:51:07.742934"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2088,
+    "ci_name": "BRM-TST-XMDN",
+    "timestamp": "2026-01-05T14:51:07.747692"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1869,
+    "ci_name": "BRM-APP-XMDN",
+    "timestamp": "2026-01-05T14:51:07.751217"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 781,
+    "ci_name": "logtomsvp01",
+    "timestamp": "2026-01-05T14:51:07.754841"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1881,
+    "ci_name": "BRM-BKP-VM08",
+    "timestamp": "2026-01-05T14:51:07.759660"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 672,
+    "ci_name": "btcgray",
+    "timestamp": "2026-01-05T14:51:07.768365"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2081,
+    "ci_name": "BRM-TST-TAS01",
+    "timestamp": "2026-01-05T14:51:07.773958"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1920,
+    "ci_name": "BRM-DEV-BUILD07",
+    "timestamp": "2026-01-05T14:51:07.778988"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1926,
+    "ci_name": "BRM-DEV-EAF1",
+    "timestamp": "2026-01-05T14:51:07.783339"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1861,
+    "ci_name": "BRM-APP-VICO",
+    "timestamp": "2026-01-05T14:51:07.786797"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1885,
+    "ci_name": "BRM-BKP-VM12",
+    "timestamp": "2026-01-05T14:51:07.791708"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1886,
+    "ci_name": "BRM-BKP-VM13",
+    "timestamp": "2026-01-05T14:51:07.795044"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 798,
+    "ci_name": "maxvt02",
+    "timestamp": "2026-01-05T14:51:07.800241"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1966,
+    "ci_name": "BRM-FLS-INVER01",
+    "timestamp": "2026-01-05T14:51:07.803647"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1884,
+    "ci_name": "BRM-BKP-VM11",
+    "timestamp": "2026-01-05T14:51:07.807037"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1870,
+    "ci_name": "BRM-APP-XMDN02",
+    "timestamp": "2026-01-05T14:51:07.811068"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1807,
+    "ci_name": "BRM-APP-MOSIB02",
+    "timestamp": "2026-01-05T14:51:08.617460"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1858,
+    "ci_name": "BRM-APP-VAULT04",
+    "timestamp": "2026-01-05T14:51:08.628069"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1941,
+    "ci_name": "BRM-DEV-PMS02",
+    "timestamp": "2026-01-05T14:51:08.638380"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 61,
+    "ci_name": "ambsquidvp02",
+    "timestamp": "2026-01-05T14:51:08.642758"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 785,
+    "ci_name": "logve01",
+    "timestamp": "2026-01-05T14:51:08.647988"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1772,
+    "ci_name": "BRM-APP-CMP01",
+    "timestamp": "2026-01-05T14:51:08.651880"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1947,
+    "ci_name": "BRM-DEV-TASKP01",
+    "timestamp": "2026-01-05T14:51:08.660488"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 694,
+    "ci_name": "eaf1vp01",
+    "timestamp": "2026-01-05T14:51:08.664984"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1816,
+    "ci_name": "BRM-APP-OSPC2TW",
+    "timestamp": "2026-01-05T14:51:08.671542"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1935,
+    "ci_name": "BRM-DEV-KWCWI",
+    "timestamp": "2026-01-05T14:51:08.679235"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1903,
+    "ci_name": "BRM-DCA-15",
+    "timestamp": "2026-01-05T14:51:08.683178"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 879,
+    "ci_name": "saprouter01",
+    "timestamp": "2026-01-05T14:51:08.688276"
+  },
+  {
+    "action": "updated",
+    "ci_id": 806,
+    "ci_name": "net-vm-int01",
+    "changes": {
+      "location": {
+        "old": "2",
+        "new": "Sitting on the Dock of the Bay"
+      }
+    },
+    "timestamp": "2026-01-05T14:51:08.692554"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 765,
+    "ci_name": "kwve01",
+    "timestamp": "2026-01-05T14:51:08.696690"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1928,
+    "ci_name": "BRM-DEV-FL01",
+    "timestamp": "2026-01-05T14:51:08.700349"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1803,
+    "ci_name": "BRM-APP-KWCWI",
+    "timestamp": "2026-01-05T14:51:08.705165"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 855,
+    "ci_name": "rzdpgrevp04",
+    "timestamp": "2026-01-05T14:51:08.710284"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 930,
+    "ci_name": "wwarvp02",
+    "timestamp": "2026-01-05T14:51:08.716098"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2030,
+    "ci_name": "BRM-SQL-BG2HIGH",
+    "timestamp": "2026-01-05T14:51:08.721530"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 526,
+    "ci_name": "brm-trm-btc03",
+    "timestamp": "2026-01-05T14:51:08.726066"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1774,
+    "ci_name": "BRM-APP-CMPHO01",
+    "timestamp": "2026-01-05T14:51:08.730195"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2068,
+    "ci_name": "BRM-TST-GPQS23",
+    "timestamp": "2026-01-05T14:51:08.733584"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1946,
+    "ci_name": "BRM-DEV-SG02",
+    "timestamp": "2026-01-05T14:51:08.741303"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2007,
+    "ci_name": "BRM-SMS-DOM03-1",
+    "timestamp": "2026-01-05T14:51:08.744784"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1985,
+    "ci_name": "BRM-RDG-INFRA01",
+    "timestamp": "2026-01-05T14:51:09.544097"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1824,
+    "ci_name": "BRM-APP-PMS02",
+    "timestamp": "2026-01-05T14:51:09.553663"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2003,
+    "ci_name": "BRM-SMS-CMFP02",
+    "timestamp": "2026-01-05T14:51:09.559972"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2025,
+    "ci_name": "BRM-SMS-W25K01",
+    "timestamp": "2026-01-05T14:51:09.565521"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1802,
+    "ci_name": "BRM-APP-KWAFC",
+    "timestamp": "2026-01-05T14:51:09.569669"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1986,
+    "ci_name": "BRM-RDG-INFRA02",
+    "timestamp": "2026-01-05T14:51:09.573597"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 786,
+    "ci_name": "logvt01",
+    "timestamp": "2026-01-05T14:51:09.578054"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2027,
+    "ci_name": "BRM-SMS-WSUS03",
+    "timestamp": "2026-01-05T14:51:09.584367"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 247,
+    "ci_name": "brm-app-tahcmp",
+    "timestamp": "2026-01-05T14:51:09.588495"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1706,
+    "ci_name": "AMTBBREOSPC",
+    "timestamp": "2026-01-05T14:51:09.594866"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 796,
+    "ci_name": "maxvp07",
+    "timestamp": "2026-01-05T14:51:09.599664"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 190,
+    "ci_name": "brm-app-intrex2",
+    "timestamp": "2026-01-05T14:51:09.604047"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1931,
+    "ci_name": "BRM-DEV-INTREX2",
+    "timestamp": "2026-01-05T14:51:09.607887"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 608,
+    "ci_name": "brm-vdi-10",
+    "timestamp": "2026-01-05T14:51:09.613788"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2044,
+    "ci_name": "BRM-TRM-BTC04",
+    "timestamp": "2026-01-05T14:51:09.619506"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2029,
+    "ci_name": "BRM-SQL-BG1HIGH",
+    "timestamp": "2026-01-05T14:51:09.623316"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1838,
+    "ci_name": "BRM-APP-QDRWW",
+    "timestamp": "2026-01-05T14:51:09.627096"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1934,
+    "ci_name": "BRM-DEV-KWAFC",
+    "timestamp": "2026-01-05T14:51:09.630481"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1839,
+    "ci_name": "BRM-APP-RADIUS1",
+    "timestamp": "2026-01-05T14:51:09.635590"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2077,
+    "ci_name": "BRM-TST-QDR",
+    "timestamp": "2026-01-05T14:51:09.639401"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 928,
+    "ci_name": "wwarve02",
+    "timestamp": "2026-01-05T14:51:09.644395"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1901,
+    "ci_name": "BRM-DCA-01",
+    "timestamp": "2026-01-05T14:51:09.648150"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2083,
+    "ci_name": "BRM-TST-WAS01",
+    "timestamp": "2026-01-05T14:51:09.651825"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1957,
+    "ci_name": "BRM-FLS-1002",
+    "timestamp": "2026-01-05T14:51:09.655743"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1943,
+    "ci_name": "BRM-DEV-QDR",
+    "timestamp": "2026-01-05T14:51:09.659755"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2043,
+    "ci_name": "BRM-TRM-17",
+    "timestamp": "2026-01-05T14:51:09.664992"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1769,
+    "ci_name": "BRM-APP-BN02",
+    "timestamp": "2026-01-05T14:51:09.668804"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1813,
+    "ci_name": "BRM-APP-OSPC2TH",
+    "timestamp": "2026-01-05T14:51:09.675177"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 757,
+    "ci_name": "kwilvp02",
+    "timestamp": "2026-01-05T14:51:10.239745"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2032,
+    "ci_name": "BRM-SQL-DBRICKS",
+    "timestamp": "2026-01-05T14:51:10.256681"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 1845,
+    "ci_name": "BRM-APP-TASKP01",
+    "timestamp": "2026-01-05T14:51:10.261146"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 2084,
+    "ci_name": "BRM-TST-WAS02",
+    "timestamp": "2026-01-05T14:51:10.266369"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 790,
+    "ci_name": "maxve04",
+    "timestamp": "2026-01-05T14:51:10.272338"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 693,
+    "ci_name": "eaf1ve01",
+    "timestamp": "2026-01-05T14:51:10.277423"
+  },
+  {
+    "action": "unchanged",
+    "ci_id": 583,
+    "ci_name": "brm-tst-intrex2",
+    "timestamp": "2026-01-05T14:51:10.284798"
+  }
+]
