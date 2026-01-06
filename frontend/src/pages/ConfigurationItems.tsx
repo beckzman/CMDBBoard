@@ -33,7 +33,7 @@ const ColumnFilter: React.FC<{
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const filterableColumns = ['department', 'location', 'os_db_system', 'cost_center', 'sla', 'environment', 'domain'];
+    const filterableColumns = ['ci_type', 'department', 'location', 'os_db_system', 'cost_center', 'sla', 'environment', 'domain', 'software'];
     if (!filterableColumns.includes(columnKey)) return null;
 
     const handleCheckboxChange = (option: string) => {
@@ -121,7 +121,7 @@ const ColumnFilter: React.FC<{
                                             cursor: 'pointer'
                                         }}
                                     />
-                                    <span style={{ flex: 1 }}>OS/DB System</span>
+                                    <span style={{ flex: 1 }}>{option}</span>
                                 </label>
                             ))}
                             {(!options || options.length === 0) && (
@@ -164,11 +164,12 @@ const ConfigurationItems: React.FC = () => {
     const [showColumnMenu, setShowColumnMenu] = useState(false);
 
     // Default visible columns
-    const DEFAULT_COLUMNS = ['name', 'type', 'status', 'department', 'location', 'last_ping', 'actions'];
+    const DEFAULT_COLUMNS = ['name', 'ci_type', 'status', 'department', 'location', 'last_ping', 'actions'];
 
     // Available columns configuration
     const AVAILABLE_COLUMNS = [
         { key: 'name', label: 'Name', sortable: true },
+        { key: 'ci_type', label: 'Type', sortable: true },
         { key: 'description', label: 'Description', sortable: true },
         { key: 'status', label: 'Status', sortable: true },
         { key: 'software', label: 'Software Model', sortable: false },
@@ -354,6 +355,7 @@ const ConfigurationItems: React.FC = () => {
             case 'name':
                 return <span className="ci-name">{ci.name}</span>;
             case 'type':
+            case 'ci_type':
                 return <span className="ci-type-badge">{ci.ci_type.replace('_', ' ')}</span>;
             case 'status':
                 return (

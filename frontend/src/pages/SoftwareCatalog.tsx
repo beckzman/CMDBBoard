@@ -5,6 +5,7 @@ import { Search, Plus, X, Server, Database, Link, Edit } from 'lucide-react';
 import StandardizationQueue from '../components/StandardizationQueue';
 
 import './ConfigurationItems.css';
+import './SoftwareCatalog.css';
 
 // Types
 export interface SoftwareItem {
@@ -176,10 +177,11 @@ const SoftwareCatalog: React.FC = () => {
 
     const getStatusColor = (status: string) => {
         switch (status) {
-            case 'approved': return 'active'; // reusing active class for green
-            case 'restricted': return 'restricted'; // need to check if distinct class exists, otherwise fallback
-            case 'end_of_life': return 'inactive'; // reusing inactive for red
-            default: return 'inactive';
+            case 'approved': return 'approved';
+            case 'unapproved': return 'unapproved';
+            case 'restricted': return 'restricted';
+            case 'end_of_life': return 'end-of-life';
+            default: return 'unapproved';
         }
     };
 
@@ -251,7 +253,7 @@ const SoftwareCatalog: React.FC = () => {
                                     <th>Software Name</th>
                                     <th>Publisher</th>
                                     <th>Category</th>
-                                    <th>Status</th>
+                                    <th className="status-col">Status</th>
                                     <th>End of Life</th>
                                     <th>Matched CIs</th>
                                     <th>Aliases</th>
@@ -278,9 +280,9 @@ const SoftwareCatalog: React.FC = () => {
                                         </td>
                                         <td>{item.publisher || '-'}</td>
                                         <td style={{ textTransform: 'capitalize' }}>{item.category}</td>
-                                        <td>
+                                        <td className="status-col">
                                             <span className={`status-badge ${getStatusColor(item.status)}`}>
-                                                {item.status.replace('_', ' ')}
+                                                {item.status === 'end_of_life' ? 'EoL' : item.status.replace('_', ' ')}
                                             </span>
                                         </td>
                                         <td style={{ fontFamily: 'monospace' }}>
@@ -403,7 +405,7 @@ const SoftwareCatalog: React.FC = () => {
                                         <option value="approved">Approved</option>
                                         <option value="unapproved">Unapproved</option>
                                         <option value="restricted">Restricted</option>
-                                        <option value="end_of_life">End of Life</option>
+                                        <option value="end_of_life">EoL</option>
                                     </select>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import or_, func, cast, String
 from app.core.auth import get_current_user, require_role
 from app.db.database import get_db
-from app.db.models import ConfigurationItem, User, UserRole, CIType, CIStatus
+from app.db.models import ConfigurationItem, User, UserRole, CIType, CIStatus, SoftwareCatalog
 from app.schemas import CICreate, CIUpdate, CIResponse, CIListResponse
 
 router = APIRouter(prefix="/api/ci", tags=["Configuration Items"])
@@ -17,7 +17,7 @@ router = APIRouter(prefix="/api/ci", tags=["Configuration Items"])
 def list_configuration_items(
     page: int = Query(1, ge=1),
     page_size: int = Query(50, ge=1, le=1000),
-    ci_type: Optional[CIType] = None,
+    ci_type: Optional[List[CIType]] = Query(None),
     status: Optional[CIStatus] = None,
     search: Optional[str] = None,
     sort_by: Optional[str] = None,
@@ -30,6 +30,7 @@ def list_configuration_items(
     sla: Optional[List[str]] = Query(None),
     environment: Optional[List[str]] = Query(None),
     domain: Optional[List[str]] = Query(None),
+    software: Optional[List[str]] = Query(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -39,7 +40,11 @@ def list_configuration_items(
     
     # Apply filters
     if ci_type:
-        query = query.filter(ConfigurationItem.ci_type == ci_type)
+        # Support both list filtering and single value (for backward compatibility if needed, though Query handles list)
+        if isinstance(ci_type, list):
+            query = query.filter(ConfigurationItem.ci_type.in_(ci_type))
+        else:
+            query = query.filter(ConfigurationItem.ci_type == ci_type)
     
     if status:
         query = query.filter(ConfigurationItem.status == status)
@@ -74,6 +79,9 @@ def list_configuration_items(
         
     if domain:
         query = query.filter(ConfigurationItem.domain.in_(domain))
+
+    if software:
+        query = query.join(ConfigurationItem.software).filter(SoftwareCatalog.name.in_(software))
     
     # Apply sorting
     if sort_by:
@@ -83,7 +91,7 @@ def list_configuration_items(
         if sort_by == 'name':
             sort_field = ConfigurationItem.name
             is_string_field = True
-        elif sort_by == 'type':  # Using specific query param 'type' to map to model field 'ci_type'
+        elif sort_by == 'type' or sort_by == 'ci_type':  # Using specific query param 'type' or 'ci_type'
             sort_field = ConfigurationItem.ci_type
             is_string_field = True # Enum, but effectively string sorting
         elif sort_by == 'status':
@@ -260,7 +268,8 @@ def get_distinct_attribute_values(
         'environment': ConfigurationItem.environment,
         'domain': ConfigurationItem.domain,
         'ci_type': ConfigurationItem.ci_type,
-        'status': ConfigurationItem.status
+        'status': ConfigurationItem.status,
+        'software': SoftwareCatalog.name # Special case, joined
     }
 
     if field_name not in allowed_fields:
@@ -269,15 +278,32 @@ def get_distinct_attribute_values(
             detail=f"Invalid field name: {field_name}"
         )
 
-    column = allowed_fields[field_name]
-    
-    # Query distinct values, filtering out nulls
-    results = db.query(column).distinct().filter(
-        column.isnot(None), 
-        ConfigurationItem.deleted_at.is_(None)
-    ).order_by(column).all()
+    # Special handling for software which requires a join
+    if field_name == 'software':
+        results = db.query(SoftwareCatalog.name).join(
+            ConfigurationItem, ConfigurationItem.software_id == SoftwareCatalog.id
+        ).filter(
+            ConfigurationItem.deleted_at.is_(None)
+        ).distinct().order_by(SoftwareCatalog.name).all()
+    else:
+        column = allowed_fields[field_name]
+        
+        # Query distinct values, filtering out nulls
+        results = db.query(column).distinct().filter(
+            column.isnot(None), 
+            ConfigurationItem.deleted_at.is_(None)
+        ).order_by(column).all()
 
     # Flatten result (results will be list of tuples like [('IT',), ('Sales',)])
-    values = [str(r[0]) for r in results if r[0] is not None]
+    values = []
+    for r in results:
+        val = r[0]
+        if val is None:
+            continue
+        # Handle Enum objects (extract value)
+        if hasattr(val, 'value'):
+            values.append(str(val.value))
+        else:
+            values.append(str(val))
     
     return values

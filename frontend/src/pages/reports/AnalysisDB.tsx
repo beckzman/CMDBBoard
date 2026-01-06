@@ -7,7 +7,7 @@ import { dashboardAPI, DashboardStats } from '../../api/client';
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const AnalysisOS: React.FC = () => {
+const AnalysisDB: React.FC = () => {
     const navigate = useNavigate();
     const [stats, setStats] = useState<DashboardStats | null>(null);
 
@@ -19,11 +19,7 @@ const AnalysisOS: React.FC = () => {
         fetchStats();
     }, []);
 
-    const data = stats ? Object.entries(stats.cis_by_os_db_system)
-        .map(([name, value]) => ({ name, value }))
-        .sort((a, b) => b.value - a.value) : [];
-
-    const totalItems = data.reduce((acc, curr) => acc + curr.value, 0);
+    const totalItems = stats?.cis_by_db_detailed?.reduce((acc, curr) => acc + curr.value, 0) || 0;
 
     return (
         <div className="analysis-detail-page">
@@ -31,13 +27,13 @@ const AnalysisOS: React.FC = () => {
                 <button onClick={() => navigate('/analysis')} className="back-button">
                     <ChevronLeft /> Back
                 </button>
-                <h1>OS/DB System Distribution</h1>
+                <h1>Database Lifecycle Analysis</h1>
             </div>
 
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart
-                        data={stats?.cis_by_os_detailed || []}
+                        data={stats?.cis_by_db_detailed || []}
                         layout="vertical"
                         margin={{ top: 20, right: 30, left: 100, bottom: 5 }}
                     >
@@ -54,13 +50,13 @@ const AnalysisOS: React.FC = () => {
                         <Legend />
                         <Bar dataKey="value" name="Count">
                             <LabelList dataKey="value" position="right" />
-                            {stats?.cis_by_os_detailed?.map((entry, index) => (
+                            {stats?.cis_by_db_detailed?.map((entry, index) => (
                                 <Cell
                                     key={`cell-${index}`}
                                     fill={
                                         entry.status === 'end_of_life' ? '#EF4444' :
                                             entry.status === 'unapproved' ? '#F59E0B' :
-                                                '#10B981'
+                                                '#8B5CF6'
                                     }
                                 />
                             ))}
@@ -70,10 +66,10 @@ const AnalysisOS: React.FC = () => {
             </div>
 
             <div className="analysis-summary">
-                <p>Tracking <strong>{totalItems}</strong> Active CIs across {data.length} OS/DB categories.</p>
+                <p>Tracking <strong>{totalItems}</strong> Active Databases across {stats?.cis_by_db_detailed?.length || 0} versions.</p>
             </div>
         </div>
     );
 };
 
-export default AnalysisOS;
+export default AnalysisDB;

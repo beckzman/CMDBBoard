@@ -7,7 +7,7 @@ from sqlalchemy import func
 from datetime import datetime, timedelta
 from app.core.auth import get_current_user
 from app.db.database import get_db
-from app.db.models import ConfigurationItem, User, CIStatus, CIType, ImportLog, CostRule
+from app.db.models import ConfigurationItem, User, CIStatus, CIType, ImportLog, CostRule, SoftwareCatalog, SoftwareCategory
 from app.schemas import DashboardStats, CIResponse
 
 router = APIRouter(prefix="/api/dashboard", tags=["Dashboard"])
@@ -226,6 +226,39 @@ def get_dashboard_stats(
             
     ci_growth = dict(sorted(ci_growth.items()))
 
+    # Detailed OS/DB Analysis from DML
+    # Groups by Software Name + Status (e.g., "Windows Server 2019", "approved")
+    
+    def get_software_stats(category):
+        results = db.query(
+            SoftwareCatalog.name,
+            SoftwareCatalog.status,
+            func.count(ConfigurationItem.id)
+        ).join(
+            ConfigurationItem, ConfigurationItem.software_id == SoftwareCatalog.id
+        ).filter(
+            SoftwareCatalog.category == category,
+            ConfigurationItem.deleted_at.is_(None),
+            ConfigurationItem.status == CIStatus.ACTIVE
+        ).group_by(
+            SoftwareCatalog.name, SoftwareCatalog.status
+        ).all()
+        
+        stats = []
+        for name, status, count in results:
+            stats.append({
+                "name": name,
+                "status": status.value if hasattr(status, 'value') else status,
+                "value": count
+            })
+        
+        # Sort by count desc
+        stats.sort(key=lambda x: x['value'], reverse=True)
+        return stats
+
+    cis_by_os_detailed = get_software_stats(SoftwareCategory.OS)
+    cis_by_db_detailed = get_software_stats(SoftwareCategory.DATABASE)
+
     return {
         "total_cis": total_cis,
         "active_cis": active_cis,
@@ -238,7 +271,9 @@ def get_dashboard_stats(
         "cis_by_os_db_system": cis_by_os,
         "cis_by_sla": cis_by_sla,
         "ci_growth": ci_growth,
-        "recent_imports": recent_imports
+        "recent_imports": recent_imports,
+        "cis_by_os_detailed": cis_by_os_detailed,
+        "cis_by_db_detailed": cis_by_db_detailed
     }
 
 

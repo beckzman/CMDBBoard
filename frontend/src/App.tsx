@@ -15,6 +15,7 @@ import Analysis from './pages/Analysis';
 import AnalysisCost from './pages/reports/AnalysisCost';
 import AnalysisGrowth from './pages/reports/AnalysisGrowth';
 import AnalysisOS from './pages/reports/AnalysisOS';
+import AnalysisDB from './pages/reports/AnalysisDB';
 
 import AnalysisSLA from './pages/reports/AnalysisSLA';
 import DependencyGraph from './pages/DependencyGraph';
@@ -80,6 +81,7 @@ const App: React.FC = () => {
                         <Route path="analysis/cost" element={<AnalysisCost />} />
                         <Route path="analysis/growth" element={<AnalysisGrowth />} />
                         <Route path="analysis/os" element={<AnalysisOS />} />
+                        <Route path="analysis/db" element={<AnalysisDB />} />
                         <Route path="analysis/sla" element={<AnalysisSLA />} />
                         <Route path="import" element={<ImportDashboard />} />
                         <Route path="domains" element={<DomainManagement />} />

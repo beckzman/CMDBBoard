@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-    LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer
+    LineChart, Line, BarChart, Bar, Cell, ResponsiveContainer, Tooltip
 } from 'recharts';
 import { dashboardAPI, DashboardStats } from '../api/client';
 import {
     DollarSign,
     TrendingUp,
     Monitor,
+    Database,
     CheckSquare,
     ArrowRight
 } from 'lucide-react';
@@ -40,14 +41,6 @@ const Analysis: React.FC = () => {
         return Object.entries(stats.ci_growth).map(([key, value]) => ({ name: key, value }));
     };
 
-    const getOSData = () => {
-        if (!stats?.cis_by_os_db_system) return [];
-        return Object.entries(stats.cis_by_os_db_system)
-            .map(([name, value]) => ({ name, value }))
-            .sort((a, b) => b.value - a.value)
-            .slice(0, 5); // Start with top 5
-    };
-
     const getSLAData = () => {
         if (!stats?.cis_by_sla) return [];
         return Object.entries(stats.cis_by_sla).map(([name, value]) => ({ name, value }));
@@ -60,8 +53,6 @@ const Analysis: React.FC = () => {
             .sort((a, b) => b.value - a.value)
             .slice(0, 5);
     };
-
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
     const reports = [
         {
@@ -95,31 +86,56 @@ const Analysis: React.FC = () => {
             )
         },
         {
-            id: 'os',
-            title: 'OS/DB System Usage',
-            description: 'Distribution of operating systems and databases across your fleet.',
+            id: 'os_lifecycle',
+            title: 'OS Lifecycle Analysis',
+            description: 'Operating System distribution with lifecycle status integration.',
             icon: Monitor,
             path: '/analysis/os',
             color: '#F59E0B',
             chart: (
                 <ResponsiveContainer width="100%" height={60}>
-                    <PieChart>
-                        <Pie
-                            data={getOSData()}
-                            cx="50%"
-                            innerRadius={15}
-                            outerRadius={25}
-                            paddingAngle={2}
-                            dataKey="value"
-                        >
-                            {
-                                getOSData().map((_entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                ))
-                            }
-                        </Pie >
-                    </PieChart >
-                </ResponsiveContainer >
+                    <BarChart data={stats?.cis_by_os_detailed?.slice(0, 5) || []}>
+                        <Bar dataKey="value" radius={[2, 2, 0, 0]}>
+                            {stats?.cis_by_os_detailed?.slice(0, 5).map((entry, index) => (
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={
+                                        entry.status === 'end_of_life' ? '#EF4444' :
+                                            entry.status === 'unapproved' ? '#F59E0B' :
+                                                '#10B981'
+                                    }
+                                />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </ResponsiveContainer>
+            )
+        },
+        {
+            id: 'db_lifecycle',
+            title: 'Database Lifecycle Analysis',
+            description: 'Database distribution with lifecycle status integration.',
+            icon: Database,
+            path: '/analysis/db',
+            color: '#8B5CF6',
+            chart: (
+                <ResponsiveContainer width="100%" height={60}>
+                    <BarChart data={stats?.cis_by_db_detailed?.slice(0, 5) || []}>
+                        <Tooltip />
+                        <Bar dataKey="value" radius={[2, 2, 0, 0]}>
+                            {stats?.cis_by_db_detailed?.slice(0, 5).map((entry, index) => (
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={
+                                        entry.status === 'end_of_life' ? '#EF4444' :
+                                            entry.status === 'unapproved' ? '#F59E0B' :
+                                                '#8B5CF6'
+                                    }
+                                />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </ResponsiveContainer>
             )
         },
         {

@@ -18,6 +18,8 @@ export interface DashboardStats {
     cis_by_sla: Record<string, number>;
     ci_growth: Record<string, number>;
     recent_imports: number;
+    cis_by_os_detailed: { name: string; status: string; value: number }[];
+    cis_by_db_detailed: { name: string; status: string; value: number }[];
 }
 
 export const api = axios.create({
@@ -72,7 +74,7 @@ export const ciAPI = {
     list: async (params?: {
         page?: number;
         page_size?: number;
-        ci_type?: string;
+        ci_type?: string | string[];
         status?: string;
         search?: string;
         sort_by?: string;
@@ -84,12 +86,23 @@ export const ciAPI = {
         sla?: string[];
         environment?: string[];
         domain?: string[];
+        software?: string[];
     }) => {
         const response = await api.get('/api/ci', {
             params: params,
             paramsSerializer: {
-                indexes: null // Use 'key=val&key=val' format for arrays instead of 'key[]=val' depending on backend requirement, FastAPI typically handles repeated keys well. defaults are usually fine but explicit is safer if needed. default axios is brackets 'key[]'. FastAPI default needs 'key' repeated without brackets to map to List unless using specific aliases. 
-                // Let's test standard axios behavior first. FastAPI `Query` usually expects `key=val&key=val2`
+                serialize: (params) => {
+                    const searchParams = new URLSearchParams();
+                    Object.entries(params).forEach(([key, value]) => {
+                        if (value === undefined || value === null) return;
+                        if (Array.isArray(value)) {
+                            value.forEach(v => searchParams.append(key, v));
+                        } else {
+                            searchParams.append(key, String(value));
+                        }
+                    });
+                    return searchParams.toString();
+                }
             }
         });
         return response.data;

@@ -75,8 +75,8 @@ class SharePointConnector(Connector):
             # Get the list
             sp_list = ctx.web.lists.get_by_title(list_name)
             
-            # Fetch all items
-            items = sp_list.items.get().execute_query()
+            # Fetch all items with text values (resolved lookups)
+            items = sp_list.items.expand(["FieldValuesAsText"]).get_all().execute_query()
             
             # Convert SharePoint items to dictionaries
             result = []
@@ -87,6 +87,24 @@ class SharePointConnector(Connector):
                     # Skip internal SharePoint fields
                     if not key.startswith('_') and key not in ['__metadata', 'odata.type', 'odata.id', 'odata.editLink']:
                         item_dict[key] = value
+                
+                # Merge resolved text values (e.g. for Lookups/Choice fields)
+                # This makes 'Server' available alongside 'ServerId'
+                # Access via properties dict as direct attribute might not be available depending on library version/state
+                field_values_as_text = item.properties.get('FieldValuesAsText', None)
+                
+                if field_values_as_text and hasattr(field_values_as_text, 'properties'):
+                    for key, value in field_values_as_text.properties.items():
+                        if not key.startswith('_') and key not in ['__metadata', 'odata.type', 'odata.id', 'odata.editLink']:
+                            if key not in item_dict:
+                                item_dict[key] = value
+                elif isinstance(field_values_as_text, dict):
+                     # Fallback if it's just a dict
+                     for key, value in field_values_as_text.items():
+                        if not key.startswith('_') and key not in ['__metadata', 'odata.type', 'odata.id', 'odata.editLink']:
+                            if key not in item_dict:
+                                item_dict[key] = value
+                            
                 result.append(item_dict)
             
             logger.info(f"Successfully fetched {len(result)} items from SharePoint list '{list_name}'")
@@ -742,10 +760,16 @@ class ReconciliationService:
             filename = f"import_{self.source.id}_{timestamp}.json"
             filepath = os.path.join(log_dir, filename)
             
+            # Raw log file
+            raw_filename = f"raw_import_{self.source.id}_{timestamp}.json"
+            raw_filepath = os.path.join(log_dir, raw_filename)
+            
             raw_data_generator = connector.fetch_data()
             errors = []
+            all_raw_records = []
             
             for batch in raw_data_generator:
+                all_raw_records.extend(batch)
                 batch_count = 0
                 for raw_record in batch:
                     try:
@@ -764,20 +788,24 @@ class ReconciliationService:
                             "error": str(e)
                         })
                 
-                # Commit progress and write log after every batch
+                # Commit progress and write logs after every batch
                 try:
                     self.db.commit()
                     # Refresh log object to prevent stale data
                     self.db.refresh(self.log)
                     
                     # Incremental Log Write: Overwrite file with current state
-                    # This ensures we have logs even if the process dies
                     with open(filepath, 'w') as f:
                         json.dump(self.audit_log, f, indent=2, default=str)
+                        
+                    # Write Raw Data Log (Incremental verify)
+                    with open(raw_filepath, 'w') as f:
+                        json.dump(all_raw_records, f, indent=2, default=str)
                         
                     # Update details in DB with file path
                     summary_data = {
                         "log_file": filepath,
+                        "raw_file": raw_filepath,
                         "summary": f"In Progress: Processed {self.log.records_processed}...",
                         "errors": errors
                     }
@@ -796,6 +824,7 @@ class ReconciliationService:
                 # Update log details with summary and file path
                 summary_data = {
                     "log_file": filepath,
+                    "raw_file": raw_filepath,
                     "summary": f"Processed {len(self.audit_log)} changes ({self.log.records_success} success (Created: {self.log.records_created}, Updated: {self.log.records_updated}), {self.log.records_failed} failed).",
                     "errors": errors
                 }
@@ -928,6 +957,8 @@ class ReconciliationService:
                     # Special handling for Enums
                     if field_name == 'ci_type':
                         value = self._parse_ci_type(value)
+                    elif field_name == 'status':
+                        value = self._parse_ci_status(value)
                     
                     # Capture old value before update
                     old_value = getattr(ci, field_name)
@@ -991,6 +1022,27 @@ class ReconciliationService:
         }
         
         return type_map.get(type_str.lower(), CIType.OTHER)
+
+    def _parse_ci_status(self, status_str: Optional[str]) -> CIStatus:
+        """Parse CI status from string."""
+        if not status_str:
+            return CIStatus.ACTIVE
+            
+        status_map = {
+            'active': CIStatus.ACTIVE,
+            'aktiv': CIStatus.ACTIVE,
+            'live': CIStatus.ACTIVE,
+            'inactive': CIStatus.INACTIVE,
+            'inaktiv': CIStatus.INACTIVE,
+            'retired': CIStatus.RETIRED,
+            'abgeschaltet': CIStatus.RETIRED,
+            'planned': CIStatus.PLANNED,
+            'geplant': CIStatus.PLANNED,
+            'maintenance': CIStatus.MAINTENANCE,
+            'wartung': CIStatus.MAINTENANCE
+        }
+        
+        return status_map.get(status_str.lower(), CIStatus.ACTIVE)
 
 def get_connector_for_test(source_type: str, config: Dict[str, Any]) -> Optional[Connector]:
     """Factory to get a connector for testing purposes."""
