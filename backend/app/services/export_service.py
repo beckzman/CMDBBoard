@@ -71,7 +71,9 @@ class ExportService:
                 'Abteilung': ci.department,
                 'location': ci.location,
                 'environment': ci.environment,
+                'environment': ci.environment,
                 'cost_center': ci.cost_center,
+                'service_provider': ci.service_provider,
                 'technical_details': ci.technical_details,
                 'created_at': ci.created_at.isoformat() if ci.created_at else None,
                 'updated_at': ci.updated_at.isoformat() if ci.updated_at else None
@@ -114,7 +116,9 @@ class ExportService:
                 'Abteilung': ci.department,
                 'location': ci.location,
                 'environment': ci.environment,
+                'environment': ci.environment,
                 'cost_center': ci.cost_center,
+                'service_provider': ci.service_provider,
                 'technical_details': ci.technical_details,
                 'created_at': ci.created_at,
                 'updated_at': ci.updated_at

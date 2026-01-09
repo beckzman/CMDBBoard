@@ -77,6 +77,7 @@ class ConfigurationItem(Base):
     cost_center = Column(String(100))
     os_db_system = Column(String(255))
     sla = Column(String(255))  # Service Level Agreement
+    service_provider = Column(String(255))  # e.g. BTC, CGI
     
     # Technical details (JSON-like text field for flexibility)
     technical_details = Column(Text)  # Store as JSON string

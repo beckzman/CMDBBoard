@@ -98,12 +98,26 @@ class SharePointConnector(Connector):
                         if not key.startswith('_') and key not in ['__metadata', 'odata.type', 'odata.id', 'odata.editLink']:
                             if key not in item_dict:
                                 item_dict[key] = value
+                            
+                            # Also add decoded key (remove _x005f_)
+                            # SharePoint often double-escapes underscores in FieldValuesAsText
+                            if '_x005f_' in key:
+                                clean_key = key.replace('_x005f_', '_')
+                                if clean_key not in item_dict:
+                                    item_dict[clean_key] = value
+
                 elif isinstance(field_values_as_text, dict):
                      # Fallback if it's just a dict
                      for key, value in field_values_as_text.items():
                         if not key.startswith('_') and key not in ['__metadata', 'odata.type', 'odata.id', 'odata.editLink']:
                             if key not in item_dict:
                                 item_dict[key] = value
+                            
+                            # Also add decoded key
+                            if '_x005f_' in key:
+                                clean_key = key.replace('_x005f_', '_')
+                                if clean_key not in item_dict:
+                                    item_dict[clean_key] = value
                             
                 result.append(item_dict)
             
@@ -873,17 +887,30 @@ class ReconciliationService:
             self.log.records_failed += 1
             return
 
-        # Find existing CI using reconciliation key
-        key_field = self.recon_config.key_field
+        # Try to find existing CI by External ID + Source (Stable ID)
+        # This is more robust than Name matching, especially for renamed items
+        external_id = raw_record.get('id') or raw_record.get('ID') or raw_record.get('Id')
+        ci = None
         
-        if self.recon_config.match_strategy == 'case_insensitive':
-            ci = self.db.query(ConfigurationItem).filter(
-                getattr(ConfigurationItem, key_field).ilike(match_value)
+        if external_id:
+             ci = self.db.query(ConfigurationItem).filter(
+                ConfigurationItem.external_id == str(external_id),
+                ConfigurationItem.import_source_id == self.source.id
             ).first()
-        else:
-            ci = self.db.query(ConfigurationItem).filter(
-                getattr(ConfigurationItem, key_field) == match_value
-            ).first()
+
+        # Fallback to Key Field matching if not found by External ID
+        if not ci:
+            # Find existing CI using reconciliation key
+            key_field = self.recon_config.key_field
+            
+            if self.recon_config.match_strategy == 'case_insensitive':
+                ci = self.db.query(ConfigurationItem).filter(
+                    getattr(ConfigurationItem, key_field).ilike(match_value)
+                ).first()
+            else:
+                ci = self.db.query(ConfigurationItem).filter(
+                    getattr(ConfigurationItem, key_field) == match_value
+                ).first()
 
         if ci:
             # Update existing CI
@@ -914,6 +941,7 @@ class ReconciliationService:
             'location': mapped_record.get('location'),
             'environment': mapped_record.get('environment'),
             'cost_center': mapped_record.get('cost_center'),
+            'service_provider': mapped_record.get('service_provider') or mapped_record.get('Service_x0020_Provider'),
             'technical_details': mapped_record.get('technical_details'),
             'os_db_system': mapped_record.get('os_db_system') or mapped_record.get('operating_system'),
             'domain': mapped_record.get('domain'),
@@ -947,6 +975,8 @@ class ReconciliationService:
                 field_name = 'department'
             elif field_name == 'operating_system':
                 field_name = 'os_db_system'
+            elif field_name == 'Service_x0020_Provider':
+                field_name = 'service_provider'
 
             if field_name == self.recon_config.key_field:
                 continue  # Don't update the reconciliation key

@@ -47,6 +47,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         environment: 'production',
         cost_center: '',
         sla: '',
+        service_provider: '',
         os_db_system: '',
         software_id: '' as string | number, // Allow empty string for "none"
     });
@@ -64,6 +65,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 environment: initialData.environment || 'production',
                 cost_center: initialData.cost_center || '',
                 sla: initialData.sla || '',
+                service_provider: initialData.service_provider || '',
                 os_db_system: initialData.os_db_system || initialData.operating_system || '',
                 software_id: initialData.software_id || '',
             });
@@ -80,6 +82,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 environment: 'production',
                 cost_center: '',
                 sla: '',
+                service_provider: '',
                 os_db_system: '',
                 software_id: '',
             });
@@ -389,6 +392,19 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                     onChange={handleChange}
                                     className="form-input"
                                     placeholder="e.g. IT-OPS-001"
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="service_provider">Service Provider</label>
+                                <input
+                                    type="text"
+                                    id="service_provider"
+                                    name="service_provider"
+                                    value={formData.service_provider}
+                                    onChange={handleChange}
+                                    className="form-input"
+                                    placeholder="e.g. BTC, CGI"
                                 />
                             </div>
 

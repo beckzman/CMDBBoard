@@ -33,7 +33,7 @@ const ColumnFilter: React.FC<{
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const filterableColumns = ['ci_type', 'department', 'location', 'os_db_system', 'cost_center', 'sla', 'environment', 'domain', 'software'];
+    const filterableColumns = ['ci_type', 'department', 'location', 'os_db_system', 'cost_center', 'sla', 'service_provider', 'environment', 'domain', 'software'];
     if (!filterableColumns.includes(columnKey)) return null;
 
     const handleCheckboxChange = (option: string) => {
@@ -179,6 +179,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'os_db_system', label: 'OS/DB System', visible: true },
         { key: 'domain', label: 'Domain', sortable: true },
         { key: 'cost_center', label: 'Cost Center', sortable: true },
+        { key: 'service_provider', label: 'Service Provider', sortable: true },
         { key: 'sla', label: 'SLA', sortable: true },
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
@@ -353,7 +354,21 @@ const ConfigurationItems: React.FC = () => {
     const renderCellContent = (ci: any, key: string) => {
         switch (key) {
             case 'name':
-                return <span className="ci-name">{ci.name}</span>;
+                return (
+                    <span
+                        className="ci-name"
+                        title={ci.description || ''}
+                        onClick={() => handleView(ci)}
+                        style={{
+                            cursor: 'pointer',
+                            textDecoration: ci.description ? 'underline dotted' : 'none',
+                            color: 'var(--primary)',
+                            fontWeight: 500
+                        }}
+                    >
+                        {ci.name}
+                    </span>
+                );
             case 'type':
             case 'ci_type':
                 return <span className="ci-type-badge">{ci.ci_type.replace('_', ' ')}</span>;
@@ -371,6 +386,7 @@ const ConfigurationItems: React.FC = () => {
                 ) : (
                     <span className="text-muted text-xs">-</span>
                 );
+
             case 'sla':
                 return ci.sla || '-';
             case 'last_ping':

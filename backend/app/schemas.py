@@ -101,6 +101,7 @@ class CIBase(BaseModel):
     environment: Optional[str] = None
     cost_center: Optional[str] = None
     sla: Optional[str] = None
+    service_provider: Optional[str] = None
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
     software_id: Optional[int] = None
@@ -120,6 +121,7 @@ class CIUpdate(BaseModel):
     environment: Optional[str] = None
     cost_center: Optional[str] = None
     sla: Optional[str] = None
+    service_provider: Optional[str] = None
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
     software_id: Optional[int] = None
