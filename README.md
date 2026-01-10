@@ -17,7 +17,7 @@ A comprehensive Configuration Management Database (CMDB) Dashboard built with Py
 
 ### Backend
 - **FastAPI**: Modern Python web framework
-- **PostgreSQL**: Relational database
+- **PostgreSQL**: Relational database (Primary Port 5433)
 - **SQLAlchemy**: ORM for database operations
 - **Alembic**: Database migrations
 - **Pandas**: Data processing for imports/exports

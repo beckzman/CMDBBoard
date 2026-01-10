@@ -61,4 +61,4 @@ This guide describes how to deploy the CMDBBoard application to a production env
 
 -   **Frontend**: Served by Nginx (Alpine), which also handles SPA routing (redirecting to `index.html`).
 -   **Backend**: Runs with `gunicorn` processing requests, managing multiple workers for concurrency.
--   **Database**: PostgreSQL with persistent volume `postgres_data_prod`.
+-   **Database**: PostgreSQL on Port 5433 (host) with persistent volume `postgres_data_prod`.

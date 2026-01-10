@@ -2,7 +2,7 @@
 
 ## Project Structure
 The project is divided into two main parts:
--   **Backend (`/backend`)**: A FastAPI application using PostgreSQL.
+-   **Backend (`/backend`)**: A FastAPI application using PostgreSQL (mapped to Port 5433).
 -   **Frontend (`/frontend`)**: A React application using Vite and TypeScript.
 
 ### Backend Architecture
