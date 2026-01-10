@@ -24,13 +24,19 @@
 ### 4. Frontend
 [ ] Update `ConfigurationItem` interface in `frontend/src/api/client.ts`.
 [ ] Update `ConfigurationItems.tsx`:
-    - Add to `AVAILABLE_COLUMNS`.
-    - Update `filterableColumns` if you want it filterable.
-    - Update `renderCellContent` if it needs special formatting.
-[ ] Update `AddCIModal.tsx` / `EditCIModal` forms to include the input field.
+    - Add to `AVAILABLE_COLUMNS` list (essential!).
+    - Add to `filterableColumns` list if you want it in the filter dropdown.
+    - Update `renderCellContent` switch-case if it needs special formatting (e.g., date, badge, tooltip).
+[ ] Update `AddCIModal.tsx`:
+    - Add to `formData` initialized state.
+    - Add to `useEffect` hooks (for populating on edit, and resetting on close).
+    - Add `<input>` field to the JSX return.
 
 ## Known Bugs / Gotchas
-- **Import Mapping**: SharePoint internal names are tricky. Always check the raw import log.
-- **Filter**: If filter dropdown shows "Option", ensure the backend `get_distinct_attribute_values` allows the new field.
+- **Column Visibility**: When you add a new column to `AVAILABLE_COLUMNS`, it **WILL NOT** appear automatically for users who have visited the page before.
+    - *Reason*: `visibleColumns` preference is saved in `localStorage`.
+    - *Fix*: Users must click the "Columns" button and manually toggle the new column ON.
+- **Import Mapping**: SharePoint internal names are tricky (e.g. `_x0020_` vs space). Always check the raw import log.
+- **Filter**: If filter dropdown shows "Option", ensure the backend `get_distinct_attribute_values` allows the new field (whitelist).
 - **Sorting**: Ensure the new column key matches the backend model attribute exactly.
 
