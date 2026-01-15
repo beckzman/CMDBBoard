@@ -44,19 +44,86 @@
 }
 
 /* React Flow Customization */
-.react-flow__node {
-    font-family: inherit;
+/* Custom Node Styling */
+.custom-node-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     background: var(--bg-primary);
     color: var(--text-primary);
-    padding: 10px;
-    min-width: 150px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    min-height: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
 
-.react-flow__node.selected {
+.custom-node-content:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
+}
+
+.node-icon-wrapper {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.node-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+/* Type-specific colors */
+.node-type-server {
+    border-top: 4px solid #3b82f6;
+}
+
+/* Blue */
+.node-type-database {
+    border-top: 4px solid #10b981;
+}
+
+/* Emerald */
+.node-type-application {
+    border-top: 4px solid #f59e0b;
+}
+
+/* Amber */
+.node-type-network_device {
+    border-top: 4px solid #8b5cf6;
+}
+
+/* Violet */
+.node-type-storage {
+    border-top: 4px solid #ec4899;
+}
+
+/* Pink */
+.node-type-service {
+    border-top: 4px solid #6366f1;
+}
+
+/* Indigo */
+.node-type-workstation {
+    border-top: 4px solid #14b8a6;
+}
+
+/* Teal */
+
+.react-flow__node.selected .custom-node-content {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.5);
 }

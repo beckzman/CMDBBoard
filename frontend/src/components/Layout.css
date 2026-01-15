@@ -90,8 +90,7 @@
     padding: 0;
 }
 
-.app-sidebar.closed .logo-text,
-.app-sidebar.closed .sidebar-toggle {
+.app-sidebar.closed .logo-text {
     display: none;
 }
 

@@ -9,7 +9,7 @@ from sqlalchemy import or_
 from app.core.auth import get_current_user, require_role
 from app.db.database import get_db
 from app.db.models import Relationship, ConfigurationItem, User, UserRole
-from app.schemas import RelationshipCreate, RelationshipResponse
+from app.schemas import RelationshipCreate, RelationshipResponse, RelationshipDetailedResponse
 
 router = APIRouter(prefix="/api/relationships", tags=["Relationships"])
 
@@ -20,6 +20,31 @@ def get_all_relationships(
 ):
     """Get all relationships."""
     return db.query(Relationship).all()
+
+
+@router.get("/detailed", response_model=List[RelationshipDetailedResponse])
+def get_all_relationships_detailed(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get all relationships with source and target CI names."""
+    relationships = db.query(Relationship).all()
+    
+    # Enrich with names (could be optimized with joins, but this is simpler for now given SQLAlchemy relationship setup)
+    detailed = []
+    for r in relationships:
+        detailed.append({
+            "id": r.id,
+            "source_ci_id": r.source_ci_id,
+            "target_ci_id": r.target_ci_id,
+            "relationship_type": r.relationship_type,
+            "description": r.description,
+            "created_at": r.created_at,
+            "source_ci_name": r.source_ci.name if r.source_ci else "Unknown",
+            "target_ci_name": r.target_ci.name if r.target_ci else "Unknown"
+        })
+        
+    return detailed
 @router.get("/ci/{ci_id}", response_model=List[RelationshipResponse])
 def get_ci_relationships(
     ci_id: int,

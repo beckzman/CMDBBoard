@@ -102,6 +102,7 @@ class CIBase(BaseModel):
     cost_center: Optional[str] = None
     sla: Optional[str] = None
     service_provider: Optional[str] = None
+    contact: Optional[str] = None
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
     software_id: Optional[int] = None
@@ -122,6 +123,7 @@ class CIUpdate(BaseModel):
     cost_center: Optional[str] = None
     sla: Optional[str] = None
     service_provider: Optional[str] = None
+    contact: Optional[str] = None
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
     software_id: Optional[int] = None
@@ -157,6 +159,11 @@ class RelationshipResponse(RelationshipBase):
     
     class Config:
         from_attributes = True
+
+
+class RelationshipDetailedResponse(RelationshipResponse):
+    source_ci_name: str
+    target_ci_name: str
 
 
 # Import Log Schemas
@@ -219,6 +226,7 @@ class DashboardStats(BaseModel):
     cis_by_department: dict
     cis_by_location: dict
     costs_by_cost_center: dict
+    costs_by_cost_center_and_type: dict = Field(default_factory=dict)
     cis_by_os_db_system: dict
     cis_by_sla: dict
     cis_by_os_detailed: List[dict]

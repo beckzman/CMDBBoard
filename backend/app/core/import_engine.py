@@ -782,6 +782,8 @@ class ReconciliationService:
             errors = []
             all_raw_records = []
             
+            processed_cis: List[Tuple[ConfigurationItem, Dict[str, Any]]] = []
+
             for batch in raw_data_generator:
                 all_raw_records.extend(batch)
                 batch_count = 0
@@ -792,7 +794,9 @@ class ReconciliationService:
                         
                         # Map external data to CMDB format
                         mapped_record = self.field_mapper.map_data(raw_record)
-                        self._process_record(mapped_record, raw_record)
+                        ci = self._process_record(mapped_record, raw_record)
+                        if ci:
+                            processed_cis.append((ci, raw_record))
                     except Exception as e:
                         logger.error(f"Failed to process record: {e}")
                         self.db.rollback()  # Reset session state after failure
@@ -830,6 +834,22 @@ class ReconciliationService:
                     logger.error(f"Failed to commit batch progress or write logs: {e}")
                     self.db.rollback()
             
+            # Second Pass: Process Relationships
+            # Now that all CIs are created/updated, we can safely link them.
+            if self.config.get('relationship_mapping'):
+                logger.info("Starting relationship processing pass...")
+                for ci, raw_rec in processed_cis:
+                    try:
+                         # Refresh CI to ensure attached to session (though should be if session mostly alive)
+                         # If session was cleared or rolled back, we might need to re-query, but let's try direct.
+                         self._process_relationships(ci, raw_rec)
+                    except Exception as e:
+                         # Don't fail the whole import for a relationship error, just log it
+                         logger.error(f"Relationship processing failed for {ci.name}: {e}")
+                         # Maybe add to errors list or a separate relationship errors list?
+                self.db.commit()
+
+
             # Final Write audit log to file (to ensure completion)
             try:
                 with open(filepath, 'w') as f:
@@ -878,14 +898,14 @@ class ReconciliationService:
             return CSVConnector(self.config)
         return None
 
-    def _process_record(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]):
-        """Process a single mapped record and merge with DB."""
+    def _process_record(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> Optional[ConfigurationItem]:
+        """Process a single mapped record and merge with DB. Returns the CI if successful."""
         # Get the reconciliation key value
         match_value = self.recon_config.get_match_value(mapped_record)
         if not match_value:
             logger.warning(f"No reconciliation key found in record: {mapped_record}")
             self.log.records_failed += 1
-            return
+            return None
 
         # Try to find existing CI by External ID + Source (Stable ID)
         # This is more robust than Name matching, especially for renamed items
@@ -918,19 +938,20 @@ class ReconciliationService:
             self.log.records_success += 1
             if was_updated:
                 self.log.records_updated += 1
+            return ci
         elif self.recon_config.update_mode == 'upsert':
             # Create new CI only if in upsert mode
-            self._create_ci(mapped_record, raw_record)
+            new_ci = self._create_ci(mapped_record, raw_record)
             self.log.records_success += 1
             self.log.records_created += 1
+            return new_ci
         else:
             # Skip creation in 'update_only' mode
             logger.info(f"Skipping new CI creation (Update Only mode): {match_value}")
-            # We count this as processed but effectively skipped/success because it's desired behavior
-            # Alternatively we could track 'skipped' if we added that column to ImportLog
             self.log.records_success += 1
+            return None
 
-    def _create_ci(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]):
+    def _create_ci(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> ConfigurationItem:
         """Create a new CI from mapped data."""
         ci_data = {
             'name': mapped_record.get('name'),
@@ -942,6 +963,7 @@ class ReconciliationService:
             'environment': mapped_record.get('environment'),
             'cost_center': mapped_record.get('cost_center'),
             'service_provider': mapped_record.get('service_provider') or mapped_record.get('Service_x0020_Provider'),
+            'contact': mapped_record.get('contact') or mapped_record.get('Kontakt') or mapped_record.get('KontaktStringId'),
             'technical_details': mapped_record.get('technical_details'),
             'os_db_system': mapped_record.get('os_db_system') or mapped_record.get('operating_system'),
             'domain': mapped_record.get('domain'),
@@ -962,43 +984,104 @@ class ReconciliationService:
             "data": ci_data,
             "timestamp": datetime.utcnow().isoformat()
         })
+        
+        return new_ci
+
+    def _process_relationships(self, source_ci: ConfigurationItem, raw_record: Dict[str, Any]):
+        """
+        Process configured relationship mappings.
+        Expected config format:
+        {
+            "relationships": [
+                {
+                    "source_column": "ParentServer",
+                    "relationship_type": "runs_on",
+                    "separator": ",",
+                    "direction": "outbound" # source -> target
+                }
+            ]
+        }
+        """
+        relationship_mappings = self.config.get('relationship_mapping', [])
+        if not relationship_mappings:
+            return
+
+        from app.db.models import Relationship
+        
+        for mapping in relationship_mappings:
+            col_name = mapping.get('source_column')
+            rel_type = mapping.get('relationship_type')
+            separator = mapping.get('separator', ',')
+            # direction = mapping.get('direction', 'outbound') # Not fully implemented yet, assuming outbound
+            
+            raw_value = raw_record.get(col_name)
+            if not raw_value:
+                continue
+                
+            # Parse values
+            target_names = [n.strip() for n in str(raw_value).split(separator) if n.strip()]
+            
+            for target_name in target_names:
+                # Find Target CI
+                # Try exact match first
+                target_ci = self.db.query(ConfigurationItem).filter(
+                    ConfigurationItem.name == target_name,
+                    ConfigurationItem.deleted_at.is_(None)
+                ).first()
+                
+                if not target_ci:
+                    logger.warning(f"Relationship Import: Target CI '{target_name}' not found for source '{source_ci.name}'")
+                    continue
+                
+                # Check if relationship already exists
+                existing_rel = self.db.query(Relationship).filter(
+                    Relationship.source_ci_id == source_ci.id,
+                    Relationship.target_ci_id == target_ci.id,
+                    Relationship.relationship_type == rel_type
+                ).first()
+                
+                if not existing_rel:
+                    new_rel = Relationship(
+                        source_ci_id=source_ci.id,
+                        target_ci_id=target_ci.id,
+                        relationship_type=rel_type,
+                        description=f"Imported from column {col_name}"
+                    )
+                    self.db.add(new_rel)
+                    self.db.commit()
+                    logger.info(f"Created Relationship: {source_ci.name} -> {target_name} ({rel_type})")
+                    
+                    self.audit_log.append({
+                        "action": "relationship_created",
+                        "source": source_ci.name,
+                        "target": target_name,
+                        "type": rel_type,
+                        "timestamp": datetime.utcnow().isoformat()
+                    })
 
     def _update_ci(self, ci: ConfigurationItem, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> bool:
         """Update existing CI based on conflict resolution rules. Returns True if changes were made."""
+        # ... (mostly same logic)
         # Track changes for audit log
         changes = {}
         updated_fields = []
         
-        for field_name, value in mapped_record.items():
-            # Remap legacy 'owner' field to 'department'
-            if field_name == 'owner':
-                field_name = 'department'
-            elif field_name == 'operating_system':
-                field_name = 'os_db_system'
-            elif field_name == 'Service_x0020_Provider':
-                field_name = 'service_provider'
+        # Pre-process Enum fields to ensure valid values (Postgres strict Enums)
+        if 'ci_type' in mapped_record:
+             mapped_record['ci_type'] = self._parse_ci_type(mapped_record['ci_type'])
+        if 'status' in mapped_record:
+             mapped_record['status'] = self._parse_ci_status(mapped_record['status'])
 
-            if field_name == self.recon_config.key_field:
-                continue  # Don't update the reconciliation key
-            
-            # Check if we should update this field
-            if self.recon_config.should_update_field(field_name):
-                if hasattr(ci, field_name) and value is not None:
-                    # Special handling for Enums
-                    if field_name == 'ci_type':
-                        value = self._parse_ci_type(value)
-                    elif field_name == 'status':
-                        value = self._parse_ci_status(value)
-                    
-                    # Capture old value before update
-                    old_value = getattr(ci, field_name)
-                    
-                    # Normalization for comparison (convert to string to be safe)
-                    str_old = str(old_value) if old_value is not None else ""
-                    str_new = str(value) if value is not None else ""
-                    
-                    # Only update if value actually changed
-                    if str_old != str_new:
+        for field_name, value in mapped_record.items():
+            if hasattr(ci, field_name):
+                current_value = getattr(ci, field_name)
+                
+                # Normalize for comparison
+                str_old = str(current_value) if current_value is not None else ""
+                str_new = str(value) if value is not None else ""
+                
+                # Only update if value actually changed
+                if str_old != str_new:
                         setattr(ci, field_name, value)
                         updated_fields.append(field_name)
                         changes[field_name] = {
@@ -1023,18 +1106,17 @@ class ReconciliationService:
                 "changes": changes,
                 "timestamp": datetime.utcnow().isoformat()
             })
+            
             return True
         else:
             # Debug: Log that we saw it but changed nothing
-            # This helps users understand why "Records Processed" is high but "Updated" is low (now that we fixed the counter)
-            # OR if they use 'Updated' to mean 'Reconciled', we clarify here.
             self.audit_log.append({
                 "action": "unchanged",
                 "ci_id": ci.id,
                 "ci_name": ci.name,
                 "timestamp": datetime.utcnow().isoformat()
             })
-            return False
+            return False # Removed _process_relationships call from false branch too
 
     def _parse_ci_type(self, type_str: Optional[str]) -> CIType:
         """Parse CI type from string."""

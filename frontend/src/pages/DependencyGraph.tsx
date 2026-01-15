@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import ReactFlow, {
     addEdge,
     ConnectionLineType,
@@ -12,22 +12,68 @@ import ReactFlow, {
     Edge,
     Node,
     MarkerType,
-    Position
+    Position,
+    Handle,
+    NodeProps
 } from 'reactflow';
 import dagre from 'dagre';
 import { ciAPI, relationshipAPI } from '../api/client';
-import { RefreshCw, Layout } from 'lucide-react';
+import {
+    RefreshCw,
+    Layout,
+    Server,
+    Database,
+    Monitor,
+    HardDrive,
+    Cloud,
+    Box,
+    Layers,
+    HelpCircle
+} from 'lucide-react';
 import 'reactflow/dist/style.css';
 import './DependencyGraph.css';
 
-// Dagre Layout Setup
-const dagreGraph = new dagre.graphlib.Graph();
-dagreGraph.setDefaultEdgeLabel(() => ({}));
+// --- Custom Node Implementation ---
+const IconNode = ({ data }: NodeProps) => {
+    const { label, type } = data;
+
+    // Icon mapping
+    const getIcon = () => {
+        switch (type) {
+            case 'server': return <Server size={20} />;
+            case 'database': return <Database size={20} />;
+            case 'application': return <Box size={20} />;
+            case 'network_device': return <Cloud size={20} />;
+            case 'storage': return <HardDrive size={20} />;
+            case 'workstation': return <Monitor size={20} />;
+            case 'service': return <Layers size={20} />;
+            default: return <HelpCircle size={20} />;
+        }
+    };
+
+    return (
+        <div className={`custom-node-content node-type-${type}`}>
+            <Handle type="target" position={Position.Top} />
+            <div className="node-icon-wrapper">
+                {getIcon()}
+            </div>
+            <div className="node-label">
+                {label}
+            </div>
+            <Handle type="source" position={Position.Bottom} />
+        </div>
+    );
+};
+
 
 const nodeWidth = 172;
 const nodeHeight = 50; // Increased since height is somewhat implicit
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'TB') => {
+    // Create a new graph instance for every layout to avoid stale data
+    const dagreGraph = new dagre.graphlib.Graph();
+    dagreGraph.setDefaultEdgeLabel(() => ({}));
+
     const isHorizontal = direction === 'LR';
     dagreGraph.setGraph({ rankdir: direction });
 
@@ -41,22 +87,29 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'TB') => 
 
     dagre.layout(dagreGraph);
 
-    nodes.forEach((node) => {
+    const newNodes = nodes.map((node) => {
         const nodeWithPosition = dagreGraph.node(node.id);
-        node.targetPosition = isHorizontal ? Position.Left : Position.Top;
-        node.sourcePosition = isHorizontal ? Position.Right : Position.Bottom;
+
+        // Safety check if node was not layouted (shouldn't happen with clean graph)
+        if (!nodeWithPosition) return node;
+
+        const targetPosition = isHorizontal ? Position.Left : Position.Top;
+        const sourcePosition = isHorizontal ? Position.Right : Position.Bottom;
 
         // We are shifting the dagre node position (anchor=center center) to the top left
         // so it matches the React Flow node anchor point (top left).
-        node.position = {
-            x: nodeWithPosition.x - nodeWidth / 2,
-            y: nodeWithPosition.y - nodeHeight / 2,
+        return {
+            ...node,
+            targetPosition,
+            sourcePosition,
+            position: {
+                x: nodeWithPosition.x - nodeWidth / 2,
+                y: nodeWithPosition.y - nodeHeight / 2,
+            },
         };
-
-        return node;
     });
 
-    return { nodes, edges };
+    return { nodes: newNodes, edges };
 };
 
 const DependencyGraph: React.FC = () => {
@@ -111,12 +164,24 @@ const DependencyGraph: React.FC = () => {
         }
     };
 
+    const [rfInstance, setRfInstance] = useState<any>(null);
+
     // Re-build graph when filters or raw data changes
     useEffect(() => {
         if (rawCIs.length > 0 && rawRels.length > 0) {
             buildGraph(rawCIs, rawRels, filterCiType, filterRelType, filterCiName);
+
+            // Force re-center after layout update
+            if (rfInstance) {
+                setTimeout(() => {
+                    rfInstance.fitView({ padding: 0.2, duration: 800 });
+                }, 50);
+            }
         }
-    }, [filterCiType, filterRelType, filterCiName, rawCIs, rawRels]);
+    }, [filterCiType, filterRelType, filterCiName, rawCIs, rawRels, rfInstance]);
+
+    // Register custom node types
+    const nodeTypes = useMemo(() => ({ iconNode: IconNode }), []);
 
     const buildGraph = (cis: any[], rels: any[], fCiType: string, fRelType: string, fCiName: string) => {
 
@@ -128,11 +193,10 @@ const DependencyGraph: React.FC = () => {
         }
 
         // 2. Filter CIs logic
-        // Start with all CIs
-        let visibleCiIds = new Set<number>(cis.map((c: any) => c.id));
+        let visibleCiIds = new Set<number>();
 
-        // If searching by Name, reduce set to Matches + Neighbors
         if (fCiName) {
+            // Case A: Search by Name -> Matches + Neighbors
             const searchLower = fCiName.toLowerCase();
             const matchingCIs = cis.filter((ci: any) => ci.name.toLowerCase().includes(searchLower));
             const matchingIds = new Set(matchingCIs.map((c: any) => c.id));
@@ -144,16 +208,19 @@ const DependencyGraph: React.FC = () => {
                 if (matchingIds.has(rel.target_ci_id)) neighborIds.add(rel.source_ci_id);
             });
 
-            // Visible = Match U Neighbor
             visibleCiIds = new Set([...matchingIds, ...neighborIds]);
+
+        } else if (fCiType) {
+            // Case B: Filter by Type -> Show ALL of that type (even orphans)
+            // We initially allow ALL, and let step 3 narrow it down to the type.
+            visibleCiIds = new Set(cis.map((c: any) => c.id));
+
         } else {
-            // Default: Show connected only (remove orphans)
-            const connectedIds = new Set<number>();
+            // Case C: Default (No filters) -> Show connected only to reduce noise
             filteredRels.forEach((rel: any) => {
-                connectedIds.add(rel.source_ci_id);
-                connectedIds.add(rel.target_ci_id);
+                visibleCiIds.add(rel.source_ci_id);
+                visibleCiIds.add(rel.target_ci_id);
             });
-            visibleCiIds = connectedIds;
         }
 
         let filteredCIs = cis.filter((ci: any) => visibleCiIds.has(ci.id));
@@ -172,19 +239,12 @@ const DependencyGraph: React.FC = () => {
         // Map to React Flow Nodes
         const flowNodes: Node[] = filteredCIs.map((ci: any) => ({
             id: ci.id.toString(),
-            data: { label: ci.name },
+            type: 'iconNode', // Use our custom node
+            data: { label: ci.name, type: ci.ci_type }, // Pass type to data
             position: { x: 0, y: 0 },
-            className: `node-type-${ci.ci_type}`,
-            style: {
-                background: getTypeColor(ci.ci_type),
-                border: '1px solid #555',
-                color: '#fff',
-                borderRadius: '5px',
-                padding: '10px',
-                width: '150px',
-                fontSize: '12px',
-                textAlign: 'center'
-            }
+            // className: `node-type-${ci.ci_type}`, // Class handled inside custom node
+            // Style managed by custom node CSS
+            style: { width: nodeWidth, height: nodeHeight }
         }));
 
         // Map to React Flow Edges
@@ -227,16 +287,7 @@ const DependencyGraph: React.FC = () => {
         [nodes, edges]
     );
 
-    // Color helper
-    const getTypeColor = (type: string) => {
-        switch (type) {
-            case 'server': return '#1f2937'; // slate-800
-            case 'application': return '#1e3a8a'; // blue-900
-            case 'database': return '#064e3b'; // green-900
-            case 'network_device': return '#7c2d12'; // orange-900
-            default: return '#374151'; // gray-700
-        }
-    };
+    // Color helper - REMOVED (moved to CSS/Icon logic)
 
     return (
         <div className="page-container">
@@ -269,9 +320,11 @@ const DependencyGraph: React.FC = () => {
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
+                    nodeTypes={nodeTypes} // Register custom types
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
+                    onInit={setRfInstance}
                     fitView
                     attributionPosition="bottom-right"
                 >

@@ -42,7 +42,16 @@ const AnalysisSLA: React.FC = () => {
 
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={data}>
+                    <BarChart
+                        data={data}
+                        onClick={(data) => {
+                            if (data && data.activePayload && data.activePayload.length > 0) {
+                                const name = data.activePayload[0].payload.name;
+                                navigate(`/cis?sla=${name}`);
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
                         <YAxis />

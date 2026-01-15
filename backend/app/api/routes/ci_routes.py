@@ -248,6 +248,34 @@ def delete_configuration_item(
     ci.deleted_at = datetime.utcnow()
     db.commit()
     
+@router.delete("", status_code=status.HTTP_204_NO_CONTENT)
+def delete_configuration_items(
+    ci_type: Optional[CIType] = Query(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.ADMIN))
+):
+    """Bulk soft delete configuration items."""
+    query = db.query(ConfigurationItem).filter(ConfigurationItem.deleted_at.is_(None))
+    
+    if ci_type:
+        query = query.filter(ConfigurationItem.ci_type == ci_type)
+        
+    # Perform update for soft delete
+    from datetime import datetime
+    current_time = datetime.utcnow()
+    
+    # We use synchronize_session=False for bulk updates efficiency
+    # But for soft deletes we should verify if we need to cascade or if that's handled by other logic
+    # For simple soft delete, updating the timestamp is enough
+    
+    # Check if there are items to delete
+    count = query.count()
+    if count == 0:
+        return None
+        
+    query.update({ConfigurationItem.deleted_at: current_time}, synchronize_session=False)
+    db.commit()
+    
     return None
 
 

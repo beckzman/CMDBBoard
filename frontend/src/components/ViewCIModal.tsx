@@ -81,6 +81,29 @@ const ViewCIModal: React.FC<ViewCIModalProps> = ({ isOpen, onClose, ci }) => {
                         <label>Description:</label>
                         <p className="view-description">{ci.description || '-'}</p>
                     </div>
+
+                    {ci.technical_details && (
+                        <div className="view-row" style={{ marginTop: '15px' }}>
+                            <label>Technical Details:</label>
+                            <pre className="view-description" style={{
+                                whiteSpace: 'pre-wrap',
+                                wordBreak: 'break-all',
+                                backgroundColor: 'rgba(0,0,0,0.2)',
+                                padding: '10px',
+                                borderRadius: '4px',
+                                fontSize: '0.9em',
+                                fontFamily: 'monospace'
+                            }}>
+                                {(() => {
+                                    try {
+                                        return JSON.stringify(JSON.parse(ci.technical_details), null, 2);
+                                    } catch (e) {
+                                        return ci.technical_details;
+                                    }
+                                })()}
+                            </pre>
+                        </div>
+                    )}
                 </div>
 
                 <div className="modal-footer">

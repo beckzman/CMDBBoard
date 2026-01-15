@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { dashboardAPI } from '../api/client';
 import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
@@ -6,6 +7,7 @@ import { Server, Activity, TrendingUp, Upload } from 'lucide-react';
 import './Dashboard.css';
 
 const Dashboard: React.FC = () => {
+    const navigate = useNavigate();
     const { data: stats, isLoading } = useQuery({
         queryKey: ['dashboard-stats'],
         queryFn: dashboardAPI.getStats,
@@ -124,7 +126,16 @@ const Dashboard: React.FC = () => {
                 <div className="card chart-card">
                     <h3>CIs by Type</h3>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={ciTypeData}>
+                        <BarChart
+                            data={ciTypeData}
+                            onClick={(data) => {
+                                if (data && data.activePayload && data.activePayload.length > 0) {
+                                    const typeName = data.activePayload[0].payload.name.toLowerCase().replace(' ', '_');
+                                    navigate(`/cis?ci_type=${typeName}`);
+                                }
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <XAxis dataKey="name" stroke="#B0B2B8" />
                             <YAxis stroke="#B0B2B8" />
                             <Tooltip
@@ -153,6 +164,12 @@ const Dashboard: React.FC = () => {
                                 outerRadius={100}
                                 fill="#8884d8"
                                 dataKey="value"
+                                onClick={(data) => {
+                                    if (data && data.name) {
+                                        navigate(`/cis?status=${data.name.toLowerCase()}`);
+                                    }
+                                }}
+                                style={{ cursor: 'pointer' }}
                             >
                                 {ciStatusData.map((_entry, index) => (
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -172,7 +189,16 @@ const Dashboard: React.FC = () => {
                 <div className="card chart-card">
                     <h3>CIs by Department</h3>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={ciDepartmentData}>
+                        <BarChart
+                            data={ciDepartmentData}
+                            onClick={(data) => {
+                                if (data && data.activePayload && data.activePayload.length > 0) {
+                                    const deptName = data.activePayload[0].payload.name;
+                                    navigate(`/cis?department=${deptName}`);
+                                }
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <XAxis dataKey="name" stroke="#B0B2B8" />
                             <YAxis stroke="#B0B2B8" />
                             <Tooltip
@@ -191,7 +217,16 @@ const Dashboard: React.FC = () => {
                 <div className="card chart-card">
                     <h3>CIs by Location</h3>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={ciLocationData}>
+                        <BarChart
+                            data={ciLocationData}
+                            onClick={(data) => {
+                                if (data && data.activePayload && data.activePayload.length > 0) {
+                                    const locName = data.activePayload[0].payload.name;
+                                    navigate(`/cis?location=${locName}`);
+                                }
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <XAxis dataKey="name" stroke="#B0B2B8" />
                             <YAxis stroke="#B0B2B8" />
                             <Tooltip
@@ -210,7 +245,16 @@ const Dashboard: React.FC = () => {
                 <div className="card chart-card" style={{ gridColumn: 'span 2' }}>
                     <h3>Monthly Costs by Cost Center</h3>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={costsData}>
+                        <BarChart
+                            data={costsData}
+                            onClick={(data) => {
+                                if (data && data.activePayload && data.activePayload.length > 0) {
+                                    const ccName = data.activePayload[0].payload.name;
+                                    navigate(`/cis?cost_center=${ccName}`);
+                                }
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <XAxis dataKey="name" stroke="#B0B2B8" />
                             <YAxis stroke="#B0B2B8" unit="€" />
                             <Tooltip

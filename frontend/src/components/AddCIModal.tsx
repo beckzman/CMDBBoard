@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { ciAPI, domainAPI, relationshipAPI, softwareAPI } from '../api/client';
 import { X, Plus, Trash2, Link as LinkIcon, ArrowRight } from 'lucide-react';
+import DeleteCIModal from './DeleteCIModal';
 import './AddCIModal.css';
 
 interface AddCIModalProps {
@@ -22,6 +23,11 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
     const [targetSearch, setTargetSearch] = useState('');
     const [targetProjectCandidates, setTargetProjectCandidates] = useState<any[]>([]);
     const [selectedTarget, setSelectedTarget] = useState<any>(null);
+
+    // Delete Modal State
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [relationToDelete, setRelationToDelete] = useState<number | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
 
     const { data: domains } = useQuery({
@@ -48,6 +54,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         cost_center: '',
         sla: '',
         service_provider: '',
+        contact: '',
         os_db_system: '',
         software_id: '' as string | number, // Allow empty string for "none"
     });
@@ -66,6 +73,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 cost_center: initialData.cost_center || '',
                 sla: initialData.sla || '',
                 service_provider: initialData.service_provider || '',
+                contact: initialData.contact || '',
                 os_db_system: initialData.os_db_system || initialData.operating_system || '',
                 software_id: initialData.software_id || '',
             });
@@ -83,6 +91,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                 cost_center: '',
                 sla: '',
                 service_provider: '',
+                contact: '',
                 os_db_system: '',
                 software_id: '',
             });
@@ -166,13 +175,27 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
         }
     };
 
-    const handleDeleteRelationship = async (id: number) => {
-        if (!confirm("Are you sure you want to remove this relationship?")) return;
+    const confirmDeleteRelationship = (id: number) => {
+        setRelationToDelete(id);
+        setDeleteModalOpen(true);
+    };
+
+    const handleDeleteRelationship = async () => {
+        if (!relationToDelete) return;
+
+        console.log(`[AddCIModal] Deleting relationship ID: ${relationToDelete}`);
+        setIsDeleting(true);
         try {
-            await relationshipAPI.delete(id);
+            await relationshipAPI.delete(relationToDelete);
+            console.log(`[AddCIModal] Relationship deleted successfully`);
             fetchRelationships();
+            setDeleteModalOpen(false);
+            setRelationToDelete(null);
         } catch (error) {
-            console.error("Failed to delete relationship", error);
+            console.error("[AddCIModal] Failed to delete relationship", error);
+            alert("Failed to delete relationship: " + (error as any).message); // Using simple alert for error for now
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -409,6 +432,19 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="contact">Contact</label>
+                                <input
+                                    type="text"
+                                    id="contact"
+                                    name="contact"
+                                    value={formData.contact}
+                                    onChange={handleChange}
+                                    className="form-input"
+                                    placeholder="Person or Team responsible"
+                                />
+                            </div>
+
+                            <div className="form-group">
                                 <label htmlFor="os_db_system">OS/DB System (Discovery)</label>
                                 <input
                                     type="text"
@@ -601,7 +637,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
 
                                                     <button
                                                         type="button"
-                                                        onClick={() => handleDeleteRelationship(rel.id)}
+                                                        onClick={() => confirmDeleteRelationship(rel.id)}
                                                         style={{ background: 'none', border: 'none', color: '#ff4444', cursor: 'pointer', padding: '5px' }}
                                                         title="Remove Relationship"
                                                     >
@@ -630,6 +666,16 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                     </form>
                 </div>
             </div>
+
+            <DeleteCIModal
+                isOpen={deleteModalOpen}
+                onClose={() => { setDeleteModalOpen(false); setRelationToDelete(null); }}
+                onConfirm={handleDeleteRelationship}
+                ciName="this relationship"
+                title="Remove Relationship"
+                message={<>Are you sure you want to remove this relationship?</>}
+                isPending={isDeleting}
+            />
         </div>
     );
 };

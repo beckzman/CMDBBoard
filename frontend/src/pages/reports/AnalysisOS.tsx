@@ -40,6 +40,13 @@ const AnalysisOS: React.FC = () => {
                         data={stats?.cis_by_os_detailed || []}
                         layout="vertical"
                         margin={{ top: 20, right: 30, left: 100, bottom: 5 }}
+                        onClick={(data) => {
+                            if (data && data.activePayload && data.activePayload.length > 0) {
+                                const name = data.activePayload[0].payload.name;
+                                navigate(`/cis?software=${encodeURIComponent(name)}`);
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
                     >
                         <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
                         <XAxis type="number" tick={{ fill: '#9ca3af' }} />

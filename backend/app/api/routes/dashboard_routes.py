@@ -132,13 +132,14 @@ def get_dashboard_stats(
     
     # 3. Calculate cost per CI and aggregate
     costs_by_cost_center = {}
+    costs_by_cost_center_and_type = {}
     
     for ci in active_cis_data:
         # Filter rules for this CI type
         relevant_rules = [r for r in cost_rules if r.ci_type == ci.ci_type]
-        
         best_match_cost = 0.0
         best_score = -1
+
         
         normalized_ci_os = normalize_os(ci.os_db_system)
         
@@ -146,16 +147,25 @@ def get_dashboard_stats(
             score = 0
             
             # Check SLA
+            # Check SLA
             if rule.sla:
-                if rule.sla.lower() == (ci.sla or "").lower():
-                    score += 2
+                # Use contains matching
+                rule_sla = rule.sla.lower()
+                ci_sla = (ci.sla or "").lower()
+                
+                if rule_sla not in ci_sla and ci_sla not in rule_sla:
+                     score = -1 # Mismatch, rule doesn't apply
+                     continue
+                
+                # Bonus for exact match
+                if rule_sla == ci_sla:
+                     score += 2
                 else:
-                    score = -1 # Mismatch, rule doesn't apply
-                    continue
-            
+                     score += 1
+
             # Check OS
             if rule.os_db_system:
-                rule_os = rule.os_db_system.lower()
+                rule_os = rule.os_db_system.strip().lower()
                 ci_os = (ci.os_db_system or "").lower()
                 
                 # Check 1: Direct Match or Substring (Existing logic)
@@ -181,6 +191,13 @@ def get_dashboard_stats(
         
         cc = ci.cost_center or "Unassigned"
         costs_by_cost_center[cc] = costs_by_cost_center.get(cc, 0.0) + best_match_cost
+
+        # Aggregate by Cost Center AND Type
+        if cc not in costs_by_cost_center_and_type:
+            costs_by_cost_center_and_type[cc] = {}
+        
+        ci_type_str = ci.ci_type.value if hasattr(ci.ci_type, 'value') else str(ci.ci_type)
+        costs_by_cost_center_and_type[cc][ci_type_str] = costs_by_cost_center_and_type[cc].get(ci_type_str, 0.0) + best_match_cost
 
     # Aggregate CIs by OS (normalized)
     cis_by_os = {}
@@ -268,6 +285,7 @@ def get_dashboard_stats(
         "cis_by_department": cis_by_department,
         "cis_by_location": cis_by_location,
         "costs_by_cost_center": costs_by_cost_center,
+        "costs_by_cost_center_and_type": costs_by_cost_center_and_type,
         "cis_by_os_db_system": cis_by_os,
         "cis_by_sla": cis_by_sla,
         "ci_growth": ci_growth,

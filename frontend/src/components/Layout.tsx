@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { ciAPI } from '../api/client';
+import DeleteCIModal from './DeleteCIModal';
 import {
     LayoutDashboard,
     Database,
@@ -19,7 +22,8 @@ import {
     Share2,
     Sun,
     Moon,
-    Folder
+    Folder,
+    Trash2
 } from 'lucide-react';
 import './Layout.css';
 
@@ -38,6 +42,33 @@ const ThemeToggle: React.FC = () => {
 
 const LayoutContent: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [isClearModalOpen, setIsClearModalOpen] = useState(false);
+    const [clearType, setClearType] = useState<string>('');
+    const [isClearing, setIsClearing] = useState(false);
+    const queryClient = useQueryClient();
+
+    const handleClearCIs = async () => {
+        // if (!confirm(`Are you sure you want to delete ${clearType ? 'all ' + clearType : 'ALL'} Configuration Items? This action cannot be undone.`)) return;
+        // The modal handles confirmation now, so we just run logic
+
+        setIsClearing(true);
+        try {
+            await ciAPI.deleteAll(clearType || undefined);
+            queryClient.invalidateQueries({ queryKey: ['cis'] });
+            queryClient.invalidateQueries({ queryKey: ['dashboard-stats'] });
+            setIsClearModalOpen(false);
+            setClearType('');
+        } catch (error) {
+            console.error("Failed to clear CIs", error);
+            alert("Failed to clear CIs");
+        } finally {
+            setIsClearing(false);
+        }
+    };
+
+    const confirmClearCIs = () => {
+        handleClearCIs();
+    };
     const { user, logout } = useAuthStore();
     const navigate = useNavigate();
     const location = useLocation();
@@ -71,7 +102,7 @@ const LayoutContent: React.FC = () => {
         { path: '/cis', icon: Database, label: 'Configuration Items' },
         { path: '/dependencies', icon: Share2, label: 'Dependency Graph' },
         { path: '/analysis', icon: PieChart, label: 'Analysis' },
-        { path: '/software', icon: Folder, label: 'Software (DML)' },
+        { path: '/reports/relations', icon: Share2, label: 'Relations Report' },
         { path: '/import', icon: Upload, label: 'Import Data' },
     ];
 
@@ -82,10 +113,13 @@ const LayoutContent: React.FC = () => {
             children: [
                 { path: '/domains', icon: Globe, label: 'Domains' },
                 { path: '/users', icon: Users, label: 'Users' },
-                { path: '/cost-rules', icon: DollarSign, label: 'Cost Rules' }
+                { path: '/cost-rules', icon: DollarSign, label: 'Cost Rules' },
+                { path: '/software', icon: Folder, label: 'Software (DML)' }
             ]
         });
     }
+
+
 
     return (
         <div className="app-layout">
@@ -131,17 +165,27 @@ const LayoutContent: React.FC = () => {
                                         >
                                             {sidebarOpen && <child.icon size={18} className="nav-icon" />}
                                             {sidebarOpen && <span className="nav-label">{child.label}</span>}
-                                            {/* Show icon only when collapsed? No, hide subitems or show as popover? 
-                                               Let's simplify: if sidebar is closed, maybe just don't show subitems or show them same level. 
-                                               For simplicity/robustness: if collapsed, we might hide grouping or just show icons.
-                                               Let's stick to simple indentation for open sidebar.
-                                            */}
                                         </Link>
                                     ))}
                                 </>
                             )}
                         </div>
                     ))}
+
+                    {user?.role === 'admin' && (
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            {/* Separator or just spacing */}
+                            <button
+                                onClick={() => setIsClearModalOpen(true)}
+                                className="nav-link"
+                                style={{ color: '#ef4444', width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer' }}
+                                title="Clear All Data"
+                            >
+                                <Trash2 size={22} className="nav-icon" />
+                                {sidebarOpen && <span className="nav-label">Clear CIs</span>}
+                            </button>
+                        </div>
+                    )}
                 </nav>
 
                 <div className="sidebar-footer">
@@ -200,6 +244,38 @@ const LayoutContent: React.FC = () => {
                     </div>
                 </main>
             </div>
+            {/* Clear CIs Modal */}
+            <DeleteCIModal
+                isOpen={isClearModalOpen}
+                onClose={() => setIsClearModalOpen(false)}
+                onConfirm={confirmClearCIs}
+                ciName="All Configuration Items"
+                title="Clear Configuration Items"
+                message={
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center' }}>
+                        <span>Select scope for deletion:</span>
+                        <select
+                            value={clearType}
+                            onChange={(e) => setClearType(e.target.value)}
+                            className="form-select"
+                            style={{ width: '200px', padding: '8px', borderRadius: '4px', border: '1px solid #333', background: '#222', color: '#fff' }}
+                        >
+                            <option value="">Delete EVERYTHING</option>
+                            <option value="server">Server</option>
+                            <option value="application">Application</option>
+                            <option value="network_device">Network Device</option>
+                            <option value="database">Database</option>
+                            <option value="workstation">Workstation</option>
+                            <option value="storage">Storage</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div className="alert-box" style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '10px', borderRadius: '4px', border: '1px solid #ef4444', color: '#ffaaaa', fontSize: '13px' }}>
+                            <strong>Warning:</strong> This will delete all {clearType ? clearType : ''} items permanently.
+                        </div>
+                    </div>
+                }
+                isPending={isClearing}
+            />
         </div>
     );
 };

@@ -31,6 +31,8 @@
     - Add to `formData` initialized state.
     - Add to `useEffect` hooks (for populating on edit, and resetting on close).
     - Add `<input>` field to the JSX return.
+[ ] Update `FieldMappingEditor.tsx`:
+    - Add to `CMDB_FIELDS` constant so it appears in the Import Mapping dropdown.
 
 ## Known Bugs / Gotchas
 - **Column Visibility**: When you add a new column to `AVAILABLE_COLUMNS`, it **WILL NOT** appear automatically for users who have visited the page before.

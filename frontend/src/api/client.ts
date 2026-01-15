@@ -14,6 +14,7 @@ export interface DashboardStats {
     cis_by_department: Record<string, number>;
     cis_by_location: Record<string, number>;
     costs_by_cost_center: Record<string, number>;
+    costs_by_cost_center_and_type: Record<string, Record<string, number>>;
     cis_by_os_db_system: Record<string, number>;
     cis_by_sla: Record<string, number>;
     ci_growth: Record<string, number>;
@@ -35,6 +36,10 @@ api.interceptors.request.use((config) => {
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
+    console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`, {
+        headers: config.headers,
+        token: token ? 'Present' : 'Missing'
+    });
     return config;
 });
 
@@ -43,6 +48,11 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
+            console.error('[API 401 Error]', {
+                url: error.config?.url,
+                method: error.config?.method,
+                response: error.response
+            });
             localStorage.removeItem('access_token');
             window.location.href = '/login';
         }
@@ -130,6 +140,11 @@ export const ciAPI = {
 
     delete: async (id: number) => {
         await api.delete(`/api/ci/${id}`);
+    },
+
+    deleteAll: async (ciType?: string) => {
+        const params = ciType ? { ci_type: ciType } : undefined;
+        await api.delete('/api/ci', { params });
     },
 };
 
@@ -323,6 +338,11 @@ export const relationshipAPI = {
 
     create: async (data: { source_ci_id: number; target_ci_id: number; relationship_type: string; description?: string }) => {
         const response = await api.post('/api/relationships', data);
+        return response.data;
+    },
+
+    listDetailed: async () => {
+        const response = await api.get('/api/relationships/detailed');
         return response.data;
     },
 

@@ -8,16 +8,18 @@ interface DeleteCIModalProps {
     onConfirm: () => void;
     ciName: string;
     isPending: boolean;
+    title?: string;
+    message?: React.ReactNode;
 }
 
-const DeleteCIModal: React.FC<DeleteCIModalProps> = ({ isOpen, onClose, onConfirm, ciName, isPending }) => {
+const DeleteCIModal: React.FC<DeleteCIModalProps> = ({ isOpen, onClose, onConfirm, ciName, isPending, title = "Delete Item", message }) => {
     if (!isOpen) return null;
 
     return (
         <div className="modal-overlay">
             <div className="modal-container" style={{ maxWidth: '400px' }}>
                 <div className="modal-header">
-                    <h2>Delete Item</h2>
+                    <h2>{title}</h2>
                     <button onClick={onClose} className="close-btn" disabled={isPending}>
                         <X size={24} />
                     </button>
@@ -42,7 +44,9 @@ const DeleteCIModal: React.FC<DeleteCIModalProps> = ({ isOpen, onClose, onConfir
                             Are you sure?
                         </h3>
                         <p style={{ color: '#B0B2B8', fontSize: '14px', lineHeight: '1.5' }}>
-                            This action cannot be undone. You are about to delete <strong style={{ color: '#FFFFFF' }}>{ciName}</strong>.
+                            {message || (
+                                <>This action cannot be undone. You are about to delete <strong style={{ color: '#FFFFFF' }}>{ciName}</strong>.</>
+                            )}
                         </p>
                     </div>
                 </div>
@@ -61,7 +65,7 @@ const DeleteCIModal: React.FC<DeleteCIModalProps> = ({ isOpen, onClose, onConfir
                         style={{ backgroundColor: '#ef4444', borderColor: '#ef4444' }}
                         disabled={isPending}
                     >
-                        {isPending ? 'Deleting...' : 'Delete Item'}
+                        {isPending ? 'Deleting...' : 'Delete'}
                     </button>
                 </div>
             </div>

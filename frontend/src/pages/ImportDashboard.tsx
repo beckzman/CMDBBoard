@@ -4,6 +4,7 @@ import { importAPI } from '../api/client';
 import { Upload, Play, Clock, RefreshCw, AlertCircle, CheckCircle, ChevronRight, Edit2, Trash2, Plus, ChevronLeft, XCircle } from 'lucide-react';
 import FieldMappingEditor from '../components/FieldMappingEditor';
 import ReconciliationEditor from '../components/ReconciliationEditor';
+import ConfirmationModal from '../components/ConfirmationModal';
 import './ImportDashboard.css';
 
 interface ImportSource {
@@ -34,6 +35,7 @@ interface ImportLog {
 
 interface ImportConfig {
     field_mapping: Record<string, string>;
+    relationship_mapping?: any[];
     reconciliation: {
         key_field: string;
         match_strategy: string;
@@ -78,14 +80,18 @@ const ImportDashboard: React.FC = () => {
         field_mapping: {
             name: 'Title'
         },
+        relationship_mapping: [],
         reconciliation: {
             key_field: 'name',
             match_strategy: 'exact',
             update_mode: 'upsert',
             conflict_resolution: {}
         }
-
     });
+
+    // ... (omitted lines)
+
+
 
     // Source Fields State
     const [sourceFields, setSourceFields] = useState<string[]>([]);
@@ -187,7 +193,12 @@ const ImportDashboard: React.FC = () => {
         if (source.config) {
             try {
                 const config = JSON.parse(source.config);
-                setImportConfig(config);
+                // Ensure defaults for new fields
+                setImportConfig({
+                    ...config,
+                    field_mapping: config.field_mapping || {},
+                    relationship_mapping: config.relationship_mapping || []
+                });
             } catch (e) {
                 console.error("Failed to parse config", e);
             }
@@ -314,9 +325,19 @@ const ImportDashboard: React.FC = () => {
         }
     };
 
-    const handleRunSource = (id: number) => {
-        if (window.confirm('Are you sure you want to run this import now?')) {
-            runSourceMutation.mutate(id);
+    const [runConfirmationOpen, setRunConfirmationOpen] = useState(false);
+    const [sourceToRun, setSourceToRun] = useState<{ id: number, name: string } | null>(null);
+
+    const handleRunSource = (source: ImportSource) => {
+        setSourceToRun({ id: source.id, name: source.name });
+        setRunConfirmationOpen(true);
+    };
+
+    const confirmRunSource = () => {
+        if (sourceToRun) {
+            runSourceMutation.mutate(sourceToRun.id);
+            setRunConfirmationOpen(false);
+            setSourceToRun(null);
         }
     };
 
@@ -419,7 +440,7 @@ const ImportDashboard: React.FC = () => {
                                             </button>
                                             <button
                                                 className="run-btn"
-                                                onClick={() => handleRunSource(source.id)}
+                                                onClick={() => handleRunSource(source)}
                                                 disabled={runSourceMutation.isPending}
                                             >
                                                 <Play size={16} />
@@ -497,6 +518,27 @@ const ImportDashboard: React.FC = () => {
                     }
                 </section >
             </div >
+
+            <ConfirmationModal
+                isOpen={runConfirmationOpen}
+                onClose={() => {
+                    setRunConfirmationOpen(false);
+                    setSourceToRun(null);
+                }}
+                onConfirm={confirmRunSource}
+                title="Run Import Job"
+                message={
+                    <span>
+                        Are you sure you want to run the import for <strong>{sourceToRun?.name}</strong> now?
+                        <br />
+                        This will fetch the latest data and update CIs.
+                    </span>
+                }
+                confirmText="Run Now"
+                confirmColor="blue"
+                icon="info"
+                isPending={runSourceMutation.isPending}
+            />
 
             {/* Enhanced Create Modal */}
             {
@@ -803,7 +845,17 @@ const ImportDashboard: React.FC = () => {
                                         </div>
                                         <FieldMappingEditor
                                             mapping={importConfig.field_mapping}
-                                            onChange={(mapping) => setImportConfig({ ...importConfig, field_mapping: mapping })}
+                                            relationshipMapping={importConfig.relationship_mapping}
+                                            onChange={(newMapping, newRelMapping) => {
+                                                const updates: any = { field_mapping: newMapping };
+                                                if (newRelMapping) {
+                                                    updates.relationship_mapping = newRelMapping;
+                                                }
+                                                setImportConfig({
+                                                    ...importConfig,
+                                                    ...updates
+                                                });
+                                            }}
                                             sourceFields={sourceFields}
                                         />
                                     </div>

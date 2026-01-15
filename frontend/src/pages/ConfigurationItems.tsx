@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ciAPI, exportAPI, healthAPI } from '../api/client';
 import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown, Filter } from 'lucide-react';
@@ -33,7 +34,7 @@ const ColumnFilter: React.FC<{
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const filterableColumns = ['ci_type', 'department', 'location', 'os_db_system', 'cost_center', 'sla', 'service_provider', 'environment', 'domain', 'software'];
+    const filterableColumns = ['ci_type', 'department', 'location', 'os_db_system', 'cost_center', 'sla', 'service_provider', 'contact', 'environment', 'domain', 'software'];
     if (!filterableColumns.includes(columnKey)) return null;
 
     const handleCheckboxChange = (option: string) => {
@@ -136,14 +137,32 @@ const ColumnFilter: React.FC<{
 };
 
 const ConfigurationItems: React.FC = () => {
+    const [searchParams] = useSearchParams();
+
+    // Initialize state from URL params
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    const [search, setSearch] = useState('');
-    const [ciType, setCiType] = useState('');
-    const [status, setStatus] = useState('');
+    const [search, setSearch] = useState(searchParams.get('search') || '');
+    const [ciType, setCiType] = useState(searchParams.get('ci_type') || '');
+    const [status, setStatus] = useState(searchParams.get('status') || '');
     const [sortBy, setSortBy] = useState<string>('name');
     const [sortDesc, setSortDesc] = useState(false);
-    const [filters, setFilters] = useState<Record<string, string[]>>({});
+
+    // Parse other filters from URL
+    const [filters, setFilters] = useState<Record<string, string[]>>(() => {
+        const initialFilters: Record<string, string[]> = {};
+        const filterableColumns = ['department', 'location', 'os_db_system', 'cost_center', 'sla', 'service_provider', 'contact', 'environment', 'domain', 'software'];
+
+        filterableColumns.forEach(key => {
+            const value = searchParams.get(key);
+            if (value) {
+                initialFilters[key] = [value];
+            }
+        });
+
+        return initialFilters;
+    });
+
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [editingCI, setEditingCI] = useState<any>(null);
 
@@ -180,7 +199,9 @@ const ConfigurationItems: React.FC = () => {
         { key: 'domain', label: 'Domain', sortable: true },
         { key: 'cost_center', label: 'Cost Center', sortable: true },
         { key: 'service_provider', label: 'Service Provider', sortable: true },
+        { key: 'contact', label: 'Contact', sortable: true },
         { key: 'sla', label: 'SLA', sortable: true },
+        { key: 'technical_details', label: 'Technical Details', sortable: false },
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
         { key: 'updated_at', label: 'Updated At', sortable: true },
@@ -389,6 +410,16 @@ const ConfigurationItems: React.FC = () => {
 
             case 'sla':
                 return ci.sla || '-';
+            case 'technical_details':
+                if (!ci.technical_details) return '-';
+                // Try to make it readable if JSON, otherwise truncate
+                try {
+                    const json = JSON.parse(ci.technical_details);
+                    const str = JSON.stringify(json);
+                    return <span title={ci.technical_details} className="text-secondary text-xs">{str.substring(0, 50) + (str.length > 50 ? '...' : '')}</span>;
+                } catch (e) {
+                    return <span title={ci.technical_details} className="text-secondary text-xs">{ci.technical_details.substring(0, 50) + (ci.technical_details.length > 50 ? '...' : '')}</span>;
+                }
             case 'last_ping':
                 return ci.last_ping_success ? (
                     <span className="ping-timestamp" title={new Date(ci.last_ping_success).toLocaleString()}>
@@ -438,6 +469,8 @@ const ConfigurationItems: React.FC = () => {
         }
     };
 
+
+
     return (
         <div className="ci-container">
             <div className="ci-header">
@@ -446,6 +479,7 @@ const ConfigurationItems: React.FC = () => {
                     <p>Manage your IT assets and configuration items</p>
                 </div>
                 <div className="ci-actions">
+
                     <div className="export-dropdown">
                         <button
                             className="btn btn-secondary"
@@ -674,6 +708,9 @@ const ConfigurationItems: React.FC = () => {
                 ciName={deletingCI?.name || ''}
                 isPending={deleteMutation.isPending}
             />
+
+            {/* Clear CIs Modal */}
+
 
             <HealthCheckModal
                 isOpen={healthCheckState.isOpen}

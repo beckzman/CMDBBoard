@@ -64,7 +64,20 @@ const Analysis: React.FC = () => {
             color: '#10B981',
             chart: (
                 <ResponsiveContainer width="100%" height={60}>
-                    <BarChart data={getCostData()}>
+                    <BarChart
+                        data={getCostData()}
+                        onClick={(data) => {
+                            if (data && data.activePayload && data.activePayload.length > 0) {
+                                // Stop propagation of the card click event
+                                if (data.isTooltipActive) { // Checking if interaction is valid
+                                    const name = data.activePayload[0].payload.name;
+                                    // Use setTimeout to ensure this runs after event handling and prevent race with card click
+                                    setTimeout(() => navigate(`/cis?cost_center=${name}`), 0);
+                                }
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <Bar dataKey="value" fill="#10B981" radius={[2, 2, 0, 0]} />
                     </BarChart>
                 </ResponsiveContainer>
@@ -94,7 +107,18 @@ const Analysis: React.FC = () => {
             color: '#F59E0B',
             chart: (
                 <ResponsiveContainer width="100%" height={60}>
-                    <BarChart data={stats?.cis_by_os_detailed?.slice(0, 5) || []}>
+                    <BarChart
+                        data={stats?.cis_by_os_detailed?.slice(0, 5) || []}
+                        onClick={(data) => {
+                            if (data && data.activePayload && data.activePayload.length > 0) {
+                                if (data.isTooltipActive) {
+                                    const name = data.activePayload[0].payload.name;
+                                    setTimeout(() => navigate(`/cis?software=${encodeURIComponent(name)}`), 0);
+                                }
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <Bar dataKey="value" radius={[2, 2, 0, 0]}>
                             {stats?.cis_by_os_detailed?.slice(0, 5).map((entry, index) => (
                                 <Cell
@@ -120,7 +144,18 @@ const Analysis: React.FC = () => {
             color: '#8B5CF6',
             chart: (
                 <ResponsiveContainer width="100%" height={60}>
-                    <BarChart data={stats?.cis_by_db_detailed?.slice(0, 5) || []}>
+                    <BarChart
+                        data={stats?.cis_by_db_detailed?.slice(0, 5) || []}
+                        onClick={(data) => {
+                            if (data && data.activePayload && data.activePayload.length > 0) {
+                                if (data.isTooltipActive) {
+                                    const name = data.activePayload[0].payload.name;
+                                    setTimeout(() => navigate(`/cis?software=${encodeURIComponent(name)}`), 0);
+                                }
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <Tooltip />
                         <Bar dataKey="value" radius={[2, 2, 0, 0]}>
                             {stats?.cis_by_db_detailed?.slice(0, 5).map((entry, index) => (
@@ -147,7 +182,18 @@ const Analysis: React.FC = () => {
             color: '#EC4899',
             chart: (
                 <ResponsiveContainer width="100%" height={60}>
-                    <BarChart data={getSLAData()}>
+                    <BarChart
+                        data={getSLAData()}
+                        onClick={(data) => {
+                            if (data && data.activePayload && data.activePayload.length > 0) {
+                                if (data.isTooltipActive) {
+                                    const name = data.activePayload[0].payload.name;
+                                    setTimeout(() => navigate(`/cis?sla=${name}`), 0);
+                                }
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <Bar dataKey="value" fill="#EC4899" radius={[2, 2, 0, 0]} />
                     </BarChart>
                 </ResponsiveContainer>
@@ -169,19 +215,26 @@ const Analysis: React.FC = () => {
                     <div
                         key={report.id}
                         className="report-card"
-                        onClick={() => navigate(report.path)}
                     >
-                        <div className="report-icon-wrapper" style={{ backgroundColor: `${report.color}20` }}>
+                        <div
+                            className="report-icon-wrapper"
+                            style={{ backgroundColor: `${report.color}20`, cursor: 'pointer' }}
+                            onClick={() => navigate(report.path)}
+                        >
                             <report.icon size={24} color={report.color} />
                         </div>
                         <div className="report-content">
-                            <h3>{report.title}</h3>
-                            <p>{report.description}</p>
+                            <h3 onClick={() => navigate(report.path)} style={{ cursor: 'pointer' }}>{report.title}</h3>
+                            <p onClick={() => navigate(report.path)} style={{ cursor: 'pointer' }}>{report.description}</p>
                             <div className="report-preview">
                                 {report.chart}
                             </div>
                         </div>
-                        <div className="report-action">
+                        <div
+                            className="report-action"
+                            onClick={() => navigate(report.path)}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <span>View Report</span>
                             <ArrowRight size={16} />
                         </div>
