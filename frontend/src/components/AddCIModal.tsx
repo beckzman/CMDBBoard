@@ -317,7 +317,7 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                     className="form-select"
                                 >
                                     <option value="">Select Domain...</option>
-                                    {domains?.map((domain: any) => (
+                                    {domains?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((domain: any) => (
                                         <option key={domain.id} value={domain.name}>
                                             {domain.name}
                                         </option>
@@ -471,11 +471,13 @@ const AddCIModal: React.FC<AddCIModalProps> = ({ isOpen, onClose, initialData })
                                 >
                                     <option value="">-- No Direct Link --</option>
                                     {softwareList && softwareList.length > 0 ? (
-                                        softwareList.map((sw: any) => (
-                                            <option key={sw.id} value={sw.id}>
-                                                {sw.name} ({sw.version || 'v?'})
-                                            </option>
-                                        ))
+                                        [...softwareList]
+                                            .sort((a: any, b: any) => a.name.localeCompare(b.name))
+                                            .map((sw: any) => (
+                                                <option key={sw.id} value={sw.id}>
+                                                    {sw.name} ({sw.version || 'v?'})
+                                                </option>
+                                            ))
                                     ) : (
                                         <option disabled>Loading software...</option>
                                     )}

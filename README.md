@@ -168,9 +168,9 @@ Once the backend is running, visit:
 To import CIs via CSV, use the following format:
 
 ```csv
-name,ci_type,status,description,owner,location,environment,cost_center
-Server-01,server,active,Production web server,IT Team,DC-01,production,CC-1001
-App-CRM,application,active,Customer relationship management,Sales,Cloud,production,CC-2001
+name,ci_type,status,description,department,location,environment,cost_center,os_db_system
+Server-01,server,active,Production web server,IT Team,DC-01,production,CC-1001,Windows Server 2019
+App-CRM,application,active,Customer relationship management,Sales,Cloud,production,CC-2001,Oracle 19c
 ```
 
 **Required fields**: `name`, `ci_type`

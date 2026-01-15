@@ -203,27 +203,21 @@ const SoftwareCatalog: React.FC = () => {
             </div>
 
             {/* Tabs */}
-            <div style={{ padding: '0 24px 16px 24px', borderBottom: '1px solid var(--border-color)', marginBottom: '16px' }}>
-                <div className="flex space-x-1 bg-gray-800 p-1 rounded-lg w-fit border border-gray-700">
+            <div className="sc-tabs-container">
+                <div className="sc-tabs-wrapper">
                     <button
                         onClick={() => setActiveTab('catalog')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'catalog'
-                            ? 'bg-gray-700 text-white shadow-sm'
-                            : 'text-gray-400 hover:text-white'
-                            }`}
+                        className={`sc-tab-btn ${activeTab === 'catalog' ? 'active' : ''}`}
                     >
                         Catalog Items
                     </button>
                     <button
                         onClick={() => setActiveTab('standardization')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${activeTab === 'standardization'
-                            ? 'bg-gray-700 text-white shadow-sm'
-                            : 'text-gray-400 hover:text-white'
-                            }`}
+                        className={`sc-tab-btn ${activeTab === 'standardization' ? 'active' : ''}`}
                     >
                         Standardization Queue
                         {unmatchedItems?.length > 0 && (
-                            <span className="bg-orange-600 text-white text-xs px-1.5 py-0.5 rounded-full">
+                            <span className="sc-badge">
                                 {unmatchedItems.length}
                             </span>
                         )}
@@ -242,6 +236,7 @@ const SoftwareCatalog: React.FC = () => {
                                 placeholder="Search software..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
+                                className="search-input"
                             />
                         </div>
                     </div>
@@ -296,7 +291,7 @@ const SoftwareCatalog: React.FC = () => {
                                         <td>
                                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                                                 {item.aliases.slice(0, 3).map((alias, i) => (
-                                                    <span key={i} className="tag">
+                                                    <span key={i} className="sc-tag">
                                                         {alias}
                                                     </span>
                                                 ))}
@@ -334,60 +329,51 @@ const SoftwareCatalog: React.FC = () => {
 
             {/* Create Modal */}
             {isCreateModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-blur-sm">
-                    <div className="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl w-full max-w-lg overflow-hidden">
-                        <div className="px-6 py-4 border-b border-gray-700 flex justify-between items-center">
-                            <h2 className="text-lg font-semibold text-white">{editingItem ? 'Edit Software Model' : 'Add Software Model'}</h2>
-                            <button onClick={closeModal} className="text-gray-400 hover:text-white">
+                <div className="sc-modal-overlay">
+                    <div className="sc-modal-content">
+                        <div className="sc-modal-header">
+                            <h2>{editingItem ? 'Edit Software Model' : 'Add Software Model'}</h2>
+                            <button onClick={closeModal} className="sc-modal-close">
                                 <X size={20} />
                             </button>
                         </div>
-                        <div className="p-6 space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-1">Software Name</label>
+                        <div className="sc-modal-body">
+                            <div className="sc-form-group">
+                                <label className="sc-label">Software Name</label>
                                 <input
                                     type="text"
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-orange-500"
+                                    className="sc-input"
                                 />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-1">Publisher</label>
+                            <div className="sc-grid-2">
+                                <div className="sc-form-group">
+                                    <label className="sc-label">Publisher</label>
                                     <input
                                         type="text"
                                         value={formData.publisher}
                                         onChange={(e) => setFormData({ ...formData, publisher: e.target.value })}
-                                        className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-orange-500"
+                                        className="sc-input"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-1">Version</label>
+                                <div className="sc-form-group">
+                                    <label className="sc-label">Version</label>
                                     <input
                                         type="text"
                                         value={formData.version}
                                         onChange={(e) => setFormData({ ...formData, version: e.target.value })}
-                                        className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-orange-500"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-1">End of Life</label>
-                                    <input
-                                        type="date"
-                                        value={formData.end_of_life_date}
-                                        onChange={(e) => setFormData({ ...formData, end_of_life_date: e.target.value })}
-                                        className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-orange-500"
+                                        className="sc-input"
                                     />
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-1">Category</label>
+                            <div className="sc-grid-2">
+                                <div className="sc-form-group">
+                                    <label className="sc-label">Category</label>
                                     <select
                                         value={formData.category}
                                         onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                                        className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-orange-500"
+                                        className="sc-select"
                                     >
                                         <option value="os">OS</option>
                                         <option value="database">Database</option>
@@ -395,12 +381,12 @@ const SoftwareCatalog: React.FC = () => {
                                         <option value="other">Other</option>
                                     </select>
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-1">Status</label>
+                                <div className="sc-form-group">
+                                    <label className="sc-label">Status</label>
                                     <select
                                         value={formData.status}
                                         onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                                        className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-orange-500"
+                                        className="sc-select"
                                     >
                                         <option value="approved">Approved</option>
                                         <option value="unapproved">Unapproved</option>
@@ -410,37 +396,46 @@ const SoftwareCatalog: React.FC = () => {
                                 </div>
                             </div>
 
+                            <div className="sc-form-group">
+                                <label className="sc-label">End of Life</label>
+                                <input
+                                    type="date"
+                                    value={formData.end_of_life_date}
+                                    onChange={(e) => setFormData({ ...formData, end_of_life_date: e.target.value })}
+                                    className="sc-input"
+                                />
+                            </div>
 
-                            // ... inside return ...
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-1">Auto-Match Aliases</label>
-                                <div className="flex gap-2 mb-2">
+                            <div className="sc-form-group">
+                                <label className="sc-label">Auto-Match Aliases</label>
+                                <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                                     <input
                                         type="text"
                                         value={newAlias}
                                         onChange={(e) => setNewAlias(e.target.value)}
                                         placeholder="Add new alias..."
-                                        className="flex-1 bg-gray-900 text-white px-3 py-1.5 rounded border border-gray-700 focus:outline-none focus:border-orange-500 text-sm"
+                                        className="sc-input"
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
                                                 e.preventDefault();
                                                 handleAddAlias();
                                             }
                                         }}
+                                        style={{ flex: 1 }}
                                     />
                                     <button
                                         onClick={handleAddAlias}
                                         type="button"
-                                        className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 transition-colors"
+                                        className="btn btn-secondary"
+                                        style={{ padding: '8px' }}
                                     >
                                         <Plus size={16} />
                                     </button>
                                 </div>
                                 {formData.aliases.length > 0 ? (
-                                    <div className="flex flex-wrap gap-2">
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                                         {formData.aliases.map((alias, i) => (
-                                            <span key={i} className="px-2 py-1 bg-gray-700 rounded text-xs text-gray-300 border border-gray-600 flex items-center gap-1">
+                                            <span key={i} className="sc-tag">
                                                 <Link size={10} />
                                                 {alias}
                                                 <button
@@ -453,21 +448,21 @@ const SoftwareCatalog: React.FC = () => {
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-xs text-gray-500">No aliases defined.</p>
+                                    <p style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>No aliases defined.</p>
                                 )}
-                                <p className="text-xs text-gray-500 mt-1">These strings will be automatically linked to this software.</p>
+                                <p style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginTop: '4px' }}>These strings will be automatically linked to this software.</p>
                             </div>
                         </div>
-                        <div className="px-6 py-4 bg-gray-900 border-t border-gray-700 flex justify-end gap-3">
+                        <div className="sc-modal-footer">
                             <button
                                 onClick={closeModal}
-                                className="px-4 py-2 text-gray-400 hover:text-white transition-colors"
+                                className="btn btn-secondary"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleSave}
-                                className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors"
+                                className="btn btn-primary"
                                 disabled={createMutation.isPending || updateMutation.isPending}
                             >
                                 {createMutation.isPending || updateMutation.isPending ? 'Saving...' : (editingItem ? 'Save Changes' : 'Create Software')}

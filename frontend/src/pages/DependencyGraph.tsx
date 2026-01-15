@@ -149,8 +149,8 @@ const DependencyGraph: React.FC = () => {
             setRawRels(rels);
 
             // Populate Filter Options
-            const ciTypes = Array.from(new Set(allCIs.map((ci: any) => ci.ci_type)));
-            const relTypes = Array.from(new Set(rels.map((rel: any) => rel.relationship_type)));
+            const ciTypes = Array.from(new Set(allCIs.map((ci: any) => ci.ci_type))).sort();
+            const relTypes = Array.from(new Set(rels.map((rel: any) => rel.relationship_type))).sort();
             setAvailableCiTypes(ciTypes as string[]);
             setAvailableRelTypes(relTypes as string[]);
 

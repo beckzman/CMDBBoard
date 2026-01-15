@@ -54,7 +54,8 @@ def list_configuration_items(
             or_(
                 ConfigurationItem.name.ilike(f"%{search}%"),
                 ConfigurationItem.description.ilike(f"%{search}%"),
-                ConfigurationItem.department.ilike(f"%{search}%")
+                ConfigurationItem.department.ilike(f"%{search}%"),
+                ConfigurationItem.os_db_system.ilike(f"%{search}%")
             )
         )
     

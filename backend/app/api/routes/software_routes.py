@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_
 from app.db.database import get_db
-from app.db.models import SoftwareCatalog, SoftwareCategory, SoftwareStatus, ConfigurationItem
+from app.db.models import SoftwareCatalog, SoftwareCategory, SoftwareStatus, ConfigurationItem, CIStatus
 from pydantic import BaseModel
 from datetime import datetime
 import json
@@ -119,7 +119,9 @@ def get_unmatched_software(db: Session = Depends(get_db)):
         func.count(ConfigurationItem.id)
     ).filter(
         ConfigurationItem.os_db_system.isnot(None),
-        ConfigurationItem.software_id.is_(None)
+        ConfigurationItem.software_id.is_(None),
+        ConfigurationItem.status != CIStatus.INACTIVE,
+        ConfigurationItem.status != CIStatus.RETIRED
     ).group_by(
         ConfigurationItem.os_db_system
     ).order_by(

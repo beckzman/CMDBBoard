@@ -139,17 +139,20 @@ const StandardizationQueue: React.FC<StandardizationQueueProps> = ({
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                                 <div className="relative" style={{ minWidth: '200px', flex: 1 }}>
                                                     <select
-                                                        className="w-full bg-gray-900 text-white pl-3 pr-8 py-1.5 rounded border border-gray-600 focus:border-blue-500 outline-none text-sm"
+                                                        className="sc-select"
+                                                        style={{ fontSize: '13px', padding: '6px' }}
                                                         onChange={(e) => handleMatch(item.value, e.target.value)}
                                                         value=""
                                                         disabled={matchMutation.isPending}
                                                     >
                                                         <option value="" disabled>Map to Existing...</option>
-                                                        {catalogItems.map((cat) => (
-                                                            <option key={cat.id} value={cat.id}>
-                                                                {cat.name} {cat.version ? `(${cat.version})` : ''}
-                                                            </option>
-                                                        ))}
+                                                        {[...catalogItems]
+                                                            .sort((a, b) => a.name.localeCompare(b.name))
+                                                            .map((cat) => (
+                                                                <option key={cat.id} value={cat.id}>
+                                                                    {cat.name} {cat.version ? `(${cat.version})` : ''}
+                                                                </option>
+                                                            ))}
                                                     </select>
                                                 </div>
                                                 <button
