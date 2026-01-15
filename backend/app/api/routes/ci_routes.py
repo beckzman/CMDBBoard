@@ -31,6 +31,8 @@ def list_configuration_items(
     environment: Optional[List[str]] = Query(None),
     domain: Optional[List[str]] = Query(None),
     software: Optional[List[str]] = Query(None),
+    service_provider: Optional[List[str]] = Query(None),
+    contact: Optional[List[str]] = Query(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
@@ -83,6 +85,12 @@ def list_configuration_items(
 
     if software:
         query = query.join(ConfigurationItem.software).filter(SoftwareCatalog.name.in_(software))
+        
+    if service_provider:
+        query = query.filter(ConfigurationItem.service_provider.in_(service_provider))
+        
+    if contact:
+        query = query.filter(ConfigurationItem.contact.in_(contact))
     
     # Apply sorting
     if sort_by:
@@ -118,6 +126,12 @@ def list_configuration_items(
             is_string_field = True
         elif sort_by == 'environment':
             sort_field = ConfigurationItem.environment
+            is_string_field = True
+        elif sort_by == 'contact':
+            sort_field = ConfigurationItem.contact
+            is_string_field = True
+        elif sort_by == 'service_provider':
+            sort_field = ConfigurationItem.service_provider
             is_string_field = True
         elif sort_by == 'description':
             sort_field = ConfigurationItem.description
@@ -298,7 +312,9 @@ def get_distinct_attribute_values(
         'domain': ConfigurationItem.domain,
         'ci_type': ConfigurationItem.ci_type,
         'status': ConfigurationItem.status,
-        'software': SoftwareCatalog.name # Special case, joined
+        'software': SoftwareCatalog.name, # Special case, joined
+        'service_provider': ConfigurationItem.service_provider,
+        'contact': ConfigurationItem.contact
     }
 
     if field_name not in allowed_fields:

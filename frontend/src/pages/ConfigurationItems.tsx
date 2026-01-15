@@ -17,11 +17,12 @@ const ColumnFilter: React.FC<{
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
 
-    const { data: options, isLoading } = useQuery({
+    const { data: options, isLoading, isError } = useQuery({
         queryKey: ['distinct', columnKey],
         queryFn: () => ciAPI.getDistinctValues(columnKey),
         enabled: isOpen,
-        staleTime: 5 * 60 * 1000
+        staleTime: 5 * 60 * 1000,
+        retry: 1
     });
 
     React.useEffect(() => {
@@ -91,6 +92,8 @@ const ColumnFilter: React.FC<{
                     </div>
                     {isLoading ? (
                         <div style={{ padding: '8px', textAlign: 'center', fontSize: '12px', color: '#9CA3AF' }}>Loading...</div>
+                    ) : isError ? (
+                        <div style={{ padding: '8px', fontSize: '12px', color: '#EF4444' }}>Error loading values</div>
                     ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                             {options?.map((option: string) => (
