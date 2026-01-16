@@ -77,6 +77,7 @@ CMDBBoard/
 
 1. **Clone the repository**
 ```bash
+git clone https://github.com/beckzman/CMDBBoard.git
 cd CMDBBoard
 ```
 
