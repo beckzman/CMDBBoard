@@ -56,7 +56,7 @@ def seed_data():
                 "status": CIStatus.ACTIVE,
                 "description": "Primary production server",
                 "environment": "Production",
-                "operating_system": "Ubuntu 22.04 LTS"
+                "os_db_system": "Ubuntu 22.04 LTS"
             },
             {
                 "name": "db-prod-primary",
@@ -87,7 +87,7 @@ def seed_data():
                 "status": CIStatus.MAINTENANCE,
                 "description": "Test server",
                 "environment": "Test",
-                "operating_system": "Windows Server 2022"
+                "os_db_system": "Windows Server 2022"
             }
         ]
 

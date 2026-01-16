@@ -135,6 +135,7 @@ class CIResponse(CIBase):
     updated_at: Optional[datetime] = None
     last_ping_success: Optional[datetime] = None
     software: Optional[SoftwareCatalogNested] = None
+    relationships_summary: Optional[str] = None
     
     class Config:
         from_attributes = True

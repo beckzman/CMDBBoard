@@ -208,6 +208,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
         { key: 'updated_at', label: 'Updated At', sortable: true },
+        { key: 'relationships_summary', label: 'Relations', sortable: false },
         { key: 'actions', label: 'Actions', sortable: false },
     ];
 
@@ -434,6 +435,14 @@ const ConfigurationItems: React.FC = () => {
             case 'created_at':
             case 'updated_at':
                 return ci[key] ? new Date(ci[key]).toLocaleDateString() : '-';
+            case 'relationships_summary':
+                return ci.relationships_summary ? (
+                    <span className="text-sm text-gray-400" title={ci.relationships_summary}>
+                        {ci.relationships_summary.length > 50
+                            ? ci.relationships_summary.substring(0, 50) + '...'
+                            : ci.relationships_summary}
+                    </span>
+                ) : '-';
             case 'actions':
                 return (
                     <div className="action-buttons">

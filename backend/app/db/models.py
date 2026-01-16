@@ -114,6 +114,37 @@ class ConfigurationItem(Base):
         cascade="all, delete-orphan"
     )
 
+    @property
+    def relationships_summary(self) -> str:
+        """Returns a comma-separated string of related CIs."""
+        summary_parts = []
+        
+        # Source relationships: "Target Name (Type)"
+        for rel in self.source_relationships:
+            if rel.target_ci:
+                rel_type = rel.relationship_type.value.replace("_", " ") if hasattr(rel.relationship_type, 'value') else str(rel.relationship_type)
+                summary_parts.append(f"{rel.target_ci.name} ({rel_type})")
+                
+        # Target relationships: "Source Name (Rev-Type)" - simplistic view for now
+        # Or better yet, just treat them as relationships.
+        # Let's format it as: Source (rel_type ->) Target
+        # But for this specific requirement "one column", let's list the *other* party.
+        
+        for rel in self.target_relationships:
+            if rel.source_ci:
+                rel_type = rel.relationship_type.value.replace("_", " ") if hasattr(rel.relationship_type, 'value') else str(rel.relationship_type)
+                # Indicate direction or just list it? 
+                # Let's list it as "Source Name (is parent/source of)" or similar?
+                # Actually, simpler: "Name (relationship)"
+                # If I am target, source 'runs on' me -> "Source (hosted)"? 
+                # To keep it simple as requested: "Source Name (incoming: Type)"
+                summary_parts.append(f"{rel.source_ci.name} (from: {rel_type})")
+                
+        if not summary_parts:
+            return None
+            
+        return ", ".join(summary_parts)
+
 
 class Relationship(Base):
     """Relationship between CIs."""

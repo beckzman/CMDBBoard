@@ -38,6 +38,13 @@ def list_configuration_items(
 ):
     """List configuration items with pagination and filters."""
     from sqlalchemy.orm import joinedload
+    # query = db.query(ConfigurationItem).options(
+    #     joinedload(ConfigurationItem.software),
+    #     joinedload(ConfigurationItem.source_relationships).joinedload(Relationship.target_ci),
+    #     joinedload(ConfigurationItem.target_relationships).joinedload(Relationship.source_ci)
+    # ).filter(ConfigurationItem.deleted_at.is_(None))
+    
+    # Revert to simpler query to test if join is causing issues
     query = db.query(ConfigurationItem).options(joinedload(ConfigurationItem.software)).filter(ConfigurationItem.deleted_at.is_(None))
     
     # Apply filters

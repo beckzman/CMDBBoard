@@ -93,7 +93,17 @@ docker-compose up -d
 ```
 > This command automatically builds the backend, installs dependencies, and creates the database.
 
-4. **Access the application**
+4. **Initialize the database** (First run only)
+```bash
+docker-compose exec backend python seed_data.py
+# OR (if using newer Docker)
+docker compose exec backend python seed_data.py
+# OR (direct container execution)
+docker exec cmdb_backend python seed_data.py
+```
+> This creates the default admin user (`admin` / `adminpassword`).
+
+5. **Access the application**
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8000
 - API Documentation: http://localhost:8000/docs
