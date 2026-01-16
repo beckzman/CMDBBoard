@@ -63,3 +63,14 @@ python backend/scripts/seed_relationships.py
 -   **Health Check**: `/api/health/check`
 -   **Import Sources**: `/api/import/sources` (CRUD, Run, Test Connection)
 -   **CSV Upload**: `/api/import/csv`
+
+## Debugging & Logging
+### Authentication Logs
+Failed login attempts are logged to a file to assist in troubleshooting usage and attack patterns.
+-   **File Path**: `backend/logs/login_errors.log` (In Docker: `/app/logs/login_errors.log`)
+-   **Log Content**: Timestamps, usernames, and specific failure reasons (e.g., "User not found", "Invalid password", "User inactive").
+-   **Viewing Logs**:
+    ```bash
+    # View live logs in Docker
+    docker-compose exec backend tail -f logs/login_errors.log
+    ```
