@@ -62,9 +62,37 @@ def login(
     db: Session = Depends(get_db)
 ):
     """Login and get access token."""
+    # Setup simple file logger for debug
+    import logging
+    import os
+    
+    # Ensure logs directory exists
+    log_dir = "logs"
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+        
+    logger = logging.getLogger("auth_debug")
+    if not logger.handlers:
+        logger.setLevel(logging.INFO)
+        fh = logging.FileHandler(os.path.join(log_dir, "login_errors.log"))
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+    
+    logger.info(f"Login attempt for username: '{form_data.username}'")
+
     user = db.query(User).filter(User.username == form_data.username).first()
     
-    if not user or not verify_password(form_data.password, user.hashed_password):
+    if not user:
+        logger.warning(f"Login failed: User '{form_data.username}' not found")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+        
+    if not verify_password(form_data.password, user.hashed_password):
+        logger.warning(f"Login failed: Invalid password for user '{form_data.username}'")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -72,10 +100,13 @@ def login(
         )
     
     if not user.is_active:
+        logger.warning(f"Login failed: User '{form_data.username}' is inactive")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Inactive user"
         )
+    
+    logger.info(f"Login successful for user: '{form_data.username}'")
     
     # Create access token
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
