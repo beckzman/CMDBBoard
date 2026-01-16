@@ -37,7 +37,7 @@ A comprehensive Configuration Management Database (CMDB) Dashboard built with Py
 ## Project Structure
 
 ```
-CMDB_Frontend/
+CMDBBoard/
 ├── backend/
 │   ├── app/
 │   │   ├── api/
@@ -77,7 +77,7 @@ CMDB_Frontend/
 
 1. **Clone the repository**
 ```bash
-cd CMDB_Frontend
+cd CMDBBoard
 ```
 
 2. **Create environment file**
