@@ -90,6 +90,7 @@ cp backend/.env.example backend/.env
 ```bash
 docker-compose up -d
 ```
+> This command automatically builds the backend, installs dependencies, and creates the database.
 
 4. **Access the application**
 - Frontend: http://localhost:5173
@@ -104,7 +105,12 @@ docker-compose up -d
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate  # Windows
+
+# Windows
+venv\Scripts\activate
+
+# Linux/macOS
+source venv/bin/activate
 ```
 
 2. **Install dependencies**
@@ -117,6 +123,7 @@ pip install -r requirements.txt
 cp .env.example .env
 # Edit .env with your database credentials
 ```
+> **Note**: Ensure the PostgreSQL database (default `cmdb_database`) exists before proceeding. You may need to create it using `createdb cmdb_database` or via a SQL tool.
 
 4. **Run database migrations**
 ```bash
