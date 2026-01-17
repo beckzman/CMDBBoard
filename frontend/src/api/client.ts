@@ -405,4 +405,12 @@ export const softwareAPI = {
     }
 };
 
+// AI API
+export const aiAPI = {
+    query: async (query: string) => {
+        const response = await api.post('/api/ai/query', { query });
+        return response.data;
+    },
+};
+
 

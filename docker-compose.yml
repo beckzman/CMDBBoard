@@ -29,6 +29,8 @@ services:
       DATABASE_URL: postgresql://cmdb_user:cmdb_password@postgres:5432/cmdb_database
       SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-production}
       CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    env_file:
+      - ./backend/.env
     ports:
       - "8000:8000"
     depends_on:
