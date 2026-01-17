@@ -1,0 +1,123 @@
+Unmapped Server CIs (119 total)
+==================================================
+Name                           | SLA             | OS/DB System
+--------------------------------------------------
+DELETE-ME-TEST                 | None            | None
+localhost                      | None            | None
+TEST-SERVER-005                | High            | None
+srv-test-01                    | None            | Windows Server 2022
+fritz.box                      | None            | None
+apachebr1                      | Low             | Cent OS 7.4
+apachebr2                      | Low             | Cent OS 6.8
+asr3                           | High            | HP-UX 11.23 PARisc 64Bit
+asr4                           | Medium          | HP-UX 11.23 PARisc 64Bit
+BRM-VRS-67                     | High            | VMware ESXi 7.0
+BRM-SMS-VCSP01                 | High            | VMware Photon OS (64-bit) vCenter 7.0
+ambopuskl                      | High            | None
+BRM-APP-VOIP02                 | None            | None
+Puppet                         | High            | Cent OS 7.0
+Test                           | dsdas           | None
+RZHPUX02                       | Medium          | HP-UX 11.31 ia64
+ADM3                           | Medium          | HP-UX 11.23 PARisc 64Bit
+RZHPUX04                       | High            | HP-UX 11.31 ia64
+Meiner                         | fdsfsd          | None
+RZHPUX01                       | Medium          | HP-UX 11.31 ia64
+brm-net-ngxld01                | Medium          | None
+brm-mos-vdi06                  | Base            | Ubuntu
+brm-net-ngxbg1                 | Medium          | None
+brm-sql-sst02                  | Medium          | None
+brm-vrs-21                     | Medium          | VMware ESXi 5.5
+brm-vrs-23                     | Medium          | VMware ESXi 6.5
+brm-mos-log1                   | Base            | Ubuntu
+net-serv-db-01                 | Medium          | None
+brm-mos-vdi01                  | Base            | Debian Linux 10.x
+brm-sql-sst01                  | Medium          | None
+brm-tst-tdb01                  | Low             | Cent OS 7.0
+taurus2                        | Base            | Gaia
+brm-sms-vnx01                  | Low             | Cent OS 7.0
+brm-vrs-20                     | Medium          | VMware ESXi 5.5
+hades2                         | High            | Gaia
+hades1                         | High            | Gaia
+TotemBR1                       | Medium          | Cent OS 6.8
+vparfor5                       | Medium          | HP-UX 11.31 ia64
+BOV-VRS-04                     | High            | VMware ESXi 7.0
+BOV-VRS-03                     | High            | VMware ESXi 7.0
+BRM-APP-YMS01                  | None            | Ubuntu
+BRM-APP-YMS03                  | None            | Ubuntu
+BRM-APP-THWIKI                 | Low             | None
+BRM-APP-VOIP01                 | None            | None
+BRM-APP-YMS02                  | None            | Ubuntu
+BRM-PROTECT-02                 | High            | VMware ESXi 7.0
+BRM-SMS-VCSP01-witness         | Low             | VMware ESXi 6.5
+BRM-PROTECT-01                 | High            | VMware ESXi 7.0
+BRM-SMS-VCS03                  | Medium          | VMware ESXi 6.5
+BRM-SMS-VCSP01-peer            | Low             | VMware ESXi 6.5
+BRM-PROTECT-VCSP02             | High            | VMware Photon OS (64-bit) vCenter 7.0
+BRM-VRS-29                     | High            | VMware ESXi 7.0
+BRM-VRS-37                     | High            | VMware ESXi 7.0
+BRM-VRS-17                     | High            | VMware ESXi 7.0
+BRM-VRS-19                     | High            | VMware ESXi 7.0
+BRM-VRS-41                     | High            | VMware ESXi 7.0
+BRM-VRS-50                     | High            | VMware ESXi 7.0
+BRM-TST-YMS02                  | None            | Ubuntu
+BRM-VRS-25                     | High            | VMware ESXi 7.0
+BRM-VRS-27                     | High            | VMware ESXi 7.0
+BRM-VRS-11                     | High            | VMware ESXi 7.0
+BRM-VRS-28                     | High            | VMware ESXi 7.0
+BRM-VRS-36                     | High            | VMware ESXi 7.0
+BRM-VRS-40                     | High            | VMware ESXi 7.0
+BRM-VRS-49                     | High            | VMware ESXi 7.0
+BRM-VRS-55                     | High            | VMware ESXi 7.0
+BRM-VRS-51                     | High            | VMware ESXi 7.0
+BRM-VRS-63                     | High            | VMware ESXi 7.0
+BRM-VRS-DMZ01                  | High            | VMware ESXi 7.0
+BRM-TST-YMS01                  | None            | Ubuntu
+BRM-VRS-16                     | High            | VMware ESXi 7.0
+BRM-VRS-18                     | High            | VMware ESXi 7.0
+BRM-VRS-26                     | High            | VMware ESXi 7.0
+BRM-TRM-JHTH01                 | Low             | None
+BRM-VRS-52                     | High            | VMware ESXi 7.0
+BRM-VRS-58                     | High            | VMware ESXi 7.0
+BRM-VRS-65                     | High            | VMware ESXi 7.0
+BRM-VRS-69                     | High            | VMware ESXi 7.0
+BRM-VRS-DMZ02                  | High            | VMware ESXi 7.0
+BRM-VRS-HDSPR02                | High            | VMware ESXi 7.0
+bretemp                        | Low             | HP-UX 11.11 PARisc 64Bit
+brm-app-kiinf01                | None            | Debian Linux 10.x
+brm-app-kiinf02                | None            | Debian Linux 10.x
+brm-app-mod                    | Medium          | Cent OS 7.0
+brm-app-sst02                  | Medium          | None
+brm-gpu-sst01                  | Medium          | None
+brm-gpu-sst02                  | Medium          | None
+brm-mos-vdi04                  | Base            | Ubuntu
+brm-vdi-10                     | Medium          | None
+brm-vrs-22                     | Medium          | VMware ESXi 6.5
+brm-vrs-24                     | Medium          | VMware ESXi 6.5
+brm-vrs-30                     | Medium          | VMware ESXi 6.5
+brm-vrs-31                     | Medium          | VMware ESXi 6.5
+brm-vrs-32                     | Medium          | VMware ESXi 6.5
+brm-vrs-33                     | Medium          | VMware ESXi 6.5
+brm-vrs-34                     | Medium          | VMware ESXi 6.7
+brm-vrs-35                     | Medium          | VMware ESXi 6.7
+brm-vrs-38                     | Medium          | VMware ESXi 6.7
+brm-vrs-39                     | Medium          | VMware ESXi 6.7
+brm-vrs-dmzot01                | Medium          | VMware ESXi 6.7
+brm-vrs-dmzot02                | Medium          | VMware ESXi 6.7
+brm-vrs-vdi04                  | Medium          | VMware ESXi 6.5
+brm-vrs-vdi05                  | Medium          | VMware ESXi 6.5
+brm-vrs-vdi06                  | Medium          | VMware ESXi 6.5
+brm-vrs-wwl1-01                | Medium          | VMware ESXi 6.5
+brm-vrs-wwl1-02                | Medium          | VMware ESXi 6.5
+brm-vrs-wwl1-03                | Medium          | VMware ESXi 6.5
+brm-vrs-wwl1-04                | Medium          | VMware ESXi 6.5
+brm-ws-admgmt01                | no SLA          | Microsoft Windows 10 LTSC
+brm-ws-admgmt02                | no SLA          | Microsoft Windows 10 LTSC
+brm-ws-admgmt03                | no SLA          | Microsoft Windows 10 LTSC
+hadesmgt                       | High            | Gaia
+net-serv-04                    | Low             | VMware ESXi 6.0
+net-serv-05                    | Low             | VMware ESXi 6.0
+net-serv-08                    | Low             | VMware ESXi 6.5
+prvs-e-old                     | High            | HP-UX 11.23 PARisc 64Bit
+prvs-p                         | High            | HP-UX 11.23 PARisc 64Bit
+BRM-VRS-HDSPR01                | High            | VMware ESXi 7.0
+BRM-VRS-VDI01                  | Medium          | None

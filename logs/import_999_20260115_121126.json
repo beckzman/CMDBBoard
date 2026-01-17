@@ -1,0 +1,181 @@
+[
+  {
+    "action": "created",
+    "ci_id": 1,
+    "ci_name": "VMHost01",
+    "data": {
+      "name": "VMHost01",
+      "ci_type": "other",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:11:26.613702"
+    },
+    "timestamp": "2026-01-15T11:11:26.616569"
+  },
+  {
+    "action": "created",
+    "ci_id": 2,
+    "ci_name": "Web01",
+    "data": {
+      "name": "Web01",
+      "ci_type": "server",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:11:26.617120"
+    },
+    "timestamp": "2026-01-15T11:11:26.617953"
+  },
+  {
+    "action": "created",
+    "ci_id": 3,
+    "ci_name": "Web02",
+    "data": {
+      "name": "Web02",
+      "ci_type": "server",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:11:26.618217"
+    },
+    "timestamp": "2026-01-15T11:11:26.618892"
+  },
+  {
+    "action": "created",
+    "ci_id": 4,
+    "ci_name": "App1",
+    "data": {
+      "name": "App1",
+      "ci_type": "application",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:11:26.619136"
+    },
+    "timestamp": "2026-01-15T11:11:26.619856"
+  },
+  {
+    "action": "created",
+    "ci_id": 5,
+    "ci_name": "App2",
+    "data": {
+      "name": "App2",
+      "ci_type": "application",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:11:26.620163"
+    },
+    "timestamp": "2026-01-15T11:11:26.620884"
+  },
+  {
+    "action": "created",
+    "ci_id": 6,
+    "ci_name": "App3",
+    "data": {
+      "name": "App3",
+      "ci_type": "application",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:11:26.621131"
+    },
+    "timestamp": "2026-01-15T11:11:26.621883"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web01",
+    "target": "VMHost01",
+    "type": "runs_on",
+    "timestamp": "2026-01-15T11:11:26.625979"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web01",
+    "target": "App1",
+    "type": "hosting",
+    "timestamp": "2026-01-15T11:11:26.626845"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web01",
+    "target": "App2",
+    "type": "hosting",
+    "timestamp": "2026-01-15T11:11:26.627622"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web02",
+    "target": "VMHost01",
+    "type": "runs_on",
+    "timestamp": "2026-01-15T11:11:26.628625"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web02",
+    "target": "App3",
+    "type": "hosting",
+    "timestamp": "2026-01-15T11:11:26.629674"
+  }
+]

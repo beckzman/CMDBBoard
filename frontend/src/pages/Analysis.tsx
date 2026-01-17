@@ -11,7 +11,8 @@ import {
     Monitor,
     Database,
     CheckSquare,
-    ArrowRight
+    ArrowRight,
+    Bot
 } from 'lucide-react';
 import './Analysis.css';
 
@@ -55,6 +56,20 @@ const Analysis: React.FC = () => {
     };
 
     const reports = [
+        {
+            id: 'ai_insights',
+            title: 'AI Insights',
+            description: 'Ask questions about your infrastructure using AI.',
+            icon: Bot,
+            path: '/analysis/ai',
+            color: '#8B5CF6',
+            chart: (
+                <div style={{ padding: '10px', color: '#8B5CF6', fontSize: '14px', fontStyle: 'italic' }}>
+                    "How many servers run Ubuntu?"<br />
+                    "Show me relationships for..."
+                </div>
+            )
+        },
         {
             id: 'cost',
             title: 'Cost Distribution',

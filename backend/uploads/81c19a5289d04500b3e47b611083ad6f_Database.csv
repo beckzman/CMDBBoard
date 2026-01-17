@@ -1,0 +1,905 @@
+﻿"Titel","Name","Service Provider","Provider Id","DBTyp","Container-DB","CI-Beschreibung","Status","IT Level","Verwendung","IBN datum","ABN Datum","SLA","Abrechnungsrelevant","Datenbank Version","Server","Datenbank Version:DB Hersteller","IBN Kommentar","ABN Kommentar","Oracle DB Option","Datenbank Version:DB Support Type","Kontakt","Erstellt","Erstellt von","Geändert","Geändert von","SoftwareVersion"
+"QT","QS Testdatenbank","BTC","35.483","Common",,,"Aktiv","Level 2","Test","28.04.2016",,"Low","Wahr","Oracle Database 11gR2 Enterprise Edition","QSDBAT01","Oracle",,"CoC 22.11.2023",,"Support / Standard","Niemoeller, Paul","28.04.2016 09:13","Noormann, Hauke (Contractor)","04.06.2025 16:44","Schoettler, Martin","11.2.0.4.160419"
+"AMBQ","AMBus","BTC","35.416","Common",,,"Aktiv","Level 2","Quality Assurance","10.03.2017",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMBAP1","Oracle",,"CoC 16.11.2023",,"Support / Standard","Markowsky, Benjamin","03.04.2017 09:46","Noormann, Hauke (Contractor)","04.06.2025 13:45","Schoettler, Martin","11.2.0.3.7"
+"LDSGP11",,"BTC",,,,"ORALDSGP11","Aktiv","Level 2","Produktion","21.11.2017",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","LDDBPP03,LDDBPP04","Oracle","HDSpray","CoC 16.11.2023",,"Support / Standard","Behling, Thorsten","04.12.2017 13:30","Noormann, Hauke (Contractor)","19.11.2023 13:32","Beckmann, Andreas",
+"GASP","ORAGASP","BTC","35.449","Common",,,"Aktiv","Level 2","Produktion","08.12.2017",,"High","Wahr","Oracle Database 11gR2 Standard Edition","EMPP02,EMPP01","Oracle","17-0378","CoC 20.11.2023",,"Support / Standard","Bugalski, Michael","11.12.2017 09:07","Noormann, Hauke (Contractor)","04.06.2025 16:34","Schoettler, Martin","11.2.0.4.170418"
+"AMBP","AMBus","BTC","35.415","Common",,,"Aktiv","Level 2","Produktion","06.11.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition","AMBPP02,AMBPP01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Markowsky, Benjamin","17.12.2015 09:57","Braad, Roy","04.06.2025 13:45","Schoettler, Martin","11.2.0.3.7"
+"AMBT","AMBus","BTC","35.417","Common",,,"Aktiv","Level 2","Test","28.10.2013",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMBAP1","Oracle",,"CoC 16.11.2023",,"Support / Standard","Markowsky, Benjamin","17.12.2015 09:57","Braad, Roy","25.02.2025 17:30","Schoettler, Martin","11.2.0.3.7"
+"B1PRP","Bregal1 DB (HRL,VZL,IL,Verpack.,Verlad.)","BTC","35.419","Common",,,"Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 19c Standard Edition","B1PP02,B1PP01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Makow, Martin","17.12.2015 09:57","Braad, Roy","26.06.2025 07:01","Schoettler, Martin","19.17.0.0.221018"
+"AMOP","AMONE (Projekt EMS ONE)","BTC","35.418","Common",,,"Aktiv","Level 2","Produktion","11.08.2015",,"High","Wahr","Oracle Database 11gR2 Standard Edition","EMPP02,EMPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Bugalski, Michael","17.12.2015 09:57","Braad, Roy","04.06.2025 13:45","Schoettler, Martin","11.2.0.4.5"
+"BRM-SQL-NN03",,"CGI",,,,"BRM-SQL-NN03","Inaktiv","Level 3","Produktion",,"28.09.2021","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"BIT 21-0658",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","18.10.2021 15:29","Kudrass, Robert (Contractor)",
+"BRM-SQL-NN02",,,,,,"BRM-SQL-NN02","Aktiv","Level 3","Produktion",,,"High","Wahr","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"CoC 23.10.2023",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","01.03.2024 14:50","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN05",,"CGI",,,,"BRM-SQL-NN05","Inaktiv","Level 3","Produktion",,"30.11.2021","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"21-1170",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","17.01.2022 12:30","Behrmann, Markus (Contractor)",
+"CT10",,"CGI",,,,"CT10 DB Cassis Oracle 10g Test","Inaktiv","Level 3","Test",,"03.08.2012","medium","Falsch","Oracle Database 10gR2 Enterprise Edition","db05","Oracle",,,,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","17.12.2015 09:57","Braad, Roy",
+"BRM-SQL-NN01",,"CGI",,,,"BRM-SQL-NN01","Inaktiv","Level 3","Produktion",,"26.02.2020","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"20-0218",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","04.01.2021 16:55","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN06",,"CGI",,,,"BRM-SQL-NN06","Inaktiv","Level 3","Produktion",,"10.03.2022","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"22-0067",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","18.03.2022 11:25","Kudrass, Robert (Contractor)",
+"D3P","D3 Dokumentenarchivierung DB","BTC","35.424","Common",,"Oracle 11g Multitenant DB für d.3 DMS Prod","Aktiv","Level 3","Produktion",,,"Medium","Wahr","Oracle Database 11.2 Enterprise Edition","D3DBAP01","Oracle",,"CoC 22.11.2023",,"Support / Standard","Scholz, Andre","17.12.2015 09:57","Braad, Roy","04.06.2025 16:27","Schoettler, Martin","11.2.0.3.3"
+"BRM-SQL-NN04",,"CGI",,,,"BRM-SQL-NN04","Inaktiv","Level 3","Produktion",,"16.11.2020","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"20-0705",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","04.01.2021 16:52","Behrmann, Markus (Contractor)",
+"D3T","D3 Dokumentenarchivierung DB","BTC","35.425","Common",,,"Aktiv","Level 3","Test","08.10.2015",,"Low","Wahr","Oracle Database 11.2 Standard Edition One","D3DBAT01","Oracle",,"CoC 22.11.2023",,"Support / Standard","Scholz, Andre","17.12.2015 09:57","Braad, Roy","04.06.2025 16:27","Schoettler, Martin","11.2.0.3.3"
+"BRM-SQL-NN07",,"CGI",,,,"BRM-SQL-NN07","Inaktiv","Level 3","Produktion",,"10.03.2022","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"22-0069",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","18.03.2022 11:27","Kudrass, Robert (Contractor)",
+"DEV3","Entwicklungsdatenbank #3 (KW AMB)","BTC","35.429","Common",,,"Aktiv","Level 2","Test","01.01.2013",,"Low","Wahr","Oracle Database 11gR2 Standard Edition One","AMDBPT02","Oracle",,"CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","17.12.2015 09:57","Braad, Roy","04.06.2025 16:28","Schoettler, Martin","11.2.0.4.201020"
+"DEV4","Entw-DB 4 (CET)","BTC","35.430","Common",,,"Aktiv","Level 2","Development","10.09.2013",,"Low","Wahr","Oracle Database 11gR2 Standard Edition One","AMDBPT02","Oracle",,"CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","17.12.2015 09:57","Braad, Roy","04.06.2025 16:28","Schoettler, Martin","11.2.0.4.161018"
+"DP","IP-DB / WAUPLUS / WW-Schichtbuch / IBIX","BTC","35.439","Common",,,"Aktiv","Level 3","Produktion",,,"High","Wahr","Oracle Database 11gR2 Enterprise Edition","DIDBPP01,DIDBPP02","Oracle",,"CoC 21.11.2023",,"Support / Standard","Schulz, Heike","17.12.2015 09:57","Braad, Roy","04.06.2025 16:32","Schoettler, Martin","11.2.0.4.160419"
+"DEV5","Entw-DB Bregal1/KW Tandem/Beize/Glühe","BTC","35.431","Common",,,"Aktiv","Level 2","Development","15.05.2015",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT03","Oracle",,"CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","17.12.2015 09:57","Braad, Roy","04.06.2025 16:29","Schoettler, Martin","11.2.0.4.5"
+"DT","Oracle 11 (diverse Test Apps)","BTC","35.442","Common",,"Oracle 11g
+DT-DB für diverse Applikationen","Inaktiv","Level 3","Test",,"10.08.2021","Low","Falsch","Oracle Database 11.2 Standard Edition One","DIDBAT01","Oracle",,,,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","04.06.2025 16:33","Schoettler, Martin","11.2.0.4.161018"
+"FP","MES / SCM (diverse Applikationen)","BTC","35.446","Common",,"Produktionsumgebung für SWePPS; MD; FD; BASET; MFG; FIVE; ABIL; MFW
+
+Info: Aus Lizenzgründen fährt der Reserveknoten mit 1 Core statt 6 auf der aktiven Seite. Im Cutover-Fall muß zunächst die Corezahl erhöht werden.","Aktiv","Level 3","Produktion",,,"High","Wahr","Oracle Database 11gR2 Enterprise Edition","AMDBPP01,AMDBPP02","Oracle",,"CoC 21.11.2023",,"Support / Standard","Schmoll, Andreas","17.12.2015 09:57","Braad, Roy","18.09.2025 07:10","Schoettler, Martin","11.2.0.3.0"
+"ADM1","Prod Admin DB #1 RMAN Katalog","BTC","35.410","Common",,,"Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","AMBPP02,AMBPP01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Helvogt, Peter","17.12.2015 09:57","Braad, Roy","14.03.2025 12:10","Schoettler, Martin","11.2.0.4.170418"
+"GMSP","AMB Gas Management System","BTC","35.450","Common",,,"Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition","EMPP02,EMPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Bugalski, Michael","17.12.2015 09:57","Braad, Roy","04.06.2025 16:35","Schoettler, Martin","11.2.0.4.180116"
+"AMBE","AMBus","BTC","35.414","Common",,,"Aktiv","Level 2","Development","28.10.2013",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMBAP1","Oracle",,"CoC 16.11.2023",,"Support / Standard","Markowsky, Benjamin","17.12.2015 09:57","Braad, Roy","25.02.2025 17:30","Schoettler, Martin","11.2.0.4.181016"
+"HOH2P","Hochofen 2 DB","BTC","35.452","Common",,,"Aktiv","Level 2","Produktion","22.09.2013",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:35","Schoettler, Martin","19.17.0.0.221018"
+"CP","Cassis DB","BTC","35.422","Common",,,"Aktiv","Level 3","Test",,,"High","Wahr","Oracle Database 11gR2 Edition...","CADBPP01,CADBPP02","Oracle",,"CoC 22.11.2023",,"kein Support / kein Standard","Niemoeller, Paul","17.12.2015 09:57","Braad, Roy","04.06.2025 16:27","Schoettler, Martin","11.2.0.4.170418"
+"HOH3P","Hochofen 3 DB","BTC","35.453","Common",,,"Aktiv","Level 2","Produktion","23.09.2013",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:35","Schoettler, Martin","19.17.0.0.221018"
+"CQA",,"CGI",,,,"CQA DB Cassis Quality Assurance","Inaktiv","Level 3","Test",,"02.05.2016","Medium","Falsch","Oracle Database 9.2 Enterprise Edition","db05","Oracle",,,,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","23.06.2016 08:56","Noormann, Hauke (Contractor)",
+"HOM2P","Hochofen Möllerbunker HO #2","BTC","35.454","Common",,,"Aktiv","Level 2","Produktion","01.01.2000",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:35","Schoettler, Martin","19.17.0.0.221018"
+"HOM3P","Hochofen Möllerbunker HO #3","BTC","35.455","Common",,,"Aktiv","Level 2","Produktion","01.01.2000",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:35","Schoettler, Martin","19.17.0.0.221018"
+"BRM-SQL-NN08",,"CGI",,,,"BRM-SQL-NN08","Inaktiv","Level 3","Produktion","19.02.2015","30.12.2021","High","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"BIT 21-1021",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","24.01.2022 13:33","Kudrass, Robert (Contractor)",
+"HOMDP","Hochofen Analysen DB","BTC","35.456","Common",,,"Aktiv","Level 2","Produktion","01.01.2000",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:36","Schoettler, Martin","19.17.0.0.221018"
+"HOSAP","Hochofen Sinteranlage DB","BTC","35.462","Common",,,"Aktiv","Level 2","Produktion","25.09.2013",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP04,HODBPP03","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:37","Schoettler, Martin","19.12.0.0.210720"
+"ITODB",,"CGI",,,,"ITO DB (Openview DB?)","Inaktiv","Level 3","Test",,,"medium","Falsch","Oracle Database 9.2 Edition...","ADM3","Oracle",,,,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","17.12.2015 09:57","Braad, Roy",
+"IVART","L3 IVARA Konverter DB",,,"Common",,"Abbau geplant - DB gestoppt - Monitoring / Backup deaktiviert","Inaktiv","Level 2","Test","25.09.2013",,"Low","Falsch","Oracle Database 11gR2 Standard Edition One","IVARAP1","Oracle",,"CoC 22.11.2023",,"Support / Standard","Niemoeller, Paul","17.12.2015 09:57","Braad, Roy","30.09.2025 07:28","Schoettler, Martin",
+"B2VZP",,"BTC",,,,"Bregal 2 Produktions DB, VZL, Versionn 11.2.0.4","Aktiv","Level 2","Produktion","23.09.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","B2DBPP03,B2DBPP04","Oracle",,"CoC 16.11.2023",,"Support / Standard","Makow, Martin","17.12.2015 09:57","Braad, Roy","05.12.2023 13:26","Brandhorst, Fabian",
+"KWBZE",,"BTC",,,,"Entwicklung Tandem beize jetzt in der DEV3","Aktiv","Level 2","Development","01.10.2012",,"Low","Falsch","Oracle Database 11gR2 Standard Edition One","AMDBPT02","Oracle",,,,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","05.12.2023 13:37","Brandhorst, Fabian",
+"CT","Cassis DB","BTC","35.423","Common",,,"Aktiv","Level 3","Test",,,"Low","Wahr","Oracle Database 11gR2 Enterprise Edition","CADBAT01","Oracle",,"CoC 22.11.2023",,"Support / Standard","Niemoeller, Paul","17.12.2015 09:57","Braad, Roy","04.06.2025 16:27","Schoettler, Martin","11.2.0.4.170418"
+"KWGLP","KW Glühe DB","BTC","35.471","Common",,"Oracle 11g KWGLP für KW Ebner Glühe","Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition","KWEG02,KWEG01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:38","Schoettler, Martin","11.2.0.4.180116"
+"KWILP","KW Inspektionslinie Prozessrechner","BTC","35.472","Common",,,"Aktiv","Level 2","Produktion","29.05.2015",,"High","Wahr","Oracle Database 11gR2 Standard Edition","KWPP03,KWPP04","Oracle",,"CoC 16.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:39","Schoettler, Martin","11.2.0.4.5"
+"ADM2","ProDISS Alert System / Designer Repo","BTC","35.412","Common",,"Oracle DB für ProDISS Alert System / Oracle Designer Repository
+
+Patches:
+32109594;
+31668908;OJVM PATCH SET UPDATE 11.2.0.4.201020
+31537677;Database Patch Set Update : 11.2.0.4.201020 (31537677)","Aktiv","Level 2","Produktion","17.08.2016",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","AMBPP02,AMBPP01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Helvogt, Peter","17.12.2015 09:57","Braad, Roy","04.06.2025 13:39","Schoettler, Martin","11.2.0.4.201020"
+"KWBZP","KW Tandem Beize DB","BTC","35.467","Common",,,"Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition","KWPP02,KWPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:38","Schoettler, Martin","11.2.0.4.180116"
+"DEV2",,"CGI",,,,"Entwicklung-DB 2 (CET)","Inaktiv","Level 2","Development","01.01.2014","14.08.2017","Low","Falsch","Oracle Database 10gR2 Standard Edition One","clutel01,clutel02","Oracle",,,,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","26.09.2017 09:44","Noormann, Hauke (Contractor)",
+"MAXP","Strommax Produktiv",,,"Common",,,"Inaktiv","Level 2","Produktion","25.04.2014",,"High","Falsch","Oracle Database 11gR2 Standard Edition","EMPP02,EMPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Bugalski, Michael","17.12.2015 09:57","Braad, Roy","07.10.2025 07:26","Schoettler, Martin","11.2.0.3.7"
+"MD",,"CGI",,,,"Messdaten Datenbank Prod","Inaktiv","Level 3","Produktion",,"11.04.2013","High","Falsch","Oracle Database 11gR2 Enterprise Edition","DB09,DB10","Oracle",,,,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","17.12.2015 09:57","Braad, Roy",
+"MT",,"CGI",,,,"Messdaten Datenbank Test","Inaktiv","Level 3","Test",,"11.04.2013","medium","Falsch","Oracle Database 9.2 Enterprise Edition","db05","Oracle",,,,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","17.12.2015 09:57","Braad, Roy",
+"QP","ORAQP","BTC","35.482","Common",,,"Aktiv","Level 3","Produktion","31.08.2015",,"High","Wahr","Oracle Database 11gR2 Enterprise Edition","QSDBPP01,QSDBPP02","Oracle",,"CoC 22.11.2023",,"Support / Standard","Niemoeller, Paul","17.12.2015 09:57","Braad, Roy","04.06.2025 16:44","Schoettler, Martin","11.2.0.4.5"
+"SCP",,"CGI",,,,"SCP DB Redwood Cronacle","Inaktiv","Level 3","Produktion",,"24.04.2019",,"Falsch","Oracle Database 11gR2 Standard Edition","DWDBAP01","Oracle",,"BIT 19-0275",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","07.06.2019 15:26","Behrmann, Markus (Contractor)",
+"SIP",,"BTC",,,,"Sterling Integrator Produktion","Aktiv","Level 3","Produktion",,,"High","Wahr","Oracle Database 11gR2 Enterprise Edition","AMDBPP03,AMDBPT04","Oracle",,"CoC 20.11.2023",,"Support / Standard","Schmoll, Andreas","17.12.2015 09:57","Braad, Roy","05.12.2023 13:19","Brandhorst, Fabian",
+"SIT",,"CGI",,,,"Sterling Integrator Test","Inaktiv","Level 3","Test",,"29.03.2023","medium","Falsch","Oracle Database 11gR2 Enterprise Edition","AMDBPT04","Oracle",,"23-0154",,"Support / Standard","Schmoll, Andreas","17.12.2015 09:57","Braad, Roy","27.04.2023 11:27","Kudrass, Robert (Contractor)",
+"HOUSP","Hochofen Userschnittstelle Berichte","BTC","35.463","Common",,,"Aktiv","Level 2","Produktion","02.11.2016",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:37","Schoettler, Martin","19.17.0.0.221018"
+"HORLP","Hochofen Rohstofflogistik DB","BTC","35.460","Common",,,"Aktiv","Level 2","Produktion","01.01.2000",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:36","Schoettler, Martin","19.17.0.0.221018"
+"TQ",,"CGI",,,,"Qualitätssicherung TQ Prod","Inaktiv","Level 3","Produktion",,,"High","Falsch","Oracle Database 9.2 Enterprise Edition","db02,db03","Oracle",,"06.12.2018 - BIT 18-0160",,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","26.04.2019 16:06","Behrmann, Markus (Contractor)",
+"TST2","TST2","BTC","35.488","Common",,,"Aktiv","Level 2","Test","25.11.2014",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT06","Oracle",,"CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","17.12.2015 09:57","Braad, Roy","04.06.2025 16:45","Schoettler, Martin","11.2.0.4.201020"
+"HOARP","Hochofen Archiv DB","BTC","35.451","Common",,"Oracle 19c Hochofen Archiv DB - HOARP","Aktiv","Level 2","Produktion","01.01.2000",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:35","Schoettler, Martin","19.22.0.0.0"
+"EVSP","KW WW DB Equipment Verwaltung KW / WW","BTC","35.444","Common",,,"Aktiv","Level 2","Produktion","02.08.2017",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","AMBPP03,AMBPP04","Oracle",,"CoC 21.11.2023",,"Support / Standard","Kleilein, Andre","17.12.2015 09:57","Braad, Roy","04.06.2025 16:33","Schoettler, Martin","11.2.0.4.161018"
+"HORDP","Hochofen Roheisen Dispo","BTC","35.458","Common",,,"Aktiv","Level 2","Produktion","01.01.2000",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:36","Schoettler, Martin","19.17.0.0.221018"
+"KWBZT","KW Tandem Beize DB","BTC","35.468","Common",,,"Aktiv","Level 2","Test","01.01.2013",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","KWPP03,KWPP04","Oracle",,"CoC 16.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:38","Schoettler, Martin","11.2.0.4.180116"
+"IVARP","L3 IVARA Konverter DB",,,"Common",,"Abbau geplant - DB gestoppt - Monitoring / Backup deaktiviert","Inaktiv","Level 2","Produktion","25.09.2013",,"Medium","Falsch","Oracle Database 11gR2 Standard Edition One","IVARAP1","Oracle",,"CoC 22.11.2023",,"Support / Standard","Niemoeller, Paul","17.12.2015 09:57","Braad, Roy","30.09.2025 07:28","Schoettler, Martin",
+"E",,"CGI",,,,"Entwicklungs-DB für diverse Applikationen","Inaktiv","Level 3","Test",,"16.12.2016","Low","Falsch","Oracle Database 8i Enterprise Edition","db05","Oracle",,,,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","07.02.2017 09:48","Noormann, Hauke (Contractor)",
+"WWARP","WW Archiv DB","BTC","35.499","Common",,,"Aktiv","Level 2","Produktion","12.08.2015",,"High","Wahr","Oracle Database 11gR2 Standard Edition","WWPP02,WWPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:48","Schoettler, Martin","11.2.0.4.6"
+"HOPSP","Hochofen Prozess DB","BTC","35.457","Common",,,"Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:36","Schoettler, Martin","19.17.0.0.221018"
+"WWCLP","WW Coillogistik Aggregat","BTC","35.500","Common",,,"Aktiv","Level 2","Produktion","01.05.2014",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","WWPP03,WWPP04","Oracle",,"CoC 22.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:48","Schoettler, Martin","11.2.0.4.201020"
+"DEV1",,"BTC",,,,"Entwicklungs-DB 1 (GMT) für Stahlwerk, Version 10.2.0.5","Aktiv","Level 2","Development","16.09.2013",,"Low","Wahr","Oracle Database 10gR2 Standard Edition One","amdbpt01","Oracle",,"CoC 21.11.2023",,"kein Support / kein Standard","Behling, Thorsten","17.12.2015 09:57","Braad, Roy","16.01.2024 14:51","Brandhorst, Fabian",
+"WWOFE","WW Ofen Datenbank","BTC","35.502","Common",,,"Aktiv","Level 2","Development","16.01.2012",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","WWPP02,WWPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Weyer, Franziska","17.12.2015 09:57","Braad, Roy","04.06.2025 16:48","Schoettler, Martin","11.2.0.4.5"
+"WWOFP","WW Ofen Datenbank","BTC","35.503","Common",,,"Aktiv","Level 2","Produktion","17.01.2012",,"High","Wahr","Oracle Database 11gR2 Standard Edition","WWPP02,WWPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Weyer, Franziska","17.12.2015 09:57","Braad, Roy","04.06.2025 16:48","Schoettler, Martin","11.2.0.4.5"
+"LDKVP",,"BTC",,,,"Stahlwerke Konverter prod. DB","Aktiv","Level 2","Produktion","22.08.2013",,"High","Wahr","Oracle Database 10gR2 Standard Edition One","LDDBPP01,LDDBPP02","Oracle",,"CoC 07.12.2023",,"kein Support / kein Standard","Behling, Thorsten","17.12.2015 09:57","Braad, Roy","16.01.2024 14:33","Brandhorst, Fabian",
+"HORLE","Hochofen Rohstofflogistik DB","BTC","35.459","Common",,,"Aktiv","Level 2","Development","01.01.2013",,"Low","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","17.12.2015 09:57","Braad, Roy","04.06.2025 16:36","Schoettler, Martin","19.17.0.0.221018"
+"KWDRP","KW Dressiergerüst","BTC","35.469","Common",,,"Aktiv","Level 2","Produktion","01.01.2014",,"High","Wahr","Oracle Database 11.2 Standard Edition One","KWPP05,KWPP06","Oracle",,"CoC 22.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:38","Schoettler, Martin","11.2.0.4.161018"
+"KWFTP",,"BTC",,,,"KW FTS prod. DB","Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition One","KWPP07,KWPP08","Oracle",,"CoC 16.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","19.11.2023 13:32","Beckmann, Andreas",
+"LDSGP","Stahlwerke Strangguss","BTC","35.476","Common",,"Oracle 11.2.0.4
+DB läuft unter User oraldsgp","Aktiv","Level 2","Produktion","22.08.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition","LDDBPP03,LDDBPP04","Oracle",,"CoC 07.12.2023",,"Support / Standard","Behling, Thorsten","17.12.2015 09:57","Braad, Roy","04.06.2025 16:39","Schoettler, Martin","11.2.0.4.170418"
+"MO",,"CGI",,,,"Monaco DWH","Inaktiv","Level 3","Produktion",,,,"Falsch","Oracle Database 11gR2 Enterprise Edition","DWH4","Oracle",,,,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","26.05.2017 09:55","Noormann, Hauke (Contractor)",
+"QZT",,"CGI",,,,"Qualitätssicherung TQ Test","Inaktiv","Level 3","Test",,"07.11.2018","Medium","Falsch","Oracle Database 9.2 Enterprise Edition","db05","Oracle",,"BIT 18-0160",,"kein Support / kein Standard",,"17.12.2015 09:57","Braad, Roy","23.01.2019 14:29","Behrmann, Markus (Contractor)",
+"SCT",,"CGI",,,,"SCT DB Redwood Cronacle Test","Inaktiv","Level 3","Test",,"24.04.2019","Low","Falsch","Oracle Database 11gR2 Standard Edition","DWDBAT01","Oracle",,"BIT 19-0275",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","07.06.2019 15:26","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN09",,"CGI",,,,"BRM-SQL-NN09","Inaktiv","Level 3","Produktion","24.03.2016","20.10.2021","Medium","Falsch","Microsoft SQL Server 2008R2 Standard","BRM-CLS-0102,BRM-CLS-0202","Microsoft",,"BIT 21-0671",,"Support / Standard",,"02.05.2016 13:29","Noormann, Hauke (Contractor)","08.12.2021 17:15","Kudrass, Robert (Contractor)",
+"BRM-SQL-NN15",,"BTC",,,,"BRM-SQL-NN15","Aktiv","Level 3","Produktion","06.05.2016",,"High","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"06.06.2016 13:05","Noormann, Hauke (Contractor)","15.01.2024 16:02","Brandhorst, Fabian",
+"TST3","ORATST3","BTC","35.489","Common","CDEVD3",,"Aktiv","Level 2","Test","23.10.2015",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT04","Oracle",,"CoC 20.11.2023",,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","04.06.2025 16:45","Schoettler, Martin","11.2.0.4.6"
+"BRM-SQL-GNS04\BRMSQLGNS04","GENESIS Instanz #4","BTC","35.269","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS04\BRMSQLGNS04 - für AMB GENESIS Entw
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS04.swbdom01.sw-hb.de (152.143.82.60)","Aktiv","Level 2","Quality Assurance","20.01.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"15.03.2016 08:29","Noormann, Hauke (Contractor)","04.06.2025 16:10","Schoettler, Martin","11.0.5388"
+"VIBP",,,,,,"AMB Vibrationsmess. prod. DB","Inaktiv","Level 2","Produktion","01.01.2013","16.08.2016","High","Falsch","Oracle Database 11gR2 Standard Edition One","cluftslp01,cluftslp02","Oracle",,,,"Support / Standard",,"17.12.2015 09:57","Braad, Roy","02.02.2022 13:32","Helvogt, Peter",
+"WT","WT DB Datawarehouse DWH","BTC","35.498","Common",,,"Aktiv","Level 3","Test",,,"Low","Wahr","Oracle Database 19c Enterprise Edition","DWDBAT01","Oracle",,"CoC 22.11.2023",,"Support / Standard","Woehlbrandt, Frank","17.12.2015 09:57","Braad, Roy","04.06.2025 16:47","Schoettler, Martin","19.17.0.0.221018"
+"FE","Forté + DotNet Entwicklung CGI","BTC","35.445","Common",,,"Aktiv","Level 3","Development","21.04.2016",,"Low","Wahr","Oracle Database 11gR2 Enterprise Edition","AMDBAT01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Schmoll, Andreas","17.12.2015 09:57","Braad, Roy","04.06.2025 16:33","Schoettler, Martin","11.2.0.3.0"
+"BRM-SQL-GNS01",,"BTC",,,,"GENESIS Instanz 1","Aktiv","Level 2","Quality Assurance","20.01.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"15.03.2016 08:23","Noormann, Hauke (Contractor)","16.01.2024 17:49","Zweck, Klaas-Henning",
+"BRM-SQL-GNS03\BRMSQLGNS03","GENESIS Instanz #3","BTC","35.268","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS03\BRMSQLGNS03 - für AMB GENESIS Entw
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS03.swbdom01.sw-hb.de (152.143.93.16)","Aktiv","Level 2","Quality Assurance","20.01.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"15.03.2016 08:28","Noormann, Hauke (Contractor)","04.06.2025 16:10","Schoettler, Martin","11.0.5388"
+"KWPRP","KW Regenerierung","BTC","35.473","Common",,,"Aktiv","Level 2","Produktion","01.01.2013",,"High","Wahr","Oracle Database 11gR2 Standard Edition","KWPP02,KWPP01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Sehgal, Orsolya Emoeke","17.12.2015 09:57","Braad, Roy","04.06.2025 16:39","Schoettler, Martin","11.2.0.4.160419"
+"FT","MES / SCM (div. Apps","BTC","35.447","Common",,"Testumgebung für SWePPS; MD; FD; BASET; MFG; FIVE; ABIL; MFW","Aktiv","Level 3","Test",,,"Medium","Wahr","Oracle Database 11gR2 Enterprise Edition","AMDBAT01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Schmoll, Andreas","17.12.2015 09:57","Braad, Roy","04.06.2025 16:34","Schoettler, Martin",
+"WP","WP DB Datawarehouse DWH","BTC","35.497","Common",,,"Aktiv","Level 3","Produktion",,,"Medium","Wahr","Oracle Database 19c Enterprise Edition","DWDBAP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Woehlbrandt, Frank","17.12.2015 09:57","Braad, Roy","04.06.2025 16:47","Schoettler, Martin","19.17.0.0.221018"
+"WWFSP","WW (Fertigstrasse, Dispo WW, ProDISS WW)","BTC","35.501","Common",,,"Aktiv","Level 2","Produktion","01.01.2014",,"High","Wahr","Oracle Database 11gR2 Standard Edition","WWPP02,WWPP01","Oracle",,"CoC 20.11.2023",,"Support / Standard","Spiess, Kai","17.12.2015 09:57","Braad, Roy","04.06.2025 16:48","Schoettler, Martin","11.2.0.4.201020"
+"BRM-SQL-GNS05\BRMSQLGNS05","GENESIS Instanz #5","BTC","35.270","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS05\BRMSQLGNS05 - für AMB GENESIS Test
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS05.swbdom01.sw-hb.de (152.143.86.208)","Aktiv","Level 2","Quality Assurance","20.01.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"15.03.2016 08:29","Noormann, Hauke (Contractor)","04.06.2025 16:10","Schoettler, Martin","11.0.5388"
+"BRM-SQL-GNS06",,"BTC",,,,"Genesis Instanz 6","Inaktiv","Level 2","Produktion","24.03.2016","01.11.2016","Low","Falsch","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"02.05.2016 13:23","Noormann, Hauke (Contractor)","16.01.2024 09:06","Zweck, Klaas-Henning",
+"BRM-SQL-GNS08\BRMSQLGNS08","GENESIS Instanz #8","BTC","35.272","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS08\BRMSQLGNS08 - für AMB GENESIS Prod
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS08.swbdom01.sw-hb.de (152.143.93.108)","Aktiv","Level 2","Quality Assurance","24.03.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"02.05.2016 13:25","Noormann, Hauke (Contractor)","04.06.2025 16:10","Schoettler, Martin","11.0.5388"
+"BRM-SQL-GNS10\BRMSQLGNS10","GENESIS Instanz #10","BTC","35.274","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS10\BRMSQLGNS10 - für AMB GENESIS Prod
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS10.swbdom01.sw-hb.de (152.143.93.113)","Aktiv","Level 2","Quality Assurance","24.03.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"02.05.2016 13:28","Noormann, Hauke (Contractor)","04.06.2025 17:15","Schoettler, Martin","11.0.5388"
+"TOPO",,"CGI",,,,"TOPO DB (In Volumenliste TOTP???)","Inaktiv","Level 3","Produktion",,,"Medium","Falsch","Oracle Database 19c Standard Edition","DIDBAP01","Oracle",,"11.04.2017",,"Support / Standard","Wittmershaus, Tanja","17.12.2015 09:57","Braad, Roy","13.06.2023 13:02","Helvogt, Peter",
+"BRM-SQL-GNS02",,"BTC",,,,"Genesis Instanz 2","Aktiv","Level 2","Quality Assurance","20.01.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"15.03.2016 08:27","Noormann, Hauke (Contractor)","16.01.2024 17:49","Zweck, Klaas-Henning",
+"BRM-SQL-GNS07\BRMSQLGNS07","GENESIS Instanz #7","BTC","35.271","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS07\BRMSQLGNS07 - für AMB GENESIS
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS07.swbdom01.sw-hb.de (152.143.89.109)","Aktiv","Level 2","Quality Assurance","24.03.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"02.05.2016 13:24","Noormann, Hauke (Contractor)","04.06.2025 16:10","Schoettler, Martin","11.0.5388"
+"BRM-SQL-GNS09\BRMSQLGNS09","GENESIS Instanz #9","BTC","35.273","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS09\BRMSQLGNS09 - für AMB GENESIS
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS09.swbdom01.sw-hb.de (152.143.93.112)","Aktiv","Level 2","Quality Assurance","24.03.2016",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"02.05.2016 13:27","Noormann, Hauke (Contractor)","04.06.2025 17:15","Schoettler, Martin","11.0.5388"
+"WX","WX DB Datawarehouse DWH","BTC","35.505","Common",,,"Aktiv","Level 3","Development","01.09.2016",,"Low","Wahr","Oracle Database 19c Enterprise Edition","DWDBAT01","Oracle",,"CoC 22.11.2023",,"Support / Standard","Woehlbrandt, Frank","12.09.2016 15:13","Noormann, Hauke (Contractor)","04.06.2025 16:49","Schoettler, Martin","19.17.0.0.221018"
+"DP (11)",,"BTC",,,,"Datenbank für IP-DB, WAUPLUS, WW-Schichtbuch, IBIX, Version 11.2.0.4","Aktiv","Level 3","Produktion","19.09.2016",,"High","Wahr","Oracle Database 11gR2 Enterprise Edition","DIDBPP01,DIDBPP02","Oracle",,"CoC 22.11.2023",,"Support / Standard",,"19.09.2016 10:21","Noormann, Hauke (Contractor)","09.02.2024 09:41","Schulz, Arne",
+"DST",,"CGI",,,,"Datenbank DST, Data Stage Test, Version 11.2.0.4","Inaktiv","Level 3","Test","01.09.2016","24.03.2023","Low","Falsch","Oracle Database 11gR2 Enterprise Edition","DIDBAT01","Oracle",,"23-0093",,"Support / Standard","Woehlbrandt, Frank","12.09.2016 15:13","Noormann, Hauke (Contractor)","18.04.2023 11:15","Kudrass, Robert (Contractor)",
+"BRM-SQL-NN14\BRMSQLNN14","Allgemein #14","BTC","35.285","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN14\BRMSQLNN14 - für diverse AMB Applikationen im Bereich Allgemein
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN14.swbdom01.sw-hb.de (152.143.91.204)","Aktiv","Level 3","Produktion","30.01.2017",,"High","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"31.01.2017 12:03","Noormann, Hauke (Contractor)","04.06.2025 17:20","Schoettler, Martin","11.0.5388"
+"MOP"," Monaco DWH","BTC","35.479","Common",,,"Aktiv","Level 3","Produktion",,,"Medium","Wahr","Oracle Database 11gR2 Enterprise Edition","DIDBPP01,DIDBPP02","Oracle",,"CoC 22.11.2023",,"Support / Standard","Woehlbrandt, Frank","26.05.2017 09:55","Noormann, Hauke (Contractor)","04.06.2025 16:40","Schoettler, Martin",
+"DSP",,"CGI",,,,"Datenbank DSP, Data Stage, Version 11.2.0.4","Inaktiv","Level 3","Produktion","01.09.2016","11.11.2022","Medium","Falsch","Oracle Database 11gR2 Enterprise Edition","DIDBPP01,DIDBPP02","Oracle",,"22-1004",,"Support / Standard","Woehlbrandt, Frank","12.09.2016 15:12","Noormann, Hauke (Contractor)","18.11.2022 16:48","Kudrass, Robert (Contractor)",
+"TOP","ORATOP",,,"Common",,,"Inaktiv","Level 3","Produktion","11.04.2017",,"Medium","Falsch","Oracle Database 19c Enterprise Edition","DIDBAP01","Oracle","11.04.2017","CoC 20.11.2023",,"Support / Standard","Wittmershaus, Tanja","18.04.2017 10:29","Noormann, Hauke (Contractor)","22.11.2025 06:15","Schoettler, Martin","19.22.0.0.240116"
+"BRM-SQL-NN13\BRMSQLNN13","KW WW DEV",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN13\BRMSQLNN13 - für diverse AMB Applikationen
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN13.swbdom01.sw-hb.de (152.143.91.167)","Inaktiv","Level 3","Produktion","30.01.2017",,"Low","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft",,"CoC 23.10.2023",,"kein Support / kein Standard",,"31.01.2017 12:02","Noormann, Hauke (Contractor)","28.06.2025 07:14","Schoettler, Martin","11.0.5388"
+"BRM-SQL-NN11\BRMSQLNN11","CM_AMP/SCCM",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN11\BRMSQLNN11 - für AMB CM_AMP/SCCM Prod
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN11.swbdom01.sw-hb.de (152.143.89.131)","Inaktiv","Level 3","Produktion","11.11.2017",,"Low","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 17-0696","CoC 20.10.2023",,"kein Support / kein Standard","Steinmann, Daniel","05.10.2018 12:18","Behrmann, Markus (Contractor)","26.06.2025 07:28","Schoettler, Martin","11.0.5388"
+"BRM-SQL-NN16\BRMSQLNN16","KBHO Hochofen",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN16\BRMSQLNN16 - für AMB KBHO Hochofen Prod
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN16.swbdom01.sw-hb.de (152.143.92.96)","Inaktiv","Level 2","Produktion","17.10.2017",,"High","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 17-0324","CoC 20.10.2023",,"kein Support / kein Standard","Behling, Thorsten","05.10.2018 13:01","Behrmann, Markus (Contractor)","27.06.2025 07:16","Schoettler, Martin","11.0.5388"
+"BRM-SQL-NN17\BRMSQLNN17","KBHO_DVLP HO+SW",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN17\BRMSQLNN17 - für AMB KBHO_DVLP Hochofen+Stahlwerk - Entw
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN17.swbdom01.sw-hb.de (152.143.92.214)","Inaktiv","Level 2","Development","17.10.2017",,"Low","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 17-0324","CoC 20.10.2023",,"kein Support / kein Standard","Behling, Thorsten","05.10.2018 13:55","Behrmann, Markus (Contractor)","27.06.2025 07:16","Schoettler, Martin","11.0.5388"
+"BRM-SQL-NN18\BRMSQLNN18","SCCM (BRM-SMS-10)",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN18\BRMSQLNN18 - für AMB SCCM (BRM-SMS-10) - Test
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN18.swbdom01.sw-hb.de (152.143.80.171)","Inaktiv","Level 3","Test","21.10.2017",,"Low","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 17-0696","CoC 20.10.2023",,"kein Support / kein Standard","Steinmann, Daniel","05.10.2018 14:00","Behrmann, Markus (Contractor)","27.06.2025 07:16","Schoettler, Martin","11.0.5388"
+"BRM-SQL-NN19\BRMSQLNN19","Kenntnisbank WW",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN19\BRMSQLNN19 - für AMB Kenntnisbank WW Prod
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-NN19.swbdom01.sw-hb.de (152.143.81.236)","Inaktiv","Level 2","Produktion","13.07.2018",,"High","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 18-0482","CoC 20.10.2023",,"kein Support / kein Standard","Zweck, Klaas-Henning","05.10.2018 14:31","Behrmann, Markus (Contractor)","26.06.2025 07:28","Schoettler, Martin","11.0.5388"
+"BRM-SQL-GNS11\BRMSQLGNS11","GENESIS Instanz #11","BTC","35.275","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS11\BRMSQLGNS11 - für AMB GENESIS Prod
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS11.swbdom01.sw-hb.de (152.143.86.48)","Aktiv","Level 2","Quality Assurance","13.12.2017",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft","WODE00000205201","CoC 20.10.2023",,"kein Support / kein Standard","Leder, Thomas","05.10.2018 14:41","Behrmann, Markus (Contractor)","04.06.2025 17:15","Schoettler, Martin","11.0.5388"
+"ADM3","Repository-DB WLS","BTC","35.413","Common",,"- Repository-Datenbank
+
+Wichtig für:
+Neustart der Weblogic-Server
+Konfiguration der Weblogic-Server","Aktiv","Level 2","Produktion","13.12.2018",,"Medium","Wahr","Oracle Database 11.2 Enterprise Edition","AMBPP02,AMBPP01","Oracle","BIT 18-0851","CoC 21.11.2023",,"Support / Standard","Kleilein, Andre","16.01.2019 12:11","Behrmann, Markus (Contractor)","12.09.2025 07:00","Schoettler, Martin","11.2.0.4.180116"
+"DEV10","Entwicklungsdatenbank #10","BTC","35.427","Common",,,"Aktiv","Level 2","Development","07.01.2019",,"Low","Wahr","Oracle Database 12.2 Standard Edition","AMDBPT07","Oracle","BIT 18-0311","COC 16.11.2023",,"Support / Standard","Helvogt, Peter","16.01.2019 12:16","Behrmann, Markus (Contractor)","04.06.2025 16:28","Schoettler, Martin","12.2.0.1.180116"
+"DEV11","Entwicklungsdatenbank #11","BTC","35.612","Common",,"CDB: DEV11
+PDB: DEV11PDB","Aktiv","Level 2","Produktion","31.05.2018",,"Low","Wahr","Oracle Database 19c Standard Edition","AMDBPT07","Oracle","BIT 18-0163","CoC 16.11.2023",,"Support / Standard","Helvogt, Peter","16.01.2019 12:19","Behrmann, Markus (Contractor)","04.06.2025 16:28","Schoettler, Martin","19.7.0.0.200414"
+"DEV6","Entw-DB Bregal2 / KW Dress / EVS / GASNET","BTC","35.432","Common",,,"Aktiv","Level 2","Development","21.06.2017",,"Low","Wahr","Oracle Database 11gR2 Enterprise Edition","AMDBPT02","Oracle","BIT 17-0277","CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","16.01.2019 12:23","Behrmann, Markus (Contractor)","04.06.2025 16:29","Schoettler, Martin","11.2.0.4.170418"
+"DEV7","Entwicklungsdatenbank ProDISS HO2","BTC","35.433","Common",,,"Aktiv","Level 2","Development","06.12.2018",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT03","Oracle","BIT 18-0224","CoC 20.11.2023",,"Support / Standard","Baltrusch, Joerg","16.01.2019 12:25","Behrmann, Markus (Contractor)","04.06.2025 16:29","Schoettler, Martin","11.2.0.4.180116"
+"DEV8","Entwicklungsdatenbank ProDISS HO3","BTC","35.434","Common",,,"Aktiv","Level 2","Development","06.12.2018",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT02","Oracle","BIT 18-0225","CoC 20.11.2023",,"Support / Standard","Baltrusch, Joerg","16.01.2019 12:27","Behrmann, Markus (Contractor)","04.06.2025 16:29","Schoettler, Martin","11.2.0.4.180116"
+"FT2","MES / SCM (div. Apps","BTC","35.448","Common",,"Hinweis: DB läuft unter OS-User ""oracle""","Aktiv","Level 2","Test","10.01.2018",,"Medium","Wahr","Oracle Database 11gR2 Enterprise Edition","AMDBAT01","Oracle","BIT 17-0683","CoC 21.11.2023",,"Support / Standard","Schmoll, Andreas","16.01.2019 12:30","Behrmann, Markus (Contractor)","04.06.2025 16:34","Schoettler, Martin","11.2.0.3.0"
+"HORLT","Hochofen Rohstofflogistik DB","BTC","35.461","Common",,,"Aktiv","Level 2","Test","21.12.2017",,"Low","Wahr","Oracle Database 19c Standard Edition","HODBPP02,HODBPP01","Oracle","BIT 17-0675","CoC 16.11.2023",,"Support / Standard","Baltrusch, Joerg","16.01.2019 12:34","Behrmann, Markus (Contractor)","04.06.2025 16:37","Schoettler, Martin","19.17.0.0.221018"
+"QE","ABL","BTC","35.481","Common",,,"Aktiv","Level 3","Development","29.08.2016",,"Low","Wahr","Oracle Database 11gR2 Enterprise Edition","QSDBAT01","Oracle","BIT 16-0542","CoC 22.11.2023",,"Support / Standard","Kleilein, Andre","16.01.2019 12:39","Behrmann, Markus (Contractor)","04.06.2025 16:43","Schoettler, Martin","11.2.0.4.160719"
+"TST4","analog zu TST3","BTC","35.490","Common",,,"Aktiv","Level 2","Test","21.06.2017",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT06","Oracle","BIT 17-0278","CoC 20.11.2023",,"Support / Standard","Kleilein, Andre","16.01.2019 12:41","Behrmann, Markus (Contractor)","04.06.2025 16:45","Schoettler, Martin","11.2.0.4.170418"
+"TST7","analog zu DEV4","BTC","35.491","Common",,"Oracle Datenbank auf Wunsch des Kunden abgeschaltet!","Aktiv","Level 2","Development","06.12.2018",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT04","Oracle","BIT 18-0226","CoC 20.11.2023",,"Support / Standard","Kleilein, Andre","16.01.2019 12:43","Behrmann, Markus (Contractor)","04.06.2025 16:45","Schoettler, Martin","11.2.0.4.180116"
+"TST8","analog zu DEV4","BTC","35.492","Common",,,"Aktiv","Level 2","Development","06.12.2018",,"Low","Wahr","Oracle Database 11gR2 Standard Edition","AMDBPT06","Oracle","BIT 18-0227","CoC 20.11.2023",,"Support / Standard","Kleilein, Andre","16.01.2019 12:45","Behrmann, Markus (Contractor)","04.06.2025 16:45","Schoettler, Martin","11.2.0.4.180116"
+"DSP12","Data Stage","BTC","39.257","Common",,"PDB: DSP12PDB
+CDB: DSP12","Aktiv","Level 3","Produktion","20.05.2019",,"High","Wahr","Oracle Database 12.2 Standard Edition","DIDBPP01,DIDBPP02","Oracle","MinorBIT","CoC 21.11.2023",,"Support / Standard","Woehlbrandt, Frank","04.10.2019 15:49","Behrmann, Markus (Contractor)","04.06.2025 16:32","Schoettler, Martin","12.2.0.1.190115"
+"DST12","Data Stage","BTC","39.260","Common",,"CDB: DST12
+PDB: DST12PDB","Aktiv","Level 3","Produktion","27.05.2019",,"Low","Wahr","Oracle Database 12.2 Standard Edition","DIDBAT01","Oracle",,"CoC 21.11.2023",,"Support / Standard","Woehlbrandt, Frank","04.10.2019 15:50","Behrmann, Markus (Contractor)","04.06.2025 16:32","Schoettler, Martin","12.2.0.1.190115"
+"DT11",,"BTC",,,,"Diverse Test, Version 11.2.0.4","Aktiv","Level 3","Produktion","17.05.2017",,"Low","Wahr","Oracle Database 11.2 Standard Edition One","DIDBAT01","Oracle","BIT 17-0184","CoC 21.11.2023",,"Support / Standard",,"04.10.2019 15:51","Behrmann, Markus (Contractor)","09.02.2024 09:41","Schulz, Arne",
+"RMN12","Oracle CDB",,,"Common",,"CDB: RMN12
+PDB: RMN12PDB","Inaktiv",,"Produktion","05.09.2018",,"no SLA","Falsch","Oracle Database 12.2 Standard Edition","AMBPP02,AMBPP01","Oracle","BIT 18-0487","CoC 21.11.2023",,"Support / Standard",,"04.10.2019 15:53","Behrmann, Markus (Contractor)","11.09.2025 07:32","Schoettler, Martin","12.2.0.1.180717"
+"TST11","Test Database #11","BTC","39.262","Common",,"CDB: TST11
+PDB: TST11PDB","Aktiv",,"Produktion","03.09.2019",,"Low","Wahr","Oracle Database 19c Standard Edition","AMDBPT04","Oracle","BIT 19-0619","CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","04.10.2019 15:54","Behrmann, Markus (Contractor)","27.06.2025 07:13","Schoettler, Martin","19.26.0.0.250121"
+"WWPIP","PCFC","BTC","39.263","Common",,"CDB: WWPIP
+PDB: WWPIPPDB","Aktiv",,"Produktion","15.08.2018",,"High","Wahr","Oracle Database 12.2 Standard Edition","WWPP02,WWPP01","Oracle","BIT 18-0556","CoC 20.11.2023",,"Support / Standard","Spiess, Kai","04.10.2019 15:56","Behrmann, Markus (Contractor)","04.06.2025 16:48","Schoettler, Martin","12.2.0.1.180116"
+"BRM-SQL-07","Ersatz BRM-SQL-NN07","BTC","35.264","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-SQL-07.swbdom01.sw-hb.de 
+  
+SQL Server Default-Instanz BRM-SQL-07 - Ablösung der Cluster-Ressource BRM-SQL-NN07","Aktiv","Level 2","Produktion","18.02.2019",,"High","Wahr","Microsoft SQL Server 2016 Standard","BRM-SQL-07","Microsoft","BIT 18-0788","CoC 20.10.2023",,"Support / Standard",,"04.10.2019 16:02","Behrmann, Markus (Contractor)","04.06.2025 13:50","Schoettler, Martin","13.0.7029.3"
+"BRM-SQL-NN32",,,,,,"VMWare Windows 2016 mit SQL Server 2016 für NN07   KBB KW IL","Inaktiv",,"Produktion","18.02.2019",,"High","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 18-0788",,,"kein Support / kein Standard",,"04.10.2019 16:03","Behrmann, Markus (Contractor)","01.03.2024 14:51","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN33",,,,,,"WSUS Migration auf ein neues Windows 10 Release (Aktuell von 1709 auf 1803)","Inaktiv",,"Produktion","22.10.2018",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 18-0711",,,"kein Support / kein Standard",,"04.10.2019 16:05","Behrmann, Markus (Contractor)","01.03.2024 14:51","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN34",,,,,,"Newton","Inaktiv",,"Produktion","21.01.2019",,"High","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","MinorBIT",,,"kein Support / kein Standard",,"04.10.2019 16:06","Behrmann, Markus (Contractor)","01.03.2024 14:51","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN31",,,,,,"TFS","Inaktiv",,"Produktion","01.10.2018",,"High","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 18-0292",,,"kein Support / kein Standard",,"04.10.2019 16:10","Behrmann, Markus (Contractor)","01.03.2024 14:51","Behrmann, Markus (Contractor)",
+"BRM-TST-OSPC02",,"CGI",,,,,"Inaktiv",,"Produktion","26.02.2018",,"Low","Falsch","Microsoft SQL Server 2012 Standard","[]","Microsoft","MinorBIT","BIT 19-0978",,"kein Support / kein Standard",,"04.10.2019 16:11","Behrmann, Markus (Contractor)","16.01.2024 17:16","Zweck, Klaas-Henning",
+"BRM-SQL-PROFI01",,"BTC",,,,"Radarmessung HO3","Aktiv","Level 2","Produktion","11.05.2017",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","Bit 17-0068","CoC 20.10.2023",,"kein Support / kein Standard",,"04.10.2019 16:12","Behrmann, Markus (Contractor)","16.01.2024 17:50","Zweck, Klaas-Henning",
+"BRM-SQL-GNS12",,"BTC",,,,"Genesis Instanz 12","Aktiv","Level 2","Quality Assurance","17.04.2019",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","MinorBIT","CoC 20.10.2023",,"kein Support / kein Standard",,"04.10.2019 16:15","Behrmann, Markus (Contractor)","16.01.2024 17:50","Zweck, Klaas-Henning",
+"BRM-SQL-NN36",,,,,,"Dynamic Control Plan B1","Inaktiv",,"Produktion","11.09.2019",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 19-0901","MIgriert in NN123",,"kein Support / kein Standard",,"09.10.2019 17:08","Behrmann, Markus (Contractor)","01.03.2024 14:51","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN35",,,,,,"kbkw","Inaktiv",,"Produktion","06.09.2019",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","BIT 19-0899","Abgelöst",,"kein Support / kein Standard",,"09.10.2019 17:12","Behrmann, Markus (Contractor)","01.03.2024 14:52","Behrmann, Markus (Contractor)",
+"BRM-SQL-GNS13\BRMSQLGNS13","GENESIS QA DB #13","BTC","35.277","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS13\BRMSQLGNS13 - für AMB GENESIS QA
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS13.swbdom01.sw-hb.de (152.143.83.22)","Aktiv","Level 2","Quality Assurance","03.02.2020",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft","20-0014","CoC 20.10.2023",,"kein Support / kein Standard",,"24.06.2020 16:32","Behrmann, Markus (Contractor)","04.06.2025 17:15","Schoettler, Martin","11.0.5388"
+"BRM-SQL-NN37",,,,,,"Dynamic Control Plan B1 Test","Inaktiv",,"Test","07.02.2020",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","20-0040","Migriert IN NN124",,"kein Support / kein Standard","Biendara, Bettina","10.07.2020 14:52","Behrmann, Markus (Contractor)","01.03.2024 14:52","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN39",,,,,,"BRM-SQL-NN39 KBB B2","Inaktiv",,"Produktion","06.10.2020",,"High","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","20-0534","Migriert IN NN126",,"kein Support / kein Standard","Coldewey, Lars","04.12.2020 15:19","Behrmann, Markus (Contractor)","01.03.2024 14:52","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN40",,,,,,"DB für Dynamic Control Plan BG1","Inaktiv",,"Produktion","08.10.2020",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","20-0535","Migriert IN NN127",,"kein Support / kein Standard","Biendara, Bettina","04.12.2020 15:51","Behrmann, Markus (Contractor)","01.03.2024 14:52","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN38",,,,,,"Zenon Logging","Inaktiv",,"Produktion","30.12.2020",,"Low","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","20-0179","ABN",,"kein Support / kein Standard","Zweck, Klaas-Henning","14.05.2021 15:42","Behrmann, Markus (Contractor)","01.03.2024 14:53","Behrmann, Markus (Contractor)",
+"BRM-SQL-NN41",,,,,,"Printmanagement","Inaktiv",,"Produktion","28.12.2020",,"High","Wahr","Microsoft SQL Server 2012 Standard","[]","Microsoft","20-0576","Migriert in NN110",,"kein Support / kein Standard","Cammann, Joerg","14.05.2021 15:46","Behrmann, Markus (Contractor)","11.02.2025 09:15","Cammann, Joerg",
+"BRM-APP-GPQS03 ",,,,,,"DB2","Aktiv",,"Produktion",,,,"Falsch",,"[]",,,,,,"Alberts, Hans-Christian","19.05.2021 09:36","Beckmann, Andreas","19.05.2021 09:40","Beckmann, Andreas",
+"BRM-APP-GPQS17",,,,,,"DB2","Aktiv",,"Produktion",,,,"Falsch",,"[]",,,,,,"Alberts, Hans-Christian","19.05.2021 09:42","Beckmann, Andreas","19.05.2021 09:42","Beckmann, Andreas",
+"BRM-APP-GPQS18",,,,,,"DB2","Aktiv",,"Produktion",,,,"Falsch",,"[]",,,,,,"Alberts, Hans-Christian","19.05.2021 09:42","Beckmann, Andreas","19.05.2021 09:42","Beckmann, Andreas",
+"BRM-TST-GPQS03 ",,,,,,"DB2","Aktiv",,"Produktion",,,,"Falsch",,"[]",,,,,,"Alberts, Hans-Christian","19.05.2021 09:43","Beckmann, Andreas","19.05.2021 09:43","Beckmann, Andreas",
+"BRM-TST-GPQS17",,,,,,,"Aktiv",,"Produktion",,,,"Falsch",,"[]",,,,,,"Alberts, Hans-Christian","19.05.2021 09:43","Beckmann, Andreas","19.05.2021 09:43","Beckmann, Andreas",
+"BRM-TST-GPQS18",,,,,,"DB2","Aktiv",,"Produktion",,,,"Falsch",,"[]",,,,,,"Alberts, Hans-Christian","19.05.2021 09:44","Beckmann, Andreas","19.05.2021 09:44","Beckmann, Andreas",
+"BRM-SQL-GNS14\BRMSQLGNS14","GENESIS QA DB TB #14","BTC","35.278","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0103.swbdom01.sw-hb.de / BRM-CLS-0203.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-GNS14\BRMSQLGNS14 - für AMB GENESIS QA DB Tailored Blank
+
+Cluster-Nodes: BRM-CLS-0103 / BRM-CLS-0203
+VIP: BRM-SQL-GNS14.swbdom01.sw-hb.de (152.143.85.129)","Aktiv","Level 2","Produktion","19.11.2020",,"Low","Wahr","Microsoft SQL Server 2012 Standard","BRM-CLS-0103,BRM-CLS-0203","Microsoft","20-0663","CoC 20.10.2023",,"kein Support / kein Standard","Zweck, Klaas-Henning","21.05.2021 16:52","Behrmann, Markus (Contractor)","04.06.2025 17:15","Schoettler, Martin","11.0.5388"
+"LORAP","ProDISS LORAP","BTC","39.322","Common",,"CDB: LORAP
+PDB: LORAPPDB","Aktiv","Level 3","Produktion","21.07.2021",,"Medium","Wahr","Oracle Database 19c Standard Edition","DIDBPP04,DIDBPP03","Oracle","BIT 21-0564","CoC 22.11.2023",,"Support / Standard","Bugalski, Michael","14.10.2021 17:44","Kudrass, Robert (Contractor)","26.06.2025 07:17","Schoettler, Martin","19.26.0.0.250121"
+"BRM-SQL-NN100\ALLGEMEIN_HIGH","Allgemein High","BTC","34.329","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN100\ALLGEMEIN_HIGH - für diverse AMB Applikationen im Bereich ""Allgemein High""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN100.swbdom01.sw-hb.de (152.143.88.107)","Aktiv","Level 3","Produktion","30.08.2021",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","11.11.2021 18:05","Kudrass, Robert (Contractor)","04.06.2025 17:16","Schoettler, Martin","14.0.3381.3"
+"BRM-SQL-NN101\ALLGEMEIN_MED","Allgemein Med","BTC","35.072","Common",,"Instanz defekt - Abbau geplant!
+
+Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN101\ALLGEMEIN_MED - für diverse AMB Applikationen im Bereich ""Allgemein Medium""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN101.swbdom01.sw-hb.de (152.143.88.108)","Aktiv","Level 3","Produktion","30.08.2021",,"Medium","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 09:51","Kudrass, Robert (Contractor)","04.06.2025 17:16","Schoettler, Martin","14.0.3381.3"
+"BRM-SQL-NN102\BREGAL1_HIGH","Saskia/Simba BreGal","BTC","34.330","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN102\BREGAL1_HIGH - für AMB Applikation ""AMB Saskia/Simba BreGal Prod""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN102.swbdom01.sw-hb.de (152.143.88.109)","Aktiv","Level 3","Produktion","31.08.2021",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 09:57","Kudrass, Robert (Contractor)","04.06.2025 17:17","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN103\INFRA_HIGH","Infrastruktur High",,,"Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN103\INFRA_HIGH - für diverse AMB Applikationen im Bereich ""Infrastruktur High""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN103.swbdom01.sw-hb.de (152.143.88.110)","Inaktiv","Level 3","Produktion","31.08.2021",,"High","Falsch","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:00","Kudrass, Robert (Contractor)","15.11.2025 06:24","Schoettler, Martin","14.0.2042.3"
+"BRM-SQL-NN104\INFRA_MED","Infrastruktur Medium",,,"Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN104\INFRA_MED - für diverse AMB Applikationen im Bereich ""Infrastruktur Medium""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN104.swbdom01.sw-hb.de (152.143.88.111)","Inaktiv","Level 3","Produktion","31.08.2021",,"Medium","Falsch","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:02","Kudrass, Robert (Contractor)","15.11.2025 06:24","Schoettler, Martin","14.0.2042.3"
+"BRM-SQL-NN105\INGAVER_HIGH","IngaVer High","BTC","34.333","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN105\INGAVER_HIGH - für AMB Applikation ""AMB IngaVer Prod""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN105.swbdom01.sw-hb.de (152.143.88.155)","Aktiv","Level 3","Produktion","31.08.2021",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:04","Kudrass, Robert (Contractor)","04.06.2025 17:17","Schoettler, Martin","14.0.2042.3"
+"BRM-SQL-NN106\KALTWALZ_HIGH","Kaltwalzwerk High","BTC","34.334","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN106\KALTWALZ_HIGH - für diverse AMB Applikationen im Bereich ""Kaltwalzwerk High""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN106.swbdom01.sw-hb.de (152.143.88.156)","Aktiv","Level 3","Produktion","31.08.2021",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:06","Kudrass, Robert (Contractor)","04.06.2025 17:17","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN107\SASKIA_MED","Saskia/Simba Medium",,,"Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN107\SASKIA_MED - für diverse AMB Applikationen im Bereich ""Saskia/Simba Medium""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN107.swbdom01.sw-hb.de (152.143.88.159)","Inaktiv","Level 3","Produktion","31.08.2021",,"Medium","Falsch","Microsoft SQL Server 2017 Standard","[]","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:09","Kudrass, Robert (Contractor)","25.06.2025 07:24","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN108\STAHLWERK_HIGH","Stahlwerk High","BTC","34.336","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN108\STAHLWERK_HIGH - für diverse AMB Applikationen im Bereich ""Stahlwerk High""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN108.swbdom01.sw-hb.de (152.143.88.215)","Aktiv","Level 3","Produktion","31.08.2021",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:11","Kudrass, Robert (Contractor)","04.06.2025 17:17","Schoettler, Martin","14.0.3381.3"
+"BRM-SQL-NN109\STAHLWERK_MED","Stahlwerk Medium","BTC","34.337","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN109\STAHLWERK_MED - für diverse AMB Applikationen im Bereich ""Stahlwerk Medium""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN109.swbdom01.sw-hb.de (152.143.88.222)","Aktiv","Level 3","Produktion","31.08.2021",,"Medium","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","BIT 19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","18.11.2021 10:17","Kudrass, Robert (Contractor)","04.06.2025 17:17","Schoettler, Martin","14.0.3381.3"
+"BRM-SQL-DCPBG2","DCP Bregal2","BTC","35.265","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM03 User: 
+BRM-SQL-DCPBG2.swbdom03.sw-hb.de 
+  
+SQL Server Default-Instanz BRM-SQL-DCPBG2 - für AMB DCP Bregal 2 Prod","Aktiv","Level 2","Produktion","18.02.2022",,"High","Wahr","Microsoft SQL Server 2016 Standard","BRM-SQL-DCPBG2","Microsoft","BIT 21-0918","CoC 20.10.2023",,"Support / Standard","Biendara, Bettina","17.02.2022 14:50","Kudrass, Robert (Contractor)","25.02.2025 17:37","Schoettler, Martin","13.0.6430.49"
+"BRM-APP-IZYTRON","IZITRONIQ Prüfgeräteverwaltung","BTC","35.263","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM03 User:
+BRM-APP-IZYTRON.swbdom03.sw-hb.de
+ 
+SQL Server Default-Instanz BRM-APP-IZYTRON - für AMB IZITRONIQ Prüfgeräteverwaltung Prod","Aktiv","Level 2","Produktion","19.01.2022",,"Medium","Wahr","Microsoft SQL Server 2019 Express","BRM-APP-IZYTRON","Microsoft","BIT 21-1069","CoC 20.10.2023",,"kein Support / kein Standard","Klingbeil Bersebach, Daniel","21.02.2022 12:56","Kudrass, Robert (Contractor)","25.02.2025 17:37","Schoettler, Martin","15.0.4385.2"
+"EMSP","EMS (Energie Management System)","BTC","35.614","Common",,"CDB: EMSP
+PDB: EMSPPDB","Aktiv","Level 2","Produktion","19.12.2019",,"High","Wahr","Oracle Database 19c Standard Edition","EMPP02,EMPP01","Oracle","19-0913","CoC 20.11.2023",,"Support / Standard","Bugalski, Michael","08.09.2022 16:49","Kudrass, Robert (Contractor)","26.06.2025 07:14","Schoettler, Martin","19.26.0.0.250121"
+"BRM-SQL-NN110\KONICA_HIGH","Konica High","BTC","34.338","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0122.swbdom01.sw-hb.de / BRM-CLS-0222.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN110\KONICA_HIGH - für diverse AMB Applikationen im Bereich ""Konica High""
+
+Cluster-Nodes: BRM-CLS-0122 / BRM-CLS-0222
+VIP: BRM-SQL-NN110.swbdom01.sw-hb.de (152.143.88.129)","Aktiv","Level 3","Produktion","25.09.2021",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0222,BRM-CLS-0122","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Herberholz, Günter","03.11.2022 16:02","Kudrass, Robert (Contractor)","04.06.2025 17:18","Schoettler, Martin","14.0.3381.3"
+"BRM-SQL-NN121\KB_KW_PROD","KB KW","BTC","35.074","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN121\KB_KW_PROD - für AMB Applikation ""AMB KB KW Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN121.swbdom01.sw-hb.de (152.143.91.99)","Aktiv","Level 2","Produktion","23.10.2022",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","10.11.2022 16:18","Kudrass, Robert (Contractor)","04.06.2025 17:18","Schoettler, Martin","14.0.3445.2"
+"TSTD3","Multitenant D3","BTC","35.494","Pluggable","CDEVD3","CDB: CDEVD3
+PDB: TSTD3","Aktiv","Level 3","Test","01.10.2022",,"Low","Wahr","Oracle Database 19c Standard Edition","D3DBAT02","Oracle","22-0682","CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","14.11.2022 17:04","Kudrass, Robert (Contractor)","27.06.2025 07:13","Schoettler, Martin","19.26.0.0.250121"
+"BRM-SQL-NN122\NEWTON_PROD","Newton",,,"Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN122\NEWTON_PROD - für AMB Applikation ""AMB Newton Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN122.swbdom01.sw-hb.de (152.143.91.102)","Inaktiv","Level 3","Produktion","23.10.2022",,"High","Falsch","Microsoft SQL Server 2017 Standard","[]","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Scholz, Damian","16.11.2022 08:37","Kudrass, Robert (Contractor)","25.06.2025 07:24","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN123\DCP_DEV","DCP","BTC","35.081","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN123\DCP_DEV - für AMB Applikation ""AMB DCP Entw""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN123.swbdom01.sw-hb.de (152.143.91.104)","Aktiv","Level 3","Development","23.10.2022",,"Medium","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","16.11.2022 08:46","Kudrass, Robert (Contractor)","04.06.2025 17:18","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN124\DCP_TST","DCP","BTC","35.085","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN124\DCP_TST - für AMB Applikation ""AMB DCP Test""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN124.swbdom01.sw-hb.de (152.143.91.105)","Aktiv","Level 3","Test","23.10.2022",,"Low","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Biendara, Bettina","16.11.2022 09:06","Kudrass, Robert (Contractor)","04.06.2025 17:18","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN126\KB_BG2_PROD","KB BG2","BTC","35.087","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN126\KB_BG2_PROD - für AMB Applikation ""AMB KB BG2 Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN126.swbdom01.sw-hb.de (152.143.91.127)","Aktiv","Level 3","Produktion","23.10.2022",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","16.11.2022 09:35","Kudrass, Robert (Contractor)","04.06.2025 17:19","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN127\DCPBG1_PROD","DCP BG1","BTC","35.088","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN127\DCPBG1_PROD - für AMB Applikation ""AMB DCP BG1 Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN127.swbdom01.sw-hb.de (152.143.91.128)","Aktiv","Level 3","Produktion","23.10.2022",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Biendara, Bettina","16.11.2022 09:42","Kudrass, Robert (Contractor)","04.06.2025 17:19","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN128\WARMWALZWERK","Warmwalzwerk","BTC","35.089","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN128\WARMWALZWERK - für AMB Applikation ""AMB Warmwalzwerk Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN128.swbdom01.sw-hb.de (152.143.91.233)","Aktiv","Level 3","Produktion","23.10.2022",,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","19-0794","CoC 20.10.2023",,"Support / Standard","Zweck, Klaas-Henning","16.11.2022 09:47","Kudrass, Robert (Contractor)","04.06.2025 17:19","Schoettler, Martin","14.0.3445.2"
+"TSTEMS","EMS (Energie Management System)","BTC","35.495","Pluggable",,"CDB: CTSTLOG01
+PDB: TSTEMS
+
+App: AMB EMS (Energie Management System) Test","Aktiv","Level 2","Produktion","01.12.2022",,"Medium","Wahr","Oracle Database 19c Standard Edition","LOGTST01","Oracle","22-0335","CoC 16.11.2023",,"Support / Standard","Bugalski, Michael","10.01.2023 15:36","Kudrass, Robert (Contractor)","26.06.2025 07:21","Schoettler, Martin","19.26.0.0.250121"
+"DEVEMS","EMS (Energie Management System)","BTC","35.436","Pluggable",,"CDB: CDEVLOG01
+PDB: DEVEMS
+
+App: AMB EMS (Energie Management System) Entw","Aktiv","Level 2","Development","07.12.2022",,"Medium","Wahr","Oracle Database 19c Standard Edition","LOGDEV01","Oracle",,"CoC 16.11.2023",,"Support / Standard","Bugalski, Michael","10.01.2023 15:56","Kudrass, Robert (Contractor)","26.06.2025 07:12","Schoettler, Martin","19.26.0.0.250121"
+"DEVWWCTC","WW Coil-to-Coil","BTC","41.627","Pluggable","CDEVWW01","CDB: CDBDEVWWCTC
+PDB: DEVWWCTC
+PDB: TSTWWCTC","Aktiv","Level 2","Produktion","30.11.2022",,"Low","Wahr","Oracle Database 19c Standard Edition","wwctcdb02,wwctcdb01","Oracle","22-0580","CoC 20.11.2023",,"Support / Standard","Helvogt, Peter","11.01.2023 11:39","Kudrass, Robert (Contractor)","04.06.2025 16:31","Schoettler, Martin","19.22.0.0.240116"
+"TSTSI","Sterling Integrator DB","BTC","35.496","Pluggable","CDEVSI","CDB: CDEVSI
+PDB: TSTSI","Aktiv","Level 2","Test","07.02.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","AMDBTP05","Oracle","22-0063","CoC 16.11.2023",,"Support / Standard","Helvogt, Peter","17.02.2023 11:42","Kudrass, Robert (Contractor)","13.06.2025 07:19","Schoettler, Martin","19.26.0.0.250121"
+"PRDSI","Sterlin Integrator Prod DB","BTC","35.613","Pluggable","CPRDSI",,"Aktiv","Level 2","Produktion","07.02.2023",,"High","Wahr","Oracle Database 19c Standard Edition","AMDBPP06,AMDBPP05","Oracle","22-0450","CoC 16.11.2023",,"Support / Standard","Helvogt, Peter","17.02.2023 12:29","Kudrass, Robert (Contractor)","26.06.2025 07:19","Schoettler, Martin","19.26.0.0.250121"
+"ADM11","Intrexx","BTC","35.411","Common",,,"Aktiv","Level 3","Produktion","23.02.2021",,"High","Wahr","Oracle Database 19c Standard Edition","AMBPP02,AMBPP01","Oracle","BIT 20-0638","CoC 21.11.2023",,"Support / Standard","Helvogt, Peter","20.03.2023 16:47","Behrmann, Markus (Contractor)","04.06.2025 13:39","Schoettler, Martin","19.7.0.0.200414"
+"CKRANP","ProDISS KRAN System","BTC","35.421","Common",,"CDB: CKRANP
+PDB: KRANP","Aktiv","Level 2","Produktion","10.02.2023",,"Medium","Wahr","Oracle Database 19c Standard Edition","DIDBPP04,DIDBPP03","Oracle","22-0382","CoC 22.11.2023",,"Support / Standard","Bugalski, Michael","02.05.2023 15:26","Kudrass, Robert (Contractor)","07.06.2025 07:07","Schoettler, Martin","19.26.0.0.250121"
+"DEVB1PR","Bregal 1 Entwicklungssystem","BTC","35.435","Common",,,"Aktiv","Level 2","Development","18.04.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","B1PP02,B1PP01","Oracle","23-0219","CoC 21.11.2023",,"Support / Standard","Makow, Martin","03.05.2023 14:23","Kudrass, Robert (Contractor)","04.06.2025 16:29","Schoettler, Martin","19.25.0.0.0"
+"TSTB1PR","Bregal 1 Entwicklungssystem","BTC","35.493","Common",,,"Aktiv","Level 2","Test","18.04.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","B1PP02,B1PP01","Oracle","23-0219","CoC 22.11.2023",,"Support / Standard","Makow, Martin","03.05.2023 14:35","Kudrass, Robert (Contractor)","04.06.2025 16:45","Schoettler, Martin","19.25.0.0.0"
+"BRM-SQL-PROFI02","Radarmessung HO3","BTC","35.303","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-SQL-PROFI02.swbdom01.sw-hb.de
+ 
+SQL Server Default-Instanz BRM-SQL-PROFI02 - für AMB Radarmessung HO3 Prod","Aktiv","Level 2","Produktion","24.03.2023",,"Low","Wahr","Microsoft SQL Server 2019 Standard","BRM-SQL-PROFI02","Microsoft","23-0191","CoC 20.10.2023",,"Support / Standard","Trauernicht, Ralf","03.05.2023 15:06","Kudrass, Robert (Contractor)","04.06.2025 16:20","Schoettler, Martin","15.0.4298.1"
+"BRM-SQL-HBBPRD\BIS2_TEST","Hansebahn BIS 2","BTC","35.281","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM03 User:
+BRM-SQL-HBBPRD.swbdom03.sw-hb.de
+ 
+SQL Server Instanz BRM-SQL-HBBPRD\BIS2_PROD - für AMB Hansebahn  
+BIS 2 Test","Aktiv","Level 2","Test","12.05.2023",,"Medium","Wahr","Microsoft SQL Server 2019 Standard","BRM-SQL-HBBPRD","Microsoft","23-0447","CoC 20.10.2023",,"Support / Standard","Schindler, Florian (Contractor)","15.05.2023 16:37","Kudrass, Robert (Contractor)","25.02.2025 17:38","Schoettler, Martin","15.0.4335.1"
+"BRM-SQL-HBBPRD\BIS2_PROD","Hansebahn BIS 2","BTC","35.280","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM03 User:
+BRM-SQL-HBBPRD.swbdom03.sw-hb.de
+  
+SQL Server Instanz BRM-SQL-HBBPRD\BIS2_PROD - für AMB Hansebahn 
+BIS 2 Prod","Aktiv","Level 2","Produktion","12.05.2023",,"High","Wahr","Microsoft SQL Server 2019 Standard","BRM-SQL-HBBPRD","Microsoft","23-0447","CoC 20.10.2023",,"Support / Standard","Schindler, Florian (Contractor)","15.05.2023 16:38","Kudrass, Robert (Contractor)","25.02.2025 17:37","Schoettler, Martin","15.0.4335.1"
+"DEVKWHG","KW Haubenglühe","BTC","39.276","Pluggable","CDBDEVKWHG","CDB: CDBDEVKWHG
+PDB: DEVKWHG","Aktiv","Level 2","Development","30.06.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","KWHG02,KWHG01","Oracle","23-0461","CoC 16.11.2023",,"Support / Standard","Brandhorst, Fabian","18.08.2023 15:42","Behrmann, Markus (Contractor)","10.10.2025 07:12","Schoettler, Martin","19.27.0.0.0"
+"TSTKWHG","KW Haubenglühe","BTC","39.278","Pluggable","CDBTSTKWHG","CDB: CDBTSTKWHG
+PDB: TSTKWHG","Aktiv","Level 2","Test","30.06.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","KWHG02,KWHG01","Oracle","23-0461","CoC 16.11.2023",,"Support / Standard","Brandhorst, Fabian","18.08.2023 15:47","Behrmann, Markus (Contractor)","10.10.2025 07:21","Schoettler, Martin","19.27.0.0.0"
+"PRDKWHG","KW Haubenglühe","BTC","39.280","Pluggable","CDBPRDKWHG","CDB: CDBPRDKWHG
+PDB: PRDKWHG","Aktiv","Level 2","Produktion","30.06.2023",,"High","Wahr","Oracle Database 19c Standard Edition","KWHG02,KWHG01","Oracle","23-0461","CoC 16.11.2023",,"Support / Standard","Brandhorst, Fabian","18.08.2023 15:49","Behrmann, Markus (Contractor)","10.10.2025 07:19","Schoettler, Martin","19.27.0.0.0"
+"DEVWDIS","Windis","BTC","39.296","Pluggable","CDBDEVWDIS","CDB: CDBDEVWDIS
+PDB: DEVWDIS
+
+Windis Entw","Aktiv","Level 3","Produktion","20.09.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle","23-0816","CoC 22.11.2023",,"Support / Standard",,"05.10.2023 11:54","Kudrass, Robert (Contractor)","02.08.2025 07:12","Schoettler, Martin","19.27.0.0.250415"
+"TSTWDIS","Windis","BTC","39.294","Pluggable","CDBTSTWDIS","CDB: CDBTSTWDIS
+PDB: TSTWDIS
+
+Windis Test","Aktiv","Level 3","Test","20.09.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle","23-0816","CoC 22.11.2023",,"Support / Standard","Schulz, Juergen","05.10.2023 12:06","Kudrass, Robert (Contractor)","02.08.2025 07:19","Schoettler, Martin","19.27.0.0.250415"
+"PRDLI",,"BTC",,,"CDBPRDLI","LIMS Produktivdatenbank","Aktiv","Level 2","Produktion","19.09.2023",,"High","Wahr","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle","23-0284","CoC 22.11.2023",,"Support / Standard","Brandhorst, Fabian","18.10.2023 13:36","Kudrass, Robert (Contractor)","31.07.2024 12:22","Behrmann, Markus",
+"CDBDEVLD01","SW Strangguss + Konverter","BTC","39.302","Common",,"CDB: CDBDEVLD01
+PDB: DEVLDKV (Stahlwerk Konverter, Dev)
+PDB DEVLDSG (Stahlwerk Strangguss, Dev)
+
+Stahlwerk Strangguss / Konverter, Dev","Aktiv","Level 2","Development","04.10.2023",,"Low","Wahr","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle","23-0290","CoC 16.11.2023",,"Support / Standard","Brandhorst, Fabian","18.10.2023 13:59","Kudrass, Robert (Contractor)","20.06.2025 07:07","Schoettler, Martin","19.25.0.0.241015"
+"BRM-SQL-DCPKWBZ","DCP KWBZ","BTC","39.101","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM03 User: 
+BRM-SQL-DCPKWBZ.swbdom03.sw-hb.de
+  
+SQL Server Default-Instanz BRM-SQL-DCPKWBZ - für AMB DCP KWBZ Prod","Aktiv","Level 2","Produktion","20.10.2023",,"High","Wahr","Microsoft SQL Server 2016 Standard","BRM-SQL-DCPKWBZ","Microsoft","23-1012","CoC 23.10.2023",,"Support / Standard","Biendara, Bettina","15.11.2023 11:10","Kudrass, Robert (Contractor)","25.02.2025 17:37","Schoettler, Martin","13.0.6404.1"
+"BRM-APP-ILMT",,"BTC",,,,"ILMT DB für Lizenzmessung IBM","Aktiv","Level 3","Quality Assurance","11.12.2023",,"Medium","Wahr","Microsoft SQL Server 2017 Standard","BRM-APP-ILMT","Microsoft","BTI 23-1029 ","CoC 20.10.2023",,"Support / Standard",,"16.01.2024 17:34","Zweck, Klaas-Henning","16.01.2024 17:48","Zweck, Klaas-Henning",
+"BRM-SQL-NN125\SEGNO_PROD","SEGNO","BTC","35.086","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN125\SEGNO_PROD - für AMB Applikation ""AMB SEGNO Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN125.swbdom01.sw-hb.de (152.143.91.111)","Aktiv","Level 2","Produktion",,,"High","Wahr","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft","BIT 20-0179 ",,,"Support / Standard","Laux, Marc","16.01.2024 17:40","Zweck, Klaas-Henning","04.06.2025 17:19","Schoettler, Martin","14.0.3465.1"
+"PRDTRVE","Vehicle Tracking","BTC","41.580","Pluggable","CDBPRDTRVE-DB","CDB: CDBPRDTRVE
+PDB: PRDTRVE","Aktiv","Level 2",,,,"High","Falsch","Oracle Database 19c Standard Edition","logtrvedb02,logtrvedb01","Oracle",,,,"Support / Standard",,"08.01.2025 14:17","Helvogt, Peter","04.06.2025 16:42","Schoettler, Martin","19.22.0.0.240116"
+"DEVTRVE","Vehicle Tracking","BTC","41.579","Pluggable","CDBDEVTRVE","CDB: CDBDEVTRVE
+PDB: DEVTRVE","Aktiv","Level 2",,,,"Low","Falsch","Oracle Database 19c Standard Edition","logtrvedb02,logtrvedb01","Oracle",,,,"Support / Standard",,"08.01.2025 14:54","Helvogt, Peter","31.07.2025 07:15","Schoettler, Martin","19.27.0.0.250415"
+"PRDTRTO","Torpedo Roheisen","BTC","41.565","Pluggable","CDBPRDHOPS","CDB: CDBPRDHOPS
+PDB: PRDTRTO","Aktiv","Level 2",,,,"High","Falsch","Oracle Database 19c Standard Edition","hoprzdb01,hoprzdb02","Oracle",,,,"Support / Standard",,"08.01.2025 16:02","Helvogt, Peter","04.06.2025 16:42","Schoettler, Martin","19.22.0.0.240116"
+"DEVTRTO","Torpedo Roheisen","BTC","41.563","Pluggable","CDBDEVHOPS","CDB: CDBDEVHOPS
+PDB: DEVTRTO","Aktiv","Level 2","Development",,,"Low","Falsch","Oracle Database 19c Standard Edition","hoprzdb01,hoprzdb02","Oracle",,,,"Support / Standard",,"08.01.2025 16:10","Helvogt, Peter","04.06.2025 16:30","Schoettler, Martin","19.22.0.0.240116"
+"AMBIMP1","Icinga2","BTC","35.080","Common",,"Percona MySQL Cluster Knoten #1 für Icinga2 bei AMB
+
+Zugriff via Fernwartunsportal und Sprungserver AMB: 
+-> Putty ssh mit person. Admin -> Wechsel zu mysid user: sudo su - myambimp1","Aktiv",,,,,"High","Falsch","Open Source MySQL Server Community 8.0","btcmon01","Open Source",,,,"Support / kein Standard",,"04.06.2025 15:21","Schoettler, Martin","08.08.2025 07:00","Schoettler, Martin","8.0.42"
+"AMBIMP2","Icinga2","BTC","35.082","Common",,"Percona MySQL Cluster Knoten #2 für Icinga2 bei AMB
+
+Zugriff via Fernwartunsportal und Sprungserver AMB: 
+-> Putty ssh mit person. Admin -> Wechsel zu mysid user: sudo su - myambimp2","Aktiv",,,,,"High","Falsch","Open Source MySQL Server Community 8.0","btcmon02","Open Source",,,,"Support / kein Standard",,"04.06.2025 15:26","Schoettler, Martin","04.06.2025 15:26","Schoettler, Martin","8.0.40"
+"BRM-APP-OSPC-TW\SQLEXPRESS","OSPC TW","BTC","35.603","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-APP-OSPC-TW.swbdom01.sw-hb.de
+ 
+SQL Server Named-Instanz BRM-APP-OSPC-TW\SQLEXPRESS - für AMB OSPC TW Prod","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2019 Express","BRM-APP-OSPC-TW","Microsoft",,,,"kein Support / kein Standard",,"04.06.2025 15:58","Schoettler, Martin","04.06.2025 15:58","Schoettler, Martin","15.0.4322"
+"BRM-SMS-BTCDB01\AMBSQLMGMTP","Management Host","BTC","35.592","Common",,"Zugang über mstsc aus dem FWTG auf Admin-Terminal Server
+RDP --> BRM-SMS-BTCDB01.swbdom03.sw-hb.de
+
+SQL Server Instanz BRM-SMS-BTCDB01\AMBSQLMGMTP - Port:1434 als Management Server für die SQL Server vom Kunden Arcelor Mittal Bremen (AMB)","Aktiv",,,,,"no SLA","Falsch","Microsoft SQL Server 2022 Standard","BRM-SMS-BTCDB01","Microsoft",,,,"Support / Standard",,"04.06.2025 15:58","Schoettler, Martin","04.06.2025 15:58","Schoettler, Martin","16.0.4080.1"
+"BRM-SQL-BG1HIGH\BREGAL1_HIGH","Saskia/Simba BG1","BTC","45.172","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User: 
+BRM-SQL-BG1HIGH.swbdom01.sw-hb.de
+
+Beim RDP Zugriff BG TS Gateway nutzen: BRM-RDG-BG.swbdom01.sw-hb.de
+
+SQL Server Named-Instanz BRM-SQL-BG1HIGH\BREGAL1_HIGH - für AMB Saskia/Simba BG1 Prod","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"04.06.2025 16:01","Schoettler, Martin","04.06.2025 16:01","Schoettler, Martin","16.0.4185.3"
+"BRM-SQL-DBRICKS\BRMSQLDBRICKP","Databricks GW","BTC","45.379","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User: 
+BRM-SQL-DBRICKS.swbdom01.sw-hb.de
+
+SQL Server Named-Instanz BRM-SQL-DBRICKS\BRMSQLDBRICKP - als Azure Databricks MSSQL Linked Server Gateway","Aktiv",,,,,"Medium","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"04.06.2025 16:01","Schoettler, Martin","04.06.2025 16:01","Schoettler, Martin","16.0.4185.3"
+"BRM-SQL-MIG01\KB_BG1IL_PROD","KB BG1IL","BTC","43.354","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-SQL-MIG01.swbdom01.sw-hb.de
+
+SQL Server Named-Instanz BRM-SQL-MIG01\KB_BG1IL_PROD - für AMB KB BG1IL Prod","Aktiv",,,,,"no SLA","Falsch","Microsoft SQL Server 2017 Standard","BRM-SQL-MIG01","Microsoft",,,,"Support / Standard",,"04.06.2025 16:15","Schoettler, Martin","04.06.2025 16:15","Schoettler, Martin","14.0.3485.1"
+"BRM-SQL-MIG02\KB_KWBZ_PROD","KB KWBZ","BTC","43.355","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-SQL-MIG02.swbdom01.sw-hb.de
+
+SQL Server Named-Instanz BRM-SQL-MIG02\KB_KWBZ_PROD - für AMB KB KWBZ Prod","Aktiv",,,,,"no SLA","Falsch","Microsoft SQL Server 2017 Standard","BRM-SQL-MIG02","Microsoft",,,,"Support / Standard",,"04.06.2025 16:15","Schoettler, Martin","04.06.2025 16:15","Schoettler, Martin","14.0.3485.1"
+"BRM-SQL-MIG03\KB_WWC2C_PROD","KB WWC2C","BTC","43.356","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-SQL-MIG03.swbdom01.sw-hb.de
+
+SQL Server Named-Instanz BRM-SQL-MIG03\KB_WWC2C_PROD - für AMB KB WWC2C Prod","Aktiv",,,,,"no SLA","Falsch","Microsoft SQL Server 2017 Standard","BRM-SQL-MIG03","Microsoft",,,,"Support / Standard",,"04.06.2025 16:15","Schoettler, Martin","04.06.2025 16:15","Schoettler, Martin","14.0.3485.1"
+"BRM-SQL-NN120\TFS_PROD","TFS","BTC","35.073","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN120\TFS_PROD - für AMB Applikation ""AMB TFS Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN120.swbdom01.sw-hb.de (152.143.91.98)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft",,,,"Support / Standard",,"04.06.2025 16:17","Schoettler, Martin","04.06.2025 16:17","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN129\OBSERVER_PROD","SKF Observer","BTC","39.522","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN129\OBSERVER_PROD - für AMB Applikation ""AMB SKF Observer Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN129.swbdom01.sw-hb.de (152.143.82.142)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","04.06.2025 17:08","Schoettler, Martin","14.0.3445.2"
+"BRM-SQL-NN130\WINRA_PROD","WinRa","BTC","39.729","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0124.swbdom01.sw-hb.de / BRM-CLS-0224.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN130\WINRA_PROD - für AMB Applikation ""AMB WinRa Prod""
+
+Cluster-Nodes: BRM-CLS-0124 / BRM-CLS-0224
+VIP: BRM-SQL-NN130.swbdom01.sw-hb.de (152.143.82.26)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2017 Standard","BRM-CLS-0124,BRM-CLS-0224","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","04.06.2025 16:19","Schoettler, Martin","14.0.3465.1"
+"BRM-SQL-NN131\VIDEO_PROD","Senstar Videosysteme","BTC","43.719","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN131\VIDEO_PROD - für AMB Applikation ""AMB Senstar Videosysteme Prod""
+
+Cluster-Nodes: BRM-CLS-0133 BRM-CLS-0233
+VIP: BRM-SQL-NN131.swbdom01.sw-hb.de (152.143.80.33)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","BRM-CLS-0233,BRM-CLS-0133","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","25.06.2025 07:05","Schoettler, Martin","16.0.4195.2"
+"BRM-SQL-NN132\INGAVER_HIGH","IngaVer High","BTC","45.679","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN132\INGAVER_HIGH - für AMB Applikation ""AMB IngaVer Prod""
+
+Cluster-Nodes: BRM-CLS-0133 / BRM-CLS-0233
+VIP: BRM-SQL-NN132.swbdom01.sw-hb.de (152.143.80.59)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","17.06.2025 07:04","Schoettler, Martin","16.0.4195.2"
+"BRM-SQL-NN133\KALTWALZ_HIGH","Kaltwalzwerk High","BTC","45.681","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN133\KALTWALZ_HIGH - für diverse AMB Applikationen im Bereich ""Kaltwalzwerk High""
+
+Cluster-Nodes: BRM-CLS-0133/ BRM-CLS-0233
+VIP: BRM-SQL-NN133.swbdom01.sw-hb.de (152.143.80.61)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","17.06.2025 07:04","Schoettler, Martin","16.0.4195.2"
+"BRM-SQL-NN134\KB_KW_PROD","KB KW","BTC","45.684","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN134\KB_KW_PROD - für AMB Applikation ""AMB KB KW Prod""
+
+Cluster-Nodes: BRM-CLS-0133/ BRM-CLS-0233
+VIP: BRM-SQL-NN134.swbdom01.sw-hb.de (152.143.80.62)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","17.06.2025 07:04","Schoettler, Martin","16.0.4195.2"
+"BRM-SQL-NN135\SASKIA_MED","Saskia/Simba Medium","BTC","45.921","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN135\SASKIA_MED - für diverse AMB Applikationen im Bereich ""Saskia/Simba Medium""
+
+Cluster-Nodes: BRM-CLS-0133 / BRM-CLS-0233
+VIP: BRM-SQL-NN135.swbdom01.sw-hb.de (152.143.80.63)","Aktiv",,,,,"Medium","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"04.06.2025 16:19","Schoettler, Martin","17.06.2025 07:04","Schoettler, Martin","16.0.4195.2"
+"CCP","Oracle Cloud Control (OEM)","BTC","39.271","Common",,"CDB: CCP
+PDB: EMPDBREPOS","Aktiv",,,,,"High","Falsch","Oracle Database 19c Enterprise Edition","AMBCCP","Oracle",,,,"Support / Standard",,"04.06.2025 16:20","Schoettler, Martin","04.06.2025 16:21","Schoettler, Martin","19.17.0.0.221018"
+"CDBDEVB2VZ","BREGAL2","BTC","41.787","Common",,"CDB: CDBDEVB2VZ
+PDB: DEVB2VZ
+PDB: TSTB2VZ","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","b2vzdb01,b2vzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:21","Schoettler, Martin","04.06.2025 16:21","Schoettler, Martin","19.22.0.0.240116"
+"CDBDEVEVS","KW WW Equipment Verwaltung","BTC","42.134","Common",,"CDB: CDBDEVEVS
+PDB: PDBDEVEVS
+PDB: PDBTSTEVS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","evsdb01,evsdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:21","Schoettler, Martin","20.08.2025 07:03","Schoettler, Martin","19.27.0.0.250415"
+"CDBDEVHOPS","Torpedo Roheisen","BTC","41.562","Common",,"CDB: CDBDEVHOPS
+PDB: DEVTRTO","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","hoprzdb01,hoprzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:21","Schoettler, Martin","04.06.2025 16:21","Schoettler, Martin","19.22.0.0.240116"
+"CDBDEVKWHG","KW Haubenglühe","BTC","39.275","Common",,"CDB: CDBDEVKWHG
+PDB: DEVKWHG","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","KWHG02,KWHG01","Oracle",,,,"Support / Standard",,"04.06.2025 16:21","Schoettler, Martin","10.10.2025 07:06","Schoettler, Martin","19.27.0.0.0"
+"CDBDEVLDFL","Flämmerei und Thermobox","BTC","41.619","Common",,"CDB: CDBDEVLDFL 
+PDB: DEVLDFL","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","ldprddb04,ldprddb03","Oracle",,,,"Support / Standard",,"04.06.2025 16:21","Schoettler, Martin","04.06.2025 16:21","Schoettler, Martin","19.22.0.0.240116"
+"CDBDEVTRVE","Vehicle Tracking","BTC","41.578","Common",,"CDB: CDBDEVTRVE
+PDB: DEVTRVE","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","logtrvedb02,logtrvedb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:21","Schoettler, Martin","31.07.2025 07:08","Schoettler, Martin","19.27.0.0.250415"
+"CDBDEVWDIS","Windis","BTC","39.295","Common",,"CDB: CDBDEVWDIS
+PDB: DEVWDIS
+
+Windis Entw","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","02.08.2025 07:06","Schoettler, Martin","19.27.0.0.250415"
+"CDBDEVWWAF","WW Auslauffoerderer","BTC","41.599","Common",,"CDB: CDBDEVWWAF
+PDB: DEVWWAF
+PDB: TSTWWAF","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","wwafdb01,wwafdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","04.06.2025 16:22","Schoettler, Martin","19.22.0.0.240116"
+"CDBDEVWWCTC","WW Coil-to-Coil","BTC","41.626","Common",,"CDB: CDBDEVWWCTC
+PDB: DEVWWCTC
+PDB: TSTWWCTC","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","wwctcdb02,wwctcdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","04.06.2025 16:22","Schoettler, Martin","19.22.0.0.240116"
+"CDBDEVWWFS","WW Fertigstrasse","BTC","42.122","Common",,"CDB: CDBDEVWWFS
+PDB: DEVWWFS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","04.06.2025 16:22","Schoettler, Martin","19.22.0.0.240116"
+"CDBDEVWWOF","WW Hubbalkenofen","BTC","42.126","Common",,"CDB: CDBDEVWWOF
+PDB: DEVWWOF","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","04.06.2025 16:22","Schoettler, Martin","19.25.0.0.241015"
+"CDBORAGW","Oracle Gateway PoC","BTC","46.359","Common",,"CDB: CDBORAGW
+PDB: ORAGW","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","04.06.2025 16:22","Schoettler, Martin","19.26.0.0.250121"
+"CDBORCL","BITS Test","BTC","39.228","Common",,"Oracle Container Datenbank 19c - CDBORCL in IBM HA-Cluster (mit LPARS amdbpp07/amdbpp08) für BTC Test Zwecke 
+  
+Zugriff über Fernwartungsportal:  
+Kunden - Arcelor Mittal - Adminserver - jumpserver1/jumpserver2 
+SSH mit personal ambnim01 server OS account auf ambnim01
+Nachdem: 
+sudo su - btcadmin
+
+ssh <""Active Cluster Node"">  
+or
+ssh cdborcl
+(ssh <""DB Application Hostname"">)","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMDBPP07,AMDBPP08","Oracle",,,,"Support / Standard",,"04.06.2025 16:22","Schoettler, Martin","04.06.2025 16:23","Schoettler, Martin","19.26.0.0.250121"
+"CDBPRDB2VZ","BREGAL2","BTC","41.785","Common",,"CDB: CDBPRDB2VZ
+PDB: PRDB2VZ","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","b2vzdb01,b2vzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","04.06.2025 16:23","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDEVS","KW WW Equipment Verwaltung","BTC","42.136","Common",,"CDB: CDBPRDEVS
+PDB: PDBPRDEVS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","evsdb01,evsdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","20.08.2025 07:04","Schoettler, Martin","19.27.0.0.250415"
+"CDBPRDHOPS","Torpedo Roheisen","BTC","41.564","Common",,"CDB: CDBPRDHOPS 
+PDB: PRDTRTO","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","hoprzdb01,hoprzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","04.06.2025 16:23","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDIBIX","IBIX","BTC","41.569","Common",,"CDB: CDBPRDIBIX
+PDB: PRDIBIX","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","ibixdb01,ibixdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","04.06.2025 16:23","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDKWHG","KW Haubenglühe","BTC","39.279","Common",,"CDB: CDBPRDKWHG
+PDB: PRDKWHG","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","KWHG02,KWHG01","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","10.10.2025 07:08","Schoettler, Martin","19.27.0.0.0"
+"CDBPRDLDFL","Flämmerei und Thermobox","BTC","41.621","Common",,"CDB: CDBPRDLDFL
+PDB: PRDLDFL","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","ldprddb04,ldprddb03","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","04.06.2025 16:23","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDLDKV","Stahlwerk Konverter","BTC","39.300","Common",,"CDB: CDBPRDLDKV
+PDB: PRDLDKV
+
+Stahlwerk Konverter, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle",,,,"Support / Standard",,"04.06.2025 16:23","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.17.0.0.221018"
+"CDBPRDLDSG","Stahlwerk Strangguss","BTC","39.297","Common",,"CDB: CDBPRDLDSG
+PDB: PRDLDSG
+
+Stahlwerk Strangguss, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.17.0.0.221018"
+"CDBPRDLIMS","LIMS","BTC","39.291","Common",,"CDB: CDBPRDLIMS
+PDB: PRDLIMS
+
+LIMS (Labor Informations System) Qualitätswesen, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.17.0.0.221018"
+"CDBPRDMOBIL","AMB Mobile Apps","BTC","43.227","Common",,"CDB: CDBPRDMOBIL
+PDB: PRDMOBIL","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","AMBMOBIL01,AMBMOBIL02","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDTRVE","Vehicle Tracking","BTC","41.581","Common",,"CDB: CDBPRDTRVE
+PDB: PRDTRVE","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","logtrvedb02,logtrvedb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDWWAF","WW Auslauffoerderer","BTC","41.602","Common",,"CDB: CDBPRDWWAF
+PDB: PRDWWAF","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","wwafdb01,wwafdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDWWAR","WW Archiv","BTC","42.132","Common",,"CDB: CDBPRDWWAR
+PDB: PRDWWAR","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDWWCTC","WW Coil-to-Coil","BTC","41.629","Common",,"CDB: CDBPRDWWCTC
+PDB: PRDWWCTC","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","wwctcdb02,wwctcdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:24","Schoettler, Martin","04.06.2025 16:24","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDWWFS","WW Fertigstrasse","BTC","42.124","Common",,"CDB: CDBPRDWWFS
+PDB: PRDWWFS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","04.06.2025 16:25","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDWWOF","WW Ofen","BTC","42.128","Common",,"CDB: CDBPRDWWOF
+PDB: PRDWWOF","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","04.06.2025 16:25","Schoettler, Martin","19.22.0.0.240116"
+"CDBPRDWWPI","WW PCFC","BTC","42.130","Common",,"CDB: CDBPRDWWPI
+PDB: PRDWWPI","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","04.06.2025 16:25","Schoettler, Martin","19.22.0.0.240116"
+"CDBTSTIBIX","IBIX","BTC","41.568","Common",,"CDB: CDBTSTIBIX
+PDB: TSTIBIX","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","ibixdb01,ibixdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","04.06.2025 16:25","Schoettler, Martin","19.22.0.0.240116"
+"CDBTSTKWHG","KW Haubenglühe","BTC","39.277","Common",,"CDB: CDBTSTKWHG
+PDB: TSTKWHG","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","KWHG02,KWHG01","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","10.10.2025 07:09","Schoettler, Martin","19.27.0.0.0"
+"CDBTSTLIMS","LIMS","BTC","40.933","Common",,"CDB: CDBTSTLIMS
+PDB: TSTLIMS
+
+LIMS (Labor Informations System) Qualitätswesen, Test","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","31.07.2025 07:12","Schoettler, Martin","19.27.0.0.250415"
+"CDBTSTMOBIL","AMB Mobile Apps","BTC","43.229","Common",,"CDB: CDBTSTMOBIL
+PDB: TSTMOBIL","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMBMOBIL01,AMBMOBIL02","Oracle",,,,"Support / Standard",,"04.06.2025 16:25","Schoettler, Martin","04.06.2025 16:26","Schoettler, Martin","19.22.0.0.240116"
+"CDBTSTWDIS","Windis","BTC","39.293","Common",,"CDB: CDBTSTWDIS
+PDB: TSTWDIS
+
+Windis Test","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle",,,,"Support / Standard",,"04.06.2025 16:26","Schoettler, Martin","02.08.2025 07:09","Schoettler, Martin","19.27.0.0.250415"
+"CDEVD3","Multitenant D3","BTC","39.264","Common",,"CDB: CDEVD3
+PDB: TSTD3","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","D3DBAT02","Oracle",,,,"Support / Standard",,"04.06.2025 16:26","Schoettler, Martin","27.06.2025 07:06","Schoettler, Martin","19.26.0.0.250121"
+"CDEVLOG01","EMS (Energie Management System)","BTC","35.615","Common",,"CDB: CDEVLOG01
+PDB: DEVEMS
+
+App: AMB EMS (Energie Management System) Entw","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","LOGDEV01","Oracle",,,,"Support / Standard",,"04.06.2025 16:26","Schoettler, Martin","26.06.2025 07:10","Schoettler, Martin","19.26.0.0.250121"
+"CDEVSI","Sterling Integrator DB","BTC","39.273","Common",,"CDB: CDEVSI
+PDB: TSTSI","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMDBTP05","Oracle",,,,"Support / Standard",,"04.06.2025 16:26","Schoettler, Martin","13.06.2025 07:09","Schoettler, Martin","19.26.0.0.250121"
+"CDEVWW01 (HOTDEV01)","WW Auslauffoerderer","BTC","39.319","Common",,"CDB: CDEVWW01
+PDB: DEVWWAF","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","HOTDEV01","Oracle",,,,"Support / Standard",,"04.06.2025 16:26","Schoettler, Martin","27.06.2025 07:06","Schoettler, Martin","19.26.0.0.250121"
+"CPRDD3","D3 Dokumentenarchivierung DB","BTC","39.461","Common",,"Oracle 19c Multitenant DB für d.3 DMS Prod
+
+CDB: CPRDD3
+PDB: PRDD3","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","d3dbap02","Oracle",,,,"Support / Standard",,"04.06.2025 16:27","Schoettler, Martin","04.06.2025 16:27","Schoettler, Martin","19.17.0.0.221018"
+"CPRDSI","Sterlin Integrator Prod DB","BTC","35.480","Common",,,"Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","AMDBPP06,AMDBPP05","Oracle",,,,"Support / Standard",,"04.06.2025 16:27","Schoettler, Martin","26.06.2025 07:11","Schoettler, Martin","19.26.0.0.250121"
+"CTSTLOG01","EMS (Energie Management System)","BTC","39.274","Common",,"CDB: CTSTLOG01
+PDB: TSTEMS
+
+App: AMB EMS (Energie Management System) Test","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","LOGTST01","Oracle",,,,"Support / Standard",,"04.06.2025 16:27","Schoettler, Martin","26.06.2025 07:11","Schoettler, Martin","19.26.0.0.250121"
+"DEV10PDB","Entwicklungsdatenbank #10","BTC","39.268","Pluggable",,,"Aktiv",,,,,"Low","Falsch","Oracle Database 12.2 Standard Edition","AMDBPT07","Oracle",,,,"Support / Standard",,"04.06.2025 16:28","Schoettler, Martin","04.06.2025 16:28","Schoettler, Martin","12.2.0.1.180116"
+"DEV11PDB","Entwicklungsdatenbank #11","BTC","35.428","Pluggable",,"CDB: DEV11
+PDB: DEV11PDB","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMDBPT07","Oracle",,,,"Support / Standard",,"04.06.2025 16:28","Schoettler, Martin","04.06.2025 16:28","Schoettler, Martin","19.7.0.0.200414"
+"DEVB2VZ","BREGAL2","BTC","41.788","Pluggable",,"CDB: CDBDEVB2VZ
+PDB: DEVB2VZ
+PDB: TSTB2VZ","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","b2vzdb01,b2vzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:29","Schoettler, Martin","04.06.2025 16:29","Schoettler, Martin","19.22.0.0.240116"
+"PDBDEVEVS","KW WW Equipment Verwaltung","BTC","42.135","Pluggable",,"CDB: CDBDEVEVS
+PDB: PDBDEVEVS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","evsdb01,evsdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:30","Schoettler, Martin","20.08.2025 07:10","Schoettler, Martin","19.27.0.0.250415"
+"DEVLDFL","Flämmerei und Thermobox","BTC","41.620","Pluggable",,"CDB: CDBDEVLDFL 
+PDB: DEVLDFL","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","ldprddb04,ldprddb03","Oracle",,,,"Support / Standard",,"04.06.2025 16:30","Schoettler, Martin","04.06.2025 16:30","Schoettler, Martin","19.22.0.0.240116"
+"DEVLDKV","Stahlwerk Konverter","BTC","39.303","Pluggable",,"CDB: CDBPRDLDSG
+PDB: DEVLDKV (Stahlwerk Konverter, Dev)
+PDB DEVLDSG (Stahlwerk Strangguss, Dev)
+
+Stahlwerk Strangguss / Konverter, Dev","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle",,,,"Support / Standard",,"04.06.2025 16:30","Schoettler, Martin","20.06.2025 07:13","Schoettler, Martin","19.25.0.0.241015"
+"DEVLDSG","Stahlwerk Strangguss","BTC","39.304","Pluggable",,"CDB: CDBDEVLD01
+PDB: DEVLDKV (Stahlwerk Konverter, Dev)
+PDB DEVLDSG (Stahlwerk Strangguss, Dev)
+
+Stahlwerk Strangguss / Konverter, Dev","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle",,,,"Support / Standard",,"04.06.2025 16:30","Schoettler, Martin","20.06.2025 07:13","Schoettler, Martin","19.25.0.0.241015"
+"DEVWWAF","WW Auslauffoerderer","BTC","41.600","Pluggable",,"CDB: CDBDEVWWAF
+PDB: DEVWWAF
+PDB: TSTWWAF","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","wwafdb01,wwafdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:31","Schoettler, Martin","04.06.2025 16:31","Schoettler, Martin","19.22.0.0.240116"
+"DEVWWAF (HOTDEV01)","WW Auslaufförderer","BTC","39.982","Pluggable",,"CDB: CDEVWW01
+PDB: DEVWWAF","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","HOTDEV01","Oracle",,,,"Support / Standard",,"04.06.2025 16:31","Schoettler, Martin","27.06.2025 07:08","Schoettler, Martin","19.26.0.0.250121"
+"DEVWWFS","WW Fertigstrasse","BTC","42.123","Pluggable",,"CDB: CDBDEVWWFS
+PDB: DEVWWFS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:31","Schoettler, Martin","04.06.2025 16:31","Schoettler, Martin","19.22.0.0.240116"
+"DEVWWOF","WW Hubbalkenofen","BTC","42.127","Pluggable",,"CDB: CDBDEVWWOF
+PDB: DEVWWOF","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:31","Schoettler, Martin","04.06.2025 16:32","Schoettler, Martin","19.25.0.0.241015"
+"DSP12PDB","Data Stage","BTC","35.440","Pluggable",,"PDB: DSP12PDB
+CDB: DSP12","Aktiv",,,,,"High","Falsch","Oracle Database 12.2 Standard Edition","DIDBPP01,DIDBPP02","Oracle",,,,"Support / Standard",,"04.06.2025 16:32","Schoettler, Martin","04.06.2025 16:32","Schoettler, Martin","12.2.0.1.190115"
+"DST12PDB","Data Stage","BTC","35.441","Pluggable",,"CDB: DST12
+PDB: DST12PDB","Aktiv",,,,,"Low","Falsch","Oracle Database 12.2 Standard Edition","DIDBAT01","Oracle",,,,"Support / Standard",,"04.06.2025 16:32","Schoettler, Martin","04.06.2025 16:32","Schoettler, Martin","12.2.0.1.190115"
+"EMPDBREPOS","Oracle Cloud Control (OEM)","BTC","39.272","Pluggable",,"CDB: CCP
+PDB: EMPDBREPOS","Aktiv",,,,,"High","Falsch","Oracle Database 19c Enterprise Edition","AMBCCP","Oracle",,,,"Support / Standard",,"04.06.2025 16:33","Schoettler, Martin","04.06.2025 16:33","Schoettler, Martin","19.17.0.0.221018"
+"EMSPPDB","EMS (Energie Management System)","BTC","35.443","Pluggable",,"CDB: EMSP
+PDB: EMSPPDB","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","EMPP02,EMPP01","Oracle",,,,"Support / Standard",,"04.06.2025 16:33","Schoettler, Martin","26.06.2025 07:14","Schoettler, Martin","19.26.0.0.250121"
+"FT1","MES / SCM (div. Apps","BTC","39.324","Common",,"Hinweis: DB läuft unter OS-User ""oracle""","Aktiv",,,,,"Medium","Falsch","Oracle Database 11gR2 Enterprise Edition","AMDBAT01","Oracle",,,,"Support / Standard",,"04.06.2025 16:34","Schoettler, Martin","04.06.2025 16:34","Schoettler, Martin","11.2.0.3.0"
+"Icinga2 influx DB 2","Prod","BTC","35.077","Common",,,"Aktiv",,,,,"High","Falsch","Open Source Influx DB 1.8.10","btcmon02","Open Source",,,,"Support / kein Standard",,"04.06.2025 16:37","Schoettler, Martin","07.06.2025 07:11","Schoettler, Martin",
+"KRANP","ProDISS KRAN System","BTC","39.323","Pluggable",,"CDB: CKRANP
+PDB: KRANP","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","DIDBPP04,DIDBPP03","Oracle",,,,"Support / Standard",,"04.06.2025 16:38","Schoettler, Martin","07.06.2025 07:11","Schoettler, Martin","19.26.0.0.250121"
+"LORAPPDB","LORAPPDB","BTC","35.477","Pluggable",,"CDB: LORAP
+PDB: LORAPPDB","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","DIDBPP04,DIDBPP03","Oracle",,,,"Support / Standard",,"04.06.2025 16:39","Schoettler, Martin","26.06.2025 07:18","Schoettler, Martin","19.26.0.0.250121"
+"Oracle Cloud Control Proxy","Node2 Icinga2","BTC","39.316","Common",,"Proxy Applikationen für die Anbindung BITS Cloud Control <--> AMB Oracle Datenbanken
+
+Applikation besteht aus den folgenden beiden Einzelapplikationen:
+- Oracle Connection Manager (CMAN) --> Port: 1630
+- SQUID HTTP Proxyserver --> Port: 3128","Aktiv",,,,,"no SLA","Falsch","Open Source icinga DB","btcmon02","Open Source",,,,"Support / kein Standard",,"04.06.2025 16:40","Schoettler, Martin","05.06.2025 07:13","Schoettler, Martin","6.13"
+"ORAGW","Oracle Gateway PoC","BTC","46.362","Pluggable",,"CDB: CDBORAGW
+PDB: ORAGW","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"04.06.2025 16:40","Schoettler, Martin","04.06.2025 18:31","Schoettler, Martin","19.26.0.0.250121"
+"ORCL","BITS Test","BTC","39.229","Pluggable",,"Oracle Pluggable Datenbank 19c - ORCL in IBM HA-Cluster (mit LPARS amdbpp07/amdbpp08) für BTC Test Zwecke
+   
+Zugriff über Fernwartungsportal:  
+Kunden - Arcelor Mittal - Adminserver - jumpserver1/jumpserver2 
+SSH mit personal ambnim01 server OS account auf ambnim01
+Nachdem: 
+sudo su - btcadmin
+
+ssh <""Active Cluster Node"">  
+or
+ssh cdborcl
+(ssh <""DB Application Hostname"">)","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMDBPP07,AMDBPP08","Oracle",,,,"Support / Standard",,"04.06.2025 16:40","Schoettler, Martin","04.06.2025 16:40","Schoettler, Martin","19.26.0.0.250121"
+"PRDB2VZ","BREGAL2","BTC","41.786","Pluggable",,"CDB: CDBPRDB2VZ
+PDB: PRDB2VZ","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","b2vzdb01,b2vzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:40","Schoettler, Martin","04.06.2025 16:40","Schoettler, Martin","19.22.0.0.240116"
+"PRDD3","D3 Dokumentenarchivierung DB","BTC","39.462","Pluggable",,"Oracle 19c Multitenant DB für d.3 DMS Prod
+
+CDB: CPRDD3
+PDB: PRDD3","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","d3dbap02","Oracle",,,,"Support / Standard",,"04.06.2025 16:40","Schoettler, Martin","04.06.2025 16:41","Schoettler, Martin","19.17.0.0.221018"
+"PDBPRDEVS","KW WW Equipment Verwaltung","BTC","42.137","Pluggable",,"CDB: CDBPRDEVS
+PDB: PDBPRDEVS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","evsdb01,evsdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:41","Schoettler, Martin","20.08.2025 07:10","Schoettler, Martin","19.27.0.0.250415"
+"PRDIBIX","IBIX","BTC","41.570","Pluggable",,"CDB: CDBPRDIBIX
+PDB: PRDIBIX","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","ibixdb01,ibixdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:41","Schoettler, Martin","04.06.2025 16:41","Schoettler, Martin","19.22.0.0.240116"
+"PRDLDFL","Flämmerei und Thermobox","BTC","41.622","Pluggable",,"CDB: CDBPRDLDFL
+PDB: PRDLDFL","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","ldprddb04,ldprddb03","Oracle",,,,"Support / Standard",,"04.06.2025 16:41","Schoettler, Martin","04.06.2025 16:41","Schoettler, Martin","19.22.0.0.240116"
+"PRDLDKV","Stahlwerk Konverter","BTC","39.301","Pluggable",,"CDB: CDBPRDLDKV
+PDB: PRDLDKV
+
+Stahlwerk Konverter, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle",,,,"Support / Standard",,"04.06.2025 16:41","Schoettler, Martin","04.06.2025 16:41","Schoettler, Martin","19.17.0.0.221018"
+"PRDLDSG","Stahlwerk Strangguss","BTC","39.299","Pluggable",,"CDB: CDBPRDLDSG
+PDB: PRDLDSG
+
+Stahlwerk Strangguss, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","LDPRD02,LDPRD01","Oracle",,,,"Support / Standard",,"04.06.2025 16:41","Schoettler, Martin","04.06.2025 16:42","Schoettler, Martin","19.17.0.0.221018"
+"PRDLIMS","LIMS","BTC","39.292","Pluggable",,"CDB: CDBPRDLIMS
+PDB: PRDLIMS
+
+LIMS (Labor Informations System) Qualitätswesen, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle",,,,"Support / Standard",,"04.06.2025 16:42","Schoettler, Martin","04.06.2025 16:42","Schoettler, Martin","19.17.0.0.221018"
+"PRDMOBIL","AMB Mobile Apps","BTC","43.228","Pluggable",,"CDB: CDBPRDMOBIL
+PDB: PRDMOBIL","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","AMBMOBIL01,AMBMOBIL02","Oracle",,,,"Support / Standard",,"04.06.2025 16:42","Schoettler, Martin","04.06.2025 16:42","Schoettler, Martin","19.22.0.0.240116"
+"PRDWWAF","WW Auslauffoerderer","BTC","41.603","Pluggable",,"CDB: CDBPRDWWAF
+PDB: PRDWWAF","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","wwafdb01,wwafdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:42","Schoettler, Martin","04.06.2025 16:43","Schoettler, Martin","19.22.0.0.240116"
+"PRDWWAR","WW Archiv","BTC","42.133","Pluggable",,"CDB: CDBPRDWWAR
+PDB: PRDWWAR","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:43","Schoettler, Martin","04.06.2025 16:43","Schoettler, Martin","19.22.0.0.240116"
+"PRDWWCTC","WW Coil-to-Coil","BTC","41.630","Pluggable",,"CDB: CDBPRDWWCTC
+PDB: PRDWWCTC","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","wwctcdb02,wwctcdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:43","Schoettler, Martin","04.06.2025 16:43","Schoettler, Martin","19.22.0.0.240116"
+"PRDWWFS","WW Fertigstrasse","BTC","42.125","Pluggable",,"CDB: CDBPRDWWFS
+PDB: PRDWWFS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:43","Schoettler, Martin","04.06.2025 16:43","Schoettler, Martin","19.22.0.0.240116"
+"PRDWWOF","WW Ofen","BTC","42.129","Pluggable",,"CDB: CDBPRDWWOF
+PDB: PRDWWOF","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:43","Schoettler, Martin","04.06.2025 16:43","Schoettler, Martin","19.22.0.0.240116"
+"PRDWWPI","WW PCFC","BTC","42.131","Pluggable",,"CDB: CDBPRDWWPI
+PDB: PRDWWPI","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","wwdb02,wwdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:43","Schoettler, Martin","04.06.2025 16:43","Schoettler, Martin","19.22.0.0.240116"
+"RMN12PDB","Oracle PDB",,,"Pluggable",,"CDB: RMN12
+PDB: RMN12PDB","Inaktiv",,,,,"no SLA","Falsch","Oracle Database 12.2 Standard Edition","AMBPP02,AMBPP01","Oracle",,,,"Support / Standard",,"04.06.2025 16:44","Schoettler, Martin","11.09.2025 07:35","Schoettler, Martin","12.2.0.1.180717"
+"TST11PDB","Test Database #11","BTC","35.487","Pluggable",,"CDB: TST11
+PDB: TST11PDB","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMDBPT04","Oracle",,,,"Support / Standard",,"04.06.2025 16:44","Schoettler, Martin","27.06.2025 07:13","Schoettler, Martin","19.26.0.0.250121"
+"TSTB2VZ","BREGAL2","BTC","41.789","Pluggable",,"CDB: CDBDEVB2VZ
+PDB: DEVB2VZ
+PDB: TSTB2VZ","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","b2vzdb01,b2vzdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:45","Schoettler, Martin","04.06.2025 16:45","Schoettler, Martin","19.22.0.0.240116"
+"TSTIBIX","IBIX","BTC","41.566","Pluggable",,"CDB: CDBTSTIBIX
+PDB: TSTIBIX","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","ibixdb01,ibixdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:46","Schoettler, Martin","04.06.2025 16:46","Schoettler, Martin","19.22.0.0.240116"
+"TSTLIMS","LIMS","BTC","40.934","Pluggable",,"CDB: CDBTSTLIMS
+PDB: TSTLIMS
+
+LIMS (Labor Informations System) Qualitätswesen, Test","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","QSDBPP03,QSDBPP04","Oracle",,,,"Support / Standard",,"04.06.2025 16:46","Schoettler, Martin","31.07.2025 07:25","Schoettler, Martin","19.27.0.0.250415"
+"TSTMOBIL","AMB Mobile Apps","BTC","43.230","Pluggable",,"CDB: CDBTSTMOBIL
+PDB: TSTMOBIL","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","AMBMOBIL01,AMBMOBIL02","Oracle",,,,"Support / Standard",,"04.06.2025 16:46","Schoettler, Martin","04.06.2025 16:46","Schoettler, Martin","19.22.0.0.240116"
+"TSTWWAF","WW Auslauffoerderer","BTC","41.601","Pluggable",,"CDB: CDBDEVWWAF
+PDB: DEVWWAF
+PDB: TSTWWAF","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","wwafdb01,wwafdb02","Oracle",,,,"Support / Standard",,"04.06.2025 16:47","Schoettler, Martin","04.06.2025 16:47","Schoettler, Martin","19.22.0.0.240116"
+"TSTWWCTC","WW Coil-to-Coil","BTC","41.628","Pluggable",,"CDB: CDBDEVWWCTC
+PDB: DEVWWCTC
+PDB: TSTWWCTC","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","wwctcdb02,wwctcdb01","Oracle",,,,"Support / Standard",,"04.06.2025 16:47","Schoettler, Martin","04.06.2025 16:47","Schoettler, Martin","19.22.0.0.240116"
+"WWPIPPDB","PCFC","BTC","35.504","Pluggable",,"CDB: WWPIP
+PDB: WWPIPPDB","Aktiv",,,,,"High","Falsch","Oracle Database 12.2 Standard Edition","WWPP02,WWPP01","Oracle",,,,"Support / Standard",,"04.06.2025 16:48","Schoettler, Martin","04.06.2025 16:48","Schoettler, Martin","12.2.0.1.180116"
+"Icinga2 influx DB 1","Prod","BTC","35.076","Common",,,"Aktiv",,,,,"High","Falsch","Open Source Influx DB 1.8.10","btcmon01","Open Source",,,,"Support / kein Standard",,"07.06.2025 07:11","Schoettler, Martin","07.06.2025 07:11","Schoettler, Martin",
+"CDBPRDTOP","GIS Geo Informationsssystem","BTC","46.998","Common",,"CDB: CDBPRDTOP
+PDB: PRDTOP","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"14.06.2025 07:07","Schoettler, Martin","24.06.2025 07:08","Schoettler, Martin","19.26.0.0.250121"
+"PDBPRDTOP","GIS Geo Informationsssystem","BTC","47.001","Pluggable",,"CDB: CDBPRDTOP
+PDB: PDBPRDTOP","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"14.06.2025 07:15","Schoettler, Martin","26.08.2025 07:12","Schoettler, Martin","19.26.0.0.250121"
+"BRM-SQL-NN136\NEWTON_PROD","Newton","BTC","47.028","Common",,"Zugang über mstsc vom AMB Jumphost mit SWBDOM01 User:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN136\NEWTON_PROD - für AMB Applikation ""AMB Newton Prod""
+
+Cluster-Nodes: BRM-CLS-0133 / BRM-CLS-0233
+VIP: BRM-SQL-NN136.swbdom01.sw-hb.de (152.143.80.67)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"17.06.2025 07:04","Schoettler, Martin","24.06.2025 07:05","Schoettler, Martin","16.0.4195.2"
+"CDBDEVLOGTOMS","Logistik TOMS","BTC","47.259","Common",,"CDB: CDBDEVLOGTOMS
+PDB: PDBDEVLOGTOMS
+PDB: PDBTSTLOGTOMS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"27.06.2025 07:04","Schoettler, Martin","27.06.2025 07:04","Schoettler, Martin","19.26.0.0.250121"
+"CDBPRDLOGTOMS","Logistik TOMS","BTC","47.253","Common",,"CDB: CDBPRDLOGTOMS
+PDB: PRDLOGTOMS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"27.06.2025 07:05","Schoettler, Martin","27.06.2025 07:05","Schoettler, Martin","19.26.0.0.250121"
+"PDBPRDLOGTOMS","Logistik TOMS","BTC","47.256","Pluggable",,"CDB: CDBPRDLOGTOMS
+PDB: PDBPRDLOGTOMS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"27.06.2025 07:11","Schoettler, Martin","27.06.2025 07:11","Schoettler, Martin","19.26.0.0.250121"
+"PDBDEVLOGTOMS","Logistik TOMS","BTC","47.260","Pluggable",,"CDB: CDBDEVLOGTOMS
+PDB: PDBDEVLOGTOMS
+PDB: PDBTSTLOGTOMS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"28.06.2025 07:10","Schoettler, Martin","28.06.2025 07:10","Schoettler, Martin","19.26.0.0.250121"
+"PDBTSTLOGTOMS","Logistik TOMS","BTC","47.263","Pluggable",,"CDB: CDBDEVLOGTOMS
+PDB: PDBDEVLOGTOMS
+PDB: PDBTSTLOGTOMS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"28.06.2025 07:10","Schoettler, Martin","28.06.2025 07:10","Schoettler, Martin","19.26.0.0.250121"
+"CDBPRDIVAR","L3 IVARA Konverter","BTC","47.293","Common",,"CDB: CDBPRDIVAR
+PDB: PDBPRDIVAR","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"02.07.2025 07:06","Schoettler, Martin","06.08.2025 07:07","Schoettler, Martin","19.27.0.0.250415"
+"PDBPRDIVAR","L3 IVARA Konverter","BTC","47.296","Pluggable",,"CDB: CDBPRDIVAR
+PDB: PDBPRDIVAR","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"02.07.2025 07:14","Schoettler, Martin","06.08.2025 07:17","Schoettler, Martin","19.27.0.0.250415"
+"CDBDEVIVAR","L3 IVARA Konverter","BTC","47.320","Common",,"CDB: CDBDEVIVAR
+PDB: PDBDEVIVAR
+PDB: PDBTSTIVAR","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"03.07.2025 07:05","Schoettler, Martin","06.08.2025 07:05","Schoettler, Martin","19.27.0.0.250415"
+"PDBDEVIVAR","L3 IVARA Konverter","BTC","47.323","Pluggable",,"CDB: CDBDEVIVAR
+PDB: PDBDEVIVAR
+PDB: PDBTSTIVAR","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"03.07.2025 07:16","Schoettler, Martin","06.08.2025 07:16","Schoettler, Martin","19.27.0.0.250415"
+"PDBTSTIVAR","L3 IVARA Konverter","BTC","47.326","Pluggable",,"CDB: CDBDEVIVAR
+PDB: PDBDEVIVAR
+PDB: PDBTSTIVAR","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"03.07.2025 07:17","Schoettler, Martin","06.08.2025 07:17","Schoettler, Martin","19.27.0.0.250415"
+"CDBPRDWDIS","Windis","BTC","47.389","Common",,"CDB: CDBPRDWDIS 
+PDB: PDBPRDWDIS 
+ 
+Windis, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"10.07.2025 07:07","Schoettler, Martin","02.08.2025 07:08","Schoettler, Martin","19.27.0.0.250415"
+"PDBPRDWDIS","Windis","BTC","47.392","Pluggable",,"CDB: CDBPRDWDIS 
+PDB: PDBPRDWDIS 
+ 
+Windis, Prod","Aktiv",,,,,"High","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"10.07.2025 07:14","Schoettler, Martin","12.08.2025 07:11","Schoettler, Martin","19.27.0.0.250415"
+"CDBDEVINTREXX","Intrexx","BTC","47.885","Common",,"CDB: CDBDEVINTREXX
+PDB: PDBDEVINTREXX
+PDB: PDBTSTINTREXX","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"06.08.2025 07:05","Schoettler, Martin","19.08.2025 07:04","Schoettler, Martin","19.27.0.0.250415"
+"CDBPRDINTREXX","Intrexx","BTC","47.894","Common",,"CDB: CDBPRDINTREXX
+PDB: PDBPRDINTREXX","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"06.08.2025 07:07","Schoettler, Martin","19.08.2025 07:05","Schoettler, Martin","19.27.0.0.250415"
+"PDBDEVINTREXX","Intrexx","BTC","47.888","Pluggable",,"CDB: CDBDEVINTREXX
+PDB: PDBDEVINTREXX
+PDB: PDBTSTINTREXX","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"06.08.2025 07:16","Schoettler, Martin","19.08.2025 07:11","Schoettler, Martin","19.27.0.0.250415"
+"PDBPRDINTREXX","Intrexx","BTC","47.897","Pluggable",,"CDB: CDBPRDINTREXX
+PDB: PDBPRDINTREXX","Aktiv",,,,,"Medium","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"06.08.2025 07:16","Schoettler, Martin","19.08.2025 07:12","Schoettler, Martin","19.27.0.0.250415"
+"PDBTSTINTREXX","Intrexx","BTC","47.891","Pluggable",,"CDB: CDBDEVINTREXX
+PDB: PDBDEVINTREXX
+PDB: PDBTSTINTREXX","Aktiv",,,,,"Low","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"06.08.2025 07:17","Schoettler, Martin","19.08.2025 07:12","Schoettler, Martin","19.27.0.0.250415"
+"PDBTSTEVS","KW WW Equipment Verwaltung","BTC","48.150","Pluggable",,"CDB: CDBDEVEVS
+PDB: PDBTSTEVS","Aktiv",,,,,"no SLA","Falsch","Oracle Database 19c Standard Edition","[]","Oracle",,,,"Support / Standard",,"20.08.2025 07:10","Schoettler, Martin","20.08.2025 07:10","Schoettler, Martin","19.27.0.0.250415"
+"BRM-SQL-NN137\INFRA_HIGH","Infrastruktur High","BTC","49.472","Common",,"Zugang über mstsc vom AMB Jumphost:
+BRM-CLS-0133.swbdom01.sw-hb.de / BRM-CLS-0233.swbdom01.sw-hb.de
+ 
+SQL Server Failover-Instanz BRM-SQL-NN137\INFRA_HIGH - für diverse AMB Applikationen im Bereich ""Infrastruktur High""
+
+Cluster-Nodes: BRM-CLS-0133 / BRM-CLS-0233
+VIP: BRM-SQL-NN137.swbdom01.sw-hb.de (152.143.80.133)","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"14.11.2025 06:07","Schoettler, Martin","15.11.2025 06:06","Schoettler, Martin","16.0.4195.2"
+"BRM-SQL-BG1HIGH","Shared Services","BTC","49.626","Common",,"MSSQL Shared Services für BRM-SQL-BG1HIGH (Bregal 1) Sammler Prod - BRM-SQL-BG1HIGH - für diverse AMB BG1 Prod Instanzen
+
+Zugriff per MSTSC vom AMB Sprungserver:
+BRM-SQL-BG1HIGH.swbdom01.sw-hb.de","Aktiv",,,,,"no SLA","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"25.11.2025 06:01","Schoettler, Martin","25.11.2025 06:01","Schoettler, Martin",
+"BRM-SQL-BG1HIGH\DCPBG1_PROD","DCP BG1","BTC","49.647","Common",,"Zugang über RDP vom AMB Jumphost mit SWBDOM01 User:
+BRM-SQL-BG1HIGH.swbdom01.sw-hb.de
+
+Hinweis: BG1 RDP Gateway nutzen: BRM-RDG-BG1.swbdom01.sw-hb.de
+
+SQL Server Instanz BRM-SQL-BG1HIGH\DCPBG1_PROD - für AMB Applikation ""AMB DCP BG1 Prod""","Aktiv",,,,,"High","Falsch","Microsoft SQL Server 2022 Standard","[]","Microsoft",,,,"Support / Standard",,"27.11.2025 06:01","Schoettler, Martin","28.11.2025 06:01","Schoettler, Martin","16.0.4225.2"

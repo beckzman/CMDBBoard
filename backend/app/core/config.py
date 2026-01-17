@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     # Application
     APP_NAME: str = "ITIL CMDB Dashboard"
     DEBUG: bool = True
+    GEMINI_API_KEY: str = ""
     
     @property
     def cors_origins_list(self) -> List[str]:

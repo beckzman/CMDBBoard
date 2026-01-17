@@ -208,7 +208,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
         { key: 'updated_at', label: 'Updated At', sortable: true },
-        { key: 'relationships_summary', label: 'Relations', sortable: false },
+        { key: 'relationships_summary', label: 'Runs_on', sortable: false },
         { key: 'actions', label: 'Actions', sortable: false },
     ];
 

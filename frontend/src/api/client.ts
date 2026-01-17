@@ -68,7 +68,12 @@ export const authAPI = {
         params.append('password', password);
 
         // Axios sends 'application/x-www-form-urlencoded' automatically when using URLSearchParams
-        const response = await api.post('/api/auth/login', params);
+        // But we explicitly set it to override the default 'application/json' in api instance
+        const response = await api.post('/api/auth/login', params, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
         return response.data;
     },
 

@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "VMHost01",
+    "Type": "Hypervisor",
+    "ParentServer": null,
+    "Apps": null
+  },
+  {
+    "Name": "Web01",
+    "Type": "Server",
+    "ParentServer": "VMHost01",
+    "Apps": "App1,App2"
+  },
+  {
+    "Name": "Web02",
+    "Type": "Server",
+    "ParentServer": "VMHost01",
+    "Apps": "App3"
+  },
+  {
+    "Name": "App1",
+    "Type": "Application",
+    "ParentServer": null,
+    "Apps": null
+  },
+  {
+    "Name": "App2",
+    "Type": "Application",
+    "ParentServer": null,
+    "Apps": null
+  },
+  {
+    "Name": "App3",
+    "Type": "Application",
+    "ParentServer": null,
+    "Apps": null
+  }
+]

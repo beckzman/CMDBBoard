@@ -1,0 +1,160 @@
+[
+  {
+    "action": "created",
+    "ci_id": 1,
+    "ci_name": "VMHost01",
+    "data": {
+      "name": "VMHost01",
+      "ci_type": "other",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:08:27.967153"
+    },
+    "timestamp": "2026-01-15T11:08:27.970055"
+  },
+  {
+    "action": "created",
+    "ci_id": 2,
+    "ci_name": "Web01",
+    "data": {
+      "name": "Web01",
+      "ci_type": "server",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:08:27.970626"
+    },
+    "timestamp": "2026-01-15T11:08:27.971492"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web01",
+    "target": "VMHost01",
+    "type": "runs_on",
+    "timestamp": "2026-01-15T11:08:27.973470"
+  },
+  {
+    "action": "created",
+    "ci_id": 3,
+    "ci_name": "Web02",
+    "data": {
+      "name": "Web02",
+      "ci_type": "server",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:08:27.974043"
+    },
+    "timestamp": "2026-01-15T11:08:27.974717"
+  },
+  {
+    "action": "relationship_created",
+    "source": "Web02",
+    "target": "VMHost01",
+    "type": "runs_on",
+    "timestamp": "2026-01-15T11:08:27.975461"
+  },
+  {
+    "action": "created",
+    "ci_id": 4,
+    "ci_name": "App1",
+    "data": {
+      "name": "App1",
+      "ci_type": "application",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:08:27.976012"
+    },
+    "timestamp": "2026-01-15T11:08:27.980571"
+  },
+  {
+    "action": "created",
+    "ci_id": 5,
+    "ci_name": "App2",
+    "data": {
+      "name": "App2",
+      "ci_type": "application",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:08:27.987567"
+    },
+    "timestamp": "2026-01-15T11:08:27.996529"
+  },
+  {
+    "action": "created",
+    "ci_id": 6,
+    "ci_name": "App3",
+    "data": {
+      "name": "App3",
+      "ci_type": "application",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 999,
+      "last_sync": "2026-01-15 11:08:27.996935"
+    },
+    "timestamp": "2026-01-15T11:08:28.010520"
+  }
+]
