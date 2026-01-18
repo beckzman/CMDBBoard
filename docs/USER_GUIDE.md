@@ -101,4 +101,18 @@ To set up recurring data synchronization:
 ### Exporting Data
 To download your inventory:
 1.  On the **Configuration Items** page, click the **Download icon**.
-2.  Select your preferred format: **CSV**, **Excel**, or **JSON**.
+
+### Raw Data Inspection
+For advanced debugging and data verification, the system captures the full "Raw Data" record from the source during every import.
+
+1.  **View Raw Data**:
+    *   On the **Configuration Items** page, click the **Columns** button.
+    *   Enable the **"Raw Data"** column.
+    *   Click the **{} (JSON)** icon on any row to open the full source record.
+
+2.  **Captured Data per Source**:
+    *   **VMware vCenter**: Captures `name`, `id`, `uuid`, `path`, `memory_mb`, `cpu_count`, `status`, `ip_address`, `hostname`, `guest_os`, `notes`.
+    *   **CSV**: Captures the entire row as a key-value pair (Header -> Value).
+    *   **Oracle DB**: Captures the entire database row (Column -> Value).
+    *   **i-doit**: Captures the full JSON object returned by the `cmdb.objects.read` API.
+    *   **SharePoint**: Captures all list item properties (excluding internal `_` fields).

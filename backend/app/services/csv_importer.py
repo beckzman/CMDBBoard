@@ -135,5 +135,10 @@ class CSVImporter:
         # Handle technical details (could be JSON string or individual columns)
         if 'technical_details' in row and pd.notna(row['technical_details']):
             ci_data['technical_details'] = str(row['technical_details'])
+
+        # Capture raw data (full row)
+        # Convert to dict and handle NaN/NaT
+        raw_record = row.where(pd.notnull(row), None).to_dict()
+        ci_data['raw_data'] = json.dumps(raw_record, default=str)
         
         return ci_data

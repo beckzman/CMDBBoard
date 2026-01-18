@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ciAPI, exportAPI, healthAPI } from '../api/client';
-import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown, Filter } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown, Filter, FileJson } from 'lucide-react';
 import AddCIModal from '../components/AddCIModal';
 import ViewCIModal from '../components/ViewCIModal';
 import DeleteCIModal from '../components/DeleteCIModal';
@@ -169,7 +169,7 @@ const ConfigurationItems: React.FC = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [editingCI, setEditingCI] = useState<any>(null);
 
-    const [viewingCI, setViewingCI] = useState<any>(null);
+    const [viewingCI, setViewingCI] = useState<{ ci: any; initialTab?: 'general' | 'technical' | 'raw' } | null>(null);
     const [deletingCI, setDeletingCI] = useState<any>(null);
     const [healthCheckState, setHealthCheckState] = useState<{
         isOpen: boolean;
@@ -205,6 +205,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'contact', label: 'Contact', sortable: true },
         { key: 'sla', label: 'SLA', sortable: true },
         { key: 'technical_details', label: 'Technical Details', sortable: false },
+        { key: 'raw_data', label: 'Raw Data', sortable: false },
         { key: 'last_ping', label: 'Last Ping', sortable: true },
         { key: 'created_at', label: 'Created At', sortable: true },
         { key: 'updated_at', label: 'Updated At', sortable: true },
@@ -277,8 +278,8 @@ const ConfigurationItems: React.FC = () => {
         setIsAddModalOpen(true);
     };
 
-    const handleView = (ci: any) => {
-        setViewingCI(ci);
+    const handleView = (ci: any, initialTab: 'general' | 'technical' | 'raw' = 'general') => {
+        setViewingCI({ ci, initialTab });
     };
 
     const handleExport = async (format: 'csv' | 'excel') => {
@@ -424,6 +425,22 @@ const ConfigurationItems: React.FC = () => {
                 } catch (e) {
                     return <span title={ci.technical_details} className="text-secondary text-xs">{ci.technical_details.substring(0, 50) + (ci.technical_details.length > 50 ? '...' : '')}</span>;
                 }
+            case 'raw_data':
+                return ci.raw_data ? (
+                    <button
+                        className="icon-btn small"
+                        title="View Raw Source Data"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleView(ci, 'raw');
+                        }}
+                        style={{ color: '#F47D30' }}
+                    >
+                        <FileJson size={16} />
+                    </button>
+                ) : (
+                    <span className="text-muted text-xs">-</span>
+                );
             case 'last_ping':
                 return ci.last_ping_success ? (
                     <span className="ping-timestamp" title={new Date(ci.last_ping_success).toLocaleString()}>
@@ -710,7 +727,8 @@ const ConfigurationItems: React.FC = () => {
             <ViewCIModal
                 isOpen={!!viewingCI}
                 onClose={() => setViewingCI(null)}
-                ci={viewingCI}
+                ci={viewingCI?.ci}
+                initialTab={viewingCI?.initialTab}
             />
 
             <DeleteCIModal

@@ -35,6 +35,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "ITIL CMDB Dashboard"
     DEBUG: bool = True
     GEMINI_API_KEY: str = ""
+    AI_CONTEXT_LIMIT: int = 30
     
     @property
     def cors_origins_list(self) -> List[str]:

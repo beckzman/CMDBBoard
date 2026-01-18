@@ -18,6 +18,12 @@ try:
     import pandas as pd
 except ImportError:
     pd = None
+try:
+    from pyVim.connect import SmartConnect, Disconnect
+    from pyVmomi import vim
+    import ssl
+except ImportError:
+    vim = None
 import os
 
 logger = logging.getLogger(__name__)
@@ -675,6 +681,117 @@ class OracleConnector(Connector):
         return []
 
 
+class VCenterConnector(Connector):
+    """Connector for VMware vCenter."""
+
+    def _get_connection(self):
+        """Helper to establish vCenter connection."""
+        if not vim:
+            raise ImportError("pyvmomi module is not installed.")
+
+        host = self.config.get('host')
+        user = self.config.get('username')
+        password = self.config.get('password')
+        port = int(self.config.get('port', 443))
+        
+        if not all([host, user, password]):
+            raise ValueError("Missing vCenter configuration: host, username, password")
+
+        # Disable SSL verification for internal vCenters
+        context = ssl._create_unverified_context()
+        
+        try:
+            si = SmartConnect(host=host, user=user, pwd=password, port=port, sslContext=context)
+            return si
+        except Exception as e:
+            logger.error(f"Failed to connect to vCenter: {e}")
+            raise ValueError(f"Connection failed: {str(e)}")
+
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
+        """Fetch VMs from vCenter."""
+        si = None
+        try:
+            si = self._get_connection()
+            content = si.RetrieveContent()
+            
+            # Create a container view for VirtualMachines
+            container = content.rootFolder
+            view_type = [vim.VirtualMachine]
+            recursive = True
+            container_view = content.viewManager.CreateContainerView(container, view_type, recursive)
+            
+            vms = container_view.view
+            
+            batch_size = 50
+            batch = []
+            
+            for vm in vms:
+                try:
+                    summary = vm.summary
+                    config = vm.config
+                    guest = vm.guest
+                    
+                    # Basic Info
+                    vm_data = {
+                        "name": config.name if config else summary.config.name,
+                        "id": summary.vm.type + ":" + summary.config.uuid if summary.config.uuid else None, # Unique ID
+                        "uuid": summary.config.uuid if summary.config.uuid else None,
+                        "path": summary.config.vmPathName,
+                        "memory_mb": config.hardware.memoryMB if config else summary.config.memorySizeMB,
+                        "cpu_count": config.hardware.numCPU if config else summary.config.numCpu,
+                        "status": summary.runtime.powerState, # poweredOn, poweredOff, suspended
+                        "ip_address": guest.ipAddress if guest else None,
+                        "hostname": guest.hostName if guest else None,
+                        "guest_os": config.guestFullName if config else summary.config.guestFullName,
+                        "notes": config.annotation if config else None
+                    }
+                    
+                    # Add to batch
+                    batch.append(vm_data)
+                    
+                    if len(batch) >= batch_size:
+                        yield batch
+                        batch = []
+                        
+                except Exception as vm_e:
+                    logger.warning(f"Error processing VM: {vm_e}")
+                    continue
+            
+            if batch:
+                yield batch
+                
+        except Exception as e:
+            logger.error(f"vCenter fetch error: {e}")
+            raise
+        finally:
+            if si:
+                Disconnect(si)
+
+    def test_connection(self) -> bool:
+        si = None
+        try:
+            si = self._get_connection()
+            # Just checking if session is active
+            if si.content.sessionManager.currentSession:
+                return True
+            return False
+        except Exception:
+            return False
+        finally:
+            if si:
+                Disconnect(si)
+
+    def get_schema(self) -> List[str]:
+        """Return hardcoded schema for now since dynamic reflection is complex in pyvmomi."""
+        return sorted([
+            "name", "id", "uuid", "path", "memory_mb", "cpu_count", 
+            "status", "ip_address", "hostname", "guest_os", "notes"
+        ])
+
+    def get_categories(self) -> List[Dict[str, Any]]:
+        return []
+
+
 class CSVConnector(Connector):
     """Connector for Local CSV Files."""
 
@@ -896,6 +1013,8 @@ class ReconciliationService:
             return OracleConnector(self.config)
         elif self.source.source_type == "csv":
             return CSVConnector(self.config)
+        elif self.source.source_type == "vcenter":
+            return VCenterConnector(self.config)
         return None
 
     def _process_record(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> Optional[ConfigurationItem]:
@@ -969,7 +1088,8 @@ class ReconciliationService:
             'domain': mapped_record.get('domain'),
             'external_id': raw_record.get('id') or raw_record.get('ID'),
             'import_source_id': self.source.id,
-            'last_sync': datetime.utcnow()
+            'last_sync': datetime.utcnow(),
+            'raw_data': json.dumps(raw_record, default=str)
         }
         
         new_ci = ConfigurationItem(**ci_data)
@@ -1095,6 +1215,9 @@ class ReconciliationService:
         if raw_record.get('id') or raw_record.get('ID'):
             ci.external_id = raw_record.get('id') or raw_record.get('ID')
         
+        # Always update raw_data with latest source data
+        ci.raw_data = json.dumps(raw_record, default=str)
+        
         self.db.commit()
         
         if changes:
@@ -1166,4 +1289,6 @@ def get_connector_for_test(source_type: str, config: Dict[str, Any]) -> Optional
         return OracleConnector(config)
     elif source_type == "csv":
         return CSVConnector(config)
+    elif source_type == "vcenter":
+        return VCenterConnector(config)
     return None

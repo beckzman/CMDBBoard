@@ -401,61 +401,89 @@ const ImportDashboard: React.FC = () => {
 
 
                 {/* Sources Section */}
-                < section className="sources-section" >
+                <section className="sources-section">
                     <h2>Import Sources</h2>
-                    {
-                        isLoadingSources ? (
-                            <div className="loading">Loading sources...</div>
-                        ) : (
-                            <div className="sources-list">
-                                {sources?.map((source: ImportSource) => (
-                                    <div key={source.id} className="source-card">
-                                        <div className="source-header">
-                                            <h3>{source.name}</h3>
-                                            <span className={`status - badge ${source.is_active ? 'active' : 'inactive'} `}>
-                                                {source.is_active ? 'Active' : 'Inactive'}
-                                            </span>
-                                        </div>
-                                        <div className="source-details">
-                                            <p><strong>Type:</strong> {source.source_type}</p>
-                                            <p><strong>Schedule:</strong> {source.schedule_cron || 'Manual'}</p>
-                                            <p><strong>Last Run:</strong> {source.last_run ? new Date(source.last_run).toLocaleString() : 'Never'}</p>
-                                        </div>
-                                        <div className="source-actions">
-                                            <button
-                                                className="action-btn icon-btn"
-                                                title="Edit Source"
-                                                onClick={() => handleEditSource(source)}
-                                                style={{ marginRight: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}
-                                            >
-                                                <Edit2 size={18} />
-                                            </button>
-                                            <button
-                                                className="action-btn icon-btn delete-btn"
-                                                title="Delete Source"
-                                                onClick={() => handleDeleteSource(source.id)}
-                                                style={{ marginRight: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}
-                                            >
-                                                <Trash2 size={18} />
-                                            </button>
-                                            <button
-                                                className="run-btn"
-                                                onClick={() => handleRunSource(source)}
-                                                disabled={runSourceMutation.isPending}
-                                            >
-                                                <Play size={16} />
-                                                Run Now
-                                            </button>
+                    {isLoadingSources ? (
+                        <div className="loading">Loading sources...</div>
+                    ) : (
+                        <div className="sources-list-container">
+                            {(() => {
+                                // Group sources by type
+                                const groupedSources = sources?.reduce((acc: any, source: ImportSource) => {
+                                    const type = source.source_type;
+                                    if (!acc[type]) acc[type] = [];
+                                    acc[type].push(source);
+                                    return acc;
+                                }, {}) || {};
+
+                                const sourceTypes: Record<string, string> = {
+                                    sharepoint: 'SharePoint Lists',
+                                    idoit: 'i-doit API',
+                                    oracle: 'Oracle Database',
+                                    csv: 'CSV Files',
+                                    vcenter: 'VMware vCenter'
+                                };
+
+                                const groups = Object.keys(groupedSources);
+
+                                if (groups.length === 0) {
+                                    return <p className="empty-state">No import sources configured.</p>;
+                                }
+
+                                return groups.map(type => (
+                                    <div key={type} className="source-group">
+                                        <h3 className="source-group-header">
+                                            {sourceTypes[type] || type.toUpperCase()}
+                                            <span className="count-badge">{groupedSources[type].length}</span>
+                                        </h3>
+                                        <div className="sources-list">
+                                            {groupedSources[type].map((source: ImportSource) => (
+                                                <div key={source.id} className="source-card">
+                                                    <div className="source-header">
+                                                        <h3>{source.name}</h3>
+                                                        <span className={`status-badge ${source.is_active ? 'active' : 'inactive'}`}>
+                                                            {source.is_active ? 'Active' : 'Inactive'}
+                                                        </span>
+                                                    </div>
+                                                    <div className="source-details">
+                                                        <p><strong>Schedule:</strong> {source.schedule_cron || 'Manual'}</p>
+                                                        <p><strong>Last Run:</strong> {source.last_run ? new Date(source.last_run).toLocaleString() : 'Never'}</p>
+                                                    </div>
+                                                    <div className="source-actions">
+                                                        <button
+                                                            className="action-btn icon-btn"
+                                                            title="Edit Source"
+                                                            onClick={() => handleEditSource(source)}
+                                                            style={{ marginRight: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}
+                                                        >
+                                                            <Edit2 size={18} />
+                                                        </button>
+                                                        <button
+                                                            className="action-btn icon-btn delete-btn"
+                                                            title="Delete Source"
+                                                            onClick={() => handleDeleteSource(source.id)}
+                                                            style={{ marginRight: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}
+                                                        >
+                                                            <Trash2 size={18} />
+                                                        </button>
+                                                        <button
+                                                            className="run-btn"
+                                                            onClick={() => handleRunSource(source)}
+                                                            disabled={runSourceMutation.isPending}
+                                                        >
+                                                            <Play size={16} />
+                                                            Run Now
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
-                                ))}
-                                {sources?.length === 0 && (
-                                    <p className="empty-state">No import sources configured.</p>
-                                )}
-                            </div>
-                        )
-                    }
-                </section >
+                                ));
+                            })()}
+                        </div>
+                    )}
+                </section>
 
                 {/* Logs Section */}
                 < section className="logs-section" >
@@ -575,6 +603,7 @@ const ImportDashboard: React.FC = () => {
                                                 <option value="sharepoint">SharePoint List</option>
                                                 <option value="idoit">i-doit API</option>
                                                 <option value="oracle">Oracle DB</option>
+                                                <option value="vcenter">VMware vCenter</option>
                                                 <option value="csv">CSV File (Server Path)</option>
                                             </select>
                                         </div>
@@ -611,6 +640,73 @@ const ImportDashboard: React.FC = () => {
                                                 </div>
                                                 <p className="help-text" style={{ marginTop: '4px', fontSize: '12px', color: '#888' }}>
                                                     Upload a file to the server or enter an absolute path manually.
+                                                </p>
+                                            </div>
+                                        )}
+
+                                        {newSourceData.source_type === 'vcenter' && (
+                                            <div className="vcenter-config-section">
+                                                <h3>vCenter Connection Details</h3>
+                                                <div className="form-group-row">
+                                                    <div className="form-group" style={{ flex: 2 }}>
+                                                        <label>Host / IP Address</label>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="vcenter.example.com"
+                                                            value={(importConfig as any).host || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, host: e.target.value })}
+                                                        />
+                                                    </div>
+                                                    <div className="form-group" style={{ flex: 1 }}>
+                                                        <label>Port</label>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="443"
+                                                            value={(importConfig as any).port || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, port: e.target.value })}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="form-group-row">
+                                                    <div className="form-group" style={{ flex: 1 }}>
+                                                        <label>Username</label>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="administrator@vsphere.local"
+                                                            value={(importConfig as any).username || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, username: e.target.value })}
+                                                        />
+                                                    </div>
+                                                    <div className="form-group" style={{ flex: 1 }}>
+                                                        <label>Password</label>
+                                                        <input
+                                                            type="password"
+                                                            value={(importConfig as any).password || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, password: e.target.value })}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handlePreviewData}
+                                                        disabled={previewDataMutation.isPending}
+                                                    >
+                                                        {previewDataMutation.isPending ? 'Loading...' : 'Preview Data'}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handleTestConnection}
+                                                        disabled={testConnectionMutation.isPending}
+                                                    >
+                                                        {testConnectionMutation.isPending ? 'Testing...' : 'Test Connection'}
+                                                    </button>
+                                                </div>
+                                                <p className="help-text" style={{ marginTop: '10px', color: '#888', fontSize: '12px' }}>
+                                                    Note: SSL verification is disabled for internal connections. ensure the port (default 443) is correct.
                                                 </p>
                                             </div>
                                         )}

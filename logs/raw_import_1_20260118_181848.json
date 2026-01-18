@@ -1,0 +1,9 @@
+[
+  {
+    "name": "TEST-CI-RAW",
+    "ci_type": "server",
+    "status": "active",
+    "description": "Test Description",
+    "extra_col": "SomeRawValue"
+  }
+]

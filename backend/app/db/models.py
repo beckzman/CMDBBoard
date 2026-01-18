@@ -81,7 +81,11 @@ class ConfigurationItem(Base):
     contact = Column(String(255))  # Person or Team responsible
     
     # Technical details (JSON-like text field for flexibility)
+    # Technical details (JSON-like text field for flexibility)
     technical_details = Column(Text)  # Store as JSON string
+    
+    # Raw Data from Import Source (Full JSON dump)
+    raw_data = Column(Text)  # Store as JSON string
     
     # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())

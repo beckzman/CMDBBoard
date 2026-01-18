@@ -1,0 +1,27 @@
+[
+  {
+    "action": "created",
+    "ci_id": 1,
+    "ci_name": "TEST-CI-RAW",
+    "data": {
+      "name": "TEST-CI-RAW",
+      "ci_type": "other",
+      "status": "active",
+      "description": null,
+      "department": null,
+      "location": null,
+      "environment": null,
+      "cost_center": null,
+      "service_provider": null,
+      "contact": null,
+      "technical_details": null,
+      "os_db_system": null,
+      "domain": null,
+      "external_id": null,
+      "import_source_id": 1,
+      "last_sync": "2026-01-18 17:19:21.420399",
+      "raw_data": "{\"name\": \"TEST-CI-RAW\", \"ci_type\": \"server\", \"status\": \"active\", \"description\": \"Test Description\", \"extra_col\": \"SomeRawValue\"}"
+    },
+    "timestamp": "2026-01-18T17:19:21.422815"
+  }
+]

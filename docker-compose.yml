@@ -56,5 +56,16 @@ services:
     depends_on:
       - backend
 
+  # Local AI (Ollama)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: cmdb_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_vals:/root/.ollama
+    restart: unless-stopped
+
 volumes:
   postgres_data:
+  ollama_vals:
