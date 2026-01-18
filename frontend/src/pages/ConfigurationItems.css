@@ -94,7 +94,11 @@
 
 .ci-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    /* Required for sticky styling */
+    border-spacing: 0;
+    table-layout: fixed;
+    /* Fixed layout for resizing */
 }
 
 .ci-table th {
@@ -107,11 +111,31 @@
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    position: relative;
+    /* For resizer positioning */
+    user-select: none;
+}
+
+.resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: col-resize;
+    user-select: none;
+    touch-action: none;
+    z-index: 10;
+}
+
+.resizer:hover,
+.ci-table th:hover .resizer {
+    background-color: var(--color-primary);
+    opacity: 0.5;
 }
 
 .ci-table th.sortable-header {
     cursor: pointer;
-    user-select: none;
     transition: background-color 0.2s;
 }
 
@@ -124,11 +148,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .sort-icon {
     opacity: 1;
     transition: opacity 0.2s;
+    flex-shrink: 0;
+    /* Prevent icon from shrinking */
 }
 
 .sort-icon.inactive {
@@ -144,6 +172,9 @@
     border-bottom: 1px solid var(--color-border);
     color: var(--color-text-primary);
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ci-table tr:last-child td {

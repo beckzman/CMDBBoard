@@ -188,30 +188,85 @@ const ConfigurationItems: React.FC = () => {
     // Default visible columns
     const DEFAULT_COLUMNS = ['name', 'ci_type', 'status', 'department', 'location', 'last_ping', 'actions'];
 
-    // Available columns configuration
+    // Available columns configuration with default widths
     const AVAILABLE_COLUMNS = [
-        { key: 'name', label: 'Name', sortable: true },
-        { key: 'ci_type', label: 'Type', sortable: true },
-        { key: 'description', label: 'Description', sortable: true },
-        { key: 'status', label: 'Status', sortable: true },
-        { key: 'software', label: 'Software Model', sortable: false },
-        { key: 'department', label: 'Abteilung', sortable: true },
-        { key: 'location', label: 'Location', sortable: true },
-        { key: 'environment', label: 'Environment', sortable: true },
-        { key: 'os_db_system', label: 'OS/DB System', visible: true },
-        { key: 'domain', label: 'Domain', sortable: true },
-        { key: 'cost_center', label: 'Cost Center', sortable: true },
-        { key: 'service_provider', label: 'Service Provider', sortable: true },
-        { key: 'contact', label: 'Contact', sortable: true },
-        { key: 'sla', label: 'SLA', sortable: true },
-        { key: 'technical_details', label: 'Technical Details', sortable: false },
-        { key: 'raw_data', label: 'Raw Data', sortable: false },
-        { key: 'last_ping', label: 'Last Ping', sortable: true },
-        { key: 'created_at', label: 'Created At', sortable: true },
-        { key: 'updated_at', label: 'Updated At', sortable: true },
-        { key: 'relationships_summary', label: 'Runs_on', sortable: false },
-        { key: 'actions', label: 'Actions', sortable: false },
+        { key: 'name', label: 'Name', sortable: true, defaultWidth: 250 },
+        { key: 'ci_type', label: 'Type', sortable: true, defaultWidth: 120 },
+        { key: 'description', label: 'Description', sortable: true, defaultWidth: 300 },
+        { key: 'status', label: 'Status', sortable: true, defaultWidth: 100 },
+        { key: 'software', label: 'Software Model', sortable: false, defaultWidth: 150 },
+        { key: 'department', label: 'Abteilung', sortable: true, defaultWidth: 150 },
+        { key: 'location', label: 'Location', sortable: true, defaultWidth: 150 },
+        { key: 'environment', label: 'Environment', sortable: true, defaultWidth: 120 },
+        { key: 'os_db_system', label: 'OS/DB System', visible: true, defaultWidth: 150 },
+        { key: 'domain', label: 'Domain', sortable: true, defaultWidth: 150 },
+        { key: 'cost_center', label: 'Cost Center', sortable: true, defaultWidth: 120 },
+        { key: 'service_provider', label: 'Service Provider', sortable: true, defaultWidth: 150 },
+        { key: 'contact', label: 'Contact', sortable: true, defaultWidth: 150 },
+        { key: 'sla', label: 'SLA', sortable: true, defaultWidth: 80 },
+        { key: 'technical_details', label: 'Technical Details', sortable: false, defaultWidth: 200 },
+        { key: 'raw_data', label: 'Raw Data', sortable: false, defaultWidth: 80 },
+        { key: 'last_ping', label: 'Last Ping', sortable: true, defaultWidth: 150 },
+        { key: 'created_at', label: 'Created At', sortable: true, defaultWidth: 120 },
+        { key: 'updated_at', label: 'Updated At', sortable: true, defaultWidth: 120 },
+        { key: 'relationships_summary', label: 'Runs_on', sortable: false, defaultWidth: 200 },
+        { key: 'actions', label: 'Actions', sortable: false, defaultWidth: 120 },
     ];
+
+    // Column Widths State
+    const [columnWidths, setColumnWidths] = useState<Record<string, number>>(() => {
+        const saved = localStorage.getItem('ci_column_widths');
+        const defaults = AVAILABLE_COLUMNS.reduce((acc, col) => ({ ...acc, [col.key]: col.defaultWidth }), {});
+        return saved ? { ...defaults, ...JSON.parse(saved) } : defaults;
+    });
+
+    const [resizingColumn, setResizingColumn] = useState<{ key: string; startX: number; startWidth: number } | null>(null);
+
+    // Save column widths
+    React.useEffect(() => {
+        localStorage.setItem('ci_column_widths', JSON.stringify(columnWidths));
+    }, [columnWidths]);
+
+    // Handle Resize Events
+    React.useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!resizingColumn) return;
+
+            const diff = e.clientX - resizingColumn.startX;
+            const newWidth = Math.max(50, resizingColumn.startWidth + diff); // Minimum width 50px
+
+            setColumnWidths(prev => ({
+                ...prev,
+                [resizingColumn.key]: newWidth
+            }));
+        };
+
+        const handleMouseUp = () => {
+            setResizingColumn(null);
+            document.body.style.cursor = 'default';
+        };
+
+        if (resizingColumn) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+            document.body.style.cursor = 'col-resize';
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [resizingColumn]);
+
+    const startResize = (e: React.MouseEvent, key: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setResizingColumn({
+            key,
+            startX: e.clientX,
+            startWidth: columnWidths[key]
+        });
+    };
 
     // Initialize visible columns from localStorage or default
     const [visibleColumns, setVisibleColumns] = useState<string[]>(() => {
@@ -634,10 +689,11 @@ const ConfigurationItems: React.FC = () => {
                                         <th
                                             key={col.key}
                                             className={`${col.sortable ? 'sortable-header' : ''} ${col.key === 'actions' ? 'sticky-actions' : ''}`}
+                                            style={{ width: columnWidths[col.key], minWidth: columnWidths[col.key] }}
                                         >
                                             <div className="th-content" style={{ justifyContent: 'space-between' }}>
                                                 <div
-                                                    style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: col.sortable ? 'pointer' : 'default' }}
+                                                    style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: col.sortable ? 'pointer' : 'default', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                                                     onClick={() => col.sortable && handleSort(col.key)}
                                                 >
                                                     {col.label}
@@ -658,6 +714,13 @@ const ConfigurationItems: React.FC = () => {
                                                     }}
                                                 />
                                             </div>
+                                            {col.key !== 'actions' && (
+                                                <div
+                                                    className="resizer"
+                                                    onMouseDown={(e) => startResize(e, col.key)}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                />
+                                            )}
                                         </th>
                                     ))
                                 }
