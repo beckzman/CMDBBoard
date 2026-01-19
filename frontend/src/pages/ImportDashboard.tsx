@@ -421,7 +421,8 @@ const ImportDashboard: React.FC = () => {
                                     idoit: 'i-doit API',
                                     oracle: 'Oracle Database',
                                     csv: 'CSV Files',
-                                    vcenter: 'VMware vCenter'
+                                    vcenter: 'VMware vCenter',
+                                    wsus: 'WSUS Database'
                                 };
 
                                 const groups = Object.keys(groupedSources);
@@ -601,10 +602,10 @@ const ImportDashboard: React.FC = () => {
                                                 onChange={e => setNewSourceData({ ...newSourceData, source_type: e.target.value })}
                                             >
                                                 <option value="sharepoint">SharePoint List</option>
-                                                <option value="idoit">i-doit API</option>
-                                                <option value="oracle">Oracle DB</option>
+                                                <option value="oracle">Oracle Database</option>
+                                                <option value="csv">CSV File</option>
                                                 <option value="vcenter">VMware vCenter</option>
-                                                <option value="csv">CSV File (Server Path)</option>
+                                                <option value="wsus">WSUS Database</option>
                                             </select>
                                         </div>
 
@@ -642,6 +643,52 @@ const ImportDashboard: React.FC = () => {
                                                     Upload a file to the server or enter an absolute path manually.
                                                 </p>
                                             </div>
+                                        )}
+
+                                        {newSourceData.source_type === 'wsus' && (
+                                            <>
+                                                <div className="form-group">
+                                                    <label>Host / IP</label>
+                                                    <input
+                                                        type="text"
+                                                        value={(importConfig as any).host || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, host: e.target.value })}
+                                                        placeholder="wsus-db-server"
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Database</label>
+                                                    <input
+                                                        type="text"
+                                                        value={(importConfig as any).database || 'SUSDB'}
+                                                        onChange={e => setImportConfig({ ...importConfig, database: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Username</label>
+                                                    <input
+                                                        type="text"
+                                                        value={(importConfig as any).user || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, user: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Password</label>
+                                                    <input
+                                                        type="password"
+                                                        value={(importConfig as any).password || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, password: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Port (Default: 1433)</label>
+                                                    <input
+                                                        type="number"
+                                                        value={(importConfig as any).port || 1433}
+                                                        onChange={e => setImportConfig({ ...importConfig, port: Number(e.target.value) })}
+                                                    />
+                                                </div>
+                                            </>
                                         )}
 
                                         {newSourceData.source_type === 'vcenter' && (

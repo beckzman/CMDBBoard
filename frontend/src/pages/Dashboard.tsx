@@ -58,7 +58,38 @@ const Dashboard: React.FC = () => {
         }))
         .sort((a, b) => b.value - a.value) : [];
 
-    const COLORS = ['#F47D30', '#FF9D5C', '#D96B1F', '#10B981', '#3B82F6', '#F59E0B'];
+    // Transform cis_by_dept_and_type for Stacked Bar Chart
+    const ciDeptTypeData = React.useMemo(() => {
+        if (!stats?.cis_by_dept_and_type) return [];
+
+        return Object.entries(stats.cis_by_dept_and_type).map(([dept, types]) => {
+            const entry: any = { name: dept };
+            Object.entries(types as Record<string, number>).forEach(([type, count]) => {
+                // Normalize type key for display (e.g. "windows_server" -> "Windows Server")
+                const normalizedType = type.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase());
+                entry[normalizedType] = count;
+            });
+            return entry;
+        }).sort((a, b) => {
+            // Sort by total count
+            const totalA = Object.values(a).filter(v => typeof v === 'number').reduce((sum: number, v: any) => sum + v, 0);
+            const totalB = Object.values(b).filter(v => typeof v === 'number').reduce((sum: number, v: any) => sum + v, 0);
+            return totalB - totalA;
+        });
+    }, [stats?.cis_by_dept_and_type]);
+
+    // Get all unique keys (CI Types) for the bars
+    const ciTypes = React.useMemo(() => {
+        const types = new Set<string>();
+        ciDeptTypeData.forEach(item => {
+            Object.keys(item).forEach(key => {
+                if (key !== 'name') types.add(key);
+            });
+        });
+        return Array.from(types);
+    }, [ciDeptTypeData]);
+
+    const COLORS = ['#F47D30', '#FF9D5C', '#D96B1F', '#10B981', '#3B82F6', '#F59E0B', '#8B5CF6', '#EC4899'];
 
     const getStatusColor = (status: string) => {
         const statusMap: Record<string, string> = {
@@ -210,6 +241,38 @@ const Dashboard: React.FC = () => {
                                 cursor={{ fill: 'transparent' }}
                             />
                             <Bar dataKey="value" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+
+                <div className="card chart-card" style={{ gridColumn: 'span 2' }}>
+                    <h3>CIs by Department and Type</h3>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart
+                            data={ciDeptTypeData}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <XAxis dataKey="name" stroke="#B0B2B8" />
+                            <YAxis stroke="#B0B2B8" />
+                            <Tooltip
+                                contentStyle={{
+                                    background: '#25262C',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    borderRadius: '8px',
+                                }}
+                                cursor={{ fill: 'transparent' }}
+                            />
+                            {/* Legend would be nice here */}
+                            {/* Legend would be nice here */}
+                            {ciTypes.map((type, index) => (
+                                <Bar
+                                    key={type}
+                                    dataKey={type}
+                                    stackId="a"
+                                    fill={COLORS[index % COLORS.length]}
+                                    radius={index === ciTypes.length - 1 ? [8, 8, 0, 0] : [0, 0, 0, 0]}
+                                />
+                            ))}
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

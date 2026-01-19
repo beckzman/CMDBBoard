@@ -792,6 +792,81 @@ class VCenterConnector(Connector):
         return []
 
 
+        return records
+
+class WSUSConnector(Connector):
+    def __init__(self, config: dict):
+        self.config = config
+
+    def fetch_data(self) -> List[dict]:
+        try:
+            import pymssql
+        except ImportError:
+            raise ImportError("pymssql module not found. Please install it.")
+
+        host = self.config.get("host")
+        user = self.config.get("user")
+        password = self.config.get("password")
+        database = self.config.get("database", "SUSDB")
+        port = int(self.config.get("port", 1433))
+
+        conn = pymssql.connect(server=host, user=user, password=password, database=database, port=port)
+        cursor = conn.cursor(as_dict=True)
+
+        # Query to get Computer Name and Needed/Critical update counts
+        # This is a simplified query. Real WSUS schema is complex.
+        # Assuming v_ComputerStatus view or similiar logic.
+        # Note: WSUS Public Views are recommended.
+        
+        query = """
+        SELECT 
+            c.FullDomainName as hostname,
+            SUM(CASE WHEN u.UpdateClassificationTitle = 'Critical Updates' AND s.SummarizationState = 2 THEN 1 ELSE 0 END) as needed_critical,
+            SUM(CASE WHEN u.UpdateClassificationTitle = 'Security Updates' AND s.SummarizationState = 2 THEN 1 ELSE 0 END) as needed_security,
+            MAX(s.LastSyncTime) as last_sync
+        FROM PUBLIC_VIEWS.vComputerTarget c
+        JOIN PUBLIC_VIEWS.vUpdateInstallationInfoBasic s ON c.ComputerTargetId = s.ComputerTargetId
+        JOIN PUBLIC_VIEWS.vUpdateInfo u ON s.UpdateId = u.UpdateId
+        WHERE s.SummarizationState = 2 -- 2 = Needed/Missing
+        GROUP BY c.FullDomainName
+        """
+        
+        try:
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            
+            results = []
+            for row in rows:
+                results.append({
+                    "name": row['hostname'].split('.')[0], # Match on hostname
+                    "fqdn": row['hostname'],
+                    "patch_summary": {
+                        "needed_critical": row['needed_critical'],
+                        "needed_security": row['needed_security'],
+                        "last_sync": str(row['last_sync']) if row['last_sync'] else None
+                    },
+                    "source_id": row['hostname']
+                })
+            return results
+        finally:
+            conn.close()
+
+    def test_connection(self) -> bool:
+        try:
+            import pymssql
+            host = self.config.get("host")
+            user = self.config.get("user")
+            password = self.config.get("password")
+            database = self.config.get("database", "SUSDB")
+            port = int(self.config.get("port", 1433))
+            
+            conn = pymssql.connect(server=host, user=user, password=password, database=database, port=port)
+            conn.close()
+            return True
+        except Exception as e:
+            print(f"WSUS Connection Error: {e}")
+            return False
+
 class CSVConnector(Connector):
     """Connector for Local CSV Files."""
 
@@ -1015,6 +1090,8 @@ class ReconciliationService:
             return CSVConnector(self.config)
         elif self.source.source_type == "vcenter":
             return VCenterConnector(self.config)
+        elif self.source.source_type == "wsus":
+            return WSUSConnector(self.config)
         return None
 
     def _process_record(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> Optional[ConfigurationItem]:

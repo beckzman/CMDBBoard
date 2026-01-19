@@ -114,6 +114,28 @@ def get_dashboard_stats(
     ).group_by(ConfigurationItem.location).all()
 
     cis_by_location = {loc or "Unknown": count for loc, count in cis_by_loc_query}
+
+    # CIs by Department AND Type
+    cis_by_dept_type_query = db.query(
+        ConfigurationItem.department,
+        ConfigurationItem.ci_type,
+        func.count(ConfigurationItem.id)
+    ).filter(
+        ConfigurationItem.deleted_at.is_(None)
+    ).group_by(
+        ConfigurationItem.department,
+        ConfigurationItem.ci_type
+    ).all()
+
+    cis_by_dept_and_type = {}
+    for dept, ci_type, count in cis_by_dept_type_query:
+        dept_name = dept or "Unknown"
+        type_name = ci_type.value if hasattr(ci_type, 'value') else str(ci_type)
+        
+        if dept_name not in cis_by_dept_and_type:
+            cis_by_dept_and_type[dept_name] = {}
+        
+        cis_by_dept_and_type[dept_name][type_name] = count
     
     # Calculate Costs by Cost Center
     # 1. Fetch all cost rules
@@ -283,6 +305,7 @@ def get_dashboard_stats(
         "cis_by_type": cis_by_type,
         "cis_by_status": cis_by_status,
         "cis_by_department": cis_by_department,
+        "cis_by_dept_and_type": cis_by_dept_and_type,
         "cis_by_location": cis_by_location,
         "costs_by_cost_center": costs_by_cost_center,
         "costs_by_cost_center_and_type": costs_by_cost_center_and_type,

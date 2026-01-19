@@ -1,7 +1,7 @@
 """
 Database models for ITIL CMDB.
 """
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Text, Enum, Float
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Text, Enum, Float, JSON
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.database import Base
@@ -85,7 +85,8 @@ class ConfigurationItem(Base):
     technical_details = Column(Text)  # Store as JSON string
     
     # Raw Data from Import Source (Full JSON dump)
-    raw_data = Column(Text)  # Store as JSON string
+    raw_data = Column(JSON, nullable=True)  # Store original import data
+    patch_summary = Column(JSON, nullable=True) # Store WSUS/Patch summary: {needed: int, critical: int, etc}
     
     # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())

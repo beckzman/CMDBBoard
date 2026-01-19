@@ -106,6 +106,7 @@ class CIBase(BaseModel):
     os_db_system: Optional[str] = None
     technical_details: Optional[str] = None
     software_id: Optional[int] = None
+    patch_summary: Optional[dict] = None
 
 
 class CICreate(CIBase):
@@ -136,7 +137,8 @@ class CIResponse(CIBase):
     last_ping_success: Optional[datetime] = None
     software: Optional[SoftwareCatalogNested] = None
     relationships_summary: Optional[str] = None
-    raw_data: Optional[str] = None
+    raw_data: Optional[dict] = None
+    patch_summary: Optional[dict] = None
     
     class Config:
         from_attributes = True
@@ -226,6 +228,7 @@ class DashboardStats(BaseModel):
     cis_by_type: dict
     cis_by_status: dict
     cis_by_department: dict
+    cis_by_dept_and_type: dict = Field(default_factory=dict)
     cis_by_location: dict
     costs_by_cost_center: dict
     costs_by_cost_center_and_type: dict = Field(default_factory=dict)

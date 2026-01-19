@@ -28,6 +28,7 @@ Navigate to the **Configuration Items** page via the sidebar. Here you can:
 -   **Search**: Use the search bar to find items by name.
 -   **Filter**: Use the dropdown menus to filter by Status (e.g., Active, Retired) or Type.
 -   **View Details**: Click the **Eye icon** to see full technical details, ownership, and location info.
+-   **Patch Status**: Enable the "Patch Status" column to see missing Critical/Security updates (requires WSUS integration).
 
 ### Adding & Editing
 -   **Add New**: Click the **"+ Add Item"** button. Fill in the required fields (Name, Type, Owner) and any optional details.
@@ -92,6 +93,8 @@ To set up recurring data synchronization:
 2.  Choose a **Source Type**:
     *   **CSV File (Server Path)**: Reads a CSV file from a path on the server.
     *   **Oracle DB**: Connects to an Oracle database view.
+    *   **WSUS Database**: Connects to a Microsoft WSUS (SQL Server) database to import patch compliance status.
+    *   **VMware vCenter**: Imports VMs as Server CIs.
     *   **SharePoint / i-doit**: (Coming Soon).
 3.  **Configuration**:
     *   Enter the required details (e.g., File Path or Connection String).
@@ -115,4 +118,13 @@ For advanced debugging and data verification, the system captures the full "Raw 
     *   **CSV**: Captures the entire row as a key-value pair (Header -> Value).
     *   **Oracle DB**: Captures the entire database row (Column -> Value).
     *   **i-doit**: Captures the full JSON object returned by the `cmdb.objects.read` API.
+    *   **i-doit**: Captures the full JSON object returned by the `cmdb.objects.read` API.
     *   **SharePoint**: Captures all list item properties (excluding internal `_` fields).
+    *   **WSUS**: Captures patch summary counts (`needed_critical`, `needed_security`, `last_sync`).
+
+## Patch Management (WSUS)
+If you configure a **WSUS Database** import source, the system will automatically reconcile patch status with your servers based on their Hostname/FQDN.
+
+-   **Fully Patched**: Green badge indicating 0 missing Security/Critical updates.
+-   **Missing Patches**: Red badge showing the count of missing Critical updates.
+-   **Data Sync**: Patch data is updated every time the WSUS import source runs.

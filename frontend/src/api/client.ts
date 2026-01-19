@@ -12,6 +12,7 @@ export interface DashboardStats {
     cis_by_type: Record<string, number>;
     cis_by_status: Record<string, number>;
     cis_by_department: Record<string, number>;
+    cis_by_dept_and_type: Record<string, Record<string, number>>;
     cis_by_location: Record<string, number>;
     costs_by_cost_center: Record<string, number>;
     costs_by_cost_center_and_type: Record<string, Record<string, number>>;

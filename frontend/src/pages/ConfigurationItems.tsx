@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ciAPI, exportAPI, healthAPI } from '../api/client';
-import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown, Filter, FileJson } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, Download, ChevronDown, Activity, ArrowUp, ArrowDown, ArrowUpDown, Filter, FileJson, AlertTriangle } from 'lucide-react';
 import AddCIModal from '../components/AddCIModal';
 import ViewCIModal from '../components/ViewCIModal';
 import DeleteCIModal from '../components/DeleteCIModal';
@@ -144,7 +144,7 @@ const ConfigurationItems: React.FC = () => {
 
     // Initialize state from URL params
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(50);
     const [search, setSearch] = useState(searchParams.get('search') || '');
     const [ciType, setCiType] = useState(searchParams.get('ci_type') || '');
     const [status, setStatus] = useState(searchParams.get('status') || '');
@@ -205,6 +205,7 @@ const ConfigurationItems: React.FC = () => {
         { key: 'contact', label: 'Contact', sortable: true, defaultWidth: 150 },
         { key: 'sla', label: 'SLA', sortable: true, defaultWidth: 80 },
         { key: 'technical_details', label: 'Technical Details', sortable: false, defaultWidth: 200 },
+        { key: 'patch_summary', label: 'Patch Status', sortable: false, defaultWidth: 120 },
         { key: 'raw_data', label: 'Raw Data', sortable: false, defaultWidth: 80 },
         { key: 'last_ping', label: 'Last Ping', sortable: true, defaultWidth: 150 },
         { key: 'created_at', label: 'Created At', sortable: true, defaultWidth: 120 },
@@ -480,6 +481,35 @@ const ConfigurationItems: React.FC = () => {
                 } catch (e) {
                     return <span title={ci.technical_details} className="text-secondary text-xs">{ci.technical_details.substring(0, 50) + (ci.technical_details.length > 50 ? '...' : '')}</span>;
                 }
+            case 'patch_summary':
+                if (!ci.patch_summary) return <span className="text-muted text-xs">-</span>;
+
+                // Parse if string (though it should be object from API, sometimes JSON cols come as strings if not handled)
+                let patchData = ci.patch_summary;
+                if (typeof patchData === 'string') {
+                    try { patchData = JSON.parse(patchData); } catch (e) { }
+                }
+
+                // Safety check if patchData is null/undefined or not an object
+                if (!patchData || typeof patchData !== 'object') return <span className="text-muted text-xs">-</span>;
+
+                const neededCrit = patchData.needed_critical || 0;
+                const neededSec = patchData.needed_security || 0;
+                const totalMissing = neededCrit + neededSec;
+
+                if (totalMissing === 0) {
+                    return <span className="badge badge-success" style={{ fontSize: '10px' }}>Fully Patched</span>;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span className="badge badge-error" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px' }}>
+                            <AlertTriangle size={12} />
+                            {totalMissing} Missing
+                        </span>
+                        {/* {neededCrit > 0 && <span style={{fontSize: '10px', color: '#EF4444'}}>({neededCrit} Crit)</span>} */}
+                    </div>
+                );
             case 'raw_data':
                 return ci.raw_data ? (
                     <button

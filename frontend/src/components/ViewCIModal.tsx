@@ -208,6 +208,9 @@ const ViewCIModal: React.FC<ViewCIModalProps> = ({ isOpen, onClose, ci, initialT
                                     border: '1px solid #1e293b'
                                 }}>
                                     {(() => {
+                                        if (typeof ci.raw_data === 'object') {
+                                            return JSON.stringify(ci.raw_data, null, 2);
+                                        }
                                         try {
                                             return JSON.stringify(JSON.parse(ci.raw_data), null, 2);
                                         } catch (e) {
