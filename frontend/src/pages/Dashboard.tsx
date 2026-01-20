@@ -18,15 +18,6 @@ const Dashboard: React.FC = () => {
         queryFn: () => dashboardAPI.getRecent(5),
     });
 
-    if (isLoading) {
-        return (
-            <div className="loading-container">
-                <div className="spinner"></div>
-                <p>Loading dashboard...</p>
-            </div>
-        );
-    }
-
     const ciTypeData = stats?.cis_by_type ? Object.entries(stats.cis_by_type).map(([name, value]) => ({
         name: name.replace('_', ' ').toUpperCase(),
         value,
@@ -101,6 +92,15 @@ const Dashboard: React.FC = () => {
         };
         return statusMap[status.toLowerCase()] || 'info';
     };
+
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <div className="spinner"></div>
+                <p>Loading dashboard...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="dashboard-container">
