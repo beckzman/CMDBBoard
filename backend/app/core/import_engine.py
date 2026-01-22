@@ -7,6 +7,7 @@ from typing import List, Dict, Any, Optional, Iterator
 import logging
 import json
 from datetime import datetime
+import requests
 from sqlalchemy.orm import Session
 from app.db.models import ConfigurationItem, ImportSource, ImportLog, CIType, CIStatus
 from app.core.field_mapper import FieldMapper, ReconciliationConfig, parse_import_config
@@ -130,6 +131,9 @@ class SharePointConnector(Connector):
             logger.info(f"Successfully fetched {len(result)} items from SharePoint list '{list_name}'")
             yield result
             
+        except (IndexError, ValueError) as e:
+            logger.error(f"SharePoint auth/fetch error: {e}")
+            raise ValueError(f"Authentication failed or invalid response (MFA might be enabled?): {str(e)}")
         except Exception as e:
             logger.error(f"SharePoint fetch error: {e}")
             raise ValueError(f"Failed to fetch data from SharePoint: {str(e)}")
@@ -158,8 +162,16 @@ class SharePointConnector(Connector):
             logger.info(f"SharePoint connection successful: {web.properties.get('Title', 'Unknown')}")
             return True
             
+        except (IndexError, ValueError) as e:
+             logger.error(f"SharePoint connection failed (likely auth): {e}")
+             # Log traceback for debugging
+             import traceback
+             logger.error(traceback.format_exc())
+             return False # The UI will show "Connection failed" but logs will hint at MFA
+             
         except Exception as e:
-            logger.error(f"SharePoint connection test failed: {e}")
+            import traceback
+            logger.error(f"SharePoint connection test failed: {e}\n{traceback.format_exc()}")
             return False
 
     def get_schema(self) -> List[str]:
@@ -792,7 +804,139 @@ class VCenterConnector(Connector):
         return []
 
 
-        return records
+class BaramundiConnector(Connector):
+    """Connector for Baramundi Management Suite (bConnect REST API)."""
+
+    def fetch_data(self) -> Iterator[List[Dict[str, Any]]]:
+        """Fetch devices from Baramundi."""
+        import requests
+        
+        try:
+            api_url = self.config.get('api_url')
+            username = self.config.get('username')
+            password = self.config.get('password')
+            verify_ssl = self.config.get('verify_ssl', True)
+            
+            if not all([api_url, username, password]):
+                raise ValueError("Missing Baramundi configuration")
+                
+            # Ensure URL ends with slash
+            if not api_url.endswith('/'):
+                api_url += '/'
+                
+            # Endpoint for devices (endpoints)
+            # Assuming bConnect v1 structure: GET /endpoints
+            # Adjust endpoint based on specific API version docs if needed
+            endpoint = f"{api_url}endpoints"
+            
+            logger.info(f"Connecting to Baramundi: {endpoint}")
+            
+            # Pagination loop (if API supports it, otherwise fetch all)
+            # implementation assumes standard list response for now
+            
+            response = requests.get(
+                endpoint,
+                auth=(username, password),
+                verify=verify_ssl,
+                headers={'Accept': 'application/json'},
+                timeout=30
+            )
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            # Handle different response structures (list vs dict with 'items')
+            items = []
+            if isinstance(data, list):
+                items = data
+            elif isinstance(data, dict) and 'items' in data:
+                items = data['items']
+            elif isinstance(data, dict):
+                 # maybe a single object or wrapped result
+                 items = [data]
+            
+            logger.info(f"Fetched {len(items)} items from Baramundi")
+            
+            if items:
+                yield items
+                
+        except Exception as e:
+            logger.error(f"Baramundi fetch error: {e}")
+            raise ValueError(f"Failed to fetch data from Baramundi: {str(e)}")
+
+    def test_connection(self) -> bool:
+        """Test connection to Baramundi."""
+        import requests
+        
+        try:
+            api_url = self.config.get('api_url')
+            username = self.config.get('username')
+            password = self.config.get('password')
+            verify_ssl = self.config.get('verify_ssl', True)
+            
+            if not all([api_url, username, password]):
+                return False
+
+            if not api_url.endswith('/'):
+                api_url += '/'
+            
+            # Simple ping to root or specific endpoint
+            endpoint = f"{api_url}endpoints"
+            
+            response = requests.get(
+                endpoint,
+                auth=(username, password),
+                verify=verify_ssl,
+                headers={'Accept': 'application/json'},
+                params={'limit': 1}, # Try to limit data if possible
+                timeout=10
+            )
+            response.raise_for_status()
+            return True
+            
+        except Exception as e:
+            logger.error(f"Baramundi connection test failed: {e}")
+            return False
+
+    def get_schema(self) -> List[str]:
+        """Get schema from a sample device."""
+        import requests
+        try:
+            api_url = self.config.get('api_url')
+            username = self.config.get('username')
+            password = self.config.get('password')
+            verify_ssl = self.config.get('verify_ssl', True)
+            
+            if not api_url.endswith('/'):
+                api_url += '/'
+            
+            endpoint = f"{api_url}endpoints"
+            
+            response = requests.get(
+                endpoint,
+                auth=(username, password),
+                verify=verify_ssl,
+                headers={'Accept': 'application/json'},
+                params={'limit': 1},
+                timeout=10
+            )
+            data = response.json()
+            
+            sample = None
+            if isinstance(data, list) and data:
+                sample = data[0]
+            elif isinstance(data, dict) and 'items' in data and data['items']:
+                sample = data['items'][0]
+                
+            if sample:
+                return sorted(list(sample.keys()))
+            return []
+            
+        except Exception:
+            return []
+
+    def get_categories(self) -> List[Dict[str, Any]]:
+        return []
 
 class WSUSConnector(Connector):
     def __init__(self, config: dict):
@@ -1092,6 +1236,8 @@ class ReconciliationService:
             return VCenterConnector(self.config)
         elif self.source.source_type == "wsus":
             return WSUSConnector(self.config)
+        elif self.source.source_type == "baramundi":
+            return BaramundiConnector(self.config)
         return None
 
     def _process_record(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> Optional[ConfigurationItem]:
@@ -1149,6 +1295,11 @@ class ReconciliationService:
 
     def _create_ci(self, mapped_record: Dict[str, Any], raw_record: Dict[str, Any]) -> ConfigurationItem:
         """Create a new CI from mapped data."""
+        # Initialize raw_data as a dict with the current source type
+        initial_raw_data = {
+            self.source.source_type: raw_record
+        }
+
         ci_data = {
             'name': mapped_record.get('name'),
             'ci_type': self._parse_ci_type(mapped_record.get('ci_type')),
@@ -1166,7 +1317,7 @@ class ReconciliationService:
             'external_id': raw_record.get('id') or raw_record.get('ID'),
             'import_source_id': self.source.id,
             'last_sync': datetime.utcnow(),
-            'raw_data': json.dumps(raw_record, default=str)
+            'raw_data': json.dumps(initial_raw_data, default=str)
         }
         
         new_ci = ConfigurationItem(**ci_data)
@@ -1292,8 +1443,23 @@ class ReconciliationService:
         if raw_record.get('id') or raw_record.get('ID'):
             ci.external_id = raw_record.get('id') or raw_record.get('ID')
         
-        # Always update raw_data with latest source data
-        ci.raw_data = json.dumps(raw_record, default=str)
+        # Parse existing raw_data to merge instead of overwrite
+        current_raw = {}
+        if ci.raw_data:
+            if isinstance(ci.raw_data, dict):
+                current_raw = ci.raw_data
+            elif isinstance(ci.raw_data, str):
+                try:
+                    current_raw = json.loads(ci.raw_data)
+                    # If loaded JSON is not a dict (e.g. list), reset it
+                    if not isinstance(current_raw, dict):
+                         current_raw = {}
+                except Exception:
+                    current_raw = {}
+        
+        # Update only this source's section
+        current_raw[self.source.source_type] = raw_record
+        ci.raw_data = json.dumps(current_raw, default=str)
         
         self.db.commit()
         

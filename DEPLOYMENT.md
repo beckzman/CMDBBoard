@@ -1,64 +1,110 @@
 # Production Deployment Guide
 
-This guide describes how to deploy the CMDBBoard application to a production environment using Docker Compose.
+This guide describes how to deploy the CMDB application to a production server with a real hostname (e.g., `cmdb.example.com`).
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) installed on the host machine.
-- [Docker Compose](https://docs.docker.com/compose/install/) installed.
+- Docker and Docker Compose (v2+) installed on the server.
+- A domain name (DNS resolved to your server IP).
+- (Optional) A reverse proxy (like Nginx on the host, Traefik, or Caddy) to handle SSL/HTTPS termination.
 
-## Setup
+## Configuration
 
-1.  **Clone the repository** to your production server.
-
-2.  **Create production environment file**:
-    Copy the example file to `.env`:
+1.  **Environment Variables (.env)**
+    Creates a `.env` file in the project root based on individual needs.
+    
     ```bash
-    cp .env.prod.example .env
+    # Database
+    POSTGRES_USER=cmdb
+    POSTGRES_PASSWORD=secure_password_here
+    POSTGRES_DB=cmdb
+    DATABASE_URL=postgresql://cmdb:secure_password_here@postgres:5432/cmdb
+
+    # Security
+    SECRET_KEY=change_this_to_a_long_random_string
+
+    # CORS (Important for real domains)
+    # List allowed origins. If API calls are proxy passed via Nginx (default), 
+    # the browser sees same-origin, so this is less critical but good practice.
+    CORS_ORIGINS=http://cmdb.example.com,https://cmdb.example.com,http://localhost
+
+
+    # Application
+    APP_NAME=ITIL CMDB Dashboard
+    # Set to False in production
+    DEBUG=False
+
+    # Caddy (Automatic HTTPS)
+    DOMAIN_NAME=cmdb.example.com
+    ACME_EMAIL=admin@example.com
+
+    # Optional Integrations
+    SHAREPOINT_CLIENT_ID=...
+    KEYCLOAK_URL=...
     ```
 
-3.  **Configure Environment Variables**:
-    Edit `.env` and set secure values for:
-    - `POSTGRES_PASSWORD`: Use a strong, unique password.
-    - `SECRET_KEY`: Use a strong random string (e.g., generate with `openssl rand -hex 32`).
-    - `CORS_ORIGINS`: Set this to your actual domain name(s), e.g., `https://cmdb.example.com`.
+2.  **Architecture**
+    The application uses Caddy as a reverse proxy for automatic HTTPS.
+    - **Caddy**: Exposed on ports 80/443. Handles SSL and routes all traffic to the Frontend.
+    - **Frontend**: Serves the React app and proxies `/api` calls to the Backend.
+    - **Backend**: API Server (internal only).
 
-## Deployment
+## Running the Application
 
-1.  **Build and Start Services**:
-    Run the following command to build the images and start the containers in detached mode:
-    ```bash
-    docker-compose -f docker-compose.prod.yml up -d --build
-    ```
+Use the production Docker Compose file:
 
-2.  **Verify Status**:
-    Check if all containers are running:
-    ```bash
-    docker-compose -f docker-compose.prod.yml ps
-    ```
-    You should see `cmdb_postgres_prod`, `cmdb_backend_prod`, and `cmdb_frontend_prod` in a healthy or running state.
+```bash
+docker compose -f docker-compose.prod.yml up -d --build
+```
 
-3.  **Access the Application**:
-    The application should now be accessible at `http://localhost` (or your server's IP/domain) on port 80.
+This will start:
+- `cmdb_postgres_prod`: Database (volume: `postgres_data_prod`)
+- `cmdb_backend_prod`: API Server (on internal network)
+- `cmdb_frontend_prod`: Nginx Web Server (exposed on port 80)
+- `cmdb_ollama_prod`: AI Service (volume: `ollama_vals_prod`)
 
-## Maintenance
+## Architecture Diagram
 
--   **View Logs**:
-    ```bash
-    docker-compose -f docker-compose.prod.yml logs -f
-    ```
+The following diagram illustrates the production container architecture:
 
--   **Stop Services**:
-    ```bash
-    docker-compose -f docker-compose.prod.yml down
-    ```
+```mermaid
+graph TD
+    User((User))
+    
+    subgraph "Docker Host"
+        Caddy[("Caddy<br>(Reverse Proxy)"))]
+        
+        subgraph "Internal Network"
+            Frontend[("Frontend Container<br>(Nginx + React)")]
+            Backend[("Backend Container<br>(FastAPI)")]
+            DB[("Postgres DB")]
+            Ollama[("Ollama<br>(AI Model)")]
+        end
+        
+        VolDB[("Volume:<br>postgres_data")]
+        VolOllama[("Volume:<br>ollama_vals")]
+        VolCaddy[("Volume:<br>caddy_data")]
+    end
+    
+    User -- "HTTPS (443)" --> Caddy
+    User -- "HTTP (80)" --> Caddy
+    
+    Caddy -- "Reverse Proxy" --> Frontend
+    
+    Frontend -- "API Calls<br>(/api/*)" --> Backend
+    
+    Backend -- "SQL" --> DB
+    Backend -- "Generate" --> Ollama
+    
+    DB -.-> VolDB
+    Ollama -.-> VolOllama
+    Caddy -.-> VolCaddy
 
--   **Update Application**:
-    1.  Pull the latest code: `git pull origin main`
-    2.  Rebuild and restart: `docker-compose -f docker-compose.prod.yml up -d --build`
+    style Caddy fill:#f9f,stroke:#333
+    style Frontend fill:#dfd,stroke:#333
+    style Backend fill:#bbf,stroke:#333
+    style DB fill:#ddf,stroke:#333
+```
 
-## Architecture Notes
 
--   **Frontend**: Served by Nginx (Alpine), which also handles SPA routing (redirecting to `index.html`).
--   **Backend**: Runs with `gunicorn` processing requests, managing multiple workers for concurrency.
--   **Database**: PostgreSQL on Port 5433 (host) with persistent volume `postgres_data_prod`.
+

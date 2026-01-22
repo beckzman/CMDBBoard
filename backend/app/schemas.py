@@ -5,6 +5,8 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Optional, List
 from datetime import datetime
 from app.db.models import CIStatus, CIType, RelationType, UserRole
+from pydantic import BaseModel, EmailStr, Field, field_validator
+import json
 
 
 # User Schemas
@@ -139,6 +141,29 @@ class CIResponse(CIBase):
     relationships_summary: Optional[str] = None
     raw_data: Optional[dict] = None
     patch_summary: Optional[dict] = None
+
+    @field_validator('raw_data', 'patch_summary', mode='before')
+    @classmethod
+    def parse_json_fields(cls, v):
+        if isinstance(v, str):
+            try:
+                if not v.strip():
+                    return None
+                import math
+                def clean_nans(obj):
+                    if isinstance(obj, float) and math.isnan(obj):
+                        return None
+                    if isinstance(obj, dict):
+                        return {k: clean_nans(v) for k, v in obj.items()}
+                    if isinstance(obj, list):
+                        return [clean_nans(x) for x in obj]
+                    return obj
+                
+                parsed = json.loads(v)
+                return clean_nans(parsed)
+            except ValueError:
+                return {}
+        return v
     
     class Config:
         from_attributes = True

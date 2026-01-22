@@ -1,0 +1,19 @@
+{
+    # Global options
+    email {$ACME_EMAIL}
+}
+
+{$DOMAIN_NAME} {
+    # Proxy all traffic to the frontend container
+    reverse_proxy frontend:80
+    
+    # Enable gzip compression
+    encode gzip
+    
+    # Security headers (optional but recommended)
+    header {
+        Strict-Transport-Security "max-age=31536000;"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+    }
+}

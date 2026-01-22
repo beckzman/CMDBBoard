@@ -62,6 +62,28 @@ class CSVImporter:
                     
                     if existing_ci:
                         # Update existing CI
+                        # Handle raw_data merging separately before the loop
+                        if 'raw_data' in ci_data:
+                            new_raw_section = json.loads(ci_data['raw_data'])
+                            current_raw = {}
+                            if existing_ci.raw_data:
+                                try:
+                                    # Load existing
+                                    if isinstance(existing_ci.raw_data, str):
+                                        current_raw = json.loads(existing_ci.raw_data)
+                                    else:
+                                        current_raw = existing_ci.raw_data
+                                        
+                                    # Handle legacy/malformed
+                                    if not isinstance(current_raw, dict):
+                                        current_raw = {}
+                                except:
+                                    current_raw = {}
+                            
+                            # Merge 'csv' section
+                            current_raw['csv'] = new_raw_section.get('csv', {})
+                            ci_data['raw_data'] = json.dumps(current_raw, default=str)
+
                         for key, value in ci_data.items():
                             if value is not None:
                                 setattr(existing_ci, key, value)
@@ -139,6 +161,12 @@ class CSVImporter:
         # Capture raw data (full row)
         # Convert to dict and handle NaN/NaT
         raw_record = row.where(pd.notnull(row), None).to_dict()
-        ci_data['raw_data'] = json.dumps(raw_record, default=str)
+        
+        # Prepare sectioned raw data
+        # For CSV imports via this service, we use 'csv' as the section key
+        initial_raw_data = {
+            'csv': raw_record
+        }
+        ci_data['raw_data'] = json.dumps(initial_raw_data, default=str)
         
         return ci_data

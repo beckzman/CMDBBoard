@@ -59,6 +59,8 @@ interface ImportConfig {
     user?: string;
     // CSV Config
     file_path?: string;
+    // Baramundi Config
+    verify_ssl?: boolean;
 }
 
 const ImportDashboard: React.FC = () => {
@@ -422,7 +424,8 @@ const ImportDashboard: React.FC = () => {
                                     oracle: 'Oracle Database',
                                     csv: 'CSV Files',
                                     vcenter: 'VMware vCenter',
-                                    wsus: 'WSUS Database'
+                                    wsus: 'WSUS Database',
+                                    baramundi: 'Baramundi Management Suite'
                                 };
 
                                 const groups = Object.keys(groupedSources);
@@ -606,6 +609,7 @@ const ImportDashboard: React.FC = () => {
                                                 <option value="csv">CSV File</option>
                                                 <option value="vcenter">VMware vCenter</option>
                                                 <option value="wsus">WSUS Database</option>
+                                                <option value="baramundi">Baramundi Management Suite</option>
                                             </select>
                                         </div>
 
@@ -689,6 +693,69 @@ const ImportDashboard: React.FC = () => {
                                                     />
                                                 </div>
                                             </>
+
+                                        )}
+
+                                        {newSourceData.source_type === 'baramundi' && (
+                                            <div className="baramundi-config-section">
+                                                <h3>Baramundi Connection Details</h3>
+                                                <div className="form-group">
+                                                    <label>API URL</label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="https://baramundi.example.com/bConnect/v1"
+                                                        value={(importConfig as any).api_url || ''}
+                                                        onChange={e => setImportConfig({ ...importConfig, api_url: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="form-group-row">
+                                                    <div className="form-group">
+                                                        <label>Username</label>
+                                                        <input
+                                                            type="text"
+                                                            value={(importConfig as any).username || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, username: e.target.value })}
+                                                        />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label>Password</label>
+                                                        <input
+                                                            type="password"
+                                                            value={(importConfig as any).password || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, password: e.target.value })}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={(importConfig as any).verify_ssl !== false}
+                                                            onChange={e => setImportConfig({ ...importConfig, verify_ssl: e.target.checked })}
+                                                            style={{ marginRight: '8px', width: 'auto' }}
+                                                        />
+                                                        Verify SSL Certificate
+                                                    </label>
+                                                </div>
+                                                <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handlePreviewData}
+                                                        disabled={previewDataMutation.isPending}
+                                                    >
+                                                        {previewDataMutation.isPending ? 'Loading...' : 'Preview Data'}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handleTestConnection}
+                                                        disabled={testConnectionMutation.isPending}
+                                                    >
+                                                        {testConnectionMutation.isPending ? 'Testing...' : 'Test Connection'}
+                                                    </button>
+                                                </div>
+                                            </div>
                                         )}
 
                                         {newSourceData.source_type === 'vcenter' && (

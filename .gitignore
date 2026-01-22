@@ -20,3 +20,4 @@ Thumbs.db
 # Database
 *.db
 scripts/oracle_config.json
+backend/logs/

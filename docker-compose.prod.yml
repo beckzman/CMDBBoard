@@ -37,8 +37,8 @@ services:
         - VITE_API_URL=/
     container_name: cmdb_frontend_prod
     restart: always
-    ports:
-      - "80:80"
+    expose:
+      - "80"
     depends_on:
       - backend
 
@@ -51,6 +51,24 @@ services:
     volumes:
       - ollama_vals_prod:/root/.ollama
 
+  caddy:
+    image: caddy:alpine
+    container_name: cmdb_caddy_prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - ACME_EMAIL=${ACME_EMAIL}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
 volumes:
   postgres_data_prod:
   ollama_vals_prod:
+  caddy_data:
+  caddy_config:
