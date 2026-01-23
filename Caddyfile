@@ -5,6 +5,7 @@
 
 {$DOMAIN_NAME} {
     # Proxy all traffic to the frontend container
+    tls internal
     reverse_proxy frontend:80
     
     # Enable gzip compression
