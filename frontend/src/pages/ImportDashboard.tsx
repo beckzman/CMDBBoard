@@ -54,9 +54,12 @@ interface ImportConfig {
     clean_fqdn?: boolean;
     // Oracle Config
     host?: string;
-    port?: string;
+    port?: string | number;
     service_name?: string;
     user?: string;
+    table_name?: string;
+    // WSUS Config
+    database?: string;
     // CSV Config
     file_path?: string;
     // Baramundi Config
@@ -665,7 +668,7 @@ const ImportDashboard: React.FC = () => {
                                                     <input
                                                         type="text"
                                                         value={(importConfig as any).database || 'SUSDB'}
-                                                        onChange={e => setImportConfig({ ...importConfig, database: e.target.value })}
+                                                        onChange={e => setImportConfig({ ...importConfig, database: e.target.value } as any)}
                                                     />
                                                 </div>
                                                 <div className="form-group">
@@ -689,7 +692,7 @@ const ImportDashboard: React.FC = () => {
                                                     <input
                                                         type="number"
                                                         value={(importConfig as any).port || 1433}
-                                                        onChange={e => setImportConfig({ ...importConfig, port: Number(e.target.value) })}
+                                                        onChange={e => setImportConfig({ ...importConfig, port: Number(e.target.value) } as any)}
                                                     />
                                                 </div>
                                             </>
@@ -983,6 +986,32 @@ const ImportDashboard: React.FC = () => {
                                                             onChange={e => setImportConfig({ ...importConfig, service_name: e.target.value })}
                                                         />
                                                     </div>
+                                                </div>
+                                                <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-end', gap: '10px' }}>
+                                                    <div style={{ flex: 1 }}>
+                                                        <label>Table/View Name</label>
+                                                        <input
+                                                            type="text"
+                                                            list="oracle-tables"
+                                                            placeholder="CMDB_EXPORT"
+                                                            value={(importConfig as any).table_name || ''}
+                                                            onChange={e => setImportConfig({ ...importConfig, table_name: e.target.value })}
+                                                        />
+                                                        <datalist id="oracle-tables">
+                                                            {categories.map(cat => (
+                                                                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                                            ))}
+                                                        </datalist>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        className="secondary-btn"
+                                                        onClick={handleFetchCategories}
+                                                        disabled={fetchCategoriesMutation.isPending}
+                                                        style={{ marginBottom: '2px' }}
+                                                    >
+                                                        {fetchCategoriesMutation.isPending ? 'Fetching...' : 'Fetch Tables'}
+                                                    </button>
                                                 </div>
                                                 <div className="form-group-row">
                                                     <div className="form-group">

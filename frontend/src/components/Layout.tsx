@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { ThemeProvider, useTheme } from '../context/ThemeContext';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { ciAPI } from '../api/client';
 import DeleteCIModal from './DeleteCIModal';
 import {

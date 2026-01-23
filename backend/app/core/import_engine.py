@@ -632,9 +632,13 @@ class OracleConnector(Connector):
                 
             with oracledb.connect(user=user, password=password, dsn=dsn) as connection:
                 with connection.cursor() as cursor:
-                    # Execute query (this should be configurable, but hardcoded for now as per simple requirement)
-                    # Assuming a view or table named 'CMDB_EXPORT' exists
-                    sql = "SELECT * FROM CMDB_EXPORT"
+                    # Execute query
+                    table_name = self.config.get('table_name', 'CMDB_EXPORT')
+                    # Validate table_name to prevent SQL injection (basic check)
+                    if not table_name.replace('_', '').isalnum():
+                        raise ValueError("Invalid table name")
+                        
+                    sql = f"SELECT * FROM {table_name}"
                     cursor.execute(sql)
                     
                     # Get column names
@@ -672,14 +676,15 @@ class OracleConnector(Connector):
             
             with oracledb.connect(user=user, password=password, dsn=dsn) as connection:
                 with connection.cursor() as cursor:
-                    # Query to get columns from CMDB_EXPORT view/table
-                    # This assumes the table exists; adjust as needed
-                    cursor.execute("""
+                    # Query to get columns from configured view/table
+                    table_name = self.config.get('table_name', 'CMDB_EXPORT')
+                    
+                    cursor.execute(f"""
                         SELECT column_name 
                         FROM user_tab_columns 
-                        WHERE table_name = 'CMDB_EXPORT'
+                        WHERE table_name = :table_name
                         ORDER BY column_name
-                    """)
+                    """, table_name=table_name)
                     columns = [row[0] for row in cursor.fetchall()]
                     return columns
                     
@@ -689,8 +694,36 @@ class OracleConnector(Connector):
             return []
 
     def get_categories(self) -> List[Dict[str, Any]]:
-        """Get list of available object categories/types from the source. Not applicable for Oracle tables."""
-        return []
+        """Get list of available tables and views from Oracle."""
+        try:
+            user = self.config.get('user')
+            password = self.config.get('password')
+            dsn = f"{self.config.get('host')}:{self.config.get('port')}/{self.config.get('service_name')}"
+            
+            with oracledb.connect(user=user, password=password, dsn=dsn) as connection:
+                with connection.cursor() as cursor:
+                    # Fetch tables and views
+                    sql = """
+                        SELECT table_name, 'TABLE' as type FROM user_tables 
+                        UNION ALL 
+                        SELECT view_name, 'VIEW' as type FROM user_views 
+                        ORDER BY 1
+                    """
+                    cursor.execute(sql)
+                    
+                    items = []
+                    for row in cursor.fetchall():
+                        name = row[0]
+                        obj_type = row[1]
+                        items.append({
+                            "id": name,
+                            "name": f"{name} ({obj_type})"
+                        })
+                    return items
+                    
+        except Exception as e:
+            logger.error(f"Failed to fetch Oracle tables: {e}")
+            return []
 
 
 class VCenterConnector(Connector):
