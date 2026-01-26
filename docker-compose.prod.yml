@@ -23,6 +23,8 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      - backend_uploads_prod:/app/uploads
     depends_on:
       postgres:
         condition: service_healthy
@@ -72,3 +74,4 @@ volumes:
   ollama_vals_prod:
   caddy_data:
   caddy_config:
+  backend_uploads_prod:
