@@ -18,7 +18,13 @@ ARG VITE_API_URL
 ENV VITE_API_URL=${VITE_API_URL}
 
 # Build the application
-RUN npm run build
+# Debug: List installed binaries and check PATH
+RUN ls -la node_modules/.bin || echo "node_modules/.bin does not exist"
+RUN echo $PATH
+RUN npm list typescript || echo "typescript not found in npm list"
+
+# Build the application with verbose output
+RUN npm run build --loglevel verbose
 
 # Production Stage
 FROM nginx:alpine
