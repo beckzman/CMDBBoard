@@ -7,6 +7,9 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (use ci for idempotent installs)
+# Install dependencies (use ci for idempotent installs)
+# Explicitly set NODE_ENV to development to ensure devDependencies (like typescript) are installed
+ENV NODE_ENV=development
 RUN npm ci
 
 # Copy application code
