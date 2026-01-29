@@ -44,14 +44,14 @@ services:
     depends_on:
       - backend
 
-  ollama:
-    image: ollama/ollama:latest
-    container_name: cmdb_ollama_prod
-    restart: always
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_vals_prod:/root/.ollama
+  #   ollama:
+  #     image: ollama/ollama:latest
+  #     container_name: cmdb_ollama_prod
+  #     restart: always
+  #     ports:
+  #       - "11434:11434"
+  #     volumes:
+  #       - ollama_vals_prod:/root/.ollama
 
   caddy:
     image: caddy:alpine
@@ -70,8 +70,8 @@ services:
     depends_on:
       - frontend
 volumes:
-  postgres_data_prod:
-  ollama_vals_prod:
+  postgres_data_prod: #   ollama_vals_prod:
+
   caddy_data:
   caddy_config:
   backend_uploads_prod:
