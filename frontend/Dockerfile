@@ -7,7 +7,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (use ci for idempotent installs)
-RUN npm ci
+# Install dependencies using npm install for robustness
+RUN npm install
 
 # Copy application code
 COPY . .
